@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KP Physics Academy | Master Physics for NEET & JEE</title>
+<meta name="description" content="KP Physics Academy - Complete Physics preparation for NEET, JEE Main and JEE Advanced.">
+<style>
+:root{
+  --navy:#031326; --navy2:#061d38; --blue:#1687ff; --gold:#ffc21a;
+  --text:#f7fbff; --muted:#b8c6d8; --card:#fff; --ink:#0b1930;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--ink);background:#f7f9fc}
+a{text-decoration:none;color:inherit}
+header{height:78px;background:#031326;color:white;display:flex;align-items:center;padding:0 5.5%;position:sticky;top:0;z-index:20;border-bottom:1px solid #18304b}
+.logo{display:flex;align-items:center;gap:10px;min-width:260px}
+.logo-mark{font-size:43px;font-weight:900;font-style:italic;letter-spacing:-6px;color:white;text-shadow:3px 3px 0 #147cff}
+.logo span{font-size:25px;font-weight:800;letter-spacing:1px}
+.logo small{display:block;color:#ffc21a;letter-spacing:4px;font-size:12px;margin-top:2px}
+nav{display:flex;gap:27px;align-items:center;font-size:14px;margin-left:auto}
+nav a:hover{color:#ffc21a}
+.actions{display:flex;gap:12px;margin-left:25px}
+.btn{padding:12px 21px;border-radius:8px;border:1px solid white;color:white;background:transparent;font-weight:700;cursor:pointer}
+.btn.primary{background:var(--gold);border-color:var(--gold);color:#111}
+.hero{background:radial-gradient(circle at 76% 45%,#103c70 0,#061d38 30%,#031326 70%);color:white;min-height:500px;padding:75px 6%;display:flex;align-items:center;overflow:hidden}
+.hero-content{max-width:650px}
+.eyebrow{color:#2694ff;font-weight:700;letter-spacing:1px;margin-bottom:16px}
+h1{font-size:57px;line-height:1.05;margin-bottom:20px}
+h1 .blue{color:#1687ff} h1 .gold{color:#ffc21a}
+.hero p{font-size:18px;line-height:1.6;color:#d6e1ee;max-width:650px}
+.hero-buttons{display:flex;gap:18px;margin:28px 0 35px}
+.hero .btn{font-size:16px}
+.stats{display:flex;gap:40px;flex-wrap:wrap}
+.stat strong{display:block;font-size:25px}.stat span{color:#b8c6d8;font-size:13px}
+.atom{margin-left:auto;width:43%;min-width:330px;height:360px;position:relative}
+.atom:before{content:"";position:absolute;inset:70px 25px;background:radial-gradient(circle,#38a7ff 0,#1687ff 7%,transparent 9%),radial-gradient(circle,#072b52 0,#031326 62%);border-radius:50%;box-shadow:0 0 45px #1687ff}
+.orbit{position:absolute;left:10%;right:5%;top:26%;height:55%;border:2px solid #1687ff;border-radius:50%;transform:rotate(25deg);box-shadow:0 0 15px #1687ff66}
+.orbit.o2{transform:rotate(-35deg) scaleY(.72)} .orbit.o3{transform:rotate(90deg) scaleY(.72)}
+.electron{position:absolute;width:13px;height:13px;border-radius:50%;background:#8bd2ff;box-shadow:0 0 18px #2ba7ff}
+.e1{left:77%;top:27%}.e2{left:22%;top:62%}.e3{left:62%;top:76%}
+.features{background:white;margin:-1px 5.5% 55px;border-radius:18px;box-shadow:0 8px 30px #0b193018;display:grid;grid-template-columns:repeat(5,1fr);overflow:hidden}
+.feature{padding:27px 23px;border-right:1px solid #e6eaf0}.feature:last-child{border:0}
+.icon{font-size:30px;margin-bottom:10px}.feature h3{font-size:15px;margin-bottom:8px}.feature p{font-size:13px;color:#68758a;line-height:1.45}
+section{padding:0 5.5% 70px}
+.section-title{text-align:center;font-size:29px;color:#0b1930;margin-bottom:35px}
+.section-title span{color:#1687ff}
+.chapters{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.chapter{background:white;border:1px solid #e5e9ef;border-radius:14px;padding:26px 20px;text-align:center;transition:.2s}
+.chapter:hover{transform:translateY(-4px);box-shadow:0 10px 25px #0b193015}
+.chapter .cicon{font-size:42px;margin-bottom:12px}.chapter h3{font-size:17px}.chapter p{color:#7a8799;font-size:13px;margin:8px 0 17px}.chapter a{color:#1687ff;font-weight:700;font-size:13px}
+.exam{background:#031326;color:white;margin:0 5.5% 70px;border-radius:18px;padding:45px;display:flex;align-items:center;justify-content:space-between}
+.exam h2{font-size:30px;margin-bottom:10px}.exam p{color:#b8c6d8}.exam .btn{margin-left:20px}
+footer{background:#020d1b;color:#aebbd0;padding:35px 5.5%;display:flex;justify-content:space-between;align-items:center}
+footer strong{color:white;font-size:18px}footer a{margin-left:20px;font-size:13px}
+@media(max-width:1000px){nav{display:none}.logo{min-width:auto}.features{grid-template-columns:repeat(2,1fr)}.feature:nth-child(2){border-right:0}.chapters{grid-template-columns:repeat(2,1fr)}.atom{display:none}}
+@media(max-width:650px){header{padding:0 20px}.actions{margin-left:auto}.actions .btn:first-child{display:none}.hero{padding:55px 25px}.hero h1{font-size:42px}.features{margin:0 20px 45px;grid-template-columns:1fr}.feature{border-right:0;border-bottom:1px solid #e6eaf0}.chapters{grid-template-columns:1fr}.exam{margin:0 20px 50px;padding:30px;display:block}.exam .btn{margin:20px 0 0}footer{display:block}footer a{display:inline-block;margin:12px 15px 0 0}}
+
+.hero{position:relative}
+.hero:after{content:"";position:absolute;width:520px;height:520px;right:-180px;top:-120px;border-radius:50%;background:radial-gradient(circle,#1687ff18 0,#1687ff08 38%,transparent 70%);pointer-events:none}
+.hero-content,.atom{position:relative;z-index:1}
+.chapter{cursor:pointer}
+.chapter:hover .cicon{transform:scale(1.08)}
+.cicon{transition:transform .2s}
+@media(max-width:650px){
+  .logo-mark{font-size:36px}.logo span{font-size:20px}.logo small{font-size:9px}
+  .hero-buttons{flex-direction:column}.hero-buttons .btn{text-align:center}
+  .stats{gap:20px}
+}
+
+.syllabus-tabs{display:flex;justify-content:center;gap:10px;margin-bottom:28px;flex-wrap:wrap}
+.syllabus-tab{border:1px solid #d9e1ec;background:white;color:#19304d;padding:12px 22px;border-radius:9px;font-weight:700;cursor:pointer}
+.syllabus-tab.active,.syllabus-tab:hover{background:#1687ff;color:white;border-color:#1687ff}
+.syllabus-panel{display:none}.syllabus-panel.active{display:block}
+.syllabus-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.syllabus-grid .chapter{position:relative;text-align:left;padding:25px 20px;min-height:205px}
+.syllabus-grid .number{position:absolute;top:13px;right:16px;color:#b9c6d5;font-size:12px;font-weight:800}
+.syllabus-grid .cicon{text-align:left}
+.syllabus-grid .chapter h3{line-height:1.3}
+.syllabus-grid .chapter p{line-height:1.5}
+.all-note{background:#031326;color:white;border-radius:16px;padding:35px;display:flex;justify-content:center;gap:45px;flex-wrap:wrap}
+.all-note strong{color:#ffc21a;font-size:25px}
+.all-note span{padding-top:5px}
+@media(max-width:1000px){.syllabus-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.syllabus-grid{grid-template-columns:1fr}.syllabus-grid .chapter{min-height:180px}}
+
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#">
+    <div class="logo-mark">KP</div>
+    <div><span>PHYSICS</span><small>ACADEMY</small></div>
+  </a>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#chapters">NEET Physics</a>
+    <a href="#chapters">JEE Main</a>
+    <a href="#chapters">JEE Advanced</a>
+    <a href="#chapters">Notes</a>
+    <a href="#chapters">PYQs</a>
+    <a href="#tests">Tests</a>
+    <a href="#formula">Formula Bank</a>
+    <a href="#about">About Us</a>
+  </nav>
+  <div class="actions"><button class="btn">Login</button><button class="btn primary">Sign Up</button></div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">WELCOME TO KP PHYSICS ACADEMY</div>
+    <h1>MASTER PHYSICS.<br>CRACK <span class="blue">NEET.</span><br>CONQUER <span class="gold">IIT.</span></h1>
+    <p>Complete Physics preparation for NEET, JEE Main &amp; JEE Advanced with conceptual learning, practice, tests and PYQs.</p>
+    <div class="hero-buttons">
+      <a class="btn primary" href="#chapters">Start Learning Now →</a>
+      <a class="btn" href="#chapters">Explore Courses</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong>5000+</strong><span>Concepts Covered</span></div>
+      <div class="stat"><strong>25,000+</strong><span>Practice Questions</span></div>
+      <div class="stat"><strong>1000+</strong><span>PYQs with Solutions</span></div>
+      <div class="stat"><strong>500+</strong><span>Tests Available</span></div>
+    </div>
+  </div>
+  <div class="atom" aria-hidden="true">
+    <div class="orbit"></div><div class="orbit o2"></div><div class="orbit o3"></div>
+    <div class="electron e1"></div><div class="electron e2"></div><div class="electron e3"></div>
+  </div>
+</section>
+
+<div class="features">
+  <div class="feature"><div class="icon">🎓</div><h3>Conceptual Learning</h3><p>Build strong concepts from basics to advanced with clarity.</p></div>
+  <div class="feature"><div class="icon">🎯</div><h3>Exam Focused</h3><p>NEET, JEE Main &amp; JEE Advanced content and practice.</p></div>
+  <div class="feature"><div class="icon">✍️</div><h3>Extensive Practice</h3><p>MCQs, numericals, PYQs, tests and more.</p></div>
+  <div class="feature"><div class="icon">📊</div><h3>Track Progress</h3><p>Analyze performance and improve weak areas.</p></div>
+  <div class="feature"><div class="icon">🔄</div><h3>Smart Revision</h3><p>Quick notes, formulae, mind maps and revision tests.</p></div>
+</div>
+
+<section id="chapters">
+  <h2 class="section-title">Complete <span>Physics Syllabus</span></h2>
+  <p style="text-align:center;color:#68758a;max-width:760px;margin:-20px auto 35px;line-height:1.6;">
+    Complete Class 11 &amp; Class 12 Physics coverage for NEET, JEE Main and JEE Advanced.
+    Learn chapter-by-chapter from fundamentals to advanced problem solving.
+  </p>
+
+  <div class="syllabus-tabs">
+    <button class="syllabus-tab active" onclick="showSyllabus('class11',this)">Class 11 Physics</button>
+    <button class="syllabus-tab" onclick="showSyllabus('class12',this)">Class 12 Physics</button>
+    <button class="syllabus-tab" onclick="showSyllabus('all',this)">All Chapters</button>
+  </div>
+
+  <div id="class11" class="syllabus-panel active">
+    <div class="syllabus-grid">
+      <div class="chapter"><div class="number">01</div><div class="cicon">📏</div><h3>Units &amp; Measurements</h3><p>Dimensions • Errors • Significant Figures</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">02</div><div class="cicon">➡️</div><h3>Motion in a Straight Line</h3><p>Distance • Velocity • Acceleration • Graphs</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">03</div><div class="cicon">🎯</div><h3>Motion in a Plane</h3><p>Vectors • Projectile Motion • Relative Motion</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">04</div><div class="cicon">⚖️</div><h3>Laws of Motion</h3><p>Newton's Laws • Friction • Circular Motion</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">05</div><div class="cicon">💪</div><h3>Work, Energy &amp; Power</h3><p>Work • KE • PE • Conservation • Collisions</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">06</div><div class="cicon">🔄</div><h3>System of Particles &amp; Rotational Motion</h3><p>COM • Torque • Angular Momentum • Rolling</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">07</div><div class="cicon">🌍</div><h3>Gravitation</h3><p>Gravity • Satellites • Escape Velocity • Orbits</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">08</div><div class="cicon">🧱</div><h3>Mechanical Properties of Solids</h3><p>Stress • Strain • Elasticity • Moduli</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">09</div><div class="cicon">💧</div><h3>Mechanical Properties of Fluids</h3><p>Pressure • Bernoulli • Viscosity • Surface Tension</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">10</div><div class="cicon">🌡️</div><h3>Thermal Properties of Matter</h3><p>Expansion • Calorimetry • Heat Transfer</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">11</div><div class="cicon">🔥</div><h3>Thermodynamics</h3><p>Laws • Processes • Heat Engines • Refrigerators</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">12</div><div class="cicon">⚛️</div><h3>Kinetic Theory</h3><p>Ideal Gas • Molecular Motion • Equipartition</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">13</div><div class="cicon">〰️</div><h3>Oscillations</h3><p>SHM • Energy • Springs • Pendulum</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">14</div><div class="cicon">🌊</div><h3>Waves</h3><p>Wave Motion • Sound • Standing Waves • Doppler Effect</p><a href="#">Explore →</a></div>
+    </div>
+  </div>
+
+  <div id="class12" class="syllabus-panel">
+    <div class="syllabus-grid">
+      <div class="chapter"><div class="number">01</div><div class="cicon">⚡</div><h3>Electric Charges &amp; Fields</h3><p>Coulomb's Law • Electric Field • Gauss's Law</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">02</div><div class="cicon">🔋</div><h3>Electrostatic Potential &amp; Capacitance</h3><p>Potential • Capacitors • Dielectrics • Energy</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">03</div><div class="cicon">🔌</div><h3>Current Electricity</h3><p>Drift • Resistance • Kirchhoff • Bridges</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">04</div><div class="cicon">🧲</div><h3>Moving Charges &amp; Magnetism</h3><p>Lorentz Force • Biot-Savart • Ampere • Cyclotron</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">05</div><div class="cicon">🧭</div><h3>Magnetism &amp; Matter</h3><p>Magnetic Dipoles • Materials • Earth Magnetism</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">06</div><div class="cicon">🔄</div><h3>Electromagnetic Induction</h3><p>Faraday • Lenz • Motional EMF • Inductance</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">07</div><div class="cicon">〽️</div><h3>Alternating Current</h3><p>AC Circuits • LCR • Resonance • Transformer</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">08</div><div class="cicon">📡</div><h3>Electromagnetic Waves</h3><p>Displacement Current • EM Spectrum • Applications</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">09</div><div class="cicon">🔭</div><h3>Ray Optics &amp; Optical Instruments</h3><p>Mirrors • Lenses • Refraction • Instruments</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">10</div><div class="cicon">🌈</div><h3>Wave Optics</h3><p>Huygens • Interference • Diffraction • Polarisation</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">11</div><div class="cicon">💡</div><h3>Dual Nature of Radiation &amp; Matter</h3><p>Photoelectric Effect • de Broglie • Matter Waves</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">12</div><div class="cicon">⚛️</div><h3>Atoms</h3><p>Rutherford • Bohr Model • Spectra • Energy Levels</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">13</div><div class="cicon">☢️</div><h3>Nuclei</h3><p>Mass Defect • Binding Energy • Radioactivity • Fission/Fusion</p><a href="#">Explore →</a></div>
+      <div class="chapter"><div class="number">14</div><div class="cicon">💻</div><h3>Semiconductor Electronics</h3><p>Diodes • Rectifiers • Transistors • Logic Gates</p><a href="#">Explore →</a></div>
+    </div>
+  </div>
+
+  <div id="all" class="syllabus-panel">
+    <div class="all-note">
+      <strong>28 Core Chapters</strong>
+      <span>14 Class 11 + 14 Class 12</span>
+      <span>NEET • JEE Main • JEE Advanced</span>
+    </div>
+  </div>
+</section>
+
+<section id="tests">
+  <div class="exam">
+    <div><h2>Ready to start your Physics journey?</h2><p>Practice daily, take chapter tests and master every concept.</p></div>
+    <a class="btn primary" href="#">Join KP Physics Academy 🚀</a>
+  </div>
+</section>
+</main>
+
+<footer id="about">
+  <div><strong>KP PHYSICS ACADEMY</strong><br><small>Master Physics. Crack NEET. Conquer IIT.</small></div>
+  <div>
+    <a href="#">Home</a><a href="#">Courses</a><a href="#">PYQs</a><a href="#">Tests</a><a href="#">Contact</a>
+  </div>
+</footer>
+
+<script>
+function showSyllabus(id, button){
+  document.querySelectorAll('.syllabus-panel').forEach(function(panel){
+    panel.classList.remove('active');
+  });
+  document.querySelectorAll('.syllabus-tab').forEach(function(tab){
+    tab.classList.remove('active');
+  });
+  document.getElementById(id).classList.add('active');
+  button.classList.add('active');
+}
+</script>
+
+</body>
+</html>
