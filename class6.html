@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Class 6 Physics | KP Physics Academy</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f8fc;
+    color: #071a33;
+}
+
+header {
+    background: #031326;
+    color: white;
+    padding: 22px 7%;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.back {
+    color: #1687ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 35px;
+    color: #1687ff;
+}
+
+.subtitle {
+    text-align: center;
+    color: #68758a;
+    margin-bottom: 40px;
+}
+
+.chapter {
+    background: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.chapter h2 {
+    margin-top: 0;
+}
+
+.topic {
+    background: #f1f6ff;
+    padding: 16px;
+    margin-top: 12px;
+    border-radius: 9px;
+}
+
+.status {
+    text-align: center;
+    padding: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    KP PHYSICS ACADEMY
+</header>
+
+<div class="container">
+
+<a href="index.html" class="back">← Back to Home</a>
+
+<h1>Class 6 Physics</h1>
+
+<p class="subtitle">
+    Physics Foundation
+</p>
+
+<div id="content" class="status">
+    Loading chapters...
+</div>
+
+</div>
+
+<script>
+
+const PROJECT_ID = "kp-physics-academy";
+
+const FIRESTORE_URL =
+"https://firestore.googleapis.com/v1/projects/" +
+PROJECT_ID +
+"/databases/(default)/documents/classes/class_6/chapters";
+
+async function loadChapters() {
+
+    const container = document.getElementById("content");
+
+    try {
+
+        const response = await fetch(FIRESTORE_URL);
+
+        if (!response.ok) {
+            throw new Error("Firestore connection failed");
+        }
+
+        const data = await response.json();
+
+        container.innerHTML = "";
+
+        if (!data.documents || data.documents.length === 0) {
+
+            container.innerHTML =
+                "<p>No chapters found.</p>";
+
+            return;
+        }
+
+        data.documents.sort((a,b) => {
+
+            const orderA =
+                Number(a.fields?.order?.integerValue || 0);
+
+            const orderB =
+                Number(b.fields?.order?.integerValue || 0);
+
+            return orderA - orderB;
+        });
+
+        data.documents.forEach(document => {
+
+            const fields = document.fields || {};
+
+            const name =
+                fields.name?.stringValue || "Chapter";
+
+            const chapterId =
+                document.name.split("/").pop();
+
+            const chapter = document.createElement("div");
+
+            chapter.className = "chapter";
+
+            chapter.innerHTML = `
+                <h2>${name}</h2>
+
+                <div class="topic">
+                    Chapter ID: ${chapterId}
+                </div>
+            `;
+
+            container.appendChild(chapter);
+
+        });
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        container.innerHTML = `
+            <p style="color:red;">
+                Unable to load Firestore chapters.
+            </p>
+        `;
+    }
+}
+
+loadChapters();
+
+</script>
+
+</body>
+</html>
