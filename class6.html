@@ -94,32 +94,87 @@ h1 {
 
 </div>
 
-<script>
 
-const PROJECT_ID = "kp-physics-academy";
+<script type="module">
 
-const FIRESTORE_URL =
-"https://firestore.googleapis.com/v1/projects/" +
-PROJECT_ID +
-"/databases/(default)/documents/classes/class_6/chapters";
+/* ==============================
+   FIREBASE IMPORTS
+   ============================== */
+
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+import {
+    getFirestore,
+    collection,
+    getDocs
+} from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+/* ==============================
+   FIREBASE CONFIGURATION
+   ============================== */
+
+const firebaseConfig = {
+
+    apiKey: "AIzaSyByht3FbHAz9tC4iON3laoI5NG5ve-FQlk",
+
+    authDomain: "kp-physics-academy.firebaseapp.com",
+
+    projectId: "kp-physics-academy",
+
+    storageBucket: "kp-physics-academy.firebasestorage.app",
+
+    messagingSenderId: "445260149248",
+
+    appId: "1:445260149248:web:c21427845e417de4ba1ee5",
+
+    measurementId: "G-BBQYTZY1FV"
+};
+
+
+/* ==============================
+   INITIALIZE FIREBASE
+   ============================== */
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+
+/* ==============================
+   LOAD CHAPTERS
+   ============================== */
 
 async function loadChapters() {
 
-    const container = document.getElementById("content");
+    const container =
+        document.getElementById("content");
 
     try {
 
-        const response = await fetch(FIRESTORE_URL);
+        const chaptersRef = collection(
+            db,
+            "classes",
+            "class_6",
+            "chapters"
+        );
 
-        if (!response.ok) {
-            throw new Error("Firestore connection failed");
-        }
+        const snapshot =
+            await getDocs(chaptersRef);
 
-        const data = await response.json();
+
+        console.log(
+            "Firestore chapters:",
+            snapshot.size
+        );
+
 
         container.innerHTML = "";
 
-        if (!data.documents || data.documents.length === 0) {
+
+        if (snapshot.empty) {
 
             container.innerHTML =
                 "<p>No chapters found.</p>";
@@ -127,56 +182,107 @@ async function loadChapters() {
             return;
         }
 
-        data.documents.sort((a,b) => {
 
-            const orderA =
-                Number(a.fields?.order?.integerValue || 0);
+        const chapters = [];
 
-            const orderB =
-                Number(b.fields?.order?.integerValue || 0);
 
-            return orderA - orderB;
+        snapshot.forEach((doc) => {
+
+            const data = doc.data();
+
+            chapters.push({
+
+                id: doc.id,
+
+                name:
+                    data.name || "Chapter",
+
+                order:
+                    Number(data.order || 0),
+
+                active:
+                    data.active !== false
+
+            });
+
         });
 
-        data.documents.forEach(document => {
 
-            const fields = document.fields || {};
+        /* Sort chapters */
 
-            const name =
-                fields.name?.stringValue || "Chapter";
+        chapters.sort((a, b) =>
+            a.order - b.order
+        );
 
-            const chapterId =
-                document.name.split("/").pop();
 
-            const chapter = document.createElement("div");
+        /* Display chapters */
 
-            chapter.className = "chapter";
+        chapters.forEach((chapter) => {
 
-            chapter.innerHTML = `
-                <h2>${name}</h2>
+            if (!chapter.active) {
+                return;
+            }
+
+
+            const chapterElement =
+                document.createElement("div");
+
+            chapterElement.className =
+                "chapter";
+
+
+            chapterElement.innerHTML = `
+
+                <h2>
+                    ${chapter.name}
+                </h2>
 
                 <div class="topic">
-                    Chapter ID: ${chapterId}
+
+                    Chapter ID:
+                    ${chapter.id}
+
                 </div>
+
             `;
 
-            container.appendChild(chapter);
+
+            container.appendChild(
+                chapterElement
+            );
 
         });
 
     }
 
-    catch(error) {
+    catch (error) {
 
-        console.error(error);
+        console.error(
+            "Firestore error:",
+            error
+        );
+
 
         container.innerHTML = `
+
             <p style="color:red;">
                 Unable to load Firestore chapters.
             </p>
+
+            <p style="font-size:14px;color:#666;">
+                Firestore connection error.
+            </p>
+
         `;
+
     }
+
 }
+
+
+/* ==============================
+   START APPLICATION
+   ============================== */
 
 loadChapters();
 
