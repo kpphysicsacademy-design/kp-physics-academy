@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Chapter | KP Physics Academy</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f8fc;
+    color: #071a33;
+}
+
+header {
+    background: #031326;
+    color: white;
+    padding: 22px 7%;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.back {
+    color: #1687ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 35px;
+    color: #1687ff;
+}
+
+.subtitle {
+    text-align: center;
+    color: #68758a;
+    margin-bottom: 40px;
+}
+
+.topic {
+    background: white;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.topic h2 {
+    margin-top: 0;
+    color: #071a33;
+}
+
+.topic-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.open-topic {
+    background: #f1f6ff;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 9px;
+    text-align: center;
+    color: #1687ff;
+    font-weight: bold;
+}
+
+.open-topic:hover {
+    background: #e2efff;
+}
+
+.status {
+    text-align: center;
+    padding: 20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+    KP PHYSICS ACADEMY
+</header>
+
+<div class="container">
+
+<a href="class6.html" class="back">
+    ← Back to Class 6
+</a>
+
+<h1 id="chapterTitle">
+    Loading...
+</h1>
+
+<p class="subtitle">
+    Class 6 Physics
+</p>
+
+<div id="content" class="status">
+    Loading topics...
+</div>
+
+</div>
+
+<script>
+
+const PROJECT_ID = "kp-physics-academy";
+
+/*
+    Get chapter ID from URL
+
+    Example:
+
+    chapter.html?id=class6_chapter_01
+*/
+
+const urlParams =
+    new URLSearchParams(window.location.search);
+
+const chapterId =
+    urlParams.get("id");
+
+const contentContainer =
+    document.getElementById("content");
+
+const chapterTitle =
+    document.getElementById("chapterTitle");
+
+
+/*
+    Check whether chapter ID exists
+*/
+
+if (!chapterId) {
+
+    chapterTitle.textContent = "Chapter Not Found";
+
+    contentContainer.innerHTML = `
+        <p style="color:red;">
+            No chapter ID was provided.
+        </p>
+    `;
+
+}
+
+
+/*
+    Firestore URL
+*/
+
+const FIRESTORE_URL =
+    "https://firestore.googleapis.com/v1/projects/" +
+    PROJECT_ID +
+    "/databases/(default)/documents/classes/class_6/chapters/" +
+    encodeURIComponent(chapterId) +
+    "/topics";
+
+
+/*
+    Load Topics
+*/
+
+async function loadTopics() {
+
+    if (!chapterId) {
+        return;
+    }
+
+    try {
+
+        const response =
+            await fetch(FIRESTORE_URL);
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to connect to Firestore"
+            );
+
+        }
+
+        const data =
+            await response.json();
+
+
+        /*
+            Clear loading message
+        */
+
+        contentContainer.innerHTML = "";
+
+
+        /*
+            No topics
+        */
+
+        if (
+            !data.documents ||
+            data.documents.length === 0
+        ) {
+
+            contentContainer.innerHTML = `
+                <p>
+                    No topics found for this chapter.
+                </p>
+            `;
+
+            return;
+        }
+
+
+        /*
+            Sort topics by order
+        */
+
+        data.documents.sort(function(a, b) {
+
+            const orderA =
+                Number(
+                    a.fields?.order?.integerValue || 0
+                );
+
+            const orderB =
+                Number(
+                    b.fields?.order?.integerValue || 0
+                );
+
+            return orderA - orderB;
+
+        });
+
+
+        /*
+            Display topics
+        */
+
+        data.documents.forEach(function(document) {
+
+            const fields =
+                document.fields || {};
+
+
+            const topicName =
+                fields.name?.stringValue ||
+                fields.title?.stringValue ||
+                "Topic";
+
+
+            const topicId =
+                document.name.split("/").pop();
+
+
+            const topic =
+                document.createElement("div");
+
+            topic.className = "topic";
+
+
+            topic.innerHTML = `
+
+                <h2>
+                    ${topicName}
+                </h2>
+
+                <a
+                    href="topic.html?chapter=${encodeURIComponent(chapterId)}&topic=${encodeURIComponent(topicId)}"
+                    class="topic-link"
+                >
+
+                    <div class="open-topic">
+                        📚 Open Topic
+                    </div>
+
+                </a>
+
+            `;
+
+
+            contentContainer.appendChild(topic);
+
+        });
+
+    }
+
+    catch(error) {
+
+        console.error(
+            "Firestore Error:",
+            error
+        );
+
+
+        contentContainer.innerHTML = `
+
+            <p style="color:red;">
+                Unable to load Firestore topics.
+            </p>
+
+        `;
+
+    }
+
+}
+
+
+/*
+    Load the chapter name
+*/
+
+async function loadChapterName() {
+
+    if (!chapterId) {
+        return;
+    }
+
+
+    const chapterURL =
+        "https://firestore.googleapis.com/v1/projects/" +
+        PROJECT_ID +
+        "/databases/(default)/documents/classes/class_6/chapters/" +
+        encodeURIComponent(chapterId);
+
+
+    try {
+
+        const response =
+            await fetch(chapterURL);
+
+
+        if (!response.ok) {
+            return;
+        }
+
+
+        const data =
+            await response.json();
+
+
+        const name =
+            data.fields?.name?.stringValue;
+
+
+        if (name) {
+
+            chapterTitle.textContent =
+                name;
+
+            document.title =
+                name +
+                " | KP Physics Academy";
+
+        }
+
+    }
+
+    catch(error) {
+
+        console.error(
+            "Chapter name error:",
+            error
+        );
+
+    }
+
+}
+
+
+/*
+    Start
+*/
+
+loadChapterName();
+
+loadTopics();
+
+</script>
+
+</body>
+
+</html>
