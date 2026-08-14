@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics Question Bank | Q1–Q10000 | KP Physics Academy</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Segoe UI,sans-serif;background:#f5f8fc;color:#071a33}header{background:#031326;color:#fff;padding:22px 7%;font-size:25px;font-weight:bold}.container{max-width:1150px;margin:35px auto;padding:20px}.back{color:#1687ff;text-decoration:none;font-weight:bold}.title{text-align:center;color:#1687ff;margin:25px 0 8px}.subtitle{text-align:center;color:#68758a;margin-bottom:30px}.controls{background:#fff;padding:20px;border-radius:14px;box-shadow:0 5px 20px #00000012;margin-bottom:25px}.search{display:flex;gap:10px;max-width:650px;margin:auto}.search input{flex:1;padding:13px;border:1px solid #ccd6e3;border-radius:8px;font-size:16px}.search button{padding:13px 20px;border:0;border-radius:8px;background:#1687ff;color:#fff;font-weight:bold;cursor:pointer}.range{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;max-height:250px;overflow:auto}.qbtn{border:1px solid #dbe5f0;background:#f1f6ff;color:#126fcf;border-radius:7px;padding:9px 10px;font-weight:bold;cursor:pointer}.qbtn:hover,.qbtn.active{background:#1687ff;color:#fff}.question{background:#fff;border-radius:16px;padding:30px;box-shadow:0 5px 20px #00000012}.qhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.badge{background:#edf5ff;color:#1687ff;padding:8px 12px;border-radius:8px;font-weight:bold}.question h2{font-size:22px;line-height:1.5}.options{display:grid;gap:12px;margin:25px 0}.option{padding:15px;border:1px solid #dbe3ed;border-radius:10px;background:#fafcff;cursor:pointer}.option:hover{border-color:#1687ff;background:#f1f6ff}.nav{display:flex;justify-content:space-between;gap:10px}.nav button{padding:12px 20px;border:0;border-radius:8px;background:#031326;color:#fff;font-weight:bold;cursor:pointer}.nav button:disabled{opacity:.4;cursor:not-allowed}.answer{margin-top:20px;padding:15px;border-radius:10px;background:#eef8ef;display:none}.note{text-align:center;color:#68758a;font-size:13px;margin-top:20px}@media(max-width:600px){.container{padding:12px}.search{flex-direction:column}.qhead{align-items:flex-start;gap:10px;flex-direction:column}.question{padding:20px}.nav button{flex:1}}
+</style>
+</head>
+<body>
+<header>KP PHYSICS ACADEMY</header>
+<div class="container">
+<a class="back" href="index.html">← Back to Home</a>
+<h1 class="title">Physics Question Bank</h1>
+<p class="subtitle">Continuous learning: Q1 → Q10000</p>
+<div class="controls">
+<div class="search"><input id="search" type="number" min="1" max="10000" placeholder="Enter question number (1–10000)"><button onclick="goToQuestion()">Open Question</button></div>
+<div class="range" id="range"></div>
+</div>
+<div class="question">
+<div class="qhead"><span class="badge" id="number">Q1</span><strong id="progress">1 / 10000</strong></div>
+<h2 id="text">What is the SI unit of length?</h2>
+<div class="options" id="options"></div>
+<div class="answer" id="answer"></div>
+<div class="nav"><button id="prev" onclick="changeQuestion(-1)">← Previous</button><button id="next" onclick="changeQuestion(1)">Next →</button></div>
+<p class="note">This page is prepared for the continuous Q1–Q10000 Physics bank. Additional questions can be loaded from Firestore as the question bank is populated.</p>
+</div>
+</div>
+<script>
+const TOTAL=10000;
+let current=1;
+const demo={1:{q:'What is the SI unit of length?',o:['Metre','Kilogram','Second','Ampere'],a:0,e:'The SI base unit of length is the metre (m).'},2:{q:'Which physical quantity is measured in kilograms?',o:['Length','Mass','Time','Temperature'],a:1,e:'Kilogram (kg) is the SI base unit of mass.'},3:{q:'Which instrument is commonly used to measure time?',o:['Thermometer','Balance','Clock','Ammeter'],a:2,e:'A clock or stopwatch is used to measure time.'},4:{q:'Which of the following is a scalar quantity?',o:['Velocity','Force','Displacement','Speed'],a:3,e:'Speed has magnitude only, so it is a scalar quantity.'},5:{q:'What is the SI unit of electric current?',o:['Volt','Ampere','Ohm','Coulomb'],a:1,e:'The SI base unit of electric current is the ampere (A).'}};
+const range=document.getElementById('range');
+for(let i=1;i<=TOTAL;i++){const b=document.createElement('button');b.className='qbtn';b.textContent='Q'+i;b.onclick=()=>loadQuestion(i);range.appendChild(b)}
+function loadQuestion(n){current=Math.max(1,Math.min(TOTAL,Number(n)||1));document.getElementById('number').textContent='Q'+current;document.getElementById('progress').textContent=current+' / '+TOTAL;const d=demo[current]||{q:'Physics Question Q'+current+' is ready for content.',o:['Option A','Option B','Option C','Option D'],a:null,e:'This question slot will be populated with the approved Physics MCQ.'};document.getElementById('text').textContent=d.q;const box=document.getElementById('options');box.innerHTML='';d.o.forEach((x,i)=>{const el=document.createElement('div');el.className='option';el.textContent=String.fromCharCode(65+i)+'. '+x;el.onclick=()=>{if(d.a===null)return;document.getElementById('answer').style.display='block';document.getElementById('answer').innerHTML='<strong>Answer: '+String.fromCharCode(65+d.a)+'</strong><br>'+d.e};box.appendChild(el)});document.getElementById('answer').style.display='none';document.getElementById('prev').disabled=current===1;document.getElementById('next').disabled=current===TOTAL;document.querySelectorAll('.qbtn').forEach((b,i)=>b.classList.toggle('active',i+1===current));document.getElementById('search').value=current;history.replaceState(null,'','?q='+current);window.scrollTo({top:0,behavior:'smooth'})}
+function changeQuestion(step){loadQuestion(current+step)}
+function goToQuestion(){const n=Number(document.getElementById('search').value);if(n>=1&&n<=TOTAL)loadQuestion(n);else alert('Enter a question number from 1 to 10000.')}const params=new URLSearchParams(location.search);loadQuestion(Number(params.get('q'))||1);
+</script>
+</body>
+</html>
