@@ -51,7 +51,7 @@ const CURRICULUM={
 ['Electric Charges and Fields',['Electric charge',"Coulomb's law",'Superposition','Electric field','Field lines','Electric dipole','Torque on dipole','Electric flux',"Gauss's law",'Applications']],
 ['Electrostatic Potential and Capacitance',['Potential','Potential difference','Equipotential surfaces','Potential energy','Capacitors','Parallel plate capacitor','Dielectrics','Combination of capacitors','Energy stored']],
 ['Current Electricity',['Electric current','Drift velocity',"Ohm's law",'Resistance','Resistivity','Temperature dependence','Cells',"Kirchhoff's laws",'Wheatstone bridge','Meter bridge','Potentiometer']],
-['Moving Charges and Magnetism',['Magnetic force','Lorentz force','Motion in magnetic field',"Biot-Savart law",ampereLaw="Ampere's law",'Current loop','Solenoid','Cyclotron','Galvanometer']],
+['Moving Charges and Magnetism',['Magnetic force','Lorentz force','Motion in magnetic field',"Biot-Savart law","Ampere's law",'Current loop','Solenoid','Cyclotron','Galvanometer']],
 ['Magnetism and Matter',['Magnetic dipole','Bar magnet',"Earth's magnetism",'Magnetic materials','Magnetisation','Susceptibility','Hysteresis']],
 ['Electromagnetic Induction',['Magnetic flux',"Faraday's laws", "Lenz's law",'Motional emf','Self-induction','Mutual induction','Eddy currents']],
 ['Alternating Current',['AC voltage and current','RMS values','Phasors','Reactance','Impedance','LCR circuit','Resonance','Power in AC','Transformer']],
@@ -64,12 +64,13 @@ const CURRICULUM={
 ['Semiconductor Electronics',['Intrinsic and extrinsic semiconductors','p-n junction','Diode','Rectifier','LED','Photodiode','Solar cell','Zener diode','Transistor','Logic gates']]
 ]
 };
+
 function renderCurriculum(){
  const cls=document.body.dataset.class;
  const data=CURRICULUM[cls];
  if(!data)return;
  document.title=`KP Physics Academy | Class ${cls} Physics Chapters`;
  const root=document.getElementById('curriculum');
- root.innerHTML=`<div class="top"><a href="index.html">← Back to Home</a><a href="question-bank.html">Question Bank →</a></div><h1>Class ${cls} <span>Physics</span></h1><p class="intro">Complete chapter-wise Physics coverage with important subtopics. Select a chapter to study its subtopics.</p><div class="chapter-list">${data.map((ch,i)=>`<details class="chapter" ${i===0?'open':''}><summary><span class="num">${String(i+1).padStart(2,'0')}</span><span>${ch[0]}</span><b>+</b></summary><div class="subtopics"><h3>Subtopics</h3><ul>${ch[1].map(s=>`<li>${s}</li>`).join('')}</ul><a class="practice" href="question-bank.html">Practice Question Bank →</a></div></details>`).join('')}</div><div class="bottom"><strong>${data.length} chapters</strong><span>Physics only • Class ${cls}</span><a href="question-bank.html">Go to Q1–Q10000 →</a></div>`;
+ root.innerHTML=`<div class="top"><a href="index.html">← Back to Home</a><a href="question-bank.html">Question Bank →</a></div><h1>Class ${cls} <span>Physics</span></h1><p class="intro">Complete chapter-wise Physics coverage with important subtopics. Select a chapter to expand its subtopics.</p><div class="chapter-list">${data.map((ch,i)=>`<details class="chapter" ${i===0?'open':''}><summary><span class="num">${String(i+1).padStart(2,'0')}</span><span>${ch[0]}</span><b>+</b></summary><div class="subtopics"><h3>Subtopics</h3><ul>${ch[1].map((s,j)=>`<li><a class="subtopic-link" href="question-bank.html?class=${encodeURIComponent(cls)}&chapter=${encodeURIComponent(ch[0])}&topic=${encodeURIComponent(s)}" title="Practice questions for ${s}">${s}</a></li>`).join('')}</ul><a class="practice" href="question-bank.html?class=${encodeURIComponent(cls)}&chapter=${encodeURIComponent(ch[0])}">Practice Chapter Questions →</a></div></details>`).join('')}</div><div class="bottom"><strong>${data.length} chapters</strong><span>Physics only • Class ${cls}</span><a href="question-bank.html">Go to Q1–Q10000 →</a></div>`;
 }
 renderCurriculum();
