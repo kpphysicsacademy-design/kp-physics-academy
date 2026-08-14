@@ -22,13 +22,17 @@ const PROJECT_ID="kp-physics-academy";
 const FIRESTORE_URL="https://firestore.googleapis.com/v1/projects/"+PROJECT_ID+"/databases/(default)/documents/physics_questions";
 let currentQuestion=1,totalQuestions=10000,questionCache={};
 
-/* Temporary fallback for Q1/Q2 because those existing Firestore documents were created without answer/explanation fields. */
 const fallbackQuestions={
   1:{answer:"A",explanation:"The metre (m) is the SI base unit of length."},
   2:{answer:"B",explanation:"The kilogram (kg) is the SI base unit of mass."}
 };
 
-function getField(fields,names){for(const n of names){if(fields[n]?.stringValue)return fields[n].stringValue}return ""}
+function getField(fields,names){
+  for(const n of names){
+    if(fields[n]?.stringValue!==undefined)return fields[n].stringValue;
+  }
+  return "";
+}
 
 async function loadQuestion(){
  const text=document.getElementById("text"),options=document.getElementById("options"),answer=document.getElementById("answer");
@@ -42,8 +46,8 @@ function displayQuestion(data){
  const fields=data.fields||{};
  const question=getField(fields,["question"])||"Question not available";
  const optionA=getField(fields,["optionA"]),optionB=getField(fields,["optionB"]),optionC=getField(fields,["optionC"]),optionD=getField(fields,["optionD"]);
- let correctAnswer=getField(fields,["answer","correctAnswer","correctOption"]);
- let explanation=getField(fields,["explanation","solution"]);
+ let correctAnswer=getField(fields,["Answer","answer","CorrectAnswer","correctAnswer","correctOption"]);
+ let explanation=getField(fields,["Explanation","explanation","Solution","solution"]);
  const fallback=fallbackQuestions[currentQuestion];
  if(!correctAnswer&&fallback)correctAnswer=fallback.answer;
  if(!explanation&&fallback)explanation=fallback.explanation;
@@ -53,20 +57,37 @@ function displayQuestion(data){
 }
 
 function normalizeAnswer(value){
- if(!value)return "";const v=value.trim().toUpperCase();const m=v.match(/^(?:OPTION\s*)?([ABCD])(?:\.|\)|\s|$)/);if(m)return m[1];
- const opts=[...document.querySelectorAll(".option")];for(const o of opts){if(o.innerText.substring(3).trim().toUpperCase()===v)return o.innerText.charAt(0)}return v;
+ if(!value)return "";
+ const v=value.trim().toUpperCase();
+ const m=v.match(/^(?:OPTION\s*)?([ABCD])(?:\.|\)|\s|$)/);
+ if(m)return m[1];
+ const opts=[...document.querySelectorAll(".option")];
+ for(const o of opts){if(o.innerText.substring(3).trim().toUpperCase()===v)return o.innerText.charAt(0)}
+ return v;
 }
 
 function selectOption(element,selected,correctAnswer,explanation){
- const all=[...document.querySelectorAll(".option")];all.forEach(o=>o.classList.remove("correct","wrong"));
+ const all=[...document.querySelectorAll(".option")];
+ all.forEach(o=>o.classList.remove("correct","wrong"));
  const answerBox=document.getElementById("answer");answerBox.className="answer";
  const correct=normalizeAnswer(correctAnswer);
- if(!correct){element.classList.add("wrong");answerBox.innerHTML='<strong>Answer data not available.</strong><div class="explanation">Please add the <b>answer</b> and <b>explanation</b> fields to this question in Firestore.</div>';answerBox.style.display="block";return}
+ if(!correct){
+  element.classList.add("wrong");
+  answerBox.innerHTML='<strong>Answer data not available.</strong><div class="explanation">Please add the <b>Answer</b> and <b>Explanation</b> fields to this question in Firestore.</div>';
+  answerBox.style.display="block";return;
+ }
  const isCorrect=selected===correct;
- if(isCorrect)element.classList.add("correct");else{element.classList.add("wrong");const correctElement=all.find(o=>o.innerText.trim().toUpperCase().startsWith(correct+"."));if(correctElement)correctElement.classList.add("correct")}
+ if(isCorrect)element.classList.add("correct");
+ else{
+  element.classList.add("wrong");
+  const correctElement=all.find(o=>o.innerText.trim().toUpperCase().startsWith(correct+"."));
+  if(correctElement)correctElement.classList.add("correct");
+ }
  let html=isCorrect?"<strong>Correct!</strong>":"<strong>Incorrect.</strong><br>Correct answer: "+correct;
  html+="<div class='explanation'><strong>Explanation:</strong><br>"+(explanation||"No explanation available yet.")+"</div>";
- answerBox.innerHTML=html;answerBox.classList.add(isCorrect?"correct-box":"wrong-box");answerBox.style.display="block";
+ answerBox.innerHTML=html;
+ answerBox.classList.add(isCorrect?"correct-box":"wrong-box");
+ answerBox.style.display="block";
 }
 
 function nextQuestion(){if(currentQuestion<totalQuestions){currentQuestion++;loadQuestion();window.scrollTo({top:0,behavior:"smooth"})}}
