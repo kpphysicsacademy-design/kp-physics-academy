@@ -1,41 +1,807 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Physics Question Bank | Q1–Q10000 | KP Physics Academy</title>
+
+<title>Physics Question Bank | KP Physics Academy</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,Segoe UI,sans-serif;background:#f5f8fc;color:#071a33}header{background:#031326;color:#fff;padding:22px 7%;font-size:25px;font-weight:bold}.container{max-width:1150px;margin:35px auto;padding:20px}.back{color:#1687ff;text-decoration:none;font-weight:bold}.title{text-align:center;color:#1687ff;margin:25px 0 8px}.subtitle{text-align:center;color:#68758a;margin-bottom:30px}.controls{background:#fff;padding:20px;border-radius:14px;box-shadow:0 5px 20px #00000012;margin-bottom:25px}.search{display:flex;gap:10px;max-width:650px;margin:auto}.search input{flex:1;padding:13px;border:1px solid #ccd6e3;border-radius:8px;font-size:16px}.search button{padding:13px 20px;border:0;border-radius:8px;background:#1687ff;color:#fff;font-weight:bold;cursor:pointer}.range{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;max-height:250px;overflow:auto}.qbtn{border:1px solid #dbe5f0;background:#f1f6ff;color:#126fcf;border-radius:7px;padding:9px 10px;font-weight:bold;cursor:pointer}.qbtn:hover,.qbtn.active{background:#1687ff;color:#fff}.question{background:#fff;border-radius:16px;padding:30px;box-shadow:0 5px 20px #00000012}.qhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.badge{background:#edf5ff;color:#1687ff;padding:8px 12px;border-radius:8px;font-weight:bold}.question h2{font-size:22px;line-height:1.5}.options{display:grid;gap:12px;margin:25px 0}.option{padding:15px;border:1px solid #dbe3ed;border-radius:10px;background:#fafcff;cursor:pointer}.option:hover{border-color:#1687ff;background:#f1f6ff}.nav{display:flex;justify-content:space-between;gap:10px}.nav button{padding:12px 20px;border:0;border-radius:8px;background:#031326;color:#fff;font-weight:bold;cursor:pointer}.nav button:disabled{opacity:.4;cursor:not-allowed}.answer{margin-top:20px;padding:15px;border-radius:10px;background:#eef8ef;display:none}.note{text-align:center;color:#68758a;font-size:13px;margin-top:20px}@media(max-width:600px){.container{padding:12px}.search{flex-direction:column}.qhead{align-items:flex-start;gap:10px;flex-direction:column}.question{padding:20px}.nav button{flex:1}}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f8fc;
+    color: #071a33;
+}
+
+header {
+    background: #031326;
+    color: white;
+    padding: 22px 7%;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.back {
+    color: #1687ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.title {
+    text-align: center;
+    margin-top: 35px;
+    color: #1687ff;
+}
+
+.subtitle {
+    text-align: center;
+    color: #68758a;
+    margin-bottom: 30px;
+}
+
+/* SEARCH */
+
+.controls {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    margin-bottom: 25px;
+}
+
+.search {
+    display: flex;
+    gap: 10px;
+}
+
+.search input {
+    flex: 1;
+    padding: 14px;
+    border: 1px solid #d5ddea;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+button {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #1687ff;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* PROGRESS */
+
+.progress-box {
+    margin-top: 18px;
+}
+
+.progress-text {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.progress {
+    width: 100%;
+    height: 10px;
+    background: #e3e9f2;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #1687ff;
+}
+
+/* QUESTION */
+
+.question {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.qhead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.badge {
+    background: #1687ff;
+    color: white;
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.question h2 {
+    font-size: 22px;
+    line-height: 1.5;
+}
+
+/* OPTIONS */
+
+.options {
+    margin-top: 20px;
+}
+
+.option {
+    background: #f1f6ff;
+    border: 2px solid transparent;
+    padding: 15px;
+    margin-top: 12px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.option:hover {
+    border-color: #1687ff;
+}
+
+.option.selected {
+    border-color: #1687ff;
+    background: #e8f2ff;
+}
+
+/* ANSWER */
+
+.answer {
+    margin-top: 20px;
+    padding: 18px;
+    background: #eef8ee;
+    border-radius: 10px;
+    display: none;
+}
+
+.explanation {
+    margin-top: 10px;
+}
+
+/* NAVIGATION */
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+/* STATUS */
+
+.status {
+    text-align: center;
+    padding: 20px;
+}
+
+.error {
+    color: red;
+}
+
+@media(max-width:600px) {
+
+    .search {
+        flex-direction: column;
+    }
+
+    .qhead {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .nav {
+        gap: 10px;
+    }
+
+    .nav button {
+        flex: 1;
+    }
+
+}
+
 </style>
+
 </head>
+
 <body>
-<header>KP PHYSICS ACADEMY</header>
+
+<header>
+    KP PHYSICS ACADEMY
+</header>
+
 <div class="container">
-<a class="back" href="index.html">← Back to Home</a>
-<h1 class="title">Physics Question Bank</h1>
-<p class="subtitle">Continuous learning: Q1 → Q10000</p>
+
+<a href="index.html" class="back">
+    ← Back to Home
+</a>
+
+<h1 class="title">
+    Physics Question Bank
+</h1>
+
+<p class="subtitle">
+    Continuous Physics Learning — Q1 to Q10000
+</p>
+
+<!-- SEARCH -->
+
 <div class="controls">
-<div class="search"><input id="search" type="number" min="1" max="10000" placeholder="Enter question number (1–10000)"><button onclick="goToQuestion()">Open Question</button></div>
-<div class="range" id="range"></div>
+
+    <div class="search">
+
+        <input
+            type="number"
+            id="questionNumber"
+            min="1"
+            max="10000"
+            placeholder="Enter question number (1 - 10000)"
+        >
+
+        <button onclick="goToQuestion()">
+            Open Question
+        </button>
+
+    </div>
+
+    <div class="progress-box">
+
+        <div class="progress-text">
+
+            <span id="progressText">
+                Question 1
+            </span>
+
+            <span>
+                10000 Questions
+            </span>
+
+        </div>
+
+        <div class="progress">
+
+            <div
+                class="progress-bar"
+                id="progressBar">
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
+
+
+<!-- QUESTION -->
+
 <div class="question">
-<div class="qhead"><span class="badge" id="number">Q1</span><strong id="progress">1 / 10000</strong></div>
-<h2 id="text">What is the SI unit of length?</h2>
-<div class="options" id="options"></div>
-<div class="answer" id="answer"></div>
-<div class="nav"><button id="prev" onclick="changeQuestion(-1)">← Previous</button><button id="next" onclick="changeQuestion(1)">Next →</button></div>
-<p class="note">This page is prepared for the continuous Q1–Q10000 Physics bank. Additional questions can be loaded from Firestore as the question bank is populated.</p>
+
+    <div class="qhead">
+
+        <span
+            class="badge"
+            id="number">
+            Q1
+        </span>
+
+        <strong id="count">
+            1 / 10000
+        </strong>
+
+    </div>
+
+
+    <h2 id="text">
+        Loading question...
+    </h2>
+
+
+    <div
+        class="options"
+        id="options">
+    </div>
+
+
+    <div
+        class="answer"
+        id="answer">
+    </div>
+
+
+    <div class="nav">
+
+        <button
+            id="prev"
+            onclick="previousQuestion()">
+            ← Previous
+        </button>
+
+        <button
+            id="next"
+            onclick="nextQuestion()">
+            Next →
+        </button>
+
+    </div>
+
 </div>
+
 </div>
+
+
 <script>
-const TOTAL=10000;
-let current=1;
-const demo={1:{q:'What is the SI unit of length?',o:['Metre','Kilogram','Second','Ampere'],a:0,e:'The SI base unit of length is the metre (m).'},2:{q:'Which physical quantity is measured in kilograms?',o:['Length','Mass','Time','Temperature'],a:1,e:'Kilogram (kg) is the SI base unit of mass.'},3:{q:'Which instrument is commonly used to measure time?',o:['Thermometer','Balance','Clock','Ammeter'],a:2,e:'A clock or stopwatch is used to measure time.'},4:{q:'Which of the following is a scalar quantity?',o:['Velocity','Force','Displacement','Speed'],a:3,e:'Speed has magnitude only, so it is a scalar quantity.'},5:{q:'What is the SI unit of electric current?',o:['Volt','Ampere','Ohm','Coulomb'],a:1,e:'The SI base unit of electric current is the ampere (A).'}};
-const range=document.getElementById('range');
-for(let i=1;i<=TOTAL;i++){const b=document.createElement('button');b.className='qbtn';b.textContent='Q'+i;b.onclick=()=>loadQuestion(i);range.appendChild(b)}
-function loadQuestion(n){current=Math.max(1,Math.min(TOTAL,Number(n)||1));document.getElementById('number').textContent='Q'+current;document.getElementById('progress').textContent=current+' / '+TOTAL;const d=demo[current]||{q:'Physics Question Q'+current+' is ready for content.',o:['Option A','Option B','Option C','Option D'],a:null,e:'This question slot will be populated with the approved Physics MCQ.'};document.getElementById('text').textContent=d.q;const box=document.getElementById('options');box.innerHTML='';d.o.forEach((x,i)=>{const el=document.createElement('div');el.className='option';el.textContent=String.fromCharCode(65+i)+'. '+x;el.onclick=()=>{if(d.a===null)return;document.getElementById('answer').style.display='block';document.getElementById('answer').innerHTML='<strong>Answer: '+String.fromCharCode(65+d.a)+'</strong><br>'+d.e};box.appendChild(el)});document.getElementById('answer').style.display='none';document.getElementById('prev').disabled=current===1;document.getElementById('next').disabled=current===TOTAL;document.querySelectorAll('.qbtn').forEach((b,i)=>b.classList.toggle('active',i+1===current));document.getElementById('search').value=current;history.replaceState(null,'','?q='+current);window.scrollTo({top:0,behavior:'smooth'})}
-function changeQuestion(step){loadQuestion(current+step)}
-function goToQuestion(){const n=Number(document.getElementById('search').value);if(n>=1&&n<=TOTAL)loadQuestion(n);else alert('Enter a question number from 1 to 10000.')}const params=new URLSearchParams(location.search);loadQuestion(Number(params.get('q'))||1);
+
+/*
+==================================================
+FIRESTORE CONNECTION
+==================================================
+*/
+
+const PROJECT_ID = "kp-physics-academy";
+
+const FIRESTORE_URL =
+"https://firestore.googleapis.com/v1/projects/" +
+PROJECT_ID +
+"/databases/(default)/documents/physics_questions";
+
+
+/*
+==================================================
+VARIABLES
+==================================================
+*/
+
+let currentQuestion = 1;
+
+let totalQuestions = 10000;
+
+let questionCache = {};
+
+
+/*
+==================================================
+LOAD QUESTION
+==================================================
+*/
+
+async function loadQuestion() {
+
+    const text = document.getElementById("text");
+    const options = document.getElementById("options");
+    const answer = document.getElementById("answer");
+
+    text.innerText = "Loading question...";
+
+    options.innerHTML = "";
+
+    answer.style.display = "none";
+
+    document.getElementById("number").innerText =
+        "Q" + currentQuestion;
+
+    document.getElementById("count").innerText =
+        currentQuestion + " / " + totalQuestions;
+
+    document.getElementById("progressText").innerText =
+        "Question " + currentQuestion;
+
+    document.getElementById("progressBar").style.width =
+        ((currentQuestion / totalQuestions) * 100) + "%";
+
+
+    /*
+    ==============================================
+    CHECK CACHE
+    ==============================================
+    */
+
+    if (questionCache[currentQuestion]) {
+
+        displayQuestion(
+            questionCache[currentQuestion]
+        );
+
+        return;
+    }
+
+
+    /*
+    ==============================================
+    DOCUMENT ID
+    ==============================================
+    */
+
+    const documentId = "Q" + currentQuestion;
+
+
+    try {
+
+        const response = await fetch(
+            FIRESTORE_URL + "/" + documentId
+        );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Question not found"
+            );
+
+        }
+
+
+        const data = await response.json();
+
+
+        questionCache[currentQuestion] = data;
+
+
+        displayQuestion(data);
+
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        text.innerText =
+            "Question Q" +
+            currentQuestion +
+            " is not available yet.";
+
+        options.innerHTML = `
+            <div class="option">
+                This question has not been added to Firestore yet.
+            </div>
+        `;
+
+    }
+
+}
+
+
+/*
+==================================================
+DISPLAY QUESTION
+==================================================
+*/
+
+function displayQuestion(data) {
+
+    const fields = data.fields || {};
+
+
+    const question =
+        fields.question?.stringValue ||
+        "Question not available";
+
+
+    const optionA =
+        fields.optionA?.stringValue || "";
+
+
+    const optionB =
+        fields.optionB?.stringValue || "";
+
+
+    const optionC =
+        fields.optionC?.stringValue || "";
+
+
+    const optionD =
+        fields.optionD?.stringValue || "";
+
+
+    const explanation =
+        fields.explanation?.stringValue || "";
+
+
+    const correctAnswer =
+        fields.answer?.stringValue || "";
+
+
+    document.getElementById("text").innerText =
+        question;
+
+
+    const optionsContainer =
+        document.getElementById("options");
+
+
+    optionsContainer.innerHTML = "";
+
+
+    const optionList = [
+
+        {
+            letter: "A",
+            text: optionA
+        },
+
+        {
+            letter: "B",
+            text: optionB
+        },
+
+        {
+            letter: "C",
+            text: optionC
+        },
+
+        {
+            letter: "D",
+            text: optionD
+        }
+
+    ];
+
+
+    optionList.forEach(option => {
+
+        if (!option.text) return;
+
+
+        const div =
+            document.createElement("div");
+
+
+        div.className = "option";
+
+
+        div.innerText =
+            option.letter +
+            ". " +
+            option.text;
+
+
+        div.onclick = function() {
+
+            selectOption(
+                div,
+                option.letter,
+                correctAnswer,
+                explanation
+            );
+
+        };
+
+
+        optionsContainer.appendChild(div);
+
+    });
+
+}
+
+
+/*
+==================================================
+SELECT OPTION
+==================================================
+*/
+
+function selectOption(
+    element,
+    selected,
+    correctAnswer,
+    explanation
+) {
+
+    const allOptions =
+        document.querySelectorAll(".option");
+
+
+    allOptions.forEach(option => {
+
+        option.classList.remove("selected");
+
+    });
+
+
+    element.classList.add("selected");
+
+
+    const answerBox =
+        document.getElementById("answer");
+
+
+    /*
+    ==============================================
+    IF ANSWER FIELD EXISTS
+    ==============================================
+    */
+
+    if (correctAnswer) {
+
+        let message = "";
+
+
+        if (
+            selected.toUpperCase() ===
+            correctAnswer.toUpperCase()
+        ) {
+
+            message =
+                "<strong>Correct!</strong>";
+
+        }
+
+        else {
+
+            message =
+                "<strong>Incorrect.</strong><br>" +
+                "Correct answer: " +
+                correctAnswer;
+
+        }
+
+
+        if (explanation) {
+
+            message +=
+                "<div class='explanation'>" +
+                "<strong>Explanation:</strong><br>" +
+                explanation +
+                "</div>";
+
+        }
+
+
+        answerBox.innerHTML = message;
+
+        answerBox.style.display = "block";
+
+    }
+
+}
+
+
+/*
+==================================================
+NEXT QUESTION
+==================================================
+*/
+
+function nextQuestion() {
+
+    if (currentQuestion < totalQuestions) {
+
+        currentQuestion++;
+
+        loadQuestion();
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+}
+
+
+/*
+==================================================
+PREVIOUS QUESTION
+==================================================
+*/
+
+function previousQuestion() {
+
+    if (currentQuestion > 1) {
+
+        currentQuestion--;
+
+        loadQuestion();
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+}
+
+
+/*
+==================================================
+GO TO QUESTION
+==================================================
+*/
+
+function goToQuestion() {
+
+    const input =
+        document.getElementById(
+            "questionNumber"
+        );
+
+
+    const number =
+        Number(input.value);
+
+
+    if (
+        number >= 1 &&
+        number <= 10000
+    ) {
+
+        currentQuestion = number;
+
+        loadQuestion();
+
+    }
+
+    else {
+
+        alert(
+            "Please enter a question number from 1 to 10000."
+        );
+
+    }
+
+}
+
+
+/*
+==================================================
+ENTER KEY
+==================================================
+*/
+
+document
+.getElementById("questionNumber")
+.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Enter") {
+
+            goToQuestion();
+
+        }
+
+    }
+);
+
+
+/*
+==================================================
+START
+==================================================
+*/
+
+loadQuestion();
+
 </script>
+
 </body>
+
 </html>
