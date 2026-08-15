@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JEE Physics Lesson | KP Physics Academy</title>
+<style>*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#f6f9fd}iframe{width:100%;height:100%;border:0}</style>
+</head>
+<body>
+<iframe id="lesson" title="JEE Physics Lesson"></iframe>
+<script>
+const frame=document.getElementById('lesson');
+frame.src='jee-physics-lesson.html'+location.search;
+function shuffleOptions(){
+ const d=frame.contentDocument;if(!d)return;
+ const box=d.getElementById('options');if(!box||box.dataset.shuffled==='1')return;
+ const buttons=[...box.querySelectorAll('button')];if(buttons.length<2)return;
+ for(let i=buttons.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const tmp=buttons[i];buttons[i]=buttons[j];buttons[j]=tmp;}
+ buttons.forEach(b=>box.appendChild(b));
+ box.dataset.shuffled='1';
+}
+frame.addEventListener('load',()=>{
+ shuffleOptions();
+ const d=frame.contentDocument;if(!d)return;
+ const box=d.getElementById('options');
+ if(box)new MutationObserver(()=>shuffleOptions()).observe(box,{childList:true});
+});
+</script>
+</body>
+</html>
