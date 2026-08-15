@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JEE Physics MCQ | KP Physics Academy</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f6f9fd;color:#10213a}.top{background:#071a31;color:#fff;padding:18px 6%;display:flex;justify-content:space-between}.top a{color:#fff;text-decoration:none;font-weight:bold}.wrap{max-width:820px;margin:auto;padding:34px 18px 70px}.eyebrow{text-align:center;color:#1687ff;font-weight:800;font-size:13px}.title{text-align:center;font-size:34px;margin:10px 0}.muted{color:#718096;line-height:1.6}.bar{height:9px;background:#e4ebf3;border-radius:20px;overflow:hidden;margin:20px 0 30px}.bar i{display:block;height:100%;width:3%;background:#20b56b;border-radius:20px}.card{background:#fff;border:1px solid #dfe7f1;border-radius:20px;padding:26px;box-shadow:0 7px 22px #0000000b}.label{display:inline-block;padding:6px 10px;border-radius:20px;background:#eef7ff;color:#1687ff;font-size:11px;font-weight:800}.question{font-size:21px;font-weight:800;line-height:1.5;margin:22px 0}.options{display:grid;gap:12px}.options button{width:100%;padding:15px 16px;border:1px solid #d6dfeb;background:#fff;border-radius:12px;text-align:left;font-size:16px;cursor:pointer;transition:.15s}.options button:hover{border-color:#1687ff;background:#f7fbff}.options button.correct{border-color:#20b56b;background:#eaf9f0}.options button.wrong{border-color:#e05252;background:#fff0f0}.options button:disabled{cursor:default}.feedback{display:none;margin-top:20px;padding:16px;border-radius:12px;line-height:1.55}.feedback.correct{display:block;background:#eaf9f0;color:#126b3f}.feedback.wrong{display:block;background:#fff0f0;color:#8b2222}.next{display:none;width:100%;margin-top:18px;padding:13px;border:0;border-radius:10px;background:#1687ff;color:#fff;font-weight:800;font-size:15px;cursor:pointer}.done{display:none;text-align:center}.done h2{font-size:28px}.secondary{display:inline-block;margin-top:15px;padding:11px 16px;background:#e8eef5;color:#10213a;border-radius:10px;text-decoration:none;font-weight:800}@media(max-width:600px){.title{font-size:28px}.question{font-size:18px}.card{padding:20px}}
+</style>
+</head>
+<body>
+<header class="top"><a id="back" href="units-measurements-path.html">← Learning Path</a><a href="index.html">Home</a></header>
+<main class="wrap">
+<div class="eyebrow" id="eyebrow">JEE PHYSICS • MCQ PRACTICE</div>
+<h1 class="title" id="title">Physics Practice</h1>
+<p class="muted" style="text-align:center">One MCQ at a time. Answer → correction → next question.</p>
+<div class="bar"><i id="bar"></i></div>
+<section class="card" id="quiz">
+<span class="label" id="number">Question 1</span>
+<p class="question" id="question"></p>
+<div class="options" id="options"></div>
+<div id="feedback" class="feedback"></div>
+<button id="next" class="next" onclick="nextQuestion()">Next question →</button>
+</section>
+<section class="card done" id="done"><h2>🎉 Concept complete</h2><p class="muted">Good work. Continue to the next concept in your learning path.</p><a class="secondary" id="doneBack" href="units-measurements-path.html">← Back to learning path</a></section>
+</main>
+<script>
+const units=[
+['Physical Quantities','A student says a table is 2. What is missing?',['Nothing','The unit','The formula','The graph'],1,'A physical quantity must be reported with a numerical value and a unit.'],
+['SI System of Units','A force is measured in which SI unit?',['kg','N','J','W'],1,'Force has the SI unit newton (N).'],
+['Other Systems of Units','Which is a CGS unit of force?',['Newton','Joule','Dyne','Watt'],2,'Dyne is the CGS unit of force; 1 N = 10⁵ dyne.'],
+['Dimensions of Physical Quantities','What are the dimensions of velocity?',['[LT⁻¹]','[LT⁻²]','[MLT⁻²]','[ML²T⁻²]'],0,'Velocity = displacement/time, so its dimensions are [LT⁻¹].'],
+['Dimensional Formula','If v = s/t, what is [v]?',['[L]','[LT⁻¹]','[LT⁻²]','[T⁻¹]'],1,'Dividing length by time gives [LT⁻¹].'],
+['Common Dimensional Formulae','Which has dimensions [ML²T⁻²]?',['Momentum','Force','Energy','Power'],2,'Energy/work has dimensions [ML²T⁻²].'],
+['Dimensional Homogeneity','Can quantities with different dimensions be added directly?',['Yes','No','Only in SI','Only in CGS'],1,'Every additive term in a physically meaningful equation must have the same dimensions.'],
+['Dimensional Analysis','What is the main use of dimensional analysis?',['Checking dimensional consistency','Measuring temperature','Drawing vectors','Finding colour'],0,'Dimensional analysis is primarily used to test dimensional consistency and derive relationships.'],
+['Deriving Relations Using Dimensions','For a pendulum period, dimensional analysis can determine dependence on l and g up to what?',['A dimensionless constant','Charge','Density only','Temperature only'],0,'Dimensional analysis determines the dependence on l and g but cannot determine the dimensionless numerical constant.'],
+['Limitations of Dimensional Analysis','Can dimensional analysis determine 2π exactly?',['Yes','No','Only in SI','Always'],1,'Dimensionless numerical constants cannot be obtained from dimensional analysis alone.'],
+['Conversion of Units','How many metres are 2 km?',['20 m','200 m','2000 m','20000 m'],2,'Since 1 km = 1000 m, 2 km = 2000 m.'],
+['Conversion Using Dimensions','If 1 km=10³ m, then 1 km/h equals?',['1/3.6 m/s','3.6 m/s','36 m/s','3600 m/s'],0,'1 km/h = 1000/3600 m/s = 1/3.6 m/s.'],
+['Orders of Magnitude','The order of magnitude of 7×10⁴ is closest to?',['10³','10⁴','10⁵','10⁶'],2,'Because 7 is greater than √10, 7×10⁴ is closer to 10⁵.'],
+['Accuracy and Precision','Repeated readings close to each other but far from the true value are?',['Accurate only','Precise but inaccurate','Neither','Impossible'],1,'Precision means repeatability; accuracy means closeness to the true value.'],
+['Significant Figures','How many significant figures are in 0.00450?',['2','3','4','5'],1,'Leading zeros do not count; 4, 5 and the trailing zero are significant, giving 3.'],
+['Operations with Significant Figures','For multiplication, the final answer is limited by the factor with?',['Most decimal places','Least significant figures','Largest value','Smallest unit'],1,'Multiplication and division use the least number of significant figures among the inputs.'],
+['Types of Errors','A zero-offset that remains in repeated readings is mainly?',['Systematic error','Random error','No error','Rounding only'],0,'A persistent zero offset is a systematic error.'],
+['Absolute Error','If xᵢ=10.2 and x̄=10.0, the absolute error is?',['0.02','0.2','2','20'],1,'Absolute deviation is |10.2−10.0| = 0.2.'],
+['Relative Error','If Δx/x = 0.02, percentage error is?',['0.2%','2%','20%','200%'],1,'Percentage error = relative error × 100 = 2%.'],
+['Propagation of Errors','For z=xy, maximum fractional error is?',['Δx+Δy','Δx/x + Δy/y','Δx/x − Δy/y','xy'],1,'For a product, maximum fractional errors add: Δz/z = Δx/x + Δy/y.'],
+['Errors in Derived Quantities','For A=l², fractional error in A is approximately?',['Δl/l','2Δl/l','Δl²/l²','0'],1,'For z=xᵃ, fractional error is approximately |a|Δx/x; therefore ΔA/A ≈ 2Δl/l.'],
+['Least Count','A ruler marked every 1 mm has a least count of?',['1 mm','1 cm','0.1 m','10 mm'],0,'Least count is the smallest directly measurable increment: 1 mm.'],
+['Vernier Calipers','A vernier caliper is especially useful for measuring?',['Internal diameter','Temperature','Electric current','Time period only'],0,'Vernier calipers can measure internal and external dimensions and depths precisely.'],
+['Screw Gauge','A screw gauge is commonly used to measure?',['Wire diameter','Room temperature','Mass of a planet','Sound frequency directly'],0,'A screw gauge is designed for very small dimensions such as wire diameter.'],
+['Zero Error and Zero Correction','If zero error is +0.02 cm, zero correction is?',['+0.02 cm','−0.02 cm','0.02 m','Cannot be defined'],1,'Zero correction has the opposite sign to the zero error.'],
+['Graphical Measurement and Experimental Analysis','In a straight-line graph y=mx+c, m represents?',['Intercept','Slope','Area','Error only'],1,'In y=mx+c, m is the slope and c is the intercept.'],
+['Dimensionless Quantities','Which is dimensionless?',['Strain','Force','Energy','Momentum'],0,'Strain is a ratio of like quantities and is dimensionless.'],
+['Dimensionless Constants','Which cannot be obtained by dimensional analysis alone?',['Dimensions of force','Unit conversion','Numerical value of π','Dimensions of energy'],2,'Dimensional analysis cannot determine dimensionless numerical constants such as π.'],
+['Dimensional Analysis in Mechanics','A dimensionally correct mechanics equation is?',['Automatically true','Necessary but not sufficient','Always experimental','Dimensionless'],1,'Dimensional consistency is necessary, but it does not prove the equation is physically correct.'],
+['Dimensional Analysis in Electricity','Charge is related to current by?',['Q=I/t','Q=It','Q=I+t','Q=I²t²'],1,'Electric charge is current multiplied by time: Q=It.'],
+['Dimensional Analysis in Modern Physics','From E=hc/λ, the dimensions of h are?',['[ML²T⁻¹]','[MLT⁻²]','[ML²T⁻²]','[LT⁻¹]'],0,'Planck constant has dimensions of energy × time: [ML²T⁻¹].']
+];
+const params=new URLSearchParams(location.search);const unit=params.get('unit')==='units-measurements';let index=Math.max(0,Math.min(units.length-1,parseInt(params.get('sub')||'0',10)||0));
+let answered=false;let order=[0,1,2,3];
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function render(){const c=units[index];document.getElementById('title').textContent=c[0];document.getElementById('eyebrow').textContent='JEE PHYSICS • UNITS & MEASUREMENTS • SUB-CONCEPT '+(index+1);document.getElementById('number').textContent='Question 1 of 1';document.getElementById('question').textContent=c[1];const opts=document.getElementById('options');opts.innerHTML='';order=shuffle([0,1,2,3]);order.forEach((original)=>{const b=document.createElement('button');b.textContent=String.fromCharCode(65+opts.children.length)+'. '+c[2][original];b.onclick=()=>answer(original,b);opts.appendChild(b)});document.getElementById('feedback').style.display='none';document.getElementById('feedback').className='feedback';document.getElementById('next').style.display='none';answered=false;document.getElementById('bar').style.width=Math.max(4,Math.round((index+1)/units.length*100))+'%'}
+function answer(choice,button){if(answered)return;answered=true;const c=units[index];const buttons=[...document.querySelectorAll('#options button')];buttons.forEach((b,i)=>{b.disabled=true;const original=order[i];if(original===c[3])b.classList.add('correct')});const fb=document.getElementById('feedback');if(choice===c[3]){button.classList.add('correct');fb.className='feedback correct';fb.innerHTML='<b>Correct! 🎉</b><br>'+c[4]}else{button.classList.add('wrong');const correctLetter=String.fromCharCode(65+c[3]);fb.className='feedback wrong';fb.innerHTML='<b>Correction:</b> Your answer is not correct.<br><b>Correct answer: '+correctLetter+'. '+c[2][c[3]]+'</b><br>'+c[4]}fb.style.display='block';document.getElementById('next').style.display='block'}
+function nextQuestion(){if(index<units.length-1){index++;location.href='jee-physics-mcq.html?unit=units-measurements&sub='+index}else{localStorage.setItem('kp_units_completed',Math.max(+(localStorage.getItem('kp_units_completed')||0),index+1));document.getElementById('quiz').style.display='none';document.getElementById('done').style.display='block'}}
+render();
+</script>
+</body>
+</html>
