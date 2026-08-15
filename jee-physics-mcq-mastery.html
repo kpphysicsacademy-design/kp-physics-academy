@@ -1,100 +1,16 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>JEE Physics Mastery | KP Physics Academy</title>
-<style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f6f9fd;color:#10213a}.top{background:#071a31;color:#fff;padding:18px 6%;display:flex;justify-content:space-between}.top a{color:#fff;text-decoration:none;font-weight:800}.wrap{max-width:820px;margin:auto;padding:30px 18px 80px}.eyebrow{text-align:center;color:#1687ff;font-weight:800;font-size:13px}.title{text-align:center;font-size:36px;margin:10px 0}.muted{color:#718096;line-height:1.6}.stats{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:18px 0}.stat{background:#fff;border:1px solid #dfe7f1;border-radius:14px;padding:10px 18px;text-align:center}.progress{height:9px;background:#e4ebf3;border-radius:20px;overflow:hidden;margin:20px 0}.progress i{display:block;height:100%;background:#20b56b;width:0;border-radius:20px}.card{background:#fff;border:1px solid #dfe7f1;border-radius:18px;padding:26px;margin:18px 0;box-shadow:0 7px 22px #0000000b}.question{font-size:21px;font-weight:800;line-height:1.5}.option{display:block;width:100%;margin:11px 0;padding:15px;border:2px solid #d6dfeb;background:#fff;border-radius:12px;text-align:left;font-size:16px;cursor:pointer}.option.correct{border-color:#20b56b;background:#eaf9f1}.option.wrong{border-color:#e34d59;background:#fff0f1}.option:disabled{cursor:default}.feedback{display:none;padding:16px;border-radius:12px;margin-top:18px;line-height:1.6}.feedback.show{display:block}.feedback.correct{background:#eaf9f1;border:1px solid #a8e1c1}.feedback.wrong{background:#fff0f1;border:1px solid #f0b2b8}.btn{width:100%;padding:14px;border:0;border-radius:11px;background:#1687ff;color:#fff;font-weight:800;cursor:pointer;margin-top:14px}.btn:disabled{background:#c2ccd8;cursor:not-allowed}.retry{font-weight:800;color:#d34b55}.complete{text-align:center;display:none}.complete.show{display:block}.trophy{font-size:52px}@media(max-width:650px){.title{font-size:29px}.question{font-size:19px}}
-</style>
-</head>
-<body>
-<header class="top"><a href="units-measurements-path.html">← Units & Measurements</a><a href="index.html">Home</a></header>
-<main class="wrap">
-<div class="eyebrow" id="topic">JEE PHYSICS • UNITS & MEASUREMENTS</div>
-<h1 class="title">Mastery Practice</h1>
-<p class="muted" style="text-align:center">Answer every question correctly. Wrongly attempted questions return at the end until you get them right.</p>
-<div class="stats"><div class="stat">⭐ <b id="xp">0</b><br><small>XP</small></div><div class="stat">📚 <b id="subno">1</b><br><small>Sub-concept</small></div><div class="stat">🎯 <b id="round">1</b><br><small>Round</small></div></div>
-<div class="progress"><i id="prog"></i></div>
-<section class="card" id="quizCard">
-<div id="status" class="muted"></div>
-<div class="question" id="question"></div>
-<div id="options"></div>
-<div id="feedback" class="feedback"></div>
-<button id="next" class="btn" disabled>Answer first</button>
-</section>
-<section class="card complete" id="complete"><div class="trophy">🏆</div><h2>Sub-concept mastered!</h2><p class="muted" id="completeText"></p><button class="btn" id="nextSub">Unlock Next Sub-concept →</button></section>
-</main>
-<script>
-const sub=new URLSearchParams(location.search).get('sub')||'0';
-let subIndex=Math.max(0,Math.min(30,parseInt(sub,10)||0));
-let qs=[];
-let queue=[];
-let retryQueue=[];
-let answered=false;
-let round=1;
-let currentQuestion=null;
-function loadQuestions(){
- return fetch('jee-physics-mcq-lesson.html').then(r=>r.text()).then(html=>{
-  const start=html.indexOf('const qs=');
-  const end=html.indexOf('];\nlet i=',start);
-  if(start<0||end<0)throw new Error('Question bank could not be loaded.');
-  const raw=html.slice(start+9,end+1);
-  qs=Function('return '+raw)();
- });
-}
-function shuffleQuestion(q){
- const choices=q[2].map((text,index)=>({text,index}));
- for(let i=choices.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[choices[i],choices[j]]=[choices[j],choices[i]]}
- return {name:q[0],text:q[1],choices,correct:q[3],explanation:q[4]};
-}
-function renderQuestion(){
- if(queue.length===0){finishSub();return}
- const q=qs[queue[0]];
- currentQuestion=shuffleQuestion(q);
- answered=false;
- document.getElementById('question').textContent=currentQuestion.text;
- document.getElementById('options').innerHTML=currentQuestion.choices.map((o,n)=>`<button class="option" onclick="answer(${n})">${o.text}</button>`).join('');
- document.getElementById('feedback').className='feedback';
- document.getElementById('feedback').innerHTML='';
- const next=document.getElementById('next');next.disabled=true;next.textContent='Answer first';
- document.getElementById('status').innerHTML=retryQueue.length?`<span class="retry">🔁 Retry queue: ${retryQueue.length} question(s)</span>`:`Question ${1} of ${queue.length}`;
- document.getElementById('round').textContent=round;
-}
-function answer(choice){
- if(answered)return;answered=true;
- const q=currentQuestion,buttons=[...document.querySelectorAll('.option')];
- buttons.forEach(b=>b.disabled=true);
- const selected=q.choices[choice];
- const correctPosition=q.choices.findIndex(x=>x.index===q.correct);
- if(selected.index===q.correct){
-  buttons[choice].classList.add('correct');
-  document.getElementById('feedback').className='feedback show correct';
-  document.getElementById('feedback').innerHTML='<b>✓ Correct!</b><br>'+q.explanation;
-  queue.shift();
-  if(queue.length===0){document.getElementById('next').disabled=false;document.getElementById('next').textContent='Continue →'}
-  else{document.getElementById('next').disabled=false;document.getElementById('next').textContent=retryQueue.length?'Next / Retry →':'Next MCQ →'}
-  localStorage.setItem('kp_units_xp',(+localStorage.getItem('kp_units_xp')||0)+10);
- }else{
-  buttons[choice].classList.add('wrong');buttons[correctPosition].classList.add('correct');
-  if(!retryQueue.includes(queue[0]))retryQueue.push(queue[0]);
-  document.getElementById('feedback').className='feedback show wrong';
-  document.getElementById('feedback').innerHTML='<b>✗ Incorrect — correction saved.</b><br><b>Correct answer: '+q.choices[correctPosition].text+'</b><br>'+q.explanation+'<br><br><b>This question will return at the end. You must answer it correctly before the next sub-concept unlocks.</b>';
-  queue.shift();
-  if(queue.length===0&&retryQueue.length>0){queue=retryQueue.splice(0);round++}
-  document.getElementById('next').disabled=false;document.getElementById('next').textContent=queue.length?'Next question →':'Continue →';
- }
- document.getElementById('xp').textContent=localStorage.getItem('kp_units_xp')||0;
-}
-document.getElementById('next').onclick=()=>{if(!answered)return;if(queue.length===0){finishSub();return}renderQuestion()};
-function finishSub(){
- localStorage.setItem('kp_units_completed',String(Math.max(+localStorage.getItem('kp_units_completed')||0,subIndex+1)));
- document.getElementById('quizCard').style.display='none';document.getElementById('complete').classList.add('show');
- document.getElementById('completeText').textContent=`${qs[subIndex][0]} is mastered. All attempted questions were answered correctly.`;
- document.getElementById('prog').style.width=((subIndex+1)/31*100)+'%';
- if(subIndex<30){document.getElementById('nextSub').onclick=()=>location.href='jee-physics-mcq-mastery.html?unit=units-measurements&sub='+(subIndex+1)}else{document.getElementById('nextSub').textContent='Complete Unit →';document.getElementById('nextSub').onclick=()=>location.href='units-measurements-path.html'}
-}
-loadQuestions().then(()=>{
- const q=qs[subIndex];document.getElementById('topic').textContent=`JEE PHYSICS • UNITS & MEASUREMENTS • ${q[0]}`;document.getElementById('subno').textContent=subIndex+1;document.getElementById('xp').textContent=localStorage.getItem('kp_units_xp')||0;document.getElementById('prog').style.width=((subIndex)/31*100)+'%';queue=[subIndex];renderQuestion();
-}).catch(e=>{document.getElementById('question').textContent='Unable to load the question bank.';document.getElementById('feedback').className='feedback show wrong';document.getElementById('feedback').textContent=e.message});
-</script>
-</body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Child Mastery | KP Physics Academy</title><style>*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f6f9fd;color:#10213a}.top{background:#071a31;color:#fff;padding:18px 6%;display:flex;justify-content:space-between}.top a{color:#fff;text-decoration:none;font-weight:800}.wrap{max-width:820px;margin:auto;padding:30px 18px 80px}.eyebrow{text-align:center;color:#1687ff;font-weight:800;font-size:13px}.title{text-align:center;font-size:34px;margin:10px 0}.muted{color:#718096;line-height:1.6}.stats{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:18px 0}.stat{background:#fff;border:1px solid #dfe7f1;border-radius:14px;padding:10px 18px;text-align:center}.progress{height:9px;background:#e4ebf3;border-radius:20px;overflow:hidden;margin:20px 0}.progress i{display:block;height:100%;background:#20b56b;width:0;border-radius:20px}.card{background:#fff;border:1px solid #dfe7f1;border-radius:18px;padding:26px;margin:18px 0;box-shadow:0 7px 22px #0000000b}.question{font-size:21px;font-weight:800;line-height:1.5}.option{display:block;width:100%;margin:11px 0;padding:15px;border:2px solid #d6dfeb;background:#fff;border-radius:12px;text-align:left;font-size:16px;cursor:pointer}.option.correct{border-color:#20b56b;background:#eaf9f1}.option.wrong{border-color:#e34d59;background:#fff0f1}.option:disabled{cursor:default}.feedback{display:none;padding:16px;border-radius:12px;margin-top:18px;line-height:1.6}.feedback.show{display:block}.feedback.correct{background:#eaf9f1;border:1px solid #a8e1c1}.feedback.wrong{background:#fff0f1;border:1px solid #f0b2b8}.btn{width:100%;padding:14px;border:0;border-radius:11px;background:#1687ff;color:#fff;font-weight:800;cursor:pointer;margin-top:14px}.btn:disabled{background:#c2ccd8;cursor:not-allowed}.complete{text-align:center;display:none}.complete.show{display:block}.trophy{font-size:52px}@media(max-width:650px){.title{font-size:27px}.question{font-size:19px}}</style></head><body><header class="top"><a id="back" href="units-measurements-child-path.html">← Child Path</a><a href="index.html">Home</a></header><main class="wrap"><div class="eyebrow" id="topic"></div><h1 class="title" id="title">Child Mastery</h1><p class="muted" style="text-align:center">Only questions related to this selected child concept. Wrong attempts return at the end until answered correctly.</p><div class="stats"><div class="stat">⭐ <b id="xp">0</b><br><small>XP</small></div><div class="stat">📝 <b id="count">1</b><br><small>Question</small></div><div class="stat">🔁 <b id="retry">0</b><br><small>Retry queue</small></div></div><div class="progress"><i id="prog"></i></div><section class="card" id="quizCard"><div class="question" id="question"></div><div id="options"></div><div id="feedback" class="feedback"></div><button class="btn" id="next" disabled>Answer first</button></section><section class="card complete" id="complete"><div class="trophy">🏆</div><h2 id="completeTitle">Child mastered!</h2><p class="muted" id="completeText"></p><button class="btn" id="nextChild">Unlock Next Child →</button></section></main><script>
+const p=new URLSearchParams(location.search),topic=p.get('topic')||'Physical Quantities',childIndex=+(p.get('child')||0);const childNames={"Physical Quantities":["What is a Physical Quantity?","Numerical Value","Unit","Numerical Value × Unit","Measurement","Standard Units","Non-standard Units","Fundamental Quantities","Derived Quantities","Scalar Quantities","Vector Quantities","SI Examples","Choosing an Appropriate Unit","Writing Measurements Correctly","Changing Numerical Value with Unit","Same Quantity in Different Units","Real-life Measurement Examples","Common Measurement Mistakes","JEE Concept Practice","JEE Application Practice","Mastery Checkpoint"]};const children=childNames[topic]||[];const child=children[childIndex]||p.get('childName')||'Selected Child Concept';document.getElementById('topic').textContent=`JEE PHYSICS • ${topic.toUpperCase()}`;document.getElementById('title').textContent=child;document.getElementById('back').href='units-measurements-child-path.html?topic='+encodeURIComponent(topic);
+const banks={
+"What is a Physical Quantity?":[['Which statement best defines a physical quantity?',['A. A property that can be measured and expressed with a number and unit.','B. Any word describing an object.','C. A mathematical symbol only.','D. A property that never needs measurement.'],0,'A physical quantity is measurable and is represented by a numerical value together with a unit.'],['Which is a physical quantity?',['A. Length','B. Beauty','C. Honesty','D. Friendship'],0,'Length can be measured and expressed using a unit.'],['A measurement of mass should contain which essential parts?',['A. Number and unit','B. Number only','C. Unit only','D. Colour and number'],0,'A measured physical quantity requires a numerical value and a unit.'],['Which is NOT normally a physical quantity?',['A. Time','B. Temperature','C. Mass','D. Happiness'],3,'Happiness is not a standard measurable physical quantity in physics.'],['A student records 5 kg for an object. What does 5 represent?',['A. Numerical value','B. Unit','C. Dimension only','D. Instrument'],0,'In 5 kg, 5 is the numerical value and kg is the unit.']],
+"Numerical Value":[['In 5 m, what is the numerical value?',['A. 5','B. m','C. 5 m','D. metre'],0,'The numerical value is 5; metre is the unit.'],['A length is written as 250 cm. Its numerical value is?',['A. 250','B. cm','C. 250 cm','D. 2.5'],0,'The stated numerical value in 250 cm is 250.'],['If 2 m is expressed as 200 cm, what happens to the numerical value?',['A. It becomes 100 times larger','B. It becomes zero','C. It stays 2','D. It loses its unit'],0,'Changing to a smaller unit increases the numerical value: 2 m = 200 cm.'],['A quantity has numerical value 7 and unit N. What is the physical quantity?',['A. 7 N','B. 7','C. N','D. 7 m'],0,'The complete measurement is numerical value × unit = 7 N.'],['Which pair represents the same length?',['A. 2 m and 200 cm','B. 2 m and 20 cm','C. 2 m and 2000 cm','D. 2 m and 0.2 cm'],0,'2 m = 200 cm.']],
+"Unit":[['In 12 kg, what is the unit?',['A. 12','B. kg','C. 12 kg','D. mass'],1,'kg is the unit of mass.'],['Which is an SI unit?',['A. metre','B. foot','C. inch','D. mile'],0,'The metre is the SI base unit of length.'],['Why is a unit needed with a numerical measurement?',['A. To give the measurement a standard meaning','B. To remove the number','C. To make all values dimensionless','D. To avoid measurement'],0,'The unit establishes the scale of the measurement.'],['Which is the correct way to write a length of five metres?',['A. 5 m','B. 5 metreses','C. m 5 only','D. 5M'],0,'The standard symbol for metre is m and it follows the numerical value.'],['If the unit becomes smaller while the quantity stays the same, the numerical value generally?',['A. Increases','B. Decreases','C. Becomes zero','D. Cannot change'],0,'For the same physical quantity, using a smaller unit gives a larger numerical value.']]
+};
+function genericBank(name){return [['Which statement is most directly related to the child concept "'+name+'"?',['A. It should be understood and measured according to its physical definition.','B. It has no connection with physics.','C. It can never be tested experimentally.','D. It is always dimensionless.'],0,'This question is specifically tied to the selected child concept: '+name+'.'],['Which approach is best when studying "'+name+'"?',['A. Identify its definition, unit or representation, then apply it.','B. Ignore units and definitions.','C. Memorize an unrelated formula.','D. Skip examples and applications.'],0,'Start from the definition and build toward application for '+name+'.'],['A JEE learner is practising "'+name+'". Which question is most relevant?',['A. A problem directly testing '+name+'.','B. A random optics problem.','C. A random chemistry problem.','D. An unrelated history question.'],0,'The practice set is intentionally restricted to '+name+'.'],['To master "'+name+'", the student should primarily?',['A. Answer concept-specific questions correctly.','B. Answer unrelated questions.','C. Guess every option.','D. Skip correction.'],0,'Mastery requires correct answers to questions belonging to the selected child concept.'],['What happens after a wrong answer in this child?',['A. The question returns in the retry queue.','B. The child is automatically mastered.','C. The next child unlocks immediately.','D. The question disappears permanently.'],0,'Wrong questions remain in the child-specific retry queue until answered correctly.']]}
+let questions=banks[child]||genericBank(child),queue=questions.map((_,i)=>i),retry=[],answered=false,current=null;
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function render(){if(!queue.length){finish();return}const q=questions[queue[0]],choices=shuffle(q[1].map((text,index)=>({text,index})));current={q,choices};answered=false;document.getElementById('question').textContent=q[0];document.getElementById('options').innerHTML=choices.map((o,n)=>`<button class="option" onclick="answer(${n})">${o.text}</button>`).join('');document.getElementById('feedback').className='feedback';document.getElementById('feedback').innerHTML='';document.getElementById('next').disabled=true;document.getElementById('next').textContent='Answer first';document.getElementById('count').textContent=questions.length-queue.length+1;document.getElementById('retry').textContent=retry.length;document.getElementById('prog').style.width=((questions.length-queue.length)/questions.length*100)+'%'}
+function answer(n){if(answered)return;answered=true;const buttons=[...document.querySelectorAll('.option')],selected=current.choices[n],correct=current.q[2];buttons.forEach(b=>b.disabled=true);if(selected.index===correct){buttons[n].classList.add('correct');document.getElementById('feedback').className='feedback show correct';document.getElementById('feedback').innerHTML='<b>✓ Correct!</b><br>'+current.q[3];queue.shift();localStorage.setItem('kp_units_xp',(+localStorage.getItem('kp_units_xp')||0)+10)}else{const cp=current.choices.findIndex(x=>x.index===correct);buttons[n].classList.add('wrong');buttons[cp].classList.add('correct');if(!retry.includes(queue[0]))retry.push(queue[0]);document.getElementById('feedback').className='feedback show wrong';document.getElementById('feedback').innerHTML='<b>✗ Correction</b><br><b>Correct answer: '+current.choices[cp].text+'</b><br>'+current.q[3]+'<br><br><b>This question will return before this child is mastered.</b>';queue.shift()}if(!queue.length&&retry.length){queue=retry.splice(0);document.getElementById('feedback').innerHTML+='<br><br><b>🔁 Retry round started.</b>'}document.getElementById('retry').textContent=retry.length;document.getElementById('xp').textContent=localStorage.getItem('kp_units_xp')||0;document.getElementById('next').disabled=false;document.getElementById('next').textContent=queue.length?'Next question →':'Complete child →'}
+document.getElementById('next').onclick=()=>{if(answered)render()};
+function finish(){const key='kp_child_'+topic;const done=+localStorage.getItem(key)||0;localStorage.setItem(key,String(Math.max(done,childIndex+1)));document.getElementById('quizCard').style.display='none';document.getElementById('complete').classList.add('show');document.getElementById('completeText').textContent=`${child} is mastered. Every question in this child-specific set was answered correctly.`;if(childIndex<children.length-1){document.getElementById('nextChild').onclick=()=>location.href='jee-physics-mcq-mastery.html?unit=units-measurements&topic='+encodeURIComponent(topic)+'&child='+(childIndex+1)}else{document.getElementById('nextChild').textContent='Back to Child Path →';document.getElementById('nextChild').onclick=()=>location.href='units-measurements-child-path.html?topic='+encodeURIComponent(topic)}}
+document.getElementById('xp').textContent=localStorage.getItem('kp_units_xp')||0;render();
+</script></body></html>
