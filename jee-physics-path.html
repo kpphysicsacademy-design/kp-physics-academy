@@ -63,20 +63,17 @@ body{margin:0;font-family:Arial,sans-serif;background:#f6f9fd;color:#10213a}
 <h1>Master Physics <span>one concept at a time.</span></h1>
 <p class="muted">Learn → Practice → Explain → AI Evaluation → Master → Unlock.</p>
 </section>
-
 <div class="stats">
 <div class="stat">🔥 <b id="streak">0</b><br><small>Streak</small></div>
 <div class="stat">⭐ <b id="xp">0</b><br><small>XP</small></div>
 <div class="stat">❤️ 5<br><small>Hearts</small></div>
 <div class="stat"><b>111</b><br><small>Deep Concepts</small></div>
 </div>
-
 <div class="stat mastery">
 <b>JEE Physics Deep Mastery</b>
 <p id="progress" class="muted">0 of 111 concepts mastered</p>
 <div class="bar"><i id="bar"></i></div>
 </div>
-
 <div id="content"></div>
 </main>
 <script>
@@ -119,7 +116,7 @@ function render(){
 }
 function openConcept(i){
  if(i===0){location.href='units-measurements-path.html';return}
- location.href='jee-physics-lesson.html?id='+i;
+ location.href='jee-physics-lesson-shuffled.html?id='+i;
 }
 render();
 </script>
