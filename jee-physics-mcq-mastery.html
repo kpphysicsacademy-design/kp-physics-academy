@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JEE Physics Mastery | KP Physics Academy</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f6f9fd;color:#10213a}.top{background:#071a31;color:#fff;padding:18px 6%;display:flex;justify-content:space-between}.top a{color:#fff;text-decoration:none;font-weight:800}.wrap{max-width:820px;margin:auto;padding:30px 18px 80px}.eyebrow{text-align:center;color:#1687ff;font-weight:800;font-size:13px}.title{text-align:center;font-size:36px;margin:10px 0}.muted{color:#718096;line-height:1.6}.stats{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:18px 0}.stat{background:#fff;border:1px solid #dfe7f1;border-radius:14px;padding:10px 18px;text-align:center}.progress{height:9px;background:#e4ebf3;border-radius:20px;overflow:hidden;margin:20px 0}.progress i{display:block;height:100%;background:#20b56b;width:0;border-radius:20px}.card{background:#fff;border:1px solid #dfe7f1;border-radius:18px;padding:26px;margin:18px 0;box-shadow:0 7px 22px #0000000b}.question{font-size:21px;font-weight:800;line-height:1.5}.option{display:block;width:100%;margin:11px 0;padding:15px;border:2px solid #d6dfeb;background:#fff;border-radius:12px;text-align:left;font-size:16px;cursor:pointer}.option.correct{border-color:#20b56b;background:#eaf9f1}.option.wrong{border-color:#e34d59;background:#fff0f1}.option:disabled{cursor:default}.feedback{display:none;padding:16px;border-radius:12px;margin-top:18px;line-height:1.6}.feedback.show{display:block}.feedback.correct{background:#eaf9f1;border:1px solid #a8e1c1}.feedback.wrong{background:#fff0f1;border:1px solid #f0b2b8}.btn{width:100%;padding:14px;border:0;border-radius:11px;background:#1687ff;color:#fff;font-weight:800;cursor:pointer;margin-top:14px}.btn:disabled{background:#c2ccd8;cursor:not-allowed}.retry{font-weight:800;color:#d34b55}.complete{text-align:center;display:none}.complete.show{display:block}.trophy{font-size:52px}@media(max-width:650px){.title{font-size:29px}.question{font-size:19px}}
+</style>
+</head>
+<body>
+<header class="top"><a href="units-measurements-path.html">← Units & Measurements</a><a href="index.html">Home</a></header>
+<main class="wrap">
+<div class="eyebrow" id="topic">JEE PHYSICS • UNITS & MEASUREMENTS</div>
+<h1 class="title">Mastery Practice</h1>
+<p class="muted" style="text-align:center">Answer every question correctly. Wrongly attempted questions return at the end until you get them right.</p>
+<div class="stats"><div class="stat">⭐ <b id="xp">0</b><br><small>XP</small></div><div class="stat">📚 <b id="subno">1</b><br><small>Sub-concept</small></div><div class="stat">🎯 <b id="round">1</b><br><small>Round</small></div></div>
+<div class="progress"><i id="prog"></i></div>
+<section class="card" id="quizCard">
+<div id="status" class="muted"></div>
+<div class="question" id="question"></div>
+<div id="options"></div>
+<div id="feedback" class="feedback"></div>
+<button id="next" class="btn" disabled>Answer first</button>
+</section>
+<section class="card complete" id="complete"><div class="trophy">🏆</div><h2>Sub-concept mastered!</h2><p class="muted" id="completeText"></p><button class="btn" id="nextSub">Unlock Next Sub-concept →</button></section>
+</main>
+<script>
+const sub=new URLSearchParams(location.search).get('sub')||'0';
+let subIndex=Math.max(0,Math.min(30,parseInt(sub,10)||0));
+let qs=[];
+let queue=[];
+let retryQueue=[];
+let answered=false;
+let round=1;
+let currentQuestion=null;
+function loadQuestions(){
+ return fetch('jee-physics-mcq-lesson.html').then(r=>r.text()).then(html=>{
+  const start=html.indexOf('const qs=');
+  const end=html.indexOf('];\nlet i=',start);
+  if(start<0||end<0)throw new Error('Question bank could not be loaded.');
+  const raw=html.slice(start+9,end+1);
+  qs=Function('return '+raw)();
+ });
+}
+function shuffleQuestion(q){
+ const choices=q[2].map((text,index)=>({text,index}));
+ for(let i=choices.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[choices[i],choices[j]]=[choices[j],choices[i]]}
+ return {name:q[0],text:q[1],choices,correct:q[3],explanation:q[4]};
+}
+function renderQuestion(){
+ if(queue.length===0){finishSub();return}
+ const q=qs[queue[0]];
+ currentQuestion=shuffleQuestion(q);
+ answered=false;
+ document.getElementById('question').textContent=currentQuestion.text;
+ document.getElementById('options').innerHTML=currentQuestion.choices.map((o,n)=>`<button class="option" onclick="answer(${n})">${o.text}</button>`).join('');
+ document.getElementById('feedback').className='feedback';
+ document.getElementById('feedback').innerHTML='';
+ const next=document.getElementById('next');next.disabled=true;next.textContent='Answer first';
+ document.getElementById('status').innerHTML=retryQueue.length?`<span class="retry">🔁 Retry queue: ${retryQueue.length} question(s)</span>`:`Question ${1} of ${queue.length}`;
+ document.getElementById('round').textContent=round;
+}
+function answer(choice){
+ if(answered)return;answered=true;
+ const q=currentQuestion,buttons=[...document.querySelectorAll('.option')];
+ buttons.forEach(b=>b.disabled=true);
+ const selected=q.choices[choice];
+ const correctPosition=q.choices.findIndex(x=>x.index===q.correct);
+ if(selected.index===q.correct){
+  buttons[choice].classList.add('correct');
+  document.getElementById('feedback').className='feedback show correct';
+  document.getElementById('feedback').innerHTML='<b>✓ Correct!</b><br>'+q.explanation;
+  queue.shift();
+  if(queue.length===0){document.getElementById('next').disabled=false;document.getElementById('next').textContent='Continue →'}
+  else{document.getElementById('next').disabled=false;document.getElementById('next').textContent=retryQueue.length?'Next / Retry →':'Next MCQ →'}
+  localStorage.setItem('kp_units_xp',(+localStorage.getItem('kp_units_xp')||0)+10);
+ }else{
+  buttons[choice].classList.add('wrong');buttons[correctPosition].classList.add('correct');
+  if(!retryQueue.includes(queue[0]))retryQueue.push(queue[0]);
+  document.getElementById('feedback').className='feedback show wrong';
+  document.getElementById('feedback').innerHTML='<b>✗ Incorrect — correction saved.</b><br><b>Correct answer: '+q.choices[correctPosition].text+'</b><br>'+q.explanation+'<br><br><b>This question will return at the end. You must answer it correctly before the next sub-concept unlocks.</b>';
+  queue.shift();
+  if(queue.length===0&&retryQueue.length>0){queue=retryQueue.splice(0);round++}
+  document.getElementById('next').disabled=false;document.getElementById('next').textContent=queue.length?'Next question →':'Continue →';
+ }
+ document.getElementById('xp').textContent=localStorage.getItem('kp_units_xp')||0;
+}
+document.getElementById('next').onclick=()=>{if(!answered)return;if(queue.length===0){finishSub();return}renderQuestion()};
+function finishSub(){
+ localStorage.setItem('kp_units_completed',String(Math.max(+localStorage.getItem('kp_units_completed')||0,subIndex+1)));
+ document.getElementById('quizCard').style.display='none';document.getElementById('complete').classList.add('show');
+ document.getElementById('completeText').textContent=`${qs[subIndex][0]} is mastered. All attempted questions were answered correctly.`;
+ document.getElementById('prog').style.width=((subIndex+1)/31*100)+'%';
+ if(subIndex<30){document.getElementById('nextSub').onclick=()=>location.href='jee-physics-mcq-mastery.html?unit=units-measurements&sub='+(subIndex+1)}else{document.getElementById('nextSub').textContent='Complete Unit →';document.getElementById('nextSub').onclick=()=>location.href='units-measurements-path.html'}
+}
+loadQuestions().then(()=>{
+ const q=qs[subIndex];document.getElementById('topic').textContent=`JEE PHYSICS • UNITS & MEASUREMENTS • ${q[0]}`;document.getElementById('subno').textContent=subIndex+1;document.getElementById('xp').textContent=localStorage.getItem('kp_units_xp')||0;document.getElementById('prog').style.width=((subIndex)/31*100)+'%';queue=[subIndex];renderQuestion();
+}).catch(e=>{document.getElementById('question').textContent='Unable to load the question bank.';document.getElementById('feedback').className='feedback show wrong';document.getElementById('feedback').textContent=e.message});
+</script>
+</body></html>
