@@ -1,0 +1,16 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Firebase Setup | KP Physics Academy</title><style>body{font-family:Arial,sans-serif;max-width:800px;margin:auto;padding:30px;line-height:1.6;background:#f7f9fc;color:#203040}.card{background:white;border:1px solid #ddd;border-radius:14px;padding:22px;margin:18px 0}code{background:#eef2f7;padding:2px 5px;border-radius:4px}.step{font-weight:800;color:#1687ff}</style></head><body><h1>🔥 KP Physics Academy — Firebase Setup</h1><p>This page documents the next app-development step. Your existing lessons continue to work with browser storage; Firebase will become the persistent student account/progress layer.</p><div class="card"><div class="step">Step 1 — Firebase project</div><p>Create or open the Firebase project connected to KP Physics Academy.</p></div><div class="card"><div class="step">Step 2 — Authentication</div><p>Enable <b>Email/Password</b> authentication first. Google sign-in can be added later.</p></div><div class="card"><div class="step">Step 3 — Firestore</div><p>Create a Cloud Firestore database. Recommended first document structure:</p><pre><code>users/{uid}
+  displayName
+  email
+  xp
+  streak
+  hearts
+  currentCourse
+  currentLesson
+  kinematicsMastery
+  createdAt
+  updatedAt</code></pre></div><div class="card"><div class="step">Step 4 — Lesson progress</div><p>Use a subcollection for scalable progress:</p><pre><code>users/{uid}/lessonProgress/{lessonId}
+  completed
+  bestScore
+  attempts
+  xpEarned
+  lastAttemptAt</code></pre></div><div class="card"><div class="step">Step 5 — Security</div><p>Students should only read and write their own <code>users/{uid}</code> data. Do not put Firebase Admin credentials or server secrets in GitHub Pages JavaScript.</p></div><div class="card"><div class="step">Step 6 — FlutterFlow</div><p>Connect the same Firebase project to FlutterFlow. Then create Login → Home → Course Path → Lesson → Result screens. The website can remain the public prototype while the FlutterFlow app becomes the mobile product.</p></div><p><b>Next coding task:</b> create the Firebase Authentication login/register page and then connect the lesson progress model.</p></body></html>
