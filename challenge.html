@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Daily Challenge | KP Physics Academy</title>
+<style>
+:root{--g:#58cc02;--gd:#46a800;--b:#1687ff;--purple:#7c4dff;--ink:#172033;--muted:#718096;--bg:#f7fafc;--card:#fff;--line:#e5eaf0;--gold:#ffc21a;--red:#e5484d}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}a{text-decoration:none;color:inherit}.wrap{max-width:1080px;margin:auto;padding-bottom:95px}.top{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:13px 22px}.brand{font-weight:900;font-size:20px}.brand b{color:var(--b)}.stats{display:flex;gap:8px}.pill{background:#f5f8fc;border:1px solid var(--line);border-radius:999px;padding:7px 10px;font-weight:800;font-size:13px}.back{display:inline-block;margin:20px 20px 0;color:var(--b);font-weight:800}.hero{margin:18px;padding:30px;border-radius:25px;background:linear-gradient(135deg,#f3edff,#f7fbff 55%,#fff7dc);border:1px solid #e3ddff}.eyebrow{font-size:11px;font-weight:900;letter-spacing:1.4px;color:var(--purple)}h1{font-size:40px;line-height:1.05;margin:8px 0}.hero p{color:var(--muted);max-width:720px;line-height:1.55}.hero-row{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}.challenge-meta{display:flex;gap:8px;flex-wrap:wrap}.meta{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 13px;font-weight:800}.grid{display:grid;grid-template-columns:1.45fr .55fr;gap:18px;margin:0 18px}.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 5px 20px #1720330b}.card h2{margin:0 0 6px;font-size:20px}.sub{color:var(--muted);font-size:13px}.progress-head{display:flex;justify-content:space-between;font-weight:900;margin-bottom:8px}.progress{height:11px;background:#e8edf2;border-radius:20px;overflow:hidden}.progress i{display:block;width:0;height:100%;background:var(--purple);border-radius:20px;transition:.2s}.question-card{margin-top:16px;border:1px solid var(--line);border-radius:18px;padding:20px}.qtop{display:flex;justify-content:space-between;align-items:center;gap:10px}.badge{background:var(--purple);color:#fff;border-radius:999px;padding:7px 12px;font-weight:900}.points{font-weight:900;color:#9a6b00}.question{font-size:22px;line-height:1.5;margin:22px 0}.options{display:grid;gap:10px}.option{width:100%;text-align:left;background:#f7faff;border:2px solid #e3eaf4;border-radius:13px;padding:14px 16px;font:inherit;font-weight:750;color:var(--ink);cursor:pointer;transition:.15s}.option:hover{border-color:#9fc9f7;transform:translateY(-1px)}.option.correct{background:#eef9e8;border-color:var(--g)}.option.wrong{background:#fff0f0;border-color:var(--red)}.feedback{display:none;margin-top:16px;padding:15px;border-radius:13px;line-height:1.55}.feedback.good{background:#eef9e8;border:1px solid #b9e69d}.feedback.bad{background:#fff0f0;border:1px solid #f1b7b9}.actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px}.btn{border:0;border-radius:12px;padding:12px 18px;font-weight:900;cursor:pointer}.primary{background:var(--purple);color:#fff;box-shadow:0 4px 0 #5c35cc}.secondary{background:#fff;color:var(--b);border:1px solid var(--line)}.btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}.side{display:grid;gap:18px;align-content:start}.reward{font-size:34px;font-weight:900;margin:10px 0}.rules{display:grid;gap:9px;margin-top:12px}.rule{padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#f8fafc;font-size:13px}.history{display:grid;gap:9px;margin-top:12px}.history-row{display:flex;justify-content:space-between;padding:11px 12px;border:1px solid var(--line);border-radius:12px;font-weight:800}.green{color:var(--gd)}.muted{color:var(--muted)}.result{display:none;text-align:center}.result-score{font-size:56px;font-weight:950;color:var(--purple);margin:10px 0}.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}.result-stat{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:15px}.result-stat strong{display:block;font-size:22px}.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(1080px,100%);background:#fff;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:10px;z-index:30}.bottom a{font-size:11px;font-weight:800;color:#707b8b;text-align:center}.bottom span{display:block;font-size:21px}.bottom a.active{color:var(--purple)}
+@media(max-width:760px){h1{font-size:31px}.grid{grid-template-columns:1fr}.hero{margin:12px;padding:24px}.top{padding:12px}.stats .pill:nth-child(3){display:none}.card{padding:18px}.question{font-size:19px}.result-grid{grid-template-columns:1fr}.actions{flex-direction:column}.actions .btn{width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><a class="brand" href="gamified-home.html">⚡ KP <b>PHYSICS</b></a><div class="stats"><span class="pill">🔥 7 days</span><span class="pill">⭐ 420 XP</span><span class="pill">⚡ Challenge</span></div></header>
+<a class="back" href="gamified-home.html">← Back to Home</a>
+<section class="hero"><div class="hero-row"><div><div class="eyebrow">DAILY CHALLENGE</div><h1>Can you master today's Physics challenge? ⚡</h1><p>Answer a focused set of Physics questions. Build accuracy, earn XP and strengthen your mastery.</p></div><div class="challenge-meta"><div class="meta">🎯 10 Questions</div><div class="meta">⭐ +10 XP each</div><div class="meta">🏆 Mastery</div></div></div></section>
+<div class="grid">
+<main class="card">
+<div id="challengeArea">
+<div class="progress-head"><span id="progressText">Question 1 of 10</span><span id="scoreText">0 XP</span></div>
+<div class="progress"><i id="progressBar"></i></div>
+<div class="question-card">
+<div class="qtop"><span class="badge" id="qBadge">Q1</span><span class="points">+10 XP</span></div>
+<div class="question" id="questionText">Loading today's challenge...</div>
+<div class="options" id="options"></div>
+<div class="feedback" id="feedback"></div>
+<div class="actions"><button class="btn secondary" id="skipBtn" onclick="skipQuestion()">Skip</button><button class="btn primary" id="nextBtn" onclick="nextQuestion()" disabled>Next →</button></div>
+</div>
+</div>
+<div class="result" id="resultArea">
+<div class="eyebrow">CHALLENGE COMPLETE</div><h2>Great work! 🎉</h2><div class="result-score" id="resultScore">0%</div>
+<div class="result-grid"><div class="result-stat"><strong id="resultCorrect">0</strong><span>Correct</span></div><div class="result-stat"><strong id="resultXP">0</strong><span>XP earned</span></div><div class="result-stat"><strong id="resultStreak">7</strong><span>Day streak</span></div></div>
+<p class="sub" id="resultMessage">Keep practicing to improve your mastery.</p>\div>
+</main>
+<aside class="side">
+<section class="card"><h2>⚡ Today's Reward</h2><p class="sub">Complete the challenge to earn</p><div class="reward">+100 XP</div><p class="sub">Bonus XP is awarded for completing all 10 questions.</p></section>
+<section class="card"><h2>📌 Challenge Rules</h2><div class="rules"><div class="rule">1️⃣ 10 Physics questions</div><div class="rule">2️⃣ One answer per question</div><div class="rule">3️⃣ Instant feedback after selection</div><div class="rule">4️⃣ Accuracy contributes to mastery</div></div></section>
+<section class="card"><h2>🏆 Recent Results</h2><div class="history"><div class="history-row"><span>Today</span><span id="todayHistory" class="muted">Not attempted</span></div><div class="history-row"><span>Yesterday</span><span class="green">8/10</span></div><div class="history-row"><span>2 days ago</span><span class="green">7/10</span></div></div></section>
+</aside>
+</div>
+</div>
+<nav class="bottom"><a href="gamified-home.html"><span>🏠</span>Home</a><a href="units-measurements-path.html"><span>🧭</span>Path</a><a href="question-bank.html"><span>🎯</span>Practice</a><a class="active" href="challenge.html"><span>⚡</span>Challenge</a><a href="index.html"><span>👤</span>Profile</a></nav>
+<script>
+const PROJECT_ID="kp-physics-academy";
+const FIRESTORE_URL="https://firestore.googleapis.com/v1/projects/"+PROJECT_ID+"/databases/(default)/documents/physics_questions";
+const TOTAL=10;
+let questions=[],current=0,score=0,answered=false;
+const fallback=[
+ {q:"Which SI base unit is used for length?",o:["metre","kilogram","second","ampere"],a:"A",e:"The SI base unit of length is the metre (m)."},
+ {q:"Which quantity is a vector?",o:["Speed","Distance","Velocity","Mass"],a:"C",e:"Velocity has both magnitude and direction, so it is a vector."},
+ {q:"The slope of a velocity–time graph represents",o:["displacement","acceleration","momentum","force"],a:"B",e:"Acceleration is the rate of change of velocity, represented by the slope of a v–t graph."},
+ {q:"What is the SI unit of force?",o:["joule","watt","newton","pascal"],a:"C",e:"Force is measured in newtons (N)."},
+ {q:"Which law explains action and reaction?",o:["Newton's first law","Newton's second law","Newton's third law","Kepler's first law"],a:"C",e:"Newton's third law states that forces occur in equal and opposite pairs."},
+ {q:"The dimensional formula of velocity is",o:["[LT⁻¹]","[LT⁻²]","[MLT⁻¹]","[ML²T⁻²]"],a:"A",e:"Velocity = displacement/time, so its dimensions are [L T⁻¹]."},
+ {q:"For uniform circular motion, the acceleration is directed",o:["tangentially outward","towards the centre","along the velocity","zero"],a:"B",e:"Centripetal acceleration is directed towards the centre of the circular path."},
+ {q:"Which quantity remains constant in uniform motion in a straight line?",o:["Velocity","Acceleration only","Force only","Displacement"],a:"A",e:"Uniform straight-line motion has constant velocity and zero acceleration."},
+ {q:"Work done is zero when force and displacement are",o:["parallel","anti-parallel","perpendicular","in the same direction"],a:"C",e:"W = F s cosθ, so work is zero when θ = 90°."},
+ {q:"The SI unit of power is",o:["joule","watt","newton","volt"],a:"B",e:"Power is the rate of doing work and is measured in watts (W)."}
+];
+function daySeed(){const d=new Date();return d.getUTCFullYear()*10000+(d.getUTCMonth()+1)*100+d.getUTCDate()}
+function seededStart(){return (daySeed()*37)%9991+1}
+function getField(fields,names){for(const n of names){if(fields[n]?.stringValue!==undefined)return fields[n].stringValue}return ""}
+async function loadQuestions(){
+ const start=seededStart();
+ try{for(let i=0;i<TOTAL;i++){const r=await fetch(FIRESTORE_URL+"/Q"+(start+i));if(!r.ok)throw new Error("missing");const d=await r.json(),f=d.fields||{};const q=getField(f,["question"]),o=[getField(f,["optionA"]),getField(f,["optionB"]),getField(f,["optionC"]),getField(f,["optionD"])],a=getField(f,["Answer","answer","CorrectAnswer","correctAnswer","correctOption"]),e=getField(f,["Explanation","explanation","Solution","solution"]);if(!q||o.filter(Boolean).length<2||!a)throw new Error("incomplete");questions.push({q,o,a:normalize(a),e:e||"Explanation not available yet."})}}catch(e){questions=fallback}
+ const saved=localStorage.getItem("kpDailyChallenge_"+daySeed());if(saved){const s=JSON.parse(saved);score=s.score||0;document.getElementById("todayHistory").innerText=s.correct+"/10";}
+ render();
+}
+function normalize(v){const m=String(v||"").trim().toUpperCase().match(/^(?:OPTION\s*)?([ABCD])/);return m?m[1]:String(v||"").trim().toUpperCase()}
+function render(){const item=questions[current];answered=false;document.getElementById("qBadge").innerText="Q"+(current+1);document.getElementById("progressText").innerText="Question "+(current+1)+" of "+TOTAL;document.getElementById("scoreText").innerText=score+" XP";document.getElementById("progressBar").style.width=((current)/TOTAL*100)+"%";document.getElementById("questionText").innerText=item.q;const box=document.getElementById("options");box.innerHTML="";item.o.forEach((text,i)=>{if(!text)return;const b=document.createElement("button");b.className="option";b.innerText=String.fromCharCode(65+i)+". "+text;b.onclick=()=>choose(b,String.fromCharCode(65+i));box.appendChild(b)});const fb=document.getElementById("feedback");fb.style.display="none";fb.className="feedback";document.getElementById("nextBtn").disabled=true;document.getElementById("nextBtn").innerText=current===TOTAL-1?"Finish →":"Next →";document.getElementById("skipBtn").disabled=false}
+function choose(btn,letter){if(answered)return;answered=true;const item=questions[current],correct=letter===item.a;document.querySelectorAll(".option").forEach(x=>x.disabled=true);btn.classList.add(correct?"correct":"wrong");if(!correct){const all=[...document.querySelectorAll(".option")],idx="ABCD".indexOf(item.a);if(all[idx])all[idx].classList.add("correct")}if(correct)score+=10;const fb=document.getElementById("feedback");fb.className="feedback "+(correct?"good":"bad");fb.innerHTML=(correct?"<strong>Correct! +10 XP 🎉</strong>":"<strong>Not quite.</strong> Correct answer: "+item.a)+"<div>"+item.e+"</div>";fb.style.display="block";document.getElementById("scoreText").innerText=score+" XP";document.getElementById("progressBar").style.width=((current+1)/TOTAL*100)+"%";document.getElementById("nextBtn").disabled=false}
+function skipQuestion(){if(answered)return;answered=true;const fb=document.getElementById("feedback");fb.className="feedback bad";fb.innerHTML="<strong>Skipped.</strong> Correct answer: "+questions[current].a+"<div>"+questions[current].e+"</div>";fb.style.display="block";document.querySelectorAll(".option").forEach(x=>x.disabled=true);document.getElementById("nextBtn").disabled=false}
+function nextQuestion(){if(!answered)return;if(current<TOTAL-1){current++;render();window.scrollTo({top:0,behavior:"smooth"})}else finish()}
+function finish(){const correct=Math.round(score/10),pct=Math.round(correct/TOTAL*100),bonus=100;localStorage.setItem("kpDailyChallenge_"+daySeed(),JSON.stringify({correct,score:score+bonus,date:new Date().toISOString()}));document.getElementById("challengeArea").style.display="none";document.getElementById("resultArea").style.display="block";document.getElementById("resultScore").innerText=pct+"%";document.getElementById("resultCorrect").innerText=correct+"/10";document.getElementById("resultXP").innerText=(score+bonus)+"";document.getElementById("todayHistory").innerText=correct+"/10";document.getElementById("resultMessage").innerText=pct>=80?"Excellent! Your Physics mastery is growing. 🔥":"Good attempt. Review the explanations and try again with focused practice.";window.scrollTo({top:0,behavior:"smooth"})}
+loadQuestions();
+</script>
+</body>
+</html>
