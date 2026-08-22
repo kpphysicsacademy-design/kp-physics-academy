@@ -10,7 +10,31 @@
 </style>
 </head>
 <body>
-<main class="splash"><div class="glow"></div><section class="content"><div class="brand-icon">⚛️</div><div class="brand">SKILL<span>UP</span></div><div class="tagline">MASTER EVERY SUBJECT</div><p class="message">Learn smarter. Practice daily. Build your skills.</p><div class="loader"></div><div class="loading">Loading your learning journey</div></section><div class="footer">NEET • JEE • COMPETITIVE LEARNING</div></main>
-<script>setTimeout(()=>{location.href='login.html'},2200)</script>
+<main class="splash"><div class="glow"></div><section class="content"><div class="brand-icon">⚛️</div><div class="brand">SKILL<span>UP</span></div><div class="tagline">MASTER EVERY SUBJECT</div><p class="message" id="message">Checking your account…</p><div class="loader"></div><div class="loading" id="loading">Connecting to SkillUp</div></section><div class="footer">NEET • JEE • COMPETITIVE LEARNING</div></main>
+<script type="module">
+import{initializeApp}from'https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js';
+import{getAuth,onAuthStateChanged}from'https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js';
+import{getFirestore,doc,getDoc}from'https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js';
+import{firebaseConfig}from'./firebase-config.js';
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
+let redirected=false;
+function go(url){if(redirected)return;redirected=true;location.replace(url)}
+onAuthStateChanged(auth,async user=>{
+  if(user){
+    document.getElementById('message').textContent='Welcome back. Opening your SkillUp home…';
+    document.getElementById('loading').textContent='Signed in';
+    try{
+      const snap=await getDoc(doc(db,'users',user.uid));
+      const role=snap.exists()?snap.data().role:'student';
+      setTimeout(()=>go(role==='teacher'?'teacher-dashboard.html':'student-dashboard.html'),700);
+    }catch(e){setTimeout(()=>go('student-dashboard.html'),700)}
+  }else{
+    document.getElementById('message').textContent='Learn smarter. Practice daily. Build your skills.';
+    document.getElementById('loading').textContent='Opening login';
+    setTimeout(()=>go('login.html'),1600);
+  }
+});
+setTimeout(()=>go('login.html'),5000);
+</script>
 </body>
 </html>
