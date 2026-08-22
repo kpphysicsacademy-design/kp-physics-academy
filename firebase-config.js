@@ -1,11 +1,11 @@
-// KP Physics Academy - Firebase Web App Configuration
-// Firebase Web App: KP Physics Academy Website
+// SkillUp - Firebase Web App Configuration
+// Firebase project: Skill Up (skill-up-j6olyb)
 export const firebaseConfig = {
-  apiKey: "AIzaSyBmYYh9gdHojpDF1OQk_nGTXchomuEa2qc",
-  authDomain: "kp-physics-academy.firebaseapp.com",
-  projectId: "kp-physics-academy",
-  storageBucket: "kp-physics-academy.firebasestorage.app",
-  messagingSenderId: "445260149248",
-  appId: "1:445260149248:web:c21427845e417de4ba1ee5",
-  measurementId: "G-BBQYTZY1FV"
+  apiKey: "AIzaSyDCwf3HNlGMRltXXtUgf_jmMh6jY36D9f8",
+  authDomain: "skill-up-j6olyb.firebaseapp.com",
+  projectId: "skill-up-j6olyb",
+  storageBucket: "skill-up-j6olyb.firebasestorage.app",
+  messagingSenderId: "112776254896",
+  appId: "1:112776254896:web:7f10fde74fdf1a063a7275",
+  measurementId: "G-LPLJSBNEH4"
 };
