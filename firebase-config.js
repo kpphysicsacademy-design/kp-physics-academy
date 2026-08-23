@@ -11,12 +11,12 @@ export const firebaseConfig = {
 };
 
 // SkillUp scientific visual layer.
-// This is intentionally lightweight and non-interactive so it does not affect forms or navigation.
+// Lightweight, non-interactive effects: stars, formulas, glows and orbital motion.
 if (!document.getElementById('skillup-science-bg')) {
   const style = document.createElement('style');
   style.id = 'skillup-science-style';
   style.textContent = `
-    #skillup-science-bg{position:fixed;inset:0;z-index:-5;pointer-events:none;overflow:hidden;background:
+    #skillup-science-bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:
       radial-gradient(circle at 12% 18%,rgba(38,140,255,.16),transparent 24%),
       radial-gradient(circle at 86% 78%,rgba(139,92,246,.14),transparent 25%),
       radial-gradient(circle at 50% 110%,rgba(92,225,255,.10),transparent 34%)}
@@ -25,6 +25,7 @@ if (!document.getElementById('skillup-science-bg')) {
       radial-gradient(circle,#5ce1ff 0 1px,transparent 1.8px) 45px 70px/180px 180px,
       radial-gradient(circle,#8b5cf6 0 1px,transparent 1.8px) 20px 35px/240px 240px;animation:skillupStars 42s linear infinite}
     #skillup-science-bg:after{content:"⚛   E = mc²   F = ma   Δx   λ   π   Σ   ∫   H₂O   DNA   🧪   🧬";position:absolute;left:-10%;right:-10%;top:18%;font-size:clamp(16px,2vw,28px);font-weight:800;letter-spacing:12px;white-space:nowrap;color:rgba(38,140,255,.08);transform:rotate(-7deg);animation:skillupFormula 22s ease-in-out infinite alternate}
+    #skillup-science-bg~*{position:relative;z-index:1}
     .skillup-orbit{position:absolute;border:1px solid rgba(92,225,255,.13);border-radius:50%;box-shadow:0 0 35px rgba(38,140,255,.08);animation:skillupOrbit 18s linear infinite}
     .skillup-orbit.one{width:360px;height:140px;left:-70px;top:22%;transform:rotate(25deg)}
     .skillup-orbit.two{width:300px;height:110px;right:-70px;bottom:18%;transform:rotate(-28deg);animation-duration:24s;animation-direction:reverse}
