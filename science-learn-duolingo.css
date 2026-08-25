@@ -1,0 +1,13 @@
+/* Duolingo-style Class 6 Science path */
+:root{--ink:#172033;--muted:#667085;--green:#58cc02;--green-dark:#46a302;--blue:#1cb0f6;--gold:#ffc800;--bg:#f7f9fc}
+.duo-path{max-width:620px;margin:0 auto;padding:8px 12px 80px;background:var(--bg)}
+.duo-progress{position:sticky;top:54px;z-index:5;background:#fff;border-bottom:1px solid #e5eaf1;padding:8px 10px}
+.duo-progress-row{display:flex;align-items:center;gap:8px;font-size:8px;font-weight:900;color:var(--muted)}
+.duo-bar{height:8px;flex:1;background:#e5e7eb;border-radius:99px;overflow:hidden}.duo-bar i{display:block;width:18%;height:100%;background:var(--green);border-radius:99px}
+.duo-unit{margin:16px 0 22px}.duo-unit-head{display:flex;align-items:center;gap:9px;margin-bottom:10px}.duo-unit-badge{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--green);color:#fff;font-size:17px;font-weight:900;box-shadow:0 4px 0 var(--green-dark)}.duo-unit-head h2{margin:0;font-size:14px}.duo-unit-head p{margin:2px 0 0;font-size:7px;color:var(--muted)}
+.duo-road{position:relative;min-height:250px}.duo-road:before{content:"";position:absolute;left:50%;top:10px;bottom:10px;width:5px;background:#e3e8ee;border-radius:99px;transform:translateX(-50%)}
+.duo-node{position:relative;width:68px;height:68px;margin:13px auto;z-index:1}.duo-node:nth-child(odd){transform:translateX(-48px)}.duo-node:nth-child(even){transform:translateX(48px)}
+.duo-node a{width:68px;height:68px;border-radius:50%;display:grid;place-items:center;text-decoration:none;color:#fff;font-size:25px;font-weight:950;border:4px solid #fff;box-shadow:0 6px 0 #0002,0 8px 14px #0001;transition:.15s transform}.duo-node a:active{transform:translateY(3px)}
+.duo-node.learn a{background:var(--green);box-shadow:0 6px 0 var(--green-dark),0 9px 15px #0001}.duo-node.practice a{background:var(--blue);box-shadow:0 6px 0 #1489c2,0 9px 15px #0001}.duo-node.master a{background:var(--gold);box-shadow:0 6px 0 #c89d00,0 9px 15px #0001}.duo-node.locked a{background:#cbd5e1;box-shadow:0 6px 0 #aeb9c7}.duo-node .label{position:absolute;left:50%;transform:translateX(-50%);top:73px;white-space:nowrap;font-size:7px;font-weight:900;color:var(--ink)}
+.duo-chapter{background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:10px;box-shadow:0 3px 0 #e8edf2;margin:12px 0}.duo-chapter-title{font-size:10px;font-weight:950}.duo-chapter-sub{font-size:7px;color:var(--muted);margin-top:2px}
+@media(max-width:560px){.duo-path{padding-left:7px;padding-right:7px}.duo-node:nth-child(odd){transform:translateX(-42px)}.duo-node:nth-child(even){transform:translateX(42px)}.duo-node,.duo-node a{width:62px;height:62px}.duo-node a{font-size:22px}.duo-road:before{width:4px}}
