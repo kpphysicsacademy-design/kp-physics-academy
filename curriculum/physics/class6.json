@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "1.0",
+  "subject": "physics",
+  "class": 6,
+  "source": "NCERT Science - Curiosity (Physics-tagged content)",
+  "chapters": [
+    {
+      "id": "ph6-ch1",
+      "title": "The Wonderful World of Science",
+      "topics": [
+        {"id":"ph6-ch1-t1","title":"Scientific Observation","concepts":["Observation","Asking Questions","Evidence"]},
+        {"id":"ph6-ch1-t2","title":"Scientific Investigation","concepts":["Investigation","Experiment","Recording Observations","Drawing Conclusions"]}
+      ],
+      "questionTypes":["conceptual","application","observation","challenge"]
+    },
+    {
+      "id": "ph6-ch4",
+      "title": "Exploring Magnets",
+      "topics": [
+        {"id":"ph6-ch4-t1","title":"Magnetic Materials","concepts":["Magnetic Materials","Non-magnetic Materials","Testing Materials","Uses of Magnets"]},
+        {"id":"ph6-ch4-t2","title":"Magnetic Poles","concepts":["North Pole","South Pole","Magnetic Poles","Magnetic Effect"]},
+        {"id":"ph6-ch4-t3","title":"Direction and Compass","concepts":["Directions","Compass","Earth's Magnetic Direction","Making a Simple Compass"]},
+        {"id":"ph6-ch4-t4","title":"Attraction and Repulsion","concepts":["Like Poles","Unlike Poles","Attraction","Repulsion"]}
+      ],
+      "questionTypes":["conceptual","observation","application","challenge"]
+    },
+    {
+      "id": "ph6-ch5",
+      "title": "Measurement of Length and Motion",
+      "topics": [
+        {"id":"ph6-ch5-t1","title":"Measurement","concepts":["Meaning of Measurement","Non-standard Units","Need for Standard Units","Measuring Instruments"]},
+        {"id":"ph6-ch5-t2","title":"Standard Units","concepts":["Metre","Centimetre","Millimetre","Kilometre","Unit Conversion"]},
+        {"id":"ph6-ch5-t3","title":"Measuring Length Correctly","concepts":["Positioning the Scale","Zero Mark","Eye Position","Measurement Error"]},
+        {"id":"ph6-ch5-t4","title":"Measuring Curved Lines","concepts":["Flexible Measurement","Approximate Length"]},
+        {"id":"ph6-ch5-t5","title":"Position","concepts":["Reference Point","Position","Describing Position"]}
+      ],
+      "questionTypes":["conceptual","numerical","application","challenge"]
+    },
+    {
+      "id": "ph6-ch7",
+      "title": "Temperature and its Measurement",
+      "topics": [
+        {"id":"ph6-ch7-t1","title":"Hot and Cold","concepts":["Hot Objects","Cold Objects","Feeling Temperature","Limitations of Touch"]},
+        {"id":"ph6-ch7-t2","title":"Temperature","concepts":["Meaning of Temperature","Comparing Temperature","Hotness and Coldness"]},
+        {"id":"ph6-ch7-t3","title":"Thermometers","concepts":["Clinical Thermometer","Laboratory Thermometer","Thermometer Parts","Correct Usage"]},
+        {"id":"ph6-ch7-t4","title":"Temperature Scale","concepts":["Celsius","Fahrenheit","Range","Least Count"]}
+      ],
+      "questionTypes":["conceptual","observation","application","challenge"]
+    },
+    {
+      "id": "ph6-ch8",
+      "title": "A Journey through States of Water",
+      "topics": [
+        {"id":"ph6-ch8-t1","title":"States of Water","concepts":["Solid","Liquid","Gas"]},
+        {"id":"ph6-ch8-t2","title":"Change of State","concepts":["Melting","Freezing","Evaporation","Condensation"]},
+        {"id":"ph6-ch8-t3","title":"Evaporation","concepts":["Water Vapour","Factors Affecting Evaporation","Everyday Examples"]}
+      ],
+      "questionTypes":["conceptual","observation","application","challenge"]
+    },
+    {
+      "id": "ph6-ch11",
+      "title": "Nature's Treasures",
+      "topics": [
+        {"id":"ph6-ch11-t1","title":"Air","concepts":["Composition of Air","Oxygen","Carbon Dioxide"]},
+        {"id":"ph6-ch11-t2","title":"Water","concepts":["Water as a Resource","Water Conservation","Water Pollution"]},
+        {"id":"ph6-ch11-t3","title":"Solar Energy","concepts":["Sun as Energy Source","Heat Energy","Light Energy","Solar Cooker","Solar Panel","Solar Water Heater"]}
+      ],
+      "questionTypes":["conceptual","application","observation","challenge"]
+    },
+    {
+      "id": "ph6-ch12",
+      "title": "Beyond Earth",
+      "topics": [
+        {"id":"ph6-ch12-t1","title":"Stars","concepts":["Stars","Constellations","Pole Star","Star Patterns"]},
+        {"id":"ph6-ch12-t2","title":"Night Sky","concepts":["Sky Observation","Orion","Sirius","Identifying Objects"]},
+        {"id":"ph6-ch12-t3","title":"Solar System","concepts":["Sun","Planets","Earth","Moon","Solar System"]}
+      ],
+      "questionTypes":["conceptual","observation","application","challenge"]
+    }
+  ],
+  "nodeModel": {
+    "lesson": ["explanation","visual","example","activity"],
+    "practice": ["basic","conceptual","application","numerical","challenge"],
+    "mastery": ["learned","practiced","mastered","needsRevision"]
+  }
+}
