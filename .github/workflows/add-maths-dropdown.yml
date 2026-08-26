@@ -18,27 +18,19 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          import re
-
           p=Path('maths-full-path.html')
           text=p.read_text(encoding='utf-8')
-
           if 'id="skillup-subject-dropdown"' in text:
               print('Maths dropdown already present')
               raise SystemExit(0)
-
           CSS='''<style id="skillup-subject-dropdown">.skillup-subject-dropdown{position:relative;margin-left:auto;margin-right:8px}.skillup-subject-toggle{border:1px solid #2e4b6d;background:#183150;color:#fff;border-radius:11px;padding:7px 11px;font:900 10px Inter,system-ui,sans-serif;cursor:pointer}.skillup-subject-menu{display:none;position:absolute;right:0;top:calc(100% + 7px);min-width:175px;background:#fff;border:1px solid #dce3ec;border-radius:12px;box-shadow:0 10px 25px #0002;overflow:hidden;z-index:100}.skillup-subject-menu.show{display:block}.skillup-subject-menu a{display:block;padding:10px 12px;color:#172033;text-decoration:none;font:900 11px Inter,system-ui,sans-serif}.skillup-subject-menu a:hover,.skillup-subject-menu a.selected{background:#eef5ff;color:#2d7ff9}@media(max-width:700px){.skillup-subject-dropdown{margin-left:auto;margin-right:5px}.skillup-subject-toggle{padding:6px 8px;font-size:9px}.skillup-subject-menu{right:-4px;min-width:160px}}</style>'''
-
           nav='''<div class="skillup-subject-dropdown" id="skillup-subject-dropdown"><button type="button" class="skillup-subject-toggle" onclick="document.getElementById('skillup-subject-menu').classList.toggle('show')">📐 MATHS ▾</button><div class="skillup-subject-menu" id="skillup-subject-menu"><a href="full-physics-path.html">⚡ Physics</a><a href="chemistry-skillup-path.html">🧪 Chemistry</a><a href="botany-full-path.html">🌿 Botany</a><a href="zoology-full-path.html">🧬 Zoology</a><a class="selected" href="maths-full-path.html">📐 Maths</a></div></div>'''
-
           js='''<script id="skillup-subject-dropdown-js">document.addEventListener('click',function(e){var m=document.getElementById('skillup-subject-menu'),d=document.getElementById('skillup-subject-dropdown');if(m&&d&&!d.contains(e.target))m.classList.remove('show')});</script>'''
-
           text=text.replace('</head>',CSS+'</head>',1)
           text=text.replace('<div class="stats">',nav+js+'<div class="stats">',1)
           p.write_text(text,encoding='utf-8')
           print('Maths dropdown added')
           PY
-
       - name: Commit Maths update
         run: |
           git config user.name "SkillUp Standard Bot"
