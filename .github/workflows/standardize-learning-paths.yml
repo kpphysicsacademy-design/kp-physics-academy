@@ -1,0 +1,93 @@
+name: Standardize Class 6-9 Learning Paths
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  standardize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Apply SkillUp learning-path standard
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          CSS = r'''<style id="skillupPathStandard">
+          .road .skillup-stage{position:relative;width:88px!important;height:88px!important;margin:14px auto!important;z-index:2!important;transform:none!important;border-radius:50%;display:flex!important;align-items:center;justify-content:center}
+          .road .skillup-stage:nth-child(odd){transform:translateX(-104px)!important}.road .skillup-stage:nth-child(even){transform:translateX(104px)!important}
+          .road .skillup-stage-link{width:88px!important;height:88px!important;border-radius:50%!important;border:5px solid #fff!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;text-decoration:none!important;color:#fff!important;font-weight:950!important;line-height:1.05!important;box-shadow:0 7px 0 rgba(23,32,51,.18)!important;padding:0!important}
+          .skillup-stage.learn .skillup-stage-link{background:#58CC02!important}.skillup-stage.challenge .skillup-stage-link{background:#FF9600!important}.skillup-stage.practice .skillup-stage-link{background:#1CB0F6!important}.skillup-stage.mastery .skillup-stage-link{background:#FFC800!important;color:#4B4B4B!important}.skillup-stage.locked .skillup-stage-link{background:#AFAFAF!important;color:#fff!important}
+          .skillup-stage-link svg{width:29px!important;height:29px!important;margin:0 0 4px!important;fill:none!important;stroke:currentColor!important;stroke-width:2.4!important;stroke-linecap:round!important;stroke-linejoin:round!important;display:block!important}
+          .skillup-stage-link .skillup-label{position:static!important;transform:none!important;white-space:normal!important;font-size:11px!important;line-height:1.05!important;color:inherit!important;font-weight:950!important;margin:0!important}
+          @media(max-width:767px){.road .skillup-stage{width:70px!important;height:70px!important}.road .skillup-stage:nth-child(odd){transform:translateX(-82px)!important}.road .skillup-stage:nth-child(even){transform:translateX(82px)!important}.road .skillup-stage-link{width:70px!important;height:70px!important;border-width:4px!important}.skillup-stage-link svg{width:23px!important;height:23px!important;margin-bottom:3px!important}.skillup-stage-link .skillup-label{font-size:9px!important}}
+          </style>'''
+
+          JS = r'''<script id="skillupPathStandard">
+          (function(){
+            const icons={
+              learn:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v16H6.5A2.5 2.5 0 0 0 4 21z"/><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v16h5.5A2.5 2.5 0 0 1 20 21z"/></svg>',
+              challenge:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 5 13h6l-1 9 8-11h-6z"/></svg>',
+              practice:'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1.2"/></svg>',
+              mastery:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v7a6 6 0 0 1-12 0z"/><path d="M6 7H3v2a5 5 0 0 0 5 5M18 7h3v2a5 5 0 0 1-5 5M12 17v4M8 21h8"/></svg>',
+              locked:'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>'
+            };
+            function stageFor(node){
+              const label=node.querySelector('.label,.word');
+              const t=(label?label.textContent:'').trim().toLowerCase();
+              if(t==='concepts'||t==='challenge') return 'challenge';
+              if(t==='practice') return 'practice';
+              if(t==='mastery') return 'mastery';
+              if(t==='learn') return 'learn';
+              if(node.classList.contains('locked')) return 'locked';
+              return 'learn';
+            }
+            document.querySelectorAll('.road .node').forEach(function(node){
+              const stage=stageFor(node);
+              node.classList.add('skillup-stage',stage);
+              let target=node.tagName==='A'?node:node.querySelector('a');
+              if(!target) return;
+              const text=stage==='challenge'?'Challenge':stage.charAt(0).toUpperCase()+stage.slice(1);
+              target.classList.add('skillup-stage-link');
+              target.innerHTML=icons[stage]+'<span class="skillup-label">'+text+'</span>';
+            });
+            document.querySelectorAll('.hero p').forEach(function(p){p.textContent=p.textContent.replace(/Concepts/g,'Challenge')});
+            document.querySelectorAll('.version').forEach(function(v){v.textContent='SkillUp v20260826.13'});
+          })();
+          </script>'''
+
+          rx=re.compile(r'^class[6-9]-(english|hindi|maths|social-science|science|physics|chemistry|sanskrit)-(learn|path)\.html$')
+          changed=[]
+          for p in Path('.').glob('class[6-9]-*.html'):
+            if not rx.match(p.name):
+              continue
+            text=p.read_text(encoding='utf-8')
+            if 'id="skillupPathStandard"' in text or '</head>' not in text or '</body>' not in text:
+              continue
+            text=text.replace('</head>',CSS+'</head>',1)
+            text=text.replace('</body>',JS+'</body>',1)
+            text=re.sub(r'(meta name="skillup-version" content=")([^"]+)',r'\g<1>20260826.13',text,count=1)
+            text=re.sub(r'(SkillUp v)20\d{6}\.\d+',r'\g<1>20260826.13',text)
+            p.write_text(text,encoding='utf-8')
+            changed.append(p.name)
+          print('Standardized:', ', '.join(changed))
+          PY
+
+      - name: Commit standardized pages
+        run: |
+          git config user.name "SkillUp Standard Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add 'class[6-9]-*.html'
+          if git diff --cached --quiet; then
+            echo "No page changes needed."
+          else
+            git commit -m "Standardize Class 6-9 learning path UI v20260826.13"
+            git push
+          fi
