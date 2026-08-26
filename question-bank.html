@@ -11,32 +11,31 @@
 *{box-sizing:border-box}
 body{margin:0;font-family:Inter,Arial,sans-serif;background:#f7f9fc;color:#172033}
 .container{max-width:900px;margin:0 auto;padding:18px 16px 40px}
-.title{text-align:center;color:#1687ff;font-size:27px;margin:6px 0 4px}.subtitle{text-align:center;color:#667085;font-size:13px;margin:0 0 18px}
-.context{display:none;background:#eef7ff;border:1px solid #cfe5ff;border-radius:12px;padding:12px 14px;margin-bottom:16px;font-size:13px}.context strong{color:#126fcf}
+.title{text-align:center;color:#1687ff;font-size:20px;margin:6px 0 4px}.subtitle{text-align:center;color:#667085;font-size:8px;margin:0 0 18px}
+.context{display:none;background:#eef7ff;border:1px solid #cfe5ff;border-radius:12px;padding:12px 14px;margin-bottom:16px;font-size:8px}.context strong{color:#126fcf}
 /* TOPIC-BASED PHYSICS PATH — no class structure */
 .physics-path{background:#fff;border-radius:18px;padding:18px 14px 22px;box-shadow:0 5px 22px rgba(23,32,51,.08);margin-bottom:20px}
-.path-title{text-align:center;color:#126fcf;font-size:19px;font-weight:950;margin-bottom:4px}.path-sub{text-align:center;color:#667085;font-size:12px;margin-bottom:18px}
+.path-title{text-align:center;color:#126fcf;font-size:19px;font-weight:950;margin-bottom:4px}.path-sub{text-align:center;color:#667085;font-size:8px;margin-bottom:18px}
 .path-road{position:relative;max-width:690px;margin:0 auto;padding:4px 0 10px}
-.path-road:before{content:"";position:absolute;left:50%;top:12px;bottom:16px;width:5px;background:#dfe7ef;border-radius:99px;transform:translateX(-50%)}
-.path-node{position:relative;display:flex;align-items:center;min-height:72px;margin:2px 0;z-index:2}
-.path-node:nth-child(odd){justify-content:flex-start;padding-right:50%}.path-node:nth-child(even){justify-content:flex-end;padding-left:50%}
-.path-node .node-wrap{width:170px;display:flex;align-items:center;gap:8px}.path-node:nth-child(odd) .node-wrap{flex-direction:row-reverse;text-align:right}.path-node:nth-child(even) .node-wrap{text-align:left}
-.path-node a{width:60px;height:60px;flex:0 0 60px;border-radius:50%;display:grid;place-items:center;text-decoration:none;color:#fff;font-size:9px;font-weight:950;text-align:center;line-height:1.08;border:4px solid #fff;box-shadow:0 5px 0 rgba(0,0,0,.12);transition:transform .15s,filter .15s}.path-node a:hover{transform:translateY(-2px);filter:brightness(1.04)}
-.path-node .node-label{font-size:10px;font-weight:900;color:#344054;line-height:1.15}.path-node .node-number{font-size:9px;color:#98a2b3;font-weight:800;margin-bottom:2px}
+.path-road:before{content:"";position:absolute;left:50%;top:12px;bottom:16px;width:4px;background:#dfe7ef;border-radius:99px;transform:translateX(-50%)}
+.path-node{position:relative;display:flex;align-items:center;justify-content:center!important;min-height:72px;margin:2px 0;padding:0!important;z-index:2}
+.path-node .node-wrap{width:170px;display:flex;align-items:center;gap:8px}.path-node:nth-child(odd) .node-wrap{flex-direction:row-reverse;text-align:right;transform:translateX(-40px)}.path-node:nth-child(even) .node-wrap{text-align:left;transform:translateX(40px)}
+.path-node a{width:62px;height:62px;flex:0 0 62px;border-radius:50%;display:grid;place-items:center;text-decoration:none;color:#fff;font-size:9px;font-weight:950;text-align:center;line-height:1.08;border:4px solid #fff;box-shadow:0 5px 0 rgba(0,0,0,.12);transition:transform .15s,filter .15s}.path-node a:hover{transform:translateY(-2px);filter:brightness(1.04)}
+.path-node .node-label{font-size:7px;font-weight:900;color:#344054;line-height:1.15}.path-node .node-number{font-size:7px;color:#98a2b3;font-weight:800;margin-bottom:2px}
 .path-node.foundation a{background:#22a06b}.path-node.mechanics a{background:#1687ff}.path-node.thermal a{background:#f59e0b}.path-node.waves a{background:#7c5cff}.path-node.electric a{background:#0ea5a5}.path-node.optics a{background:#e0569a}.path-node.modern a{background:#e05252}.path-node.exam a{background:#f2b705;color:#172033}
-.path-note{text-align:center;color:#667085;font-size:10px;margin-top:4px}
+.path-note{text-align:center;color:#667085;font-size:8px;margin-top:4px}
 .controls,.question,.challenge{background:#fff;padding:20px;border-radius:16px;box-shadow:0 5px 22px rgba(23,32,51,.08);margin-bottom:18px}
 .section-kicker{font-size:11px;font-weight:950;color:#1687ff;text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
 .search{display:flex;gap:9px}.search input{flex:1;padding:13px;border:1px solid #d5ddea;border-radius:10px;font-size:15px;min-width:0}button{border:0;padding:12px 17px;border-radius:10px;cursor:pointer;background:#1687ff;color:#fff;font-size:14px;font-weight:900}button:hover{opacity:.92}
-.progress-box{margin-top:16px}.progress-text{display:flex;justify-content:space-between;margin-bottom:7px;font-size:12px;font-weight:900;color:#475467}.progress{width:100%;height:9px;background:#e7edf4;border-radius:10px;overflow:hidden}.progress-bar{height:100%;width:0;background:#1687ff}
-.qhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.badge{background:#1687ff;color:#fff;padding:7px 13px;border-radius:20px;font-weight:950;font-size:12px}.question h2{font-size:20px;line-height:1.5;margin:0}.options{margin-top:17px}.option{background:#f2f7ff;border:2px solid transparent;padding:14px;margin-top:10px;border-radius:10px;cursor:pointer;line-height:1.45;font-size:15px;transition:.15s}.option:hover{border-color:#1687ff}.option.correct{background:#dff7e6;border-color:#20a044;color:#075b1b}.option.wrong{background:#ffe0e0;border-color:#e53935;color:#8b0000}.answer{margin-top:16px;padding:15px;border-radius:10px;display:none;line-height:1.55;background:#f5f8fc;border:1px solid #dbe3ef;font-size:14px}.answer.correct-box{background:#eef8ee;border-color:#b7dfbd}.answer.wrong-box{background:#fff3f3;border-color:#f0b4b4}.nav{display:flex;justify-content:space-between;gap:10px;margin-top:20px}.nav button{flex:1}
+.progress-box{margin-top:16px}.progress-text{display:flex;justify-content:space-between;margin-bottom:7px;font-size:8px;font-weight:900;color:#475467}.progress{width:100%;height:8px;background:#e7edf4;border-radius:10px;overflow:hidden}.progress-bar{height:100%;width:0;background:#1687ff}
+.qhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.badge{background:#1687ff;color:#fff;width:38px;height:38px;padding:0;border-radius:50%;display:grid;place-items:center;font-weight:950;font-size:9px}.question h2{font-size:20px;line-height:1.5;margin:0}.options{margin-top:17px}.option{background:#f2f7ff;border:2px solid transparent;padding:14px;margin-top:10px;border-radius:10px;cursor:pointer;line-height:1.45;font-size:15px;transition:.15s}.option:hover{border-color:#1687ff}.option.correct{background:#dff7e6;border-color:#20a044;color:#075b1b}.option.wrong{background:#ffe0e0;border-color:#e53935;color:#8b0000}.answer{margin-top:16px;padding:15px;border-radius:10px;display:none;line-height:1.55;background:#f5f8fc;border:1px solid #dbe3ef;font-size:14px}.answer.correct-box{background:#eef8ee;border-color:#b7dfbd}.answer.wrong-box{background:#fff3f3;border-color:#f0b4b4}.nav{display:flex;justify-content:space-between;gap:10px;margin-top:20px}.nav button{flex:1}
 .challenge{border:1px solid #d9e4ee;padding:0;overflow:hidden}.challenge-note{padding:18px;background:#fff}.challenge-note h2{font-size:18px;color:#1687ff;margin:0 0 10px}.challenge-note ol{margin:0;padding-left:20px;line-height:1.65;color:#475467;font-size:13px}.challenge-title{padding:15px 18px;background:#eef7fc;border-top:1px solid #d9e4ee;border-bottom:1px solid #d9e4ee;font-size:17px;font-weight:950;color:#126fcf}.challenge-table{width:100%;border-collapse:collapse}.challenge-table th{background:#dceef7;text-align:left;padding:11px;border:1px solid #c8dce7;font-size:12px}.challenge-table td{padding:10px;border:1px solid #d6e2e9;vertical-align:top}.challenge-table select,.challenge-table textarea{width:100%;border:1px solid #c9d5df;border-radius:8px;padding:10px;font:inherit}.challenge-table textarea{min-height:78px;resize:vertical}.challenge-table input[type=file]{max-width:100%;font-size:12px}.challenge-actions{display:flex;justify-content:center;gap:10px;padding:18px;background:#fff}.save-challenge{background:#1687ff}.modify-challenge{background:#e05252}.challenge-status{display:none;margin:0 18px 18px;padding:12px 14px;border-radius:9px;background:#eaf8ed;border:1px solid #b9dfc0;color:#176b2b;font-weight:900;font-size:13px}.challenge-help{font-size:11px;color:#667085;margin-top:6px}
 @media(max-width:700px){
- .container{padding:12px 10px 30px}.title{font-size:23px}.subtitle{font-size:11px}
- .physics-path{padding:14px 8px 18px;border-radius:15px}.path-title{font-size:16px}.path-sub{font-size:10px;margin-bottom:12px}
+ .container{padding:12px 7px 30px}.title{font-size:20px}.subtitle{font-size:8px}
+ .physics-path{padding:14px 7px 18px;border-radius:15px}.path-title{font-size:16px}.path-sub{font-size:8px;margin-bottom:12px}
  .path-road{max-width:330px}.path-road:before{width:4px}
- .path-node{min-height:65px}.path-node:nth-child(odd){padding-right:50%}.path-node:nth-child(even){padding-left:50%}
- .path-node .node-wrap{width:145px;gap:5px}.path-node a{width:54px;height:54px;flex-basis:54px;font-size:8px}.path-node .node-label{font-size:8px}.path-node .node-number{font-size:8px}
+ .path-node{min-height:65px;margin:1px 0}.path-node:nth-child(odd) .node-wrap{transform:translateX(-40px)}.path-node:nth-child(even) .node-wrap{transform:translateX(40px)}
+ .path-node .node-wrap{width:145px;gap:5px}.path-node a{width:62px;height:62px;flex-basis:62px;font-size:8px}.path-node .node-label{font-size:7px}.path-node .node-number{font-size:7px}
  .search{flex-direction:column}.search button{width:100%}.qhead{align-items:flex-start;gap:8px}.question h2{font-size:18px}.option{font-size:14px;padding:13px}.challenge-table{display:block;overflow-x:auto}.challenge-table th,.challenge-table td{min-width:145px}.challenge-actions{flex-direction:column}.challenge-actions button{width:100%}
 }
 </style>
@@ -46,28 +45,23 @@ body{margin:0;font-family:Inter,Arial,sans-serif;background:#f7f9fc;color:#17203
 <h1 class="title">⚡ Physics Practice</h1>
 <p class="subtitle">One continuous topic path — from foundations to NEET / JEE-IIT</p>
 <div class="context" id="context"></div>
-
 <section class="physics-path">
   <div class="path-title">COMPLETE PHYSICS TOPIC PATH</div>
   <div class="path-sub">Learn by topic, not by class</div>
   <div class="path-road" id="physicsPath"></div>
   <div class="path-note">Tap any topic to open its practice set.</div>
 </section>
-
 <div class="controls">
   <div class="section-kicker">Question Bank</div>
   <div class="search"><input type="number" id="questionNumber" min="1" max="10000" placeholder="Enter question number (1 - 10000)"><button onclick="goToQuestion()">Open Question</button></div>
   <div class="progress-box"><div class="progress-text"><span id="progressText">Question 1</span><span>10000 Questions</span></div><div class="progress"><div class="progress-bar" id="progressBar"></div></div></div>
 </div>
-
 <div class="question">
   <div class="qhead"><span class="badge" id="number">Q1</span><strong id="count">1 / 10000</strong></div>
   <h2 id="text">Loading question...</h2>
-  <div class="options" id="options"></div>
-  <div class="answer" id="answer"></div>
+  <div class="options" id="options"></div><div class="answer" id="answer"></div>
   <div class="nav"><button onclick="previousQuestion()">← Previous</button><button onclick="nextQuestion()">Next →</button></div>
 </div>
-
 <section class="challenge" id="challengeSection">
   <div class="challenge-note"><h2>📝 Challenge / Report Question</h2><ol><li>Select the answer option you believe is incorrect or select <b>None of These</b> if the correct answer is missing.</li><li>Give a clear reason. Keep the explanation concise and evidence-based.</li><li>You may upload supporting documentary evidence in PDF format. Permanent storage requires a backend upload service.</li></ol></div>
   <div class="challenge-title">Challenge Claimed — <span id="challengeQuestion">Q1</span></div>
@@ -81,45 +75,12 @@ const FIRESTORE_URL="https://firestore.googleapis.com/v1/projects/"+PROJECT_ID+"
 let currentQuestion=1,totalQuestions=10000,questionCache={};
 const params=new URLSearchParams(window.location.search);
 const selectedTopic=params.get("topic"),selectedTrack=params.get("track"),selectedSubject=params.get("subject");
-
 const physicsTopics=[
- {name:"Units & Measurements",short:"Units\n&\nMeasurements",type:"foundation",slug:"units-measurements"},
- {name:"Basic Mathematics for Physics",short:"Basic\nMaths",type:"foundation",slug:"basic-mathematics"},
- {name:"Vectors",short:"Vectors",type:"foundation",slug:"vectors"},
- {name:"Motion & Kinematics",short:"Motion &\nKinematics",type:"mechanics",slug:"motion-kinematics"},
- {name:"Relative Motion",short:"Relative\nMotion",type:"mechanics",slug:"relative-motion"},
- {name:"Laws of Motion",short:"Laws of\nMotion",type:"mechanics",slug:"laws-of-motion"},
- {name:"Friction",short:"Friction",type:"mechanics",slug:"friction"},
- {name:"Work, Energy & Power",short:"Work, Energy\n& Power",type:"mechanics",slug:"work-energy-power"},
- {name:"Circular Motion",short:"Circular\nMotion",type:"mechanics",slug:"circular-motion"},
- {name:"Centre of Mass & Momentum",short:"COM &\nMomentum",type:"mechanics",slug:"centre-of-mass-momentum"},
- {name:"Rotational Motion",short:"Rotational\nMotion",type:"mechanics",slug:"rotational-motion"},
- {name:"Gravitation",short:"Gravitation",type:"mechanics",slug:"gravitation"},
- {name:"Properties of Matter",short:"Properties\nof Matter",type:"thermal",slug:"properties-of-matter"},
- {name:"Thermal Physics",short:"Thermal\nPhysics",type:"thermal",slug:"thermal-physics"},
- {name:"Thermodynamics",short:"Thermo-\ndynamics",type:"thermal",slug:"thermodynamics"},
- {name:"Kinetic Theory",short:"Kinetic\nTheory",type:"thermal",slug:"kinetic-theory"},
- {name:"Oscillations",short:"Oscillations",type:"waves",slug:"oscillations"},
- {name:"Waves",short:"Waves",type:"waves",slug:"waves"},
- {name:"Electrostatics",short:"Electro-\nstatics",type:"electric",slug:"electrostatics"},
- {name:"Current Electricity",short:"Current\nElectricity",type:"electric",slug:"current-electricity"},
- {name:"Magnetism",short:"Magnetism",type:"electric",slug:"magnetism"},
- {name:"Electromagnetic Induction",short:"EM\nInduction",type:"electric",slug:"electromagnetic-induction"},
- {name:"Alternating Current",short:"Alternating\nCurrent",type:"electric",slug:"alternating-current"},
- {name:"Electromagnetic Waves",short:"EM\nWaves",type:"electric",slug:"electromagnetic-waves"},
- {name:"Ray Optics",short:"Ray\nOptics",type:"optics",slug:"ray-optics"},
- {name:"Wave Optics",short:"Wave\nOptics",type:"optics",slug:"wave-optics"},
- {name:"Dual Nature",short:"Dual\nNature",type:"modern",slug:"dual-nature"},
- {name:"Atoms & Nuclei",short:"Atoms &\nNuclei",type:"modern",slug:"atoms-nuclei"},
- {name:"Semiconductors",short:"Semi-\nconductors",type:"modern",slug:"semiconductors"},
- {name:"NEET Physics",short:"NEET\nPhysics",type:"exam",slug:"neet",track:"neet"},
- {name:"JEE / IIT Physics",short:"JEE / IIT\nPhysics",type:"exam",slug:"jee",track:"jee"}
+ {name:"Units & Measurements",short:"Units\n&\nMeasurements",type:"foundation",slug:"units-measurements"},{name:"Basic Mathematics for Physics",short:"Basic\nMaths",type:"foundation",slug:"basic-mathematics"},{name:"Vectors",short:"Vectors",type:"foundation",slug:"vectors"},{name:"Motion & Kinematics",short:"Motion &\nKinematics",type:"mechanics",slug:"motion-kinematics"},{name:"Relative Motion",short:"Relative\nMotion",type:"mechanics",slug:"relative-motion"},{name:"Laws of Motion",short:"Laws of\nMotion",type:"mechanics",slug:"laws-of-motion"},{name:"Friction",short:"Friction",type:"mechanics",slug:"friction"},{name:"Work, Energy & Power",short:"Work, Energy\n& Power",type:"mechanics",slug:"work-energy-power"},{name:"Circular Motion",short:"Circular\nMotion",type:"mechanics",slug:"circular-motion"},{name:"Centre of Mass & Momentum",short:"COM &\nMomentum",type:"mechanics",slug:"centre-of-mass-momentum"},{name:"Rotational Motion",short:"Rotational\nMotion",type:"mechanics",slug:"rotational-motion"},{name:"Gravitation",short:"Gravitation",type:"mechanics",slug:"gravitation"},{name:"Properties of Matter",short:"Properties\nof Matter",type:"thermal",slug:"properties-of-matter"},{name:"Thermal Physics",short:"Thermal\nPhysics",type:"thermal",slug:"thermal-physics"},{name:"Thermodynamics",short:"Thermo-\ndynamics",type:"thermal",slug:"thermodynamics"},{name:"Kinetic Theory",short:"Kinetic\nTheory",type:"thermal",slug:"kinetic-theory"},{name:"Oscillations",short:"Oscillations",type:"waves",slug:"oscillations"},{name:"Waves",short:"Waves",type:"waves",slug:"waves"},{name:"Electrostatics",short:"Electro-\nstatics",type:"electric",slug:"electrostatics"},{name:"Current Electricity",short:"Current\nElectricity",type:"electric",slug:"current-electricity"},{name:"Magnetism",short:"Magnetism",type:"electric",slug:"magnetism"},{name:"Electromagnetic Induction",short:"EM\nInduction",type:"electric",slug:"electromagnetic-induction"},{name:"Alternating Current",short:"Alternating\nCurrent",type:"electric",slug:"alternating-current"},{name:"Electromagnetic Waves",short:"EM\nWaves",type:"electric",slug:"electromagnetic-waves"},{name:"Ray Optics",short:"Ray\nOptics",type:"optics",slug:"ray-optics"},{name:"Wave Optics",short:"Wave\nOptics",type:"optics",slug:"wave-optics"},{name:"Dual Nature",short:"Dual\nNature",type:"modern",slug:"dual-nature"},{name:"Atoms & Nuclei",short:"Atoms &\nNuclei",type:"modern",slug:"atoms-nuclei"},{name:"Semiconductors",short:"Semi-\nconductors",type:"modern",slug:"semiconductors"},{name:"NEET Physics",short:"NEET\nPhysics",type:"exam",slug:"neet",track:"neet"},{name:"JEE / IIT Physics",short:"JEE / IIT\nPhysics",type:"exam",slug:"jee",track:"jee"}
 ];
-
 function topicUrl(t){const p=new URLSearchParams();p.set("subject",selectedSubject||"physics");if(t.track)p.set("track",t.track);else p.set("topic",t.slug);return "question-bank.html?"+p.toString()}
 function buildPhysicsPath(){const road=document.getElementById("physicsPath");physicsTopics.forEach((t,i)=>{const node=document.createElement("div");node.className="path-node "+t.type;const wrap=document.createElement("div");wrap.className="node-wrap";const a=document.createElement("a");a.href=topicUrl(t);a.innerText=t.short;const text=document.createElement("div");text.innerHTML='<div class="node-number">'+String(i+1).padStart(2,"0")+'</div><div class="node-label">'+t.name+'</div>';wrap.appendChild(a);wrap.appendChild(text);node.appendChild(wrap);road.appendChild(node)})}
 function showContext(){const box=document.getElementById("context"),parts=[];if(selectedTopic){const t=physicsTopics.find(x=>x.slug===selectedTopic);if(t)parts.push("Topic: "+t.name)}if(selectedTrack)parts.push(selectedTrack.toUpperCase()==="JEE"?"JEE / IIT":"NEET");if(parts.length){box.innerHTML="<strong>Practice context:</strong> "+parts.join(" → ");box.style.display="block"}}
-
 const fallbackQuestions={1:{answer:"A",explanation:"The metre (m) is the SI base unit of length."},2:{answer:"B",explanation:"The kilogram (kg) is the SI base unit of mass."}};
 function getField(fields,names){for(const n of names){if(fields[n]?.stringValue!==undefined)return fields[n].stringValue}return ""}
 async function loadQuestion(){const text=document.getElementById("text"),options=document.getElementById("options"),answer=document.getElementById("answer");text.innerText="Loading question...";options.innerHTML="";answer.style.display="none";answer.innerHTML="";answer.className="answer";document.getElementById("number").innerText="Q"+currentQuestion;document.getElementById("count").innerText=currentQuestion+" / "+totalQuestions;document.getElementById("progressText").innerText="Question "+currentQuestion;document.getElementById("progressBar").style.width=(currentQuestion/totalQuestions*100)+"%";document.getElementById("challengeQuestion").innerText="Q"+currentQuestion;resetChallenge();if(questionCache[currentQuestion]){displayQuestion(questionCache[currentQuestion]);return}try{const r=await fetch(FIRESTORE_URL+"/Q"+currentQuestion);if(!r.ok)throw new Error("Question not found");const data=await r.json();questionCache[currentQuestion]=data;displayQuestion(data)}catch(e){console.error(e);text.innerText="Question Q"+currentQuestion+" is not available yet.";options.innerHTML='<div class="option">This question has not been added to Firestore yet.</div>'}}
@@ -134,7 +95,6 @@ document.getElementById("claimRemarks").addEventListener("input",e=>{document.ge
 function resetChallenge(){document.getElementById("claimOption").value="";document.getElementById("claimRemarks").value="";document.getElementById("supportingDocument").value="";document.getElementById("charCount").innerText="0";document.getElementById("challengeStatus").style.display="none"}
 function saveChallenge(){const option=document.getElementById("claimOption").value,remarks=document.getElementById("claimRemarks").value.trim(),file=document.getElementById("supportingDocument").files[0],status=document.getElementById("challengeStatus");if(!option){alert("Please select an option to challenge.");return}if(!remarks){alert("Please enter your reason in the remarks field.");return}if(remarks.length>500){alert("Remarks must be 500 characters or less.");return}if(file&&file.type!=="application/pdf"){alert("Please select a PDF document.");return}if(file&&(file.size<10*1024||file.size>500*1024)){alert("The supporting PDF should be between 10 KB and 500 KB.");return}localStorage.setItem("kpChallenge_Q"+currentQuestion,JSON.stringify({question:currentQuestion,option,remarks,fileName:file?file.name:"No document uploaded",savedAt:new Date().toISOString()}));status.innerText="Challenge saved on this device for Q"+currentQuestion+". Connect a backend upload service to store it permanently.";status.style.display="block"}
 function modifyChallenge(){const saved=localStorage.getItem("kpChallenge_Q"+currentQuestion);if(!saved){alert("No saved challenge was found for Q"+currentQuestion+".");return}const data=JSON.parse(saved);document.getElementById("claimOption").value=data.option;document.getElementById("claimRemarks").value=data.remarks;document.getElementById("charCount").innerText=data.remarks.length;document.getElementById("challengeStatus").innerText="Saved challenge loaded. You can modify it and save again.";document.getElementById("challengeStatus").style.display="block"}
-
 buildPhysicsPath();showContext();loadQuestion();
 </script>
 </body>
