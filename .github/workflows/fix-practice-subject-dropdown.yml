@@ -21,18 +21,21 @@ jobs:
           p=Path('question-bank.html')
           text=p.read_text(encoding='utf-8')
 
-          # Remove the previous standalone subject navigation so there is only ONE selector.
-          text=re.sub(r'<nav class="skillup-practice-nav"[\\s\\S]*?</nav>', '', text, count=1)
+          # Remove previous versions of the injected navigation/structure.
+          text=re.sub(r'<style id="skillup-practice-structure">[\\s\\S]*?</style>', '', text, count=1)
           text=re.sub(r'<style id="skillup-practice-subject-nav">[\\s\\S]*?</style>', '', text, count=1)
+          text=re.sub(r'<script id="skillup-practice-structure-js">[\\s\\S]*?</script>', '', text, count=1)
           text=re.sub(r'<script id="skillup-practice-subject-nav-js">[\\s\\S]*?</script>', '', text, count=1)
+          text=re.sub(r'<header class="skillup-header">[\\s\\S]*?</header>', '', text, count=1)
+          text=re.sub(r'<nav class="skillup-practice-nav"[\\s\\S]*?</nav>', '', text, count=1)
+
+          # If an earlier attempt inserted wrappers, remove those wrappers while keeping content.
+          text=text.replace('<div class="skillup-practice-grid"><div class="skillup-practice-main">','')
+          text=text.replace('<aside class="skillup-practice-side">','')
+          text=re.sub(r'</aside>','',text)
 
           css='''<style id="skillup-practice-structure">
-          .skillup-header{height:70px;background:#09233d;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 18px;margin:-18px -16px 18px;position:sticky;top:0;z-index:50;box-shadow:0 4px 18px #0002}
-          .skillup-brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:#fff}.skillup-brand .logo{font-size:31px}.skillup-brand b{font-size:18px}.skillup-brand small{display:block;color:#61d9d5;font-size:8px;font-weight:900;letter-spacing:1.5px}
-          .skillup-subject{position:relative}.skillup-subject button{background:#1687ff;color:#fff;border:1px solid #55a7ff;border-radius:11px;padding:10px 14px;font-size:11px;font-weight:950;cursor:pointer}.skillup-subject-menu{display:none;position:absolute;top:48px;left:50%;transform:translateX(-50%);width:205px;background:#fff;border:1px solid #dce3ec;border-radius:13px;box-shadow:0 12px 28px #0003;overflow:hidden;z-index:100}.skillup-subject-menu.show{display:block}.skillup-subject-menu a{display:block;padding:12px 14px;color:#172033;text-decoration:none;font-size:11px;font-weight:900}.skillup-subject-menu a:hover,.skillup-subject-menu a.active{background:#eef5ff;color:#1687ff}.skillup-stats{display:flex;gap:7px}.skillup-stat{background:#183653;border:1px solid #31516f;border-radius:11px;padding:8px 11px;font-size:10px;font-weight:950}
-          .skillup-practice-grid{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:18px;align-items:start}.skillup-practice-main{min-width:0}.skillup-practice-side{display:grid;gap:14px}.skillup-side-card{background:#fff;border:1px solid #dce3ec;border-radius:16px;padding:16px;box-shadow:0 5px 20px #17203314}.skillup-side-title{font-size:12px;font-weight:950;color:#1687ff;margin-bottom:12px}.skillup-overview{display:grid;grid-template-columns:1fr 1fr;gap:8px}.skillup-metric{border:1px solid #e3e9f0;border-radius:11px;padding:11px}.skillup-metric b{display:block;font-size:17px;color:#1687ff}.skillup-metric span{font-size:8px;color:#667085;font-weight:800}.skillup-actions{display:grid;gap:8px}.skillup-action{display:flex;justify-content:space-between;align-items:center;padding:11px 12px;border-radius:11px;text-decoration:none;font-size:10px;font-weight:900}.skillup-action.blue{background:#eef6ff;color:#126fcf}.skillup-action.green{background:#eef9f0;color:#198754}.skillup-action.gold{background:#fff7df;color:#a16d00}.skillup-action.purple{background:#f4efff;color:#7652d9}.skillup-action.red{background:#fff0f0;color:#d23d3d}
-          @media(max-width:900px){.skillup-practice-grid{grid-template-columns:1fr}.skillup-practice-side{grid-template-columns:1fr 1fr}.skillup-header{margin:-12px -7px 14px;padding:0 10px}.skillup-stats .skillup-stat:last-child{display:none}.skillup-brand b{font-size:15px}.skillup-brand small{font-size:7px}.skillup-subject button{padding:8px 10px;font-size:9px}}
-          @media(max-width:560px){.skillup-practice-side{grid-template-columns:1fr}.skillup-subject-menu{left:auto;right:0;transform:none}.skillup-header{height:62px}}
+          .skillup-header{height:70px;background:#09233d;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 18px;margin:-18px -16px 18px;position:sticky;top:0;z-index:50;box-shadow:0 4px 18px #0002}.skillup-brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:#fff}.skillup-brand .logo{font-size:31px}.skillup-brand b{font-size:18px}.skillup-brand small{display:block;color:#61d9d5;font-size:8px;font-weight:900;letter-spacing:1.5px}.skillup-subject{position:relative}.skillup-subject button{background:#1687ff;color:#fff;border:1px solid #55a7ff;border-radius:11px;padding:10px 14px;font-size:11px;font-weight:950;cursor:pointer}.skillup-subject-menu{display:none;position:absolute;top:48px;left:50%;transform:translateX(-50%);width:205px;background:#fff;border:1px solid #dce3ec;border-radius:13px;box-shadow:0 12px 28px #0003;overflow:hidden;z-index:100}.skillup-subject-menu.show{display:block}.skillup-subject-menu a{display:block;padding:12px 14px;color:#172033;text-decoration:none;font-size:11px;font-weight:900}.skillup-subject-menu a:hover,.skillup-subject-menu a.active{background:#eef5ff;color:#1687ff}.skillup-stats{display:flex;gap:7px}.skillup-stat{background:#183653;border:1px solid #31516f;border-radius:11px;padding:8px 11px;font-size:10px;font-weight:950}.skillup-practice-grid{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:18px;align-items:start}.skillup-practice-main{min-width:0}.skillup-practice-side{display:grid;gap:14px}.skillup-side-card{background:#fff;border:1px solid #dce3ec;border-radius:16px;padding:16px;box-shadow:0 5px 20px #17203314}.skillup-side-title{font-size:12px;font-weight:950;color:#1687ff;margin-bottom:12px}.skillup-overview{display:grid;grid-template-columns:1fr 1fr;gap:8px}.skillup-metric{border:1px solid #e3e9f0;border-radius:11px;padding:11px}.skillup-metric b{display:block;font-size:17px;color:#1687ff}.skillup-metric span{font-size:8px;color:#667085;font-weight:800}.skillup-actions{display:grid;gap:8px}.skillup-action{display:flex;justify-content:space-between;align-items:center;padding:11px 12px;border-radius:11px;text-decoration:none;font-size:10px;font-weight:900}.skillup-action.blue{background:#eef6ff;color:#126fcf}.skillup-action.green{background:#eef9f0;color:#198754}.skillup-action.gold{background:#fff7df;color:#a16d00}.skillup-action.purple{background:#f4efff;color:#7652d9}.skillup-action.red{background:#fff0f0;color:#d23d3d}@media(max-width:900px){.skillup-practice-grid{grid-template-columns:1fr}.skillup-practice-side{grid-template-columns:1fr 1fr}.skillup-header{margin:-12px -7px 14px;padding:0 10px}.skillup-stats .skillup-stat:last-child{display:none}.skillup-brand b{font-size:15px}.skillup-brand small{font-size:7px}.skillup-subject button{padding:8px 10px;font-size:9px}}@media(max-width:560px){.skillup-practice-side{grid-template-columns:1fr}.skillup-subject-menu{left:auto;right:0;transform:none}.skillup-header{height:62px}}
           </style>'''
 
           header='''<header class="skillup-header"><a class="skillup-brand" href="skillup-home.html"><span class="logo">🦁</span><div><b>SKILLUP</b><small>MASTER EVERY SUBJECT</small></div></a><div class="skillup-subject"><button type="button" id="skillupSubjectButton">⚡ PHYSICS ▾</button><div class="skillup-subject-menu" id="skillupSubjectMenu"><a data-subject="physics" href="question-bank.html?subject=physics">⚡ Physics</a><a data-subject="chemistry" href="question-bank.html?subject=chemistry">🧪 Chemistry</a><a data-subject="botany" href="question-bank.html?subject=botany">🌿 Botany</a><a data-subject="zoology" href="question-bank.html?subject=zoology">🧬 Zoology</a><a data-subject="maths" href="question-bank.html?subject=maths">📐 Maths</a></div></div><div class="skillup-stats"><span class="skillup-stat">🔥 <b>12</b> STREAK</span><span class="skillup-stat">⭐ <b>1250</b> XP</span><span class="skillup-stat">❤️ <b>5</b> HEARTS</span></div></header>'''
@@ -44,21 +47,20 @@ jobs:
           if 'class="skillup-header"' not in text:
               text=text.replace('<div class="container">','<div class="container">'+header,1)
 
-          # Add the two-column shell around the existing practice content without rewriting it.
           if 'class="skillup-practice-grid"' not in text:
               text=text.replace('<section class="physics-path">','<div class="skillup-practice-grid"><div class="skillup-practice-main"><section class="physics-path">',1)
-              marker='<div class="controls">'
-              text=text.replace(marker,'</div>'+sidebar+marker,1)
-
-          # Give the question section an anchor for quick actions.
+              # Close main after the challenge, then add the sidebar, then close grid and container.
+              text=text.replace('</div>\n</div>\n<script>', '</div>\n</div>\n'+sidebar+'\n</div>\n<script>', 1)
+              # The exact tail has challenge closing followed by container closing. Make the final structure explicit.
+              if 'class="skillup-practice-side"' not in text:
+                  text=text.replace('</div>\n<script>', '</div>\n'+sidebar+'\n</div></div>\n<script>', 1)
           text=text.replace('<div class="question">','<div class="question" id="questionSection">',1)
 
           js='''<script id="skillup-practice-structure-js">(function(){const p=new URLSearchParams(location.search);const s=(p.get('subject')||'physics').toLowerCase();const names={physics:['⚡','PHYSICS'],chemistry:['🧪','CHEMISTRY'],botany:['🌿','BOTANY'],zoology:['🧬','ZOOLOGY'],maths:['📐','MATHS']};const n=names[s]||names.physics;const b=document.getElementById('skillupSubjectButton'),m=document.getElementById('skillupSubjectMenu');if(b)b.innerText=n[0]+' '+n[1]+' ▾';document.querySelectorAll('#skillupSubjectMenu a').forEach(a=>a.classList.toggle('active',a.dataset.subject===s));if(b)b.onclick=()=>m.classList.toggle('show');document.addEventListener('click',e=>{if(m&&!e.target.closest('.skillup-subject'))m.classList.remove('show')});const t=document.querySelector('.title');if(t)t.innerHTML=n[0]+' '+n[1]+' Practice';})();</script>'''
-          if 'id="skillup-practice-structure-js"' not in text:
-              text=text.replace('</body>',js+'</body>',1)
+          text=text.replace('</body>',js+'</body>',1)
 
           p.write_text(text,encoding='utf-8')
-          print('Built SkillUp practice subject structure')
+          print('Practice structure prepared')
           PY
       - name: Commit
         run: |
