@@ -1,0 +1,114 @@
+name: Enhance Physics Path Colors
+
+on:
+  push:
+    paths:
+      - '.github/workflows/physics-color-effects.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  enhance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Add colorful Physics effects
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('full-physics-path.html')
+          s = p.read_text(encoding='utf-8')
+          marker = 'physics-color-effects-v1'
+          if marker in s:
+              print('Physics color effects already installed')
+              raise SystemExit(0)
+
+          css = r'''<style id="physics-color-effects-v1">
+          /* physics-color-effects-v1 */
+          body{background:linear-gradient(180deg,#f3f8ff 0%,#f8fbff 42%,#f6f8fc 100%);overflow-x:hidden}
+          body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(circle at 12% 12%,#1687ff18 0 90px,transparent 170px),radial-gradient(circle at 88% 28%,#7652d918 0 100px,transparent 190px),radial-gradient(circle at 20% 82%,#58cc0214 0 90px,transparent 180px),radial-gradient(circle at 85% 82%,#ff960014 0 100px,transparent 190px)}
+          .top{background:linear-gradient(110deg,#071a31,#103b68 48%,#1687ff);box-shadow:0 5px 25px #1687ff40}
+          .subject-select{background:linear-gradient(135deg,#102744,#1c4f82);border-color:#6bb7ff;box-shadow:0 0 0 1px #1687ff33,0 5px 18px #1687ff30}
+          .hero{position:relative;padding-top:18px}
+          .hero:before{content:"⚡";position:absolute;left:50%;top:-3px;transform:translateX(-50%);font-size:70px;opacity:.06;filter:blur(.2px);pointer-events:none}
+          .eyebrow{display:inline-block;padding:5px 11px;border-radius:99px;background:#eaf4ff;box-shadow:0 5px 18px #1687ff18}
+          .hero h1 span{background:linear-gradient(90deg,#1687ff,#7652d9,#e94d8a);-webkit-background-clip:text;background-clip:text;color:transparent}
+          .panel{border-color:#cfe0f5;box-shadow:0 8px 24px #1687ff10;transition:.2s}
+          .panel:hover{transform:translateY(-2px);box-shadow:0 12px 30px #1687ff18}
+          .bar i{background:linear-gradient(90deg,#58cc02,#8be34b,#ffc800,#ff9600);background-size:200% 100%;animation:physicsShimmer 2.8s linear infinite}
+          .resume-icon{background:linear-gradient(135deg,#eaf4ff,#f0eaff);box-shadow:0 8px 20px #7652d918}
+          .legend{padding:8px 12px;background:#ffffffb8;border:1px solid #e0e8f2;border-radius:99px;backdrop-filter:blur(8px);box-shadow:0 6px 20px #1720330b}
+          .section{position:relative}
+          .class-head{background:linear-gradient(110deg,#071a31,#126fcf 55%,#7652d9);box-shadow:0 6px 0 #071a3130,0 12px 28px #1687ff18;overflow:hidden}
+          .class-head:after{content:"";position:absolute;inset:-80% -30%;background:linear-gradient(90deg,transparent,#ffffff22,transparent);transform:translateX(-80%) rotate(12deg);animation:headSweep 4.5s ease-in-out infinite;pointer-events:none}
+          .section:nth-child(1) .class-head{background:linear-gradient(110deg,#0b8f61,#22b573,#1687ff)}
+          .section:nth-child(2) .class-head{background:linear-gradient(110deg,#1687ff,#35a5ff,#7652d9)}
+          .section:nth-child(3) .class-head{background:linear-gradient(110deg,#0ea5a5,#1687ff,#7652d9)}
+          .section:nth-child(4) .class-head{background:linear-gradient(110deg,#f59e0b,#ff9600,#e94d8a)}
+          .section:nth-child(5) .class-head{background:linear-gradient(110deg,#e94d8a,#7652d9,#1687ff)}
+          .section:nth-child(6) .class-head{background:linear-gradient(110deg,#7652d9,#1687ff,#0ea5a5)}
+          .section:nth-child(7) .class-head{background:linear-gradient(110deg,#e05252,#e94d8a,#7652d9)}
+          .section:nth-child(8) .class-head{background:linear-gradient(110deg,#0ea5a5,#22a06b,#1687ff)}
+          .section:nth-child(9) .class-head{background:linear-gradient(110deg,#ff9600,#f59e0b,#e05252)}
+          .section:nth-child(10) .class-head{background:linear-gradient(110deg,#7652d9,#e94d8a,#e05252)}
+          .path:before{background:linear-gradient(180deg,#1687ff,#7652d9,#e94d8a,#ff9600,#58cc02);box-shadow:0 0 14px #1687ff33}
+          .node-card{border-color:#d7e4f3;box-shadow:0 5px 0 #1720330a,0 8px 22px #1687ff08;transition:transform .2s,box-shadow .2s,border-color .2s}
+          .node-card:hover{transform:translateY(-5px) scale(1.01);border-color:#7ab9ff;box-shadow:0 10px 26px #1687ff22}
+          .node.current .node-card{background:linear-gradient(135deg,#fff,#eef7ff);border-color:#1687ff;box-shadow:0 6px 0 #1687ff38,0 0 0 4px #1687ff0c,0 12px 30px #1687ff1c}
+          .node.done .node-card{background:linear-gradient(135deg,#fff,#f2fff0);border-color:#8bdc5a}
+          .node.locked .node-card{background:linear-gradient(135deg,#fff,#f4f6f9)}
+          .node-dot{transition:transform .2s,box-shadow .2s,filter .2s}
+          .node:nth-child(4n+1) .node-dot{background:linear-gradient(135deg,#1687ff,#35b6ff);box-shadow:0 5px 0 #126fcf,0 0 18px #1687ff55}
+          .node:nth-child(4n+2) .node-dot{background:linear-gradient(135deg,#7652d9,#a27df2);box-shadow:0 5px 0 #5a3cae,0 0 18px #7652d955}
+          .node:nth-child(4n+3) .node-dot{background:linear-gradient(135deg,#e94d8a,#ff7cb1);box-shadow:0 5px 0 #c2386f,0 0 18px #e94d8a55}
+          .node:nth-child(4n) .node-dot{background:linear-gradient(135deg,#ff9600,#ffc21a);box-shadow:0 5px 0 #d97800,0 0 18px #ff960055}
+          .node.done .node-dot{background:linear-gradient(135deg,#58cc02,#8be34b)!important;box-shadow:0 5px 0 #46a800,0 0 18px #58cc0255!important}
+          .node.current .node-dot{animation:physicsPulse 1.8s ease-in-out infinite!important}
+          .checkpoint{background:linear-gradient(135deg,#fff9d8,#fff,#fff1fb);border-color:#ffc21a;box-shadow:0 7px 0 #e7c95f,0 12px 30px #ffc21a30}
+          .exam-btn{background:linear-gradient(135deg,#ff9600,#e94d8a);box-shadow:0 4px 0 #c95f00,0 8px 20px #ff960033}
+          .choice{position:relative;overflow:hidden}.choice:after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent,#ffffff2b,transparent);transform:translateX(-120%);animation:choiceSweep 3.5s ease-in-out infinite}.choice:hover{box-shadow:0 10px 25px #0003}
+          .jee{background:linear-gradient(135deg,#7351d8,#a27df2,#1687ff)}.neet{background:linear-gradient(135deg,#e94d8a,#ff7cb1,#ff9600)}.challenge{background:linear-gradient(135deg,#e65a39,#e05252,#7652d9)}
+          .footer{box-shadow:0 -8px 25px #1687ff12}.footer .active{color:#1687ff}.footer a{transition:.18s}.footer a:hover{transform:translateY(-3px)}
+          @keyframes physicsPulse{0%,100%{filter:brightness(1);box-shadow:0 5px 0 #126fcf,0 0 12px #1687ff33}50%{filter:brightness(1.15);box-shadow:0 5px 0 #126fcf,0 0 28px #1687ff88}}
+          @keyframes physicsShimmer{to{background-position:200% 0}}
+          @keyframes headSweep{0%,45%{transform:translateX(-80%) rotate(12deg)}70%,100%{transform:translateX(80%) rotate(12deg)}}
+          @keyframes choiceSweep{0%,55%{transform:translateX(-120%)}75%,100%{transform:translateX(120%)}}
+          @media(max-width:720px){.hero{padding-top:14px}.legend{border-radius:14px}.class-head{box-shadow:0 5px 0 #071a3130,0 8px 20px #1687ff16}.node-card:hover{transform:translateY(-3px) scale(1.005)}.choice:after{animation:none}}
+          @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+          </style>'''
+          s = s.replace('</head>', css + '</head>', 1)
+
+          js = r'''<script id="physics-color-effects-js">
+          // physics-color-effects-v1
+          (function(){
+            const root=document.getElementById('path'); if(!root)return;
+            const colors=['#1687ff','#7652d9','#e94d8a','#ff9600','#0ea5a5','#58cc02'];
+            document.querySelectorAll('.section').forEach((sec,i)=>sec.style.setProperty('--section-accent',colors[i%colors.length]));
+            const dots=document.querySelectorAll('.node-dot');
+            dots.forEach((d,i)=>d.style.setProperty('--node-index',i));
+            document.addEventListener('click',function(e){
+              const card=e.target.closest('.node.current .node-card');
+              if(!card)return;
+              for(let i=0;i<10;i++){
+                const s=document.createElement('span');
+                s.textContent=['⚡','✦','+XP','🎯'][i%4];
+                s.style.cssText='position:fixed;left:'+(45+Math.random()*10)+'%;top:'+(45+Math.random()*10)+'%;z-index:999;font-weight:950;color:'+colors[i%colors.length]+';pointer-events:none;transition:transform .9s ease,opacity .9s ease;';
+                document.body.appendChild(s);
+                requestAnimationFrame(()=>{s.style.transform='translate('+(Math.random()*180-90)+'px,'+(Math.random()*-180-40)+'px) rotate('+(Math.random()*90-45)+'deg)';s.style.opacity='0'});
+                setTimeout(()=>s.remove(),950);
+              }
+            });
+          })();
+          </script>'''
+          s = s.replace('</body>', js + '</body>', 1)
+          p.write_text(s,encoding='utf-8')
+      - name: Commit enhanced page
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add full-physics-path.html
+          git diff --cached --quiet || git commit -m "Apply colorful full effects to Physics path"
+          git push
