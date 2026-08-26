@@ -1,0 +1,72 @@
+name: Standardize Practice Navigation
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-practice-navigation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fix Practice navigation structure
+        shell: python
+        run: |
+          from pathlib import Path
+          p=Path('question-bank.html')
+          s=p.read_text(encoding='utf-8')
+
+          # The Practice page has one canonical subject switcher. Keep the
+          # five visible subject links inside Practice rather than sending
+          # users to Learn paths.
+          replacements={
+            'href="full-physics-path.html">⚡ Physics':'href="question-bank.html?subject=physics">⚡ Physics',
+            'href="chemistry-skillup-path.html">🧪 Chemistry':'href="question-bank.html?subject=chemistry">🧪 Chemistry',
+            'href="botany-full-path.html">🌿 Botany':'href="question-bank.html?subject=botany">🌿 Botany',
+            'href="zoology-full-path.html">🧬 Zoology':'href="question-bank.html?subject=zoology">🧬 Zoology',
+            'href="maths-full-path.html">📐 Maths':'href="question-bank.html?subject=maths">📐 Maths',
+          }
+          for a,b in replacements.items(): s=s.replace(a,b)
+
+          # Remove the legacy standalone subject-nav bar so the header dropdown
+          # is the single source of truth for subject switching.
+          import re
+          s=re.sub(r'<nav class="skillup-practice-nav"[\\s\\S]*?</nav>\\s*','',s,count=1)
+
+          # Remove duplicate copies of the structure initializer, keeping the
+          # first occurrence. This prevents repeated click handlers and layout
+          # rebuilds on the Practice page.
+          marker='<script id="skillup-practice-structure-js">'
+          first=s.find(marker)
+          if first>=0:
+            end=s.find('</script>',first)
+            if end>=0:
+              block=s[first:end+9]
+              pos=end+9
+              while True:
+                nxt=s.find(marker,pos)
+                if nxt<0: break
+                nxtend=s.find('</script>',nxt)
+                if nxtend<0: break
+                s=s[:nxt]+s[nxtend+9:]
+
+          # Add a clear Learn link to the Physics practice path card only once.
+          if 'skillup-practice-learn-link' not in s:
+            css='''<style id="skillup-practice-learn-link">.skillup-practice-learn{display:flex;justify-content:center;margin:-8px 0 18px}.skillup-practice-learn a{background:#eef6ff;color:#126fcf;border:1px solid #cfe5ff;border-radius:11px;padding:8px 13px;text-decoration:none;font-size:9px;font-weight:950}.skillup-practice-learn a:hover{background:#1687ff;color:#fff}</style>'''
+            s=s.replace('</head>',css+'</head>',1)
+            link='<div class="skillup-practice-learn"><a href="full-physics-path.html">🧭 Open Physics Learning Path →</a></div>'
+            s=s.replace('<div class="path-note">Tap any topic to open its practice set.</div>', '<div class="path-note">Tap any topic to open its practice set.</div>'+link,1)
+
+          p.write_text(s,encoding='utf-8')
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add question-bank.html
+          git diff --cached --quiet || git commit -m "Strengthen Practice subject navigation"
+          git push
