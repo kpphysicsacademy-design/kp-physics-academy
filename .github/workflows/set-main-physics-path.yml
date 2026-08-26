@@ -1,0 +1,41 @@
+name: Set Main Physics Path Architecture
+
+on:
+  push:
+    paths:
+      - '.github/workflows/set-main-physics-path.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-home:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Point main Physics subject to full Physics architecture
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('skillup-home.html')
+          s = p.read_text(encoding='utf-8')
+
+          # The main Home page must open the complete Physics Path architecture.
+          s = s.replace("['⚡','physics','Physics','class11-physics-learn.html?v=20260826.23']", "['⚡','physics','Physics','full-physics-path.html']")
+          s = s.replace("['⚡','physics','Physics','class12-physics-learn.html?v=20260826.29']", "['⚡','physics','Physics','full-physics-path.html']")
+          s = s.replace("['⚡','physics','Physics','learn.html?track=neet&subject=physics']", "['⚡','physics','Physics','full-physics-path.html']")
+          s = s.replace("['⚡','physics','Physics','learn.html?track=jee&subject=physics']", "['⚡','physics','Physics','full-physics-path.html']")
+
+          # Update the Home page version marker.
+          s = s.replace('20260826.37', '20260826.38')
+          p.write_text(s, encoding='utf-8')
+
+      - name: Commit Home update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add skillup-home.html
+          git diff --cached --quiet || git commit -m "Link main Physics subject to full Physics Path architecture"
+          git push
