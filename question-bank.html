@@ -39,9 +39,20 @@ body{margin:0;font-family:Inter,Arial,sans-serif;background:#f7f9fc;color:#17203
  .search{flex-direction:column}.search button{width:100%}.qhead{align-items:flex-start;gap:8px}.question h2{font-size:18px}.option{font-size:14px;padding:13px}.challenge-table{display:block;overflow-x:auto}.challenge-table th,.challenge-table td{min-width:145px}.challenge-actions{flex-direction:column}.challenge-actions button{width:100%}
 }
 </style>
-</head>
+<style id="skillup-practice-subject-nav">
+.skillup-practice-nav{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:0 auto 14px;padding:8px;background:#fff;border:1px solid #dce3ec;border-radius:14px;box-shadow:0 4px 14px #0000000a;max-width:900px}
+.skillup-practice-nav a{display:inline-block;padding:8px 11px;border-radius:10px;background:#eef3f8;color:#344054;text-decoration:none;font:900 10px Inter,Arial,sans-serif}
+.skillup-practice-nav a.active{background:#1687ff;color:#fff}
+@media(max-width:700px){.skillup-practice-nav{gap:5px;padding:7px}.skillup-practice-nav a{font-size:8px;padding:7px 8px}}
+</style></head>
 <body>
-<div class="container">
+<div class="container"><nav class="skillup-practice-nav" aria-label="SkillUp subjects">
+<a data-subject="physics" href="full-physics-path.html">⚡ Physics</a>
+<a data-subject="chemistry" href="chemistry-skillup-path.html">🧪 Chemistry</a>
+<a data-subject="botany" href="botany-full-path.html">🌿 Botany</a>
+<a data-subject="zoology" href="zoology-full-path.html">🧬 Zoology</a>
+<a data-subject="maths" href="maths-full-path.html">📐 Maths</a>
+</nav>
 <h1 class="title">⚡ Physics Practice</h1>
 <p class="subtitle">One continuous topic path — from foundations to NEET / JEE-IIT</p>
 <div class="context" id="context"></div>
@@ -97,5 +108,16 @@ function saveChallenge(){const option=document.getElementById("claimOption").val
 function modifyChallenge(){const saved=localStorage.getItem("kpChallenge_Q"+currentQuestion);if(!saved){alert("No saved challenge was found for Q"+currentQuestion+".");return}const data=JSON.parse(saved);document.getElementById("claimOption").value=data.option;document.getElementById("claimRemarks").value=data.remarks;document.getElementById("charCount").innerText=data.remarks.length;document.getElementById("challengeStatus").innerText="Saved challenge loaded. You can modify it and save again.";document.getElementById("challengeStatus").style.display="block"}
 buildPhysicsPath();showContext();loadQuestion();
 </script>
-</body>
+<script id="skillup-practice-subject-nav-js">
+(function(){
+  const s=(new URLSearchParams(location.search).get('subject')||'physics').toLowerCase();
+  document.querySelectorAll('.skillup-practice-nav a[data-subject]').forEach(a=>{
+    a.classList.toggle('active',a.dataset.subject===s);
+    a.addEventListener('click',function(){
+      document.querySelectorAll('.skillup-practice-nav a').forEach(x=>x.classList.remove('active'));
+      a.classList.add('active');
+    });
+  });
+})();
+</script></body>
 </html>
