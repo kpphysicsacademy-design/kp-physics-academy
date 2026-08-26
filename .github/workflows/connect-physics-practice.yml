@@ -1,0 +1,57 @@
+name: Connect Physics Skill Tree to Practice
+
+on:
+  push:
+    paths:
+      - '.github/workflows/connect-physics-practice.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  connect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Add Physics Practice connection
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('full-physics-path.html')
+          s = p.read_text(encoding='utf-8')
+          marker = 'physics-practice-connection-v1'
+          if marker in s:
+              print('Physics Practice connection already installed')
+              raise SystemExit(0)
+
+          css = '''<style id="physics-practice-connection-v1">
+          /* physics-practice-connection-v1 */
+          .physics-practice-link{display:inline-flex;align-items:center;justify-content:center;gap:7px;margin:14px auto 4px;padding:11px 20px;border-radius:13px;background:linear-gradient(135deg,#1687ff,#35a5ff);color:#fff;text-decoration:none;font-size:11px;font-weight:950;box-shadow:0 4px 0 #126fcf,0 8px 20px #1687ff2e;transition:.18s}
+          .physics-practice-link:hover{transform:translateY(-2px);box-shadow:0 6px 0 #126fcf,0 12px 25px #1687ff35}
+          .physics-practice-note{display:block;margin:5px auto 0;color:#667085;font-size:9px;font-weight:800}
+          .physics-practice-card{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#eef7ff,#fff);border:2px solid #b9dcff;border-radius:18px;padding:12px 14px;margin:0 0 20px;box-shadow:0 5px 0 #1687ff18}
+          </style>'''
+          s = s.replace('</head>', css + '</head>', 1)
+
+          block = '''<section class="physics-practice-card" id="physicsPracticeConnection">
+          <strong>🎯 Ready to Practice?</strong>
+          <a class="physics-practice-link" href="question-bank.html?subject=physics">OPEN PHYSICS PRACTICE →</a>
+          <span class="physics-practice-note">Practice the same Physics concepts from this Skill Tree.</span>
+          </section>'''
+          anchor = '<div class="legend">'
+          if anchor in s:
+              s = s.replace(anchor, block + anchor, 1)
+          else:
+              s = s.replace('<div class="dashboard">', block + '<div class="dashboard">', 1)
+
+          p.write_text(s, encoding='utf-8')
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add full-physics-path.html
+          git diff --cached --quiet || git commit -m "Connect Physics Skill Tree to Practice"
+          git push
