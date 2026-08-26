@@ -21,14 +21,18 @@ jobs:
           import re
 
           CSS = r'''<style id="skillupPathStandard">
-          .road{height:480px!important;position:relative!important}
-          .road .skillup-stage{position:relative;width:88px!important;height:88px!important;margin:14px auto!important;z-index:2!important;transform:none!important;border-radius:50%;display:flex!important;align-items:center;justify-content:center}
-          .road .skillup-stage:nth-child(odd){transform:translateX(-104px)!important}.road .skillup-stage:nth-child(even){transform:translateX(104px)!important}
-          .road .skillup-stage-link{width:88px!important;height:88px!important;border-radius:50%!important;border:5px solid #fff!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;text-decoration:none!important;color:#fff!important;font-weight:950!important;line-height:1.05!important;box-shadow:0 7px 0 rgba(23,32,51,.18)!important;padding:0!important}
+          .road,.duo-road{position:relative!important;height:auto!important;min-height:0!important;margin:10px auto 18px!important;padding:10px 0!important;display:grid!important;grid-template-columns:1fr 1fr!important;grid-template-rows:auto auto!important;gap:18px 42px!important;max-width:250px!important;box-sizing:border-box!important}
+          .road:before,.duo-road:before{content:"";position:absolute!important;left:50%!important;top:16px!important;bottom:16px!important;width:4px!important;background:#e5e7eb!important;border-radius:999px!important;transform:translateX(-50%)!important;z-index:0!important}
+          .road .skillup-stage,.duo-road .skillup-stage{position:relative!important;width:70px!important;height:70px!important;margin:0!important;z-index:2!important;transform:none!important;border-radius:50%!important;display:flex!important;align-items:center!important;justify-content:center!important;align-self:center!important;justify-self:center!important}
+          .road .skillup-stage:nth-child(1),.duo-road .skillup-stage:nth-child(1){grid-column:1;grid-row:1}
+          .road .skillup-stage:nth-child(2),.duo-road .skillup-stage:nth-child(2){grid-column:2;grid-row:1}
+          .road .skillup-stage:nth-child(3),.duo-road .skillup-stage:nth-child(3){grid-column:1;grid-row:2}
+          .road .skillup-stage:nth-child(4),.duo-road .skillup-stage:nth-child(4){grid-column:2;grid-row:2}
+          .road .skillup-stage-link,.duo-road .skillup-stage-link{width:70px!important;height:70px!important;border-radius:50%!important;border:4px solid #fff!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;text-decoration:none!important;color:#fff!important;font-weight:950!important;line-height:1.05!important;box-shadow:0 6px 0 rgba(23,32,51,.18)!important;padding:0!important;box-sizing:border-box!important}
           .skillup-stage.learn .skillup-stage-link{background:#58CC02!important}.skillup-stage.challenge .skillup-stage-link{background:#FF9600!important}.skillup-stage.practice .skillup-stage-link{background:#1CB0F6!important}.skillup-stage.mastery .skillup-stage-link{background:#FFC800!important;color:#4B4B4B!important}.skillup-stage.locked .skillup-stage-link{background:#AFAFAF!important;color:#fff!important}
-          .skillup-stage-link svg{width:29px!important;height:29px!important;margin:0 0 4px!important;fill:none!important;stroke:currentColor!important;stroke-width:2.4!important;stroke-linecap:round!important;stroke-linejoin:round!important;display:block!important}
-          .skillup-stage-link .skillup-label{position:static!important;transform:none!important;white-space:normal!important;font-size:11px!important;line-height:1.05!important;color:inherit!important;font-weight:950!important;margin:0!important}
-          @media(max-width:767px){.road{height:380px!important}.road .skillup-stage{width:70px!important;height:70px!important}.road .skillup-stage:nth-child(odd){transform:translateX(-82px)!important}.road .skillup-stage:nth-child(even){transform:translateX(82px)!important}.road .skillup-stage-link{width:70px!important;height:70px!important;border-width:4px!important}.skillup-stage-link svg{width:23px!important;height:23px!important;margin-bottom:3px!important}.skillup-stage-link .skillup-label{font-size:9px!important}}
+          .skillup-stage-link svg{width:23px!important;height:23px!important;margin:0 0 3px!important;fill:none!important;stroke:currentColor!important;stroke-width:2.4!important;stroke-linecap:round!important;stroke-linejoin:round!important;display:block!important;flex:0 0 auto!important}
+          .skillup-stage-link .skillup-label{position:static!important;transform:none!important;white-space:normal!important;font-size:9px!important;line-height:1.05!important;color:inherit!important;font-weight:950!important;margin:0!important}
+          @media(min-width:768px){.road,.duo-road{max-width:300px!important;grid-template-columns:1fr 1fr!important;gap:22px 60px!important}.road .skillup-stage,.duo-road .skillup-stage,.road .skillup-stage-link,.duo-road .skillup-stage-link{width:80px!important;height:80px!important}.skillup-stage-link svg{width:27px!important;height:27px!important}.skillup-stage-link .skillup-label{font-size:10px!important}}
           </style>'''
 
           JS = r'''<script id="skillupPathStandard">
@@ -43,24 +47,24 @@ jobs:
             function stageFor(node){
               const label=node.querySelector('.label,.word');
               const t=(label?label.textContent:'').trim().toLowerCase();
-              if(t==='concepts'||t==='challenge') return 'challenge';
-              if(t==='practice') return 'practice';
-              if(t==='mastery') return 'mastery';
-              if(t==='learn') return 'learn';
+              if(t==='concepts'||t==='challenge'||t==='समझें') return 'challenge';
+              if(t==='practice'||t==='अभ्यास') return 'practice';
+              if(t==='mastery'||t==='मास्टर') return 'mastery';
+              if(t==='learn'||t==='पढ़ें') return 'learn';
               if(node.classList.contains('locked')) return 'locked';
               return 'learn';
             }
-            document.querySelectorAll('.road .node').forEach(function(node){
+            document.querySelectorAll('.road .node,.duo-road .duo-node').forEach(function(node){
               const stage=stageFor(node);
               node.classList.add('skillup-stage',stage);
               let target=node.tagName==='A'?node:node.querySelector('a');
               if(!target) return;
-              const text=stage==='challenge'?'Challenge':stage.charAt(0).toUpperCase()+stage.slice(1);
+              const text=stage==='challenge'?'Challenge':stage==='practice'?'Practice':stage==='mastery'?'Mastery':'Learn';
               target.classList.add('skillup-stage-link');
               target.innerHTML=icons[stage]+'<span class="skillup-label">'+text+'</span>';
             });
             document.querySelectorAll('.hero p').forEach(function(p){p.textContent=p.textContent.replace(/Concepts/g,'Challenge')});
-            document.querySelectorAll('.version').forEach(function(v){v.textContent='SkillUp v20260826.14'});
+            document.querySelectorAll('.version').forEach(function(v){v.textContent='SkillUp v20260826.41'});
           })();
           </script>'''
 
@@ -74,14 +78,16 @@ jobs:
               continue
             if 'id="skillupPathStandard"' in text:
               text=re.sub(r'<style id="skillupPathStandard">.*?</style>',CSS,text,count=1,flags=re.S)
-              text=re.sub(r'(meta name="skillup-version" content=")([^"]+)',r'\g<1>20260826.14',text,count=1)
-              text=re.sub(r'(SkillUp v)20\d{6}\.\d+',r'\g<1>20260826.14',text)
+              if 'id="skillupPathStandard"' in text and not re.search(r'<script id="skillupPathStandard">',text):
+                text=text.replace('</body>',JS+'</body>',1)
+              text=re.sub(r'(meta name="skillup-version" content=")([^"]+)',r'\g<1>20260826.41',text,count=1)
+              text=re.sub(r'(SkillUp v)20\d{6}\.\d+',r'\g<1>20260826.41',text)
               changed.append(p.name)
             else:
               text=text.replace('</head>',CSS+'</head>',1)
               text=text.replace('</body>',JS+'</body>',1)
-              text=re.sub(r'(meta name="skillup-version" content=")([^"]+)',r'\g<1>20260826.14',text,count=1)
-              text=re.sub(r'(SkillUp v)20\d{6}\.\d+',r'\g<1>20260826.14',text)
+              text=re.sub(r'(meta name="skillup-version" content=")([^"]+)',r'\g<1>20260826.41',text,count=1)
+              text=re.sub(r'(SkillUp v)20\d{6}\.\d+',r'\g<1>20260826.41',text)
               changed.append(p.name)
             p.write_text(text,encoding='utf-8')
           print('Updated:', ', '.join(changed))
@@ -95,6 +101,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No page changes needed."
           else
-            git commit -m "Standardize Class 6-9 learning path UI v20260826.14"
+            git commit -m "Rebuild Class 6-9 learning path layout v20260826.41"
             git push
           fi
