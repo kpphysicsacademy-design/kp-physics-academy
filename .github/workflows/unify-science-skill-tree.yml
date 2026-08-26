@@ -1,0 +1,116 @@
+name: Unify Physics and Chemistry Skill Tree
+
+on:
+  push:
+    paths:
+      - '.github/workflows/unify-science-skill-tree.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  unify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply Maths-style architecture
+        shell: python
+        run: |
+          from pathlib import Path
+
+          configs = {
+            'full-physics-path.html': {
+              'title': 'Physics Skill Tree',
+              'eyebrow': 'NCERT → NEET / JEE',
+              'desc': 'Learn, practise and master Physics from foundations to NEET and JEE. Every skill unlocks the next.',
+              'goal': '⚡ DAILY PHYSICS GOAL',
+              'accent': '#1687ff',
+              'accent2': '#35a5ff',
+              'mastery': 'Physics Mastery',
+              'resume': 'Resume: Units & Measurements',
+              'task': 'Your current Physics mastery task',
+              'arena': '⚛️ Physics Competitive Arena',
+              'marker': 'physics-skill-tree-v1'
+            },
+            'chemistry-skillup-path.html': {
+              'title': 'Chemistry Skill Tree',
+              'eyebrow': 'NCERT → NEET / JEE',
+              'desc': 'Learn, practise and master Chemistry from foundations to NEET and JEE. Every skill unlocks the next.',
+              'goal': '🧪 DAILY CHEMISTRY GOAL',
+              'accent': '#7652d9',
+              'accent2': '#a98bf0',
+              'mastery': 'Chemistry Mastery',
+              'resume': 'Resume: Matter Around Us',
+              'task': 'Your current Chemistry mastery task',
+              'arena': '🧪 Chemistry Competitive Arena',
+              'marker': 'chemistry-skill-tree-v1'
+            }
+          }
+
+          style_tpl = '''<style id="{marker}">
+          /* {marker} — Maths-style Skill Tree architecture */
+          .skilltree-goal{{margin:0 0 14px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:11px 14px;box-shadow:0 4px 16px #17203309}}
+          .skilltree-goal-head{{display:flex;justify-content:space-between;align-items:center;font-size:10px;font-weight:950}}
+          .skilltree-goal-head strong{{color:{accent}}}
+          .skilltree-goal-bar{{height:9px;background:#e8edf2;border-radius:20px;margin-top:7px;overflow:hidden}}
+          .skilltree-goal-bar i{{display:block;width:18%;height:100%;background:linear-gradient(90deg,{accent},{accent2});border-radius:20px}}
+          .hero .skilltree-icon{{font-size:40px;margin-bottom:2px}}
+          .hero h1{{font-weight:950}}
+          .hero h1 span{{background:linear-gradient(90deg,{accent},{accent2});-webkit-background-clip:text;background-clip:text;color:transparent}}
+          .class-head{{background:linear-gradient(110deg,var(--navy),{accent})!important}}
+          .class-head .count{{box-shadow:0 2px 0 #17203318}}
+          .path:before{{background:linear-gradient(180deg,#dfe7ef,{accent}55,#dfe7ef);width:7px}}
+          .card{{transition:transform .18s,box-shadow .18s,border-color .18s}}
+          .card:hover{{transform:translateY(-3px);box-shadow:0 8px 18px #17203316}}
+          .current-card{{background:linear-gradient(135deg,#fff,#f6f8ff)}}
+          .current-node .node-dot{{animation:skillPulse 1.8s ease-in-out infinite}}
+          .checkpoint{{box-shadow:0 6px 0 #e7c95f,0 10px 25px #f0c84b26}}
+          .arena h2{{font-weight:950}}
+          @keyframes skillPulse{{0%,100%{{transform:translate(-50%,-50%) scale(1)}}50%{{transform:translate(-50%,-50%) scale(1.06)}}}}
+          @media(max-width:720px){{.skilltree-goal{{margin-bottom:10px}}.hero .skilltree-icon{{font-size:34px}}}}
+          @media(prefers-reduced-motion:reduce){{.current-node .node-dot{{animation:none}}}}
+          </style>'''
+
+          for filename, c in configs.items():
+              p = Path(filename)
+              s = p.read_text(encoding='utf-8')
+              if c['marker'] in s:
+                  print(filename, 'already updated')
+                  continue
+
+              # Add architecture CSS before </head>.
+              s = s.replace('</head>', style_tpl.format(**c) + '</head>', 1)
+
+              # Add daily goal immediately before the existing dashboard.
+              goal = f'''<section class="skilltree-goal"><div class="skilltree-goal-head"><strong>{c['goal']}</strong><span id="dailyGoal">0%</span></div><div class="skilltree-goal-bar"><i id="dailyGoalBar"></i></div></section>'''
+              s = s.replace('<section class="dashboard">', goal + '<section class="dashboard">', 1)
+
+              # Give the hero the same visual hierarchy as Maths.
+              icon = '⚡' if 'physics' in filename else '🧪'
+              old = '<section class="hero"><div class="eyebrow">NCERT → NEET / JEE</div>'
+              if old in s:
+                  s = s.replace(old, f'<section class="hero"><div class="skilltree-icon">{icon}</div><div class="eyebrow">{c["eyebrow"]}</div>', 1)
+
+              # Use the Skill Tree wording while preserving subject name.
+              import re
+              s = re.sub(r'<h1>[^<]*<span>(Physics|Chemistry) Path</span></h1>', r'<h1>\1 <span>Skill Tree</span></h1>', s, count=1)
+
+              # Make the daily goal reflect current mastery percentage where available.
+              hook = "document.getElementById('bar').style.width=p+'%'"
+              if hook in s:
+                  s = s.replace(hook, hook + ";const dg=document.getElementById('dailyGoal');if(dg)dg.textContent=p+'%';const dgb=document.getElementById('dailyGoalBar');if(dgb)dgb.style.width=p+'%'")
+              hook2 = "document.getElementById('masterbar').style.width"
+              if hook2 in s:
+                  s = s.replace("document.getElementById('masterbar').style.width", "const dg=document.getElementById('dailyGoal');if(dg)dg.textContent=(document.getElementById('mastery').textContent||'0%');const dgb=document.getElementById('dailyGoalBar');if(dgb)dgb.style.width=(document.getElementById('mastery').textContent||'0%');document.getElementById('masterbar').style.width", 1)
+
+              p.write_text(s, encoding='utf-8')
+              print(filename, 'updated')
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add full-physics-path.html chemistry-skillup-path.html
+          git diff --cached --quiet || git commit -m "Match Physics and Chemistry to Maths Skill Tree architecture"
+          git push
