@@ -1,0 +1,67 @@
+name: Fix Practice Subject Navigation
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch practice page navigation
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('question-bank.html')
+          text=p.read_text(encoding='utf-8')
+
+          css='''<style id="skillup-practice-subject-nav">
+          .skillup-practice-nav{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:0 auto 14px;padding:8px;background:#fff;border:1px solid #dce3ec;border-radius:14px;box-shadow:0 4px 14px #0000000a;max-width:900px}
+          .skillup-practice-nav a{display:inline-block;padding:8px 11px;border-radius:10px;background:#eef3f8;color:#344054;text-decoration:none;font:900 10px Inter,Arial,sans-serif}
+          .skillup-practice-nav a.active{background:#1687ff;color:#fff}
+          @media(max-width:700px){.skillup-practice-nav{gap:5px;padding:7px}.skillup-practice-nav a{font-size:8px;padding:7px 8px}}
+          </style>'''
+
+          nav='''<nav class="skillup-practice-nav" aria-label="SkillUp subjects">
+          <a data-subject="physics" href="full-physics-path.html">⚡ Physics</a>
+          <a data-subject="chemistry" href="chemistry-skillup-path.html">🧪 Chemistry</a>
+          <a data-subject="botany" href="botany-full-path.html">🌿 Botany</a>
+          <a data-subject="zoology" href="zoology-full-path.html">🧬 Zoology</a>
+          <a data-subject="maths" href="maths-full-path.html">📐 Maths</a>
+          </nav>'''
+
+          js='''<script id="skillup-practice-subject-nav-js">
+          (function(){
+            const s=(new URLSearchParams(location.search).get('subject')||'physics').toLowerCase();
+            document.querySelectorAll('.skillup-practice-nav a[data-subject]').forEach(a=>{
+              a.classList.toggle('active',a.dataset.subject===s);
+              a.addEventListener('click',function(){
+                document.querySelectorAll('.skillup-practice-nav a').forEach(x=>x.classList.remove('active'));
+                a.classList.add('active');
+              });
+            });
+          })();
+          </script>'''
+
+          if 'id="skillup-practice-subject-nav"' not in text:
+              text=text.replace('</head>',css+'</head>',1)
+          if 'class="skillup-practice-nav"' not in text:
+              text=text.replace('<div class="container">','<div class="container">'+nav,1)
+          if 'id="skillup-practice-subject-nav-js"' not in text:
+              text=text.replace('</body>',js+'</body>',1)
+
+          # Remove obsolete subject-switch links that may have been injected elsewhere;
+          # keep the single standardized navigation above.
+          p.write_text(text,encoding='utf-8')
+          print('Practice subject navigation standardized')
+          PY
+      - name: Commit
+        run: |
+          git config user.name "SkillUp Standard Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add question-bank.html
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "Standardize practice subject links"; git push; fi
