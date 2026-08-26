@@ -1,0 +1,41 @@
+name: Update Physics Unit 1
+
+on:
+  push:
+    paths:
+      - '.github/workflows/update-physics-unit1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replace first Physics path section with official Unit 1
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+          p = Path('full-physics-path.html')
+          s = p.read_text(encoding='utf-8')
+          if 'official-neet-2025-unit-1' in s:
+              print('Unit 1 already installed')
+              raise SystemExit(0)
+          new = "{e:'📏',t:'Unit 1 — Physics and Measurement',s:'NEET 2025 • Official Physics syllabus',u:[['📏','Units of Measurements','Units of measurement, system of units, SI units, fundamental and derived units'],['🔢','Least Count','Least count'],['🔣','Significant Figures','Significant figures'],['⚠️','Errors in Measurements','Errors in measurements'],['📐','Dimensions','Dimensions of physical quantities'],['🧮','Dimensional Analysis','Dimensional analysis and its applications']]}"
+          pattern = r"const data=\[\{.*?\},\{"
+          replacement = 'const data=[' + new + ',{'
+          out, n = re.subn(pattern, replacement, s, count=1, flags=re.S)
+          if n != 1:
+              raise SystemExit('Could not locate the first Physics path section')
+          out = out.replace('const data=[', '/* official-neet-2025-unit-1 */ const data=[', 1)
+          p.write_text(out, encoding='utf-8')
+      - name: Commit update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add full-physics-path.html
+          git diff --cached --quiet || git commit -m "Update Physics path Unit 1 to official NEET syllabus"
+          git push
