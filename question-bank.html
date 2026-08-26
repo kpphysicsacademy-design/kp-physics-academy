@@ -128,5 +128,69 @@ buildPhysicsPath();showContext();loadQuestion();
     });
   });
 })();
-</script><script id="skillup-practice-structure-js">(function(){const p=new URLSearchParams(location.search);const s=(p.get('subject')||'physics').toLowerCase();const names={physics:['⚡','PHYSICS'],chemistry:['🧪','CHEMISTRY'],botany:['🌿','BOTANY'],zoology:['🧬','ZOOLOGY'],maths:['📐','MATHS']};const n=names[s]||names.physics;const b=document.getElementById('skillupSubjectButton'),m=document.getElementById('skillupSubjectMenu');if(b)b.innerText=n[0]+' '+n[1]+' ▾';document.querySelectorAll('#skillupSubjectMenu a').forEach(a=>a.classList.toggle('active',a.dataset.subject===s));if(b)b.onclick=()=>m.classList.toggle('show');document.addEventListener('click',e=>{if(m&&!e.target.closest('.skillup-subject'))m.classList.remove('show')});const t=document.querySelector('.title');if(t)t.innerHTML=n[0]+' '+n[1]+' Practice';})();</script><script id="skillup-practice-structure-js">(function(){const p=new URLSearchParams(location.search);const s=(p.get('subject')||'physics').toLowerCase();const names={physics:['⚡','PHYSICS'],chemistry:['🧪','CHEMISTRY'],botany:['🌿','BOTANY'],zoology:['🧬','ZOOLOGY'],maths:['📐','MATHS']};const n=names[s]||names.physics;const b=document.getElementById('skillupSubjectButton'),m=document.getElementById('skillupSubjectMenu');if(b)b.innerText=n[0]+' '+n[1]+' ▾';document.querySelectorAll('#skillupSubjectMenu a').forEach(a=>a.classList.toggle('active',a.dataset.subject===s));if(b)b.onclick=()=>m.classList.toggle('show');document.addEventListener('click',e=>{if(m&&!e.target.closest('.skillup-subject'))m.classList.remove('show')});const t=document.querySelector('.title');if(t)t.innerHTML=n[0]+' '+n[1]+' Practice';})();</script><script id="skillup-practice-structure-js">(function(){function build(){const c=document.querySelector('.container');if(!c)return;const path=c.querySelector('.physics-path'),controls=c.querySelector('.controls'),question=c.querySelector('.question'),challenge=c.querySelector('.challenge');if(!path||!controls||!question||!challenge)return;let old=c.querySelector('.skillup-practice-grid');if(old)old.remove();document.querySelectorAll('.skillup-practice-side').forEach(x=>x.remove());const grid=document.createElement('div');grid.className='skillup-practice-grid';const main=document.createElement('div');main.className='skillup-practice-main';const side=document.createElement('aside');side.className='skillup-practice-side';main.append(path,controls,question,challenge);side.innerHTML='<section class="skillup-side-card"><div class="skillup-side-title">YOUR PRACTICE OVERVIEW</div><div class="skillup-overview"><div class="skillup-metric"><b>0</b><span>TOTAL ATTEMPTED</span></div><div class="skillup-metric"><b>0</b><span>CORRECT</span></div><div class="skillup-metric"><b>0%</b><span>ACCURACY</span></div><div class="skillup-metric"><b>0m</b><span>TIME SPENT</span></div></div></section><section class="skillup-side-card"><div class="skillup-side-title">QUICK ACTIONS</div><div class="skillup-actions"><a class="skillup-action blue" href="#questionSection">🎯 Topic Wise Practice <span>›</span></a><a class="skillup-action green" href="#questionSection">📄 Mini Test <span>›</span></a><a class="skillup-action gold" href="#challengeSection">🏆 Chapter Test <span>›</span></a><a class="skillup-action purple" href="#questionSection">📊 Mock Test <span>›</span></a><a class="skillup-action red" href="#questionSection">📕 Weak Topics <span>›</span></a></div></section>';grid.append(main,side);const first=c.querySelector('.title');first.parentNode.insertBefore(grid,first.nextElementSibling?.nextElementSibling||null);const p=new URLSearchParams(location.search),s=(p.get('subject')||'physics').toLowerCase(),names={physics:['⚡','PHYSICS'],chemistry:['🧪','CHEMISTRY'],botany:['🌿','BOTANY'],zoology:['🧬','ZOOLOGY'],maths:['📐','MATHS']},n=names[s]||names.physics,b=document.getElementById('skillupSubjectButton'),m=document.getElementById('skillupSubjectMenu');if(b)b.innerText=n[0]+' '+n[1]+' ▾';document.querySelectorAll('#skillupSubjectMenu a').forEach(a=>a.classList.toggle('active',a.dataset.subject===s));if(b)b.onclick=()=>m.classList.toggle('show');document.addEventListener('click',e=>{if(m&&!e.target.closest('.skillup-subject'))m.classList.remove('show')});const t=document.querySelector('.title');if(t)t.innerHTML=n[0]+' '+n[1]+' Practice';question.id='questionSection'}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build);else build();})();</script></body>
+</script><script id="skillup-practice-structure-js">(function(){const p=new URLSearchParams(location.search);const s=(p.get('subject')||'physics').toLowerCase();const names={physics:['⚡','PHYSICS'],chemistry:['🧪','CHEMISTRY'],botany:['🌿','BOTANY'],zoology:['🧬','ZOOLOGY'],maths:['📐','MATHS']};const n=names[s]||names.physics;const b=document.getElementById('skillupSubjectButton'),m=document.getElementById('skillupSubjectMenu');if(b)b.innerText=n[0]+' '+n[1]+' ▾';document.querySelectorAll('#skillupSubjectMenu a').forEach(a=>a.classList.toggle('active',a.dataset.subject===s));if(b)b.onclick=()=>m.classList.toggle('show');document.addEventListener('click',e=>{if(m&&!e.target.closest('.skillup-subject'))m.classList.remove('show')});const t=document.querySelector('.title');if(t)t.innerHTML=n[0]+' '+n[1]+' Practice';})();</script><script id="skillup-practice-structure-js">(function(){const p=new URLSearchParams(location.search);const s=(p.get('subject')||'physics').toLowerCase();const names={physics:['⚡','PHYSICS'],chemistry:['🧪','CHEMISTRY'],botany:['🌿','BOTANY'],zoology:['🧬','ZOOLOGY'],maths:['📐','MATHS']};const n=names[s]||names.physics;const b=document.getElementById('skillupSubjectButton'),m=document.getElementById('skillupSubjectMenu');if(b)b.innerText=n[0]+' '+n[1]+' ▾';document.querySelectorAll('#skillupSubjectMenu a').forEach(a=>a.classList.toggle('active',a.dataset.subject===s));if(b)b.onclick=()=>m.classList.toggle('show');document.addEventListener('click',e=>{if(m&&!e.target.closest('.skillup-subject'))m.classList.remove('show')});const t=document.querySelector('.title');if(t)t.innerHTML=n[0]+' '+n[1]+' Practice';})();</script><script id="skillup-practice-structure-js">(function(){function build(){const c=document.querySelector('.container');if(!c)return;const path=c.querySelector('.physics-path'),controls=c.querySelector('.controls'),question=c.querySelector('.question'),challenge=c.querySelector('.challenge');if(!path||!controls||!question||!challenge)return;let old=c.querySelector('.skillup-practice-grid');if(old)old.remove();document.querySelectorAll('.skillup-practice-side').forEach(x=>x.remove());const grid=document.createElement('div');grid.className='skillup-practice-grid';const main=document.createElement('div');main.className='skillup-practice-main';const side=document.createElement('aside');side.className='skillup-practice-side';main.append(path,controls,question,challenge);side.innerHTML='<section class="skillup-side-card"><div class="skillup-side-title">YOUR PRACTICE OVERVIEW</div><div class="skillup-overview"><div class="skillup-metric"><b>0</b><span>TOTAL ATTEMPTED</span></div><div class="skillup-metric"><b>0</b><span>CORRECT</span></div><div class="skillup-metric"><b>0%</b><span>ACCURACY</span></div><div class="skillup-metric"><b>0m</b><span>TIME SPENT</span></div></div></section><section class="skillup-side-card"><div class="skillup-side-title">QUICK ACTIONS</div><div class="skillup-actions"><a class="skillup-action blue" href="#questionSection">🎯 Topic Wise Practice <span>›</span></a><a class="skillup-action green" href="#questionSection">📄 Mini Test <span>›</span></a><a class="skillup-action gold" href="#challengeSection">🏆 Chapter Test <span>›</span></a><a class="skillup-action purple" href="#questionSection">📊 Mock Test <span>›</span></a><a class="skillup-action red" href="#questionSection">📕 Weak Topics <span>›</span></a></div></section>';grid.append(main,side);const first=c.querySelector('.title');first.parentNode.insertBefore(grid,first.nextElementSibling?.nextElementSibling||null);const p=new URLSearchParams(location.search),s=(p.get('subject')||'physics').toLowerCase(),names={physics:['⚡','PHYSICS'],chemistry:['🧪','CHEMISTRY'],botany:['🌿','BOTANY'],zoology:['🧬','ZOOLOGY'],maths:['📐','MATHS']},n=names[s]||names.physics,b=document.getElementById('skillupSubjectButton'),m=document.getElementById('skillupSubjectMenu');if(b)b.innerText=n[0]+' '+n[1]+' ▾';document.querySelectorAll('#skillupSubjectMenu a').forEach(a=>a.classList.toggle('active',a.dataset.subject===s));if(b)b.onclick=()=>m.classList.toggle('show');document.addEventListener('click',e=>{if(m&&!e.target.closest('.skillup-subject'))m.classList.remove('show')});const t=document.querySelector('.title');if(t)t.innerHTML=n[0]+' '+n[1]+' Practice';question.id='questionSection'}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build);else build();})();</script><script id="skillup-maths-practice-structure">
+(function(){
+  const subject=(new URLSearchParams(location.search).get('subject')||'physics').toLowerCase();
+  if(subject!=='maths') return;
+  const path=document.getElementById('physicsPath');
+  if(!path) return;
+  const title=document.querySelector('.path-title');
+  const sub=document.querySelector('.path-sub');
+  const note=document.querySelector('.path-note');
+  if(title) title.textContent='COMPLETE MATHS TOPIC PATH';
+  if(sub) sub.textContent='Learn by topic, from foundations to JEE mastery';
+  if(note) note.textContent='Tap any topic to open its Maths practice set.';
+  const topics=[
+    ['Number Sense','Number\nSense','foundation','number-sense'],
+    ['Arithmetic','Arithmetic','foundation','arithmetic'],
+    ['Fractions & Decimals','Fractions\n& Decimals','foundation','fractions-decimals'],
+    ['Ratio & Proportion','Ratio &\nProportion','foundation','ratio-proportion'],
+    ['Percentage','Percentage','foundation','percentage'],
+    ['Powers & Roots','Powers\n& Roots','foundation','powers-roots'],
+    ['Algebraic Expressions','Expressions','algebra','algebraic-expressions'],
+    ['Linear Equations','Linear\nEquations','algebra','linear-equations'],
+    ['Identities & Factorisation','Identities &\nFactorisation','algebra','identities-factorisation'],
+    ['Quadratic Equations','Quadratics','algebra','quadratic-equations'],
+    ['Functions','Functions','algebra','functions'],
+    ['Complex Numbers','Complex\nNumbers','algebra','complex-numbers'],
+    ['Inequalities','Inequalities','algebra','inequalities'],
+    ['Lines & Angles','Lines &\nAngles','geometry','lines-angles'],
+    ['Triangles','Triangles','geometry','triangles'],
+    ['Circles','Circles','geometry','circles'],
+    ['Mensuration','Mensuration','geometry','mensuration'],
+    ['Coordinate Geometry','Coordinate\nGeometry','geometry','coordinate-geometry'],
+    ['Conics','Conics','geometry','conics'],
+    ['Trigonometric Ratios','Trig\nRatios','trigonometry','trigonometric-ratios'],
+    ['Trigonometric Identities','Trig\nIdentities','trigonometry','trigonometric-identities'],
+    ['Compound Angles','Compound\nAngles','trigonometry','compound-angles'],
+    ['Trigonometric Equations','Trig\nEquations','trigonometry','trigonometric-equations'],
+    ['Inverse Trigonometry','Inverse\nTrig','trigonometry','inverse-trigonometry'],
+    ['Sequences & Series','Sequences\n& Series','calculus','sequences-series'],
+    ['Limits & Continuity','Limits &\nContinuity','calculus','limits-continuity'],
+    ['Differentiation','Differentiation','calculus','differentiation'],
+    ['Applications of Derivatives','Applications\nof Derivatives','calculus','applications-derivatives'],
+    ['Integration','Integration','calculus','integration'],
+    ['Probability & Statistics','Probability\n& Statistics','modern','probability-statistics'],
+    ['JEE Main Maths','JEE\nMAIN','exam','jee-main'],
+    ['JEE Advanced Maths','JEE\nADVANCED','exam','jee-advanced']
+  ];
+  const colors={foundation:'foundation',algebra:'mechanics',geometry:'thermal',trigonometry:'waves',calculus:'electric',modern:'optics',exam:'exam'};
+  path.innerHTML='';
+  topics.forEach((t,i)=>{
+    const node=document.createElement('div');
+    node.className='path-node '+colors[t[2]];
+    const wrap=document.createElement('div'); wrap.className='node-wrap';
+    const a=document.createElement('a');
+    const q=new URLSearchParams(); q.set('subject','maths'); q.set('topic',t[3]);
+    a.href='question-bank.html?'+q.toString(); a.innerText=t[1];
+    const info=document.createElement('div');
+    info.innerHTML='<div class="node-number">'+String(i+1).padStart(2,'0')+'</div><div class="node-label">'+t[0]+'</div>';
+    wrap.append(a,info); node.appendChild(wrap); path.appendChild(node);
+  });
+  const heading=document.querySelector('.title');
+  if(heading) heading.innerHTML='📐 Maths Practice';
+  const subtitle=document.querySelector('.subtitle');
+  if(subtitle) subtitle.textContent='One continuous Maths topic path — from foundations to JEE Advanced';
+})();
+</script></body>
 </html>
