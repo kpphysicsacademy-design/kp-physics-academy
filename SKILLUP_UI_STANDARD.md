@@ -35,8 +35,6 @@ Use the official Duolingo-inspired color roles below; SkillUp is not copying Duo
 - **Primary text:** Eel `#4B4B4B`
 - **Background:** Snow `#FFFFFF` / Polar `#F7F7F7`
 
-The colors are based on the published Duolingo brand palette. citeturn0search0turn0search1
-
 ### Icon visibility
 - Do **not** use emoji as the primary stage icon because emoji appearance varies by device/browser.
 - Use simple inline SVG/vector icons.
@@ -64,7 +62,7 @@ Next chapter
 
 The four circles must never overlap each other, their text, the chapter heading, or the next chapter. Chapter containers must grow naturally; avoid unsafe fixed heights.
 
-Duolingo's current home-screen approach also uses a guided path and builds practice into the path, which supports this SkillUp interaction model. citeturn0search2
+The SkillUp path is intentionally guided: learning stages are ordered so students always know the next action.
 
 ## Colorful UI rule
 SkillUp pages must not become monochrome or excessively grey. Use color intentionally for:
@@ -135,7 +133,7 @@ No production placeholder links such as `href="#"`.
 - Current UI standard: **v1.2**
 - Shared UI changes increment the central SkillUp version.
 - Pages should use the project version-control system rather than inventing unrelated versions.
-- The class 6–9 learning-path rollout uses **20260826.13**.
+- Current Class 6–9 learning-path rollout: **20260826.14**.
 
 ## Required QA sizes
 Mobile: 360×800, 390×844, 412×915
