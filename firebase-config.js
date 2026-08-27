@@ -1,7 +1,7 @@
 // SkillUp - Firebase Web App Configuration
 // Firebase project: Skill Up (skill-up-j6olyb)
 export const firebaseConfig = {
-  apiKey: "AIzaSyDxhe7pyJ_YsivZD76EVgQrhnGJT4F_yzQ",
+  apiKey: "AIzaSyDjCCKECq2UyOQhRg7oIW3tIpk86Ab1FJs",
   authDomain: "skill-up-j6olyb.firebaseapp.com",
   projectId: "skill-up-j6olyb",
   storageBucket: "skill-up-j6olyb.firebasestorage.app",
