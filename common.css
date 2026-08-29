@@ -48,3 +48,6 @@ body{margin:0;font-family:Arial,sans-serif;color:var(--skillup-text);background:
 
 /* Profile: clean section headings without underlines */
 .profile-card h2{border-bottom:none!important;padding-bottom:0!important}
+
+/* Home brand: simple, clean SkillUp identity */
+.home-brand{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--skillup-text);min-width:0}.home-brand-rocket{display:block;font-size:30px;line-height:1;background:transparent;box-shadow:none}.home-brand-copy{display:flex;flex-direction:column;gap:3px;line-height:1}.home-brand-copy strong{font-size:20px;font-weight:950;letter-spacing:-.5px}.home-brand-copy small{font-size:7px;font-weight:900;letter-spacing:1.35px;color:var(--skillup-purple);white-space:nowrap}@media(max-width:380px){.home-brand{gap:6px}.home-brand-rocket{font-size:26px}.home-brand-copy strong{font-size:18px}.home-brand-copy small{font-size:6px;letter-spacing:1px}}
