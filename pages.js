@@ -6,6 +6,8 @@ window.SkillUpPages = {
     "learn.html",
     "practice.html",
     "compete.html",
+    "question-bank.html",
+    "leaderboard.html",
     "profile.html"
   ],
   compete: [
