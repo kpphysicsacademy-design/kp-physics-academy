@@ -42,3 +42,6 @@ body{margin:0;font-family:Arial,sans-serif;color:var(--skillup-text);background:
 /* SkillUp rocket brand icon */
 .skillup-brand-icon::after{content:"🚀";font-size:19px;line-height:1;filter:saturate(1.05)}
 .skillup-brand-icon svg{display:none}
+
+/* Unified generated SkillUp logo image */
+.skillup-logo-img{width:34px;height:34px;object-fit:contain;display:block;border-radius:9px}.logo-icon{display:grid;place-items:center;overflow:hidden}.logo-icon .skillup-logo-img{width:100%;height:100%}.brand.skillup-brand{display:flex;align-items:center;gap:8px}.brand.skillup-brand>span{font-size:15px;font-weight:950;line-height:1}.brand.skillup-brand small{display:block}@media(max-width:380px){.skillup-logo-img{width:30px;height:30px}}
