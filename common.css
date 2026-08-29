@@ -45,3 +45,6 @@ body{margin:0;font-family:Arial,sans-serif;color:var(--skillup-text);background:
 
 /* Home: keep the SkillUp rocket clean without a colored background */
 .logo-icon{background:transparent!important;box-shadow:none!important;border-radius:0!important}
+
+/* Profile: clean section headings without underlines */
+.profile-card h2{border-bottom:none!important;padding-bottom:0!important}
