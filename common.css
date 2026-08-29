@@ -42,3 +42,6 @@ body{margin:0;font-family:Arial,sans-serif;color:var(--skillup-text);background:
 /* SkillUp rocket brand icon */
 .skillup-brand-icon::after{content:"🚀";font-size:19px;line-height:1;filter:saturate(1.05)}
 .skillup-brand-icon svg{display:none}
+
+/* Home: keep the SkillUp rocket clean without a colored background */
+.logo-icon{background:transparent!important;box-shadow:none!important;border-radius:0!important}
