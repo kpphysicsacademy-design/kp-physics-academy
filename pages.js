@@ -5,19 +5,18 @@ window.SkillUpPages = {
     "skillup-home.html",
     "learn.html",
     "practice.html",
-    "league.html",
+    "compete.html",
     "profile.html"
   ],
   compete: [
-    "league.html",
-    "challenge.html",
-    "challenge-concepts.html"
+    "compete.html"
   ],
   system: [
     "routes.js",
     "navigation.js",
     "common.css",
-    "pages.js"
+    "pages.js",
+    "link-audit.js"
   ]
 };
 
