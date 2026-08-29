@@ -1,0 +1,107 @@
+/* SkillUp Common Design System */
+
+:root{
+  --skillup-purple:#7652d9;
+  --skillup-purple-dark:#5940a8;
+  --skillup-blue:#1687ff;
+  --skillup-green:#58cc02;
+  --skillup-red:#d92d20;
+  --skillup-text:#172033;
+  --skillup-muted:#667085;
+  --skillup-border:#dfe7ef;
+  --skillup-bg:#f8fafc;
+  --skillup-radius:14px;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  color:var(--skillup-text);
+  background:#fff;
+  padding-bottom:64px;
+}
+
+.skillup-page{
+  max-width:520px;
+  margin:auto;
+  padding:10px;
+}
+
+.skillup-card{
+  background:#fff;
+  border:1px solid var(--skillup-border);
+  border-radius:var(--skillup-radius);
+  padding:14px;
+  margin:10px 0;
+}
+
+.skillup-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  padding:10px 14px;
+  border-radius:10px;
+  border:1px solid var(--skillup-border);
+  background:#fff;
+  color:var(--skillup-blue);
+  text-decoration:none;
+  font-size:13px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.skillup-btn-primary{
+  background:var(--skillup-green);
+  border-color:var(--skillup-green);
+  color:#fff;
+}
+
+.skillup-bottom-nav{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  height:58px;
+  display:flex;
+  background:#fff;
+  border-top:1px solid var(--skillup-border);
+  z-index:1000;
+}
+
+.skillup-bottom-nav a{
+  flex:1;
+  text-align:center;
+  text-decoration:none;
+  color:var(--skillup-muted);
+  font-size:9px;
+  font-weight:800;
+  padding-top:7px;
+}
+
+.skillup-bottom-nav span{
+  display:block;
+  font-size:18px;
+  margin-bottom:3px;
+}
+
+.skillup-bottom-nav a.active{
+  color:var(--skillup-purple);
+}
+
+.skillup-header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:#fff;
+  border-bottom:1px solid var(--skillup-border);
+  padding:12px;
+}
+
+@media(max-width:380px){
+  .skillup-page{padding:8px}
+  .skillup-card{padding:10px}
+  .skillup-bottom-nav a{font-size:8px}
+}
