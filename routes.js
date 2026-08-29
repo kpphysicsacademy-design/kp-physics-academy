@@ -3,13 +3,14 @@ window.SkillUpRoutes = {
   home: "index.html",
   learn: "learn.html",
   practice: "practice.html",
+  compete: "league.html",
   challenge: "challenge.html",
   league: "league.html",
   profile: "profile.html",
   login: "login.html"
 };
 
-/* Named routes for challenge destinations */
+/* Competition routes: League + Challenge */
 window.SkillUpRoutes.challengeDaily = "challenge.html";
 window.SkillUpRoutes.challengeConcepts = "challenge-concepts.html";
 window.SkillUpRoutes.challengeTimed = "challenge.html?mode=timed";
