@@ -21,7 +21,7 @@
       <a href="${route("home")}" class="${active==="home"?"active":""}"><span>🏠</span>Home</a>
       <a href="${route("learn")}" class="${active==="learn"?"active":""}"><span>📚</span>Learn</a>
       <a href="${route("practice")}" class="${active==="practice"?"active":""}"><span>🎯</span>Practice</a>
-      <a href="${route("compete")}" class="${active==="compete"?"active":""}"><span>⚡🏆</span>Compete</a>
+      <a href="${route("compete")}" class="${active==="compete"?"active":""}"><span>⚡</span>Compete</a>
       <a href="${route("profile")}" class="${active==="profile"?"active":""}"><span>👤</span>Profile</a>`;
     document.body.appendChild(nav);
   };
