@@ -38,3 +38,7 @@ body{margin:0;font-family:Arial,sans-serif;color:var(--skillup-text);background:
 
 /* Unified SkillUp brand icon across every core page */
 .skillup-brand-icon{width:34px;height:34px;border-radius:11px;background:var(--skillup-purple);color:#fff;display:inline-grid;place-items:center;flex:0 0 34px;box-shadow:0 3px 0 var(--skillup-purple-dark)}.skillup-brand-icon svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.skillup-brand{display:flex;align-items:center;gap:8px}.skillup-brand-name{font-size:15px;font-weight:950;line-height:1}.skillup-brand-tag{display:block;font-size:7px;color:var(--skillup-purple);letter-spacing:1.4px;margin-top:3px;font-weight:900}
+
+/* SkillUp rocket brand icon */
+.skillup-brand-icon::after{content:"🚀";font-size:19px;line-height:1;filter:saturate(1.05)}
+.skillup-brand-icon svg{display:none}
