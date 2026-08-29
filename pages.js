@@ -16,7 +16,8 @@ window.SkillUpPages = {
   system: [
     "routes.js",
     "navigation.js",
-    "common.css"
+    "common.css",
+    "pages.js"
   ]
 };
 
