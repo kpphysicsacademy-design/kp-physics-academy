@@ -17,3 +17,6 @@ body{margin:0;font-family:Arial,sans-serif;color:var(--skillup-text);background:
 @media(max-width:380px){.skillup-page,.wrap{padding:8px}.skillup-card,.card,.panel,.section{padding:10px}.grid{gap:8px}.skillup-bottom-nav a{font-size:8px}}
 /* Compete shared display components */
 .card{display:block;text-decoration:none;color:var(--skillup-text)}.card small{display:block;color:var(--skillup-muted);margin-top:4px}.action{display:block;margin-top:8px;background:var(--skillup-purple);color:#fff;text-align:center;padding:7px;border-radius:8px;font-size:10px;font-weight:800}.title{font-weight:900;font-size:14px;margin-bottom:9px}.rank{padding:10px;border-radius:11px;background:var(--skillup-bg);margin:6px 0;font-size:12px}.skillup-input{width:100%;padding:10px;border:1px solid var(--skillup-border);border-radius:9px;background:#fff}.action-btn{border:0;width:100%}
+
+/* Learn shared components */
+.brand{font-size:15px;font-weight:950;text-align:center}.brand small{display:block;color:var(--skillup-purple);font-size:7px;letter-spacing:1.4px;margin-top:2px}.skillup-select{width:100%;padding:12px;border:2px solid var(--skillup-purple);border-radius:14px;background:#fff;font-size:12px;font-weight:900;box-shadow:0 3px 0 #d9d1f5;outline:none}.hint{text-align:center;color:var(--skillup-muted);font-size:10px;margin:8px 0}
