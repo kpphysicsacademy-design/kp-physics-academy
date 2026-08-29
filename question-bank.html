@@ -1,1 +1,65 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SkillUp | Question Bank</title><link rel="stylesheet" href="common.css"><style>body{margin:0;font-family:Arial,sans-serif;background:#f7f9fc;padding-bottom:70px}.wrap{max-width:600px;margin:auto;padding:14px}.hero,.card{background:#fff;border:1px solid #e1e7ef;border-radius:16px;padding:14px;margin-bottom:10px}.hero{text-align:center}.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.card a{text-decoration:none}.btn{display:block;background:#7652d9;color:#fff;text-align:center;padding:9px;border-radius:9px;text-decoration:none;font-size:12px;font-weight:bold}@media(max-width:360px){.grid{grid-template-columns:1fr}}</style></head><body><main class="wrap"><section class="hero"><div style="font-size:32px">📚</div><h1>SkillUp Question Bank</h1><p>Practice questions, tests and competitive assessments.</p></section><section class="grid"><div class="card"><h3>⚡ Daily League</h3><a class="btn" href="practice.html">START</a></div><div class="card"><h3>📅 Weekly League</h3><a class="btn" href="practice.html">START</a></div><div class="card"><h3>📝 Daily Test</h3><a class="btn" href="practice.html">START</a></div><div class="card"><h3>🎯 Full Syllabus</h3><a class="btn" href="practice.html">PRACTICE</a></div></section></main><script src="routes.js"></script><script src="navigation.js"></script><script src="pages.js"></script></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SkillUp | Question Bank</title><link rel="stylesheet" href="common.css"><style>body{margin:0;font-family:Arial,sans-serif;background:#f7f9fc;padding-bottom:70px}.wrap{max-width:600px;margin:auto;padding:14px}.hero,.card{background:#fff;border:1px solid #e1e7ef;border-radius:16px;padding:14px;margin-bottom:10px}.hero{text-align:center}.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.card a{text-decoration:none}.btn{display:block;background:#7652d9;color:#fff;text-align:center;padding:9px;border-radius:9px;text-decoration:none;font-size:12px;font-weight:bold}@media(max-width:360px){.grid{grid-template-columns:1fr}}</style></head><body><main class="wrap"><section class="hero"><div style="font-size:32px">📚</div><h1>SkillUp Question Bank</h1><p>Practice questions, tests and competitive assessments.</p></section><section class="grid"><div class="card"><h3>⚡ Daily League</h3><a class="btn" href="practice.html">START</a></div><div class="card"><h3>📅 Weekly League</h3><a class="btn" href="practice.html">START</a></div><div class="card"><h3>📝 Daily Test</h3><a class="btn" href="practice.html">START</a></div><div class="card"><h3>🎯 Full Syllabus</h3><a class="btn" href="practice.html">PRACTICE</a></div></section></main><script src="routes.js"></script><script src="navigation.js"></script><script src="pages.js"></script><script id="skillup-maths-practice-structure">
+(function(){
+  const subject=(new URLSearchParams(location.search).get('subject')||'physics').toLowerCase();
+  if(subject!=='maths') return;
+  const path=document.getElementById('physicsPath');
+  if(!path) return;
+  const title=document.querySelector('.path-title');
+  const sub=document.querySelector('.path-sub');
+  const note=document.querySelector('.path-note');
+  if(title) title.textContent='COMPLETE MATHS TOPIC PATH';
+  if(sub) sub.textContent='Learn by topic, from foundations to JEE mastery';
+  if(note) note.textContent='Tap any topic to open its Maths practice set.';
+  const topics=[
+    ['Number Sense','Number\nSense','foundation','number-sense'],
+    ['Arithmetic','Arithmetic','foundation','arithmetic'],
+    ['Fractions & Decimals','Fractions\n& Decimals','foundation','fractions-decimals'],
+    ['Ratio & Proportion','Ratio &\nProportion','foundation','ratio-proportion'],
+    ['Percentage','Percentage','foundation','percentage'],
+    ['Powers & Roots','Powers\n& Roots','foundation','powers-roots'],
+    ['Algebraic Expressions','Expressions','algebra','algebraic-expressions'],
+    ['Linear Equations','Linear\nEquations','algebra','linear-equations'],
+    ['Identities & Factorisation','Identities &\nFactorisation','algebra','identities-factorisation'],
+    ['Quadratic Equations','Quadratics','algebra','quadratic-equations'],
+    ['Functions','Functions','algebra','functions'],
+    ['Complex Numbers','Complex\nNumbers','algebra','complex-numbers'],
+    ['Inequalities','Inequalities','algebra','inequalities'],
+    ['Lines & Angles','Lines &\nAngles','geometry','lines-angles'],
+    ['Triangles','Triangles','geometry','triangles'],
+    ['Circles','Circles','geometry','circles'],
+    ['Mensuration','Mensuration','geometry','mensuration'],
+    ['Coordinate Geometry','Coordinate\nGeometry','geometry','coordinate-geometry'],
+    ['Conics','Conics','geometry','conics'],
+    ['Trigonometric Ratios','Trig\nRatios','trigonometry','trigonometric-ratios'],
+    ['Trigonometric Identities','Trig\nIdentities','trigonometry','trigonometric-identities'],
+    ['Compound Angles','Compound\nAngles','trigonometry','compound-angles'],
+    ['Trigonometric Equations','Trig\nEquations','trigonometry','trigonometric-equations'],
+    ['Inverse Trigonometry','Inverse\nTrig','trigonometry','inverse-trigonometry'],
+    ['Sequences & Series','Sequences\n& Series','calculus','sequences-series'],
+    ['Limits & Continuity','Limits &\nContinuity','calculus','limits-continuity'],
+    ['Differentiation','Differentiation','calculus','differentiation'],
+    ['Applications of Derivatives','Applications\nof Derivatives','calculus','applications-derivatives'],
+    ['Integration','Integration','calculus','integration'],
+    ['Probability & Statistics','Probability\n& Statistics','modern','probability-statistics'],
+    ['JEE Main Maths','JEE\nMAIN','exam','jee-main'],
+    ['JEE Advanced Maths','JEE\nADVANCED','exam','jee-advanced']
+  ];
+  const colors={foundation:'foundation',algebra:'mechanics',geometry:'thermal',trigonometry:'waves',calculus:'electric',modern:'optics',exam:'exam'};
+  path.innerHTML='';
+  topics.forEach((t,i)=>{
+    const node=document.createElement('div');
+    node.className='path-node '+colors[t[2]];
+    const wrap=document.createElement('div'); wrap.className='node-wrap';
+    const a=document.createElement('a');
+    const q=new URLSearchParams(); q.set('subject','maths'); q.set('topic',t[3]);
+    a.href='question-bank.html?'+q.toString(); a.innerText=t[1];
+    const info=document.createElement('div');
+    info.innerHTML='<div class="node-number">'+String(i+1).padStart(2,'0')+'</div><div class="node-label">'+t[0]+'</div>';
+    wrap.append(a,info); node.appendChild(wrap); path.appendChild(node);
+  });
+  const heading=document.querySelector('.title');
+  if(heading) heading.innerHTML='📐 Maths Practice';
+  const subtitle=document.querySelector('.subtitle');
+  if(subtitle) subtitle.textContent='One continuous Maths topic path — from foundations to JEE Advanced';
+})();
+</script></body></html>
