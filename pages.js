@@ -10,9 +10,11 @@ window.SkillUpPages = {
     "leaderboard.html",
     "profile.html"
   ],
-  compete: [
-    "compete.html"
-  ],
+  compete: ["compete.html"],
+  redirects: {
+    "league.html": "compete.html#leagues",
+    "challenge.html": "compete.html#challenges"
+  },
   system: [
     "routes.js",
     "navigation.js",
@@ -22,10 +24,15 @@ window.SkillUpPages = {
   ]
 };
 
-/* Check whether a registered page exists in the central registry */
 window.isSkillUpPageRegistered = function(path) {
+  const clean = String(path || "").split("?")[0].split("#")[0];
   return Object.values(window.SkillUpPages)
     .filter(Array.isArray)
     .flat()
-    .includes(path);
+    .includes(clean) || Object.prototype.hasOwnProperty.call(window.SkillUpPages.redirects, clean);
+};
+
+window.getSkillUpRedirect = function(path) {
+  const clean = String(path || "").split("?")[0].split("#")[0];
+  return window.SkillUpPages.redirects[clean] || null;
 };
