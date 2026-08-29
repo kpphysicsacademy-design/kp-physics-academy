@@ -8,7 +8,7 @@
     if(page==="index.html"||page==="skillup-home.html") return "home";
     if(page==="learn.html") return "learn";
     if(page==="practice.html") return "practice";
-    if(page==="league.html"||page==="challenge.html"||page==="challenge-concepts.html") return "compete";
+    if(page==="compete.html"||page==="league.html"||page==="challenge.html"||page==="challenge-concepts.html") return "compete";
     if(page==="profile.html") return "profile";
     return "";
   }
