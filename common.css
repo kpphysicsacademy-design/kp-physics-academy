@@ -67,3 +67,6 @@ body:has(.home-brand){background:linear-gradient(180deg,#faf9ff 0%,#fff 34%,#f8f
 
 /* Colorful SkillUp navigation icons */
 .skillup-bottom-nav .skillup-nav-icon svg{transition:transform .18s ease,filter .18s ease}.skillup-bottom-nav .nav-home{stroke:#ff7a00}.skillup-bottom-nav .nav-learn{stroke:#5b6cff}.skillup-bottom-nav .nav-practice{stroke:#18a957}.skillup-bottom-nav .nav-compete{stroke:#f0a000}.skillup-bottom-nav .nav-profile{stroke:#d64fa7}.skillup-bottom-nav a:hover .skillup-nav-icon svg,.skillup-bottom-nav a.active .skillup-nav-icon svg{transform:translateY(-2px) scale(1.08);filter:drop-shadow(0 3px 3px rgba(23,32,51,.15))}.skillup-bottom-nav a.active{font-weight:900}.skillup-bottom-nav a.active .skillup-nav-icon{background:rgba(118,82,217,.08);border-radius:12px}
+
+/* Center the Practice-style SkillUp brand on Learn and Compete */
+.top:has(.brand){justify-content:center}.top .brand{text-align:center;display:flex;flex-direction:column;align-items:center;line-height:1.1}.top .brand small{text-align:center;margin-top:3px}
