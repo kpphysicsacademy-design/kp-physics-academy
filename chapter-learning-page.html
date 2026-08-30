@@ -27,6 +27,8 @@
 .concept-detail{display:none}.concept-detail.open{display:block!important}.topic{cursor:pointer}[hidden]{display:none!important}
 
 .example-flow{display:grid;gap:12px;margin-top:20px}.flow-step{display:flex;gap:14px;align-items:flex-start;padding:17px;border:2px solid #e5eaf2;border-radius:20px;background:#fff;box-shadow:0 3px 0 #e4e9f1}.flow-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:#f5f3ff;font-size:22px;flex:0 0 auto}.flow-step b{font-size:17px}.flow-step p{margin:5px 0 0;color:#667085;line-height:1.5}.example-check{margin-top:22px;padding:20px;border-radius:22px;background:#f5f3ff;border:2px solid #ddd6fe}.example-check>p{margin:8px 0 14px}.example-options{display:grid;gap:10px}.example-options button{padding:14px;text-align:left;border:2px solid #e5eaf2;border-radius:15px;background:#fff;font:inherit;font-weight:700;cursor:pointer;box-shadow:0 3px 0 #e4e9f1}.example-options button:active{transform:translateY(3px);box-shadow:none}.example-feedback{font-weight:800;margin:14px 0 0}
+
+.flash-progress{display:flex;align-items:center;gap:12px;margin:18px 0;font-weight:800;color:#5b3cc4}.flash-progress>div{height:10px;flex:1;border-radius:99px;background:#ebe8f8;overflow:hidden}.flash-progress i{display:block;height:100%;width:20%;border-radius:99px;background:#5b3cc4;transition:.25s}.flash-card-wrap{perspective:1200px}.flash-card{position:relative;width:100%;min-height:330px;border:0;background:transparent;padding:0;cursor:pointer;transform-style:preserve-3d;transition:transform .55s ease}.flash-card.flipped{transform:rotateY(180deg)}.flash-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;border-radius:30px;backface-visibility:hidden;border:2px solid #e5eaf2;box-shadow:0 7px 0 #dfe5ef;text-align:center}.flash-front{background:linear-gradient(145deg,#ffffff,#f7f5ff)}.flash-back{background:linear-gradient(145deg,#5b3cc4,#6d53d1);color:#fff;transform:rotateY(180deg);box-shadow:0 7px 0 #432a9e}.flash-number{position:absolute;top:18px;left:20px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#ece8ff;color:#5b3cc4;font-weight:900}.flash-emoji{font-size:60px;margin-bottom:16px}.flash-face b{font-size:28px;font-weight:900}.flash-face p{max-width:440px;font-size:18px;line-height:1.55;margin:12px 0;color:#667085}.flash-back p{color:#f0edff}.flash-face small{position:absolute;bottom:20px;opacity:.7}.flash-controls{display:flex;gap:12px;margin-top:18px}.flash-controls button{flex:1;padding:14px;border-radius:16px;border:2px solid #e5eaf2;background:#fff;font:inherit;font-weight:850;cursor:pointer;box-shadow:0 4px 0 #dfe5ef}.flash-controls button:last-child{background:#5b3cc4;color:#fff;border-color:#5b3cc4;box-shadow:0 4px 0 #432a9e}.flash-controls button:disabled{opacity:.45;cursor:not-allowed}@media(max-width:560px){.flash-card{min-height:360px}.flash-face{padding:25px}.flash-face b{font-size:24px}.flash-face p{font-size:16px}.flash-emoji{font-size:52px}}
 </style>
 </head>
 <body>
@@ -76,19 +78,16 @@
 </section>
 <section id="examples" class="card content-panel">
 <h3>Examples</h3>
-<p>Learn science by following a simple investigation from observation to conclusion.</p>
-<div class="example-flow">
-<div class="flow-step"><span class="flow-icon">👀</span><div><b>Observe</b><p>A potted plant near a window bends toward the sunlight.</p></div></div>
-<div class="flow-step"><span class="flow-icon">❓</span><div><b>Question</b><p>Why is the plant growing toward one side?</p></div></div>
-<div class="flow-step"><span class="flow-icon">💭</span><div><b>Think</b><p>Maybe the plant is responding to the direction of light.</p></div></div>
-<div class="flow-step"><span class="flow-icon">🧪</span><div><b>Test</b><p>Observe similar plants placed in different light directions and record changes.</p></div></div>
-<div class="flow-step"><span class="flow-icon">💡</span><div><b>Result</b><p>Use your observations to decide whether the evidence supports the idea.</p></div></div>
+<p>Study the investigation using swipeable flash cards.</p>
+<div class="flash-progress"><span id="flashCount">1 / 5</span><div><i id="flashBar"></i></div></div>
+<div class="flash-card-wrap">
+<button class="flash-card" id="flashCard" type="button" aria-label="Flip flash card">
+<div class="flash-face flash-front"><span class="flash-number" id="flashNumber">1</span><span class="flash-emoji" id="flashEmoji">👀</span><b id="flashTitle">Observe</b><p id="flashFront">A potted plant near a window bends toward the sunlight.</p><small>Tap to flip</small></div>
+<div class="flash-face flash-back"><span class="flash-emoji">💡</span><b id="flashBackTitle">Why does this matter?</b><p id="flashBack">Careful observation helps us notice patterns and interesting changes.</p><small>Tap to continue</small></div>
+</button>
 </div>
-<div class="example-check"><b>❓ Quick Check</b><p>What comes first when investigating this situation?</p><div class="example-options">
-<button data-example="wrong">Make a final conclusion</button>
-<button data-example="correct">Observe carefully</button>
-<button data-example="wrong">Ignore the plant</button>
-</div><p id="example-feedback" class="example-feedback"></p></div>
+<div class="flash-controls"><button id="flashPrev" type="button">← Previous</button><button id="flashNext" type="button">Next →</button></div>
+<div class="example-check" id="flashCheck" hidden><b>❓ Quick Check</b><p>What comes first in this investigation?</p><div class="example-options"><button data-example="wrong">Make a final conclusion</button><button data-example="correct">Observe carefully</button><button data-example="wrong">Ignore the plant</button></div><p id="example-feedback" class="example-feedback"></p></div>
 </section>
 <section id="notes" class="card content-panel"><h3>Key Takeaways</h3><p>Be curious. Observe carefully. Ask questions. Test ideas using evidence. Learn from results. Science is a joyful journey of exploration, and discovery often leads to even more questions.</p></section>
 <section id="quiz" class="card content-panel"><h3>Quick Quiz</h3><p>Which sequence best represents a simple scientific investigation?</p><div class="quiz-options"><button class="quiz-option" data-answer="wrong">Guess → Ignore → Finish</button><button class="quiz-option" data-answer="correct">Observe → Question → Guess → Test → Analyse</button><button class="quiz-option" data-answer="wrong">Answer → Stop → Forget</button><button class="quiz-option" data-answer="wrong">Test → Observe → Avoid questions</button></div><div id="quiz-feedback" class="quiz-feedback">Good thinking!</div></section>
@@ -116,6 +115,15 @@
  }));
  window.toggleConcept=function(id){const detail=document.getElementById(id);if(!detail)return;const shouldOpen=!detail.classList.contains('open');document.querySelectorAll('.concept-detail').forEach(d=>d.classList.remove('open'));if(shouldOpen){detail.classList.add('open');setTimeout(()=>detail.scrollIntoView({behavior:'smooth',block:'nearest'}),30);}};
  document.querySelectorAll('[data-example]').forEach(btn=>btn.addEventListener('click',()=>{const fb=document.getElementById('example-feedback');document.querySelectorAll('[data-example]').forEach(b=>b.disabled=true);const ok=btn.dataset.example==='correct';btn.style.background=ok?'#effcf3':'#fff1f2';btn.style.borderColor=ok?'#16a34a':'#ef4444';fb.textContent=ok?'✅ Correct! Scientific investigation starts with careful observation.':'❌ Not quite. The first step is to observe carefully.';fb.style.color=ok?'#166534':'#b42318';}));
+ const flashData=[
+{emoji:'👀',title:'Observe',front:'A potted plant near a window bends toward the sunlight.',backTitle:'Why does this matter?',back:'Careful observation helps us notice patterns and interesting changes.'},
+{emoji:'❓',title:'Question',front:'Why is the plant growing toward one side?',backTitle:'Ask clearly',back:'A good scientific question gives direction to an investigation.'},
+{emoji:'💭',title:'Think',front:'Maybe the plant is responding to the direction of light.',backTitle:'Possible explanation',back:'We can suggest an idea, but it must be checked using observations or tests.'},
+{emoji:'🧪',title:'Test',front:'Observe similar plants placed in different light directions.',backTitle:'Check the idea',back:'Testing helps us collect evidence instead of depending only on guesses.'},
+{emoji:'💡',title:'Result',front:'Compare the observations and decide what the evidence shows.',backTitle:'Learn from evidence',back:'The result helps us understand whether our idea is supported.'}];
+let flashIndex=0;const fc=document.getElementById('flashCard');function renderFlash(){const d=flashData[flashIndex];fc.classList.remove('flipped');document.getElementById('flashNumber').textContent=flashIndex+1;document.getElementById('flashEmoji').textContent=d.emoji;document.getElementById('flashTitle').textContent=d.title;document.getElementById('flashFront').textContent=d.front;document.getElementById('flashBackTitle').textContent=d.backTitle;document.getElementById('flashBack').textContent=d.back;document.getElementById('flashCount').textContent=(flashIndex+1)+' / '+flashData.length;document.getElementById('flashBar').style.width=((flashIndex+1)/flashData.length*100)+'%';document.getElementById('flashPrev').disabled=flashIndex===0;document.getElementById('flashNext').textContent=flashIndex===flashData.length-1?'Finish →':'Next →';}
+fc.addEventListener('click',()=>fc.classList.toggle('flipped'));document.getElementById('flashPrev').addEventListener('click',()=>{if(flashIndex>0){flashIndex--;renderFlash();}});document.getElementById('flashNext').addEventListener('click',()=>{if(flashIndex<flashData.length-1){flashIndex++;renderFlash();}else{document.getElementById('flashCheck').hidden=false;document.getElementById('flashCheck').scrollIntoView({behavior:'smooth',block:'center'});}});renderFlash();
+
  const feedback=document.getElementById('quiz-feedback');
  document.querySelectorAll('.quiz-option').forEach(btn=>btn.addEventListener('click',()=>{
    document.querySelectorAll('.quiz-option').forEach(b=>b.disabled=true);
