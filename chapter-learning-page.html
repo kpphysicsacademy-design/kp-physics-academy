@@ -21,6 +21,8 @@
 .topic{display:flex;align-items:center;gap:16px;padding:18px 0;border-top:1px solid var(--line);text-decoration:none;color:inherit}.topic:first-of-type{border-top:0}.num{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:#f0effa;color:var(--purple);font-weight:800}.topic-main{flex:1}.topic-main b{display:block;font-size:16px}.topic-main span{display:block;color:var(--muted);font-size:14px;margin-top:4px}.topic svg{width:22px;height:22px;stroke:#475467;fill:none;stroke-width:2}
 .bottom-nav{position:fixed;left:0;right:0;bottom:0;height:78px;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;justify-content:center;z-index:10}.bottom-nav-inner{width:min(760px,100%);display:grid;grid-template-columns:repeat(5,1fr);align-items:center}.nav-item{text-decoration:none;color:#475467;text-align:center;font-size:12px;font-weight:700;padding:9px 3px}.nav-item svg{display:block;width:27px;height:27px;margin:0 auto 5px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.nav-item.home{color:var(--home)}.nav-item.learn{color:var(--learn)}.nav-item.practice{color:var(--practice)}.nav-item.compete{color:var(--compete)}.nav-item.profile{color:var(--profile)}.nav-item.active{position:relative}.nav-item.active:after{content:"";position:absolute;bottom:0;left:30%;right:30%;height:3px;border-radius:3px;background:currentColor}
 @media(max-width:560px){.header{padding:12px 14px 4px}.title-row{padding:0 20px 12px}.title-row h1{font-size:23px}.hero{margin:0 14px 16px;padding:20px;gap:14px;border-radius:22px}.book{width:78px;height:78px;border-radius:20px}.book svg{width:48px}.hero h2{font-size:25px}.hero p{font-size:14px}.card{margin:14px;padding:20px;border-radius:22px}.card h3{font-size:21px}.card>p{font-size:16px}.stats{grid-template-columns:repeat(2,1fr);row-gap:20px}.tabs{padding:0 4px}.tab{min-width:76px;font-size:11px}.tab svg{width:22px;height:22px}}
+
+.content-panel{display:none}.content-panel.active-panel{display:block}.quiz-options{display:grid;gap:10px;margin-top:16px}.quiz-option{width:100%;text-align:left;border:1px solid #dfe3ee;background:#fff;border-radius:14px;padding:14px 16px;font:inherit;color:#344054;cursor:pointer}.quiz-option:hover{border-color:var(--purple);background:#f7f5ff}.quiz-option.correct{border-color:#16a34a;background:#effcf3;color:#166534}.quiz-option.wrong{border-color:#ef4444;background:#fff1f2;color:#b42318}.quiz-feedback{margin-top:14px;padding:12px 14px;border-radius:12px;display:none}.quiz-feedback.show{display:block}.quiz-feedback.success{background:#effcf3;color:#166534}.quiz-feedback.error{background:#fff1f2;color:#b42318}
 </style>
 </head>
 <body>
@@ -38,18 +40,18 @@
 <a class="tab" href="#notes"><svg viewBox="0 0 24 24"><path d="M5 3h10l4 4v14H5V3Z"/><path d="M15 3v5h4M8 13h8M8 17h8"/></svg>Notes</a>
 <a class="tab" href="#quiz"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="m9 12 2 2 4-5"/></svg>Quiz</a>
 </nav>
-<section id="overview" class="card"><h3>About this Chapter</h3><p>In this chapter, we will learn about polynomials, their types, degree, zeros of a polynomial, and the relationship between zeros and coefficients.</p><div class="goal"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="m15 9 6-6M17 3h4v4"/></svg><div><b>Learning Goal</b><span>Understand polynomials, find zeros, and explore the relationship between zeros and coefficients.</span></div></div></section>
+<section id="overview" class="card content-panel active-panel"><h3>About this Chapter</h3><p>In this chapter, we will learn about polynomials, their types, degree, zeros of a polynomial, and the relationship between zeros and coefficients.</p><div class="goal"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="m15 9 6-6M17 3h4v4"/></svg><div><b>Learning Goal</b><span>Understand polynomials, find zeros, and explore the relationship between zeros and coefficients.</span></div></div></section>
 
-<section id="concepts" class="card"><h3>What You Will Explore</h3>
+<section id="concepts" class="card content-panel"><h3>What You Will Explore</h3>
 <a class="topic" href="#concepts"><span class="num">1</span><span class="topic-main"><b>What is Science?</b><span>Science as a way of thinking, observing and understanding the world.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
 <a class="topic" href="#concepts"><span class="num">2</span><span class="topic-main"><b>Science is Everywhere</b><span>Explore Earth, life, food, materials, water, weather and outer space.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
 <a class="topic" href="#concepts"><span class="num">3</span><span class="topic-main"><b>Curiosity and Questions</b><span>Learn why asking questions is the starting point of discovery.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
 <a class="topic" href="#concepts"><span class="num">4</span><span class="topic-main"><b>The Scientific Method</b><span>Observe → Question → Guess → Test → Analyse.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
 <a class="topic" href="#notes"><span class="num">5</span><span class="topic-main"><b>Science in Daily Life</b><span>See how problem-solving in everyday life can work like science.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
 </section>
-<section id="examples" class="card"><h3>Think Like a Scientist</h3><p>When a problem appears, start by observing it. Ask a question, make a possible explanation, test your idea and analyse what happens. This simple process helps us solve problems and make discoveries.</p></section>
-<section id="notes" class="card"><h3>Key Takeaways</h3><p>Be curious. Observe carefully. Ask questions. Test ideas using evidence. Learn from results. Science is a joyful journey of exploration, and discovery often leads to even more questions.</p></section>
-<section id="quiz" class="card"><h3>Quick Reflection</h3><p>What is one “Why?” question you have about the world around you? Think about how you could observe, test or investigate it.</p></section>
+<section id="examples" class="card content-panel"><h3>Think Like a Scientist</h3><p>When a problem appears, start by observing it. Ask a question, make a possible explanation, test your idea and analyse what happens. This simple process helps us solve problems and make discoveries.</p></section>
+<section id="notes" class="card content-panel"><h3>Key Takeaways</h3><p>Be curious. Observe carefully. Ask questions. Test ideas using evidence. Learn from results. Science is a joyful journey of exploration, and discovery often leads to even more questions.</p></section>
+<section id="quiz" class="card content-panel"><h3>Quick Quiz</h3><p>Which sequence best represents a simple scientific investigation?</p><div class="quiz-options"><button class="quiz-option" data-answer="wrong">Guess → Ignore → Finish</button><button class="quiz-option" data-answer="correct">Observe → Question → Guess → Test → Analyse</button><button class="quiz-option" data-answer="wrong">Answer → Stop → Forget</button><button class="quiz-option" data-answer="wrong">Test → Observe → Avoid questions</button></div><div id="quiz-feedback" class="quiz-feedback">Good thinking!</div></section>
 </main>
 <nav class="bottom-nav" aria-label="Main navigation"><div class="bottom-nav-inner">
 <a class="nav-item home" href="skillup-home.html"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10H3V10Z"/><path d="M9 20v-6h6v6"/></svg>Home</a>
@@ -58,4 +60,28 @@
 <a class="nav-item compete" href="compete.html"><svg viewBox="0 0 24 24"><path d="M8 3h8v4a4 4 0 0 1-8 0V3Z"/><path d="M10 11h4v5l3 2H7l3-2v-5Z"/><path d="M5 3v2a4 4 0 0 0 3 3.8M19 3v2a4 4 0 0 1-3 3.8"/></svg>Compete</a>
 <a class="nav-item profile" href="profile.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Profile</a>
 </div></nav>
-</body></html>
+<script>
+(function(){
+ const tabs=[...document.querySelectorAll('.tab')];
+ const panels=[...document.querySelectorAll('.content-panel')];
+ function showTab(id){
+   panels.forEach(p=>p.classList.toggle('active-panel',p.id===id));
+   document.querySelectorAll('.overview-extra').forEach(p=>p.style.display=id==='overview'?'block':'none');
+   tabs.forEach(t=>t.classList.toggle('active',t.getAttribute('href')==='#'+id));
+   window.scrollTo({top:0,behavior:'smooth'});
+ }
+ tabs.forEach(tab=>tab.addEventListener('click',e=>{
+   const href=tab.getAttribute('href');
+   if(href && href.startsWith('#')){e.preventDefault();showTab(href.slice(1));history.replaceState(null,'',href);}
+ }));
+ const feedback=document.getElementById('quiz-feedback');
+ document.querySelectorAll('.quiz-option').forEach(btn=>btn.addEventListener('click',()=>{
+   document.querySelectorAll('.quiz-option').forEach(b=>b.disabled=true);
+   const ok=btn.dataset.answer==='correct';
+   btn.classList.add(ok?'correct':'wrong');
+   if(!ok) document.querySelector('.quiz-option[data-answer="correct"]').classList.add('correct');
+   feedback.textContent=ok?'Excellent! The scientific process begins with observation and questions, then ideas are tested and analysed.':'Not quite. Review the order: Observe → Question → Guess → Test → Analyse.';
+   feedback.className='quiz-feedback show '+(ok?'success':'error');
+ }));
+})();
+</script></body></html>
