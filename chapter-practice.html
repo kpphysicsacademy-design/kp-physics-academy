@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>20 Questions Practice | SkillUp</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f6fb;color:#273244;font-family:Arial,sans-serif}.app{max-width:760px;margin:auto;min-height:100dvh;padding:18px 16px 28px}.top{display:flex;align-items:center;gap:14px}.back{border:0;background:#fff;border-radius:18px;padding:12px 15px;font-size:18px;box-shadow:0 2px 8px #00000012}.title{font-weight:800;font-size:21px}.sub{color:#6b7482;font-size:14px;margin-top:3px}.progress-label{display:flex;justify-content:space-between;margin:24px 2px 9px;font-weight:700}.track{height:10px;background:#dfe4ec;border-radius:99px;overflow:hidden}.fill{height:100%;width:5%;background:#5b45b7;transition:.25s}.card{margin-top:26px;background:#fff;border:1px solid #e1e5ed;border-radius:28px;padding:26px 22px;min-height:420px;box-shadow:0 8px 25px #24344a0b}.badge{display:inline-block;background:#eeeaff;color:#5943ad;border-radius:14px;padding:8px 13px;font-size:13px;font-weight:800}.question{font-size:24px;line-height:1.45;margin:26px 0}.options{display:grid;gap:13px}.option{width:100%;text-align:left;background:#fff;border:2px solid #e0e4eb;border-radius:18px;padding:17px;font-size:17px;color:#344052}.option.selected{border-color:#5b45b7;background:#f3f0ff}.option b{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#edf0f5;margin-right:10px}.actions{display:flex;gap:12px;margin-top:22px}.actions button{flex:1;border-radius:24px;padding:16px;border:1px solid #d9dce4;background:#fff;font-size:16px;font-weight:800}.actions .next{background:#5b45b7;color:#fff;border-color:#5b45b7}.result{text-align:center}.score{font-size:56px;font-weight:900;color:#5b45b7;margin:35px 0 8px}.hidden{display:none}@media(max-width:480px){.app{padding:14px 13px}.card{padding:22px 17px;min-height:calc(100dvh - 180px)}.question{font-size:22px}.option{padding:15px;font-size:16px}}
+</style></head><body>
+<main class="app"><header class="top"><button class="back" onclick="location.href=backUrl()">←</button><div><div class="title">Chapter Practice</div><div class="sub">20 Questions · MCQ Practice</div></div></header>
+<div id="quiz"><div class="progress-label"><span id="count">Question 1 of 20</span><span id="percent">5%</span></div><div class="track"><div class="fill" id="fill"></div></div>
+<section class="card"><span class="badge">Practice</span><h1 class="question" id="question"></h1><div class="options" id="options"></div></section><div class="actions"><button onclick="prev()">‹ Previous</button><button class="next" onclick="next()">Next ›</button></div></div>
+<section class="card result hidden" id="result"><span class="badge">Completed</span><div class="score" id="score"></div><h1>Practice Complete! 🎉</h1><p id="summary"></p><div class="actions"><button onclick="location.href=backUrl()">Back to Chapter</button><button class="next" onclick="restart()">Practice Again</button></div></section>
+</main><script>
+const bank=[
+['Science helps us understand the natural world through…',['Guessing','Observation and experiments','Magic','Luck'],1],
+['What usually starts scientific investigation?',['A question','A prize','A game','A holiday'],0],
+['Carefully noticing things is called…',['Observation','Sleeping','Drawing','Ignoring'],0],
+['Scientists use evidence to…',['Support explanations','Avoid questions','Stop learning','Choose colours'],0],
+['Which is part of the scientific process?',['Testing ideas','Never observing','Only guessing','Avoiding evidence'],0],
+['A tool can help us…',['Observe more carefully','Remove evidence','Stop measuring','Avoid learning'],0],
+['Science is found in…',['Everyday life','Only laboratories','Only books','Only space'],0],
+['Plants are examples of…',['Living things','Machines','Rocks','Tools'],0],
+['Living things interact with their…',['Environment','Nothing','Only books','Screens'],0],
+['A prediction should be checked by…',['Testing','Ignoring','Sleeping','Copying'],0],
+['Evidence is collected through…',['Observation and investigation','Luck only','Stories only','Noise'],0],
+['An experiment can help us…',['Test an idea','Avoid questions','Hide results','Stop observing'],0],
+['A good question is useful for…',['Investigation','Avoiding learning','Guessing forever','Ignoring evidence'],0],
+['Science involves curiosity and…',['Exploration','Only memorising','Only waiting','Avoiding change'],0],
+['Measurement helps us collect…',['Accurate information','Random colours','Stories only','Nothing'],0],
+['Results should be based on…',['Evidence','Personal wishes','Luck','Rumours'],0],
+['A conclusion comes after studying…',['Evidence and results','Nothing','Only titles','Random answers'],0],
+['New discoveries often begin with…',['Questions','Silence','Avoiding curiosity','Stopping observation'],0],
+['Scientists may revise ideas when…',['New evidence appears','Nothing changes','They stop learning','They ignore results'],0],
+['Science is a journey of…',['Wondering and discovering','Never asking','Only guessing','Avoiding nature'],0]
+];
+let i=0,answers=Array(20).fill(null);const $=x=>document.getElementById(x);
+function render(){const q=bank[i];$('question').textContent=q[0];$('count').textContent='Question '+(i+1)+' of 20';$('percent').textContent=Math.round((i+1)/20*100)+'%';$('fill').style.width=((i+1)/20*100)+'%';$('options').innerHTML=q[1].map((x,n)=>'<button class="option '+(answers[i]===n?'selected':'')+'" onclick="pick('+n+')"><b>'+String.fromCharCode(65+n)+'</b>'+x+'</button>').join('');}
+function pick(n){answers[i]=n;render()}function prev(){if(i>0){i--;render()}}function next(){if(answers[i]===null){alert('Please select an answer');return}if(i<19){i++;render()}else finish()}
+function finish(){const score=answers.reduce((s,a,n)=>s+(a===bank[n][2]?1:0),0);$('quiz').classList.add('hidden');$('result').classList.remove('hidden');$('score').textContent=score+' / 20';$('summary').textContent='You answered '+score+' out of 20 questions correctly.'}
+function restart(){i=0;answers=Array(20).fill(null);$('result').classList.add('hidden');$('quiz').classList.remove('hidden');render()}
+function backUrl(){const p=new URLSearchParams(location.search);return 'chapter-preparation.html?class='+(p.get('class')||6)+'&subject='+(p.get('subject')||'science')+'&chapter='+(p.get('chapter')||1)}
+render();
+</script></body></html>
