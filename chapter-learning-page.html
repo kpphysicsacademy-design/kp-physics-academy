@@ -43,6 +43,6 @@ function finishFlashCards(){
 }
 function render(){const c=cards[i];back=false;$('icon').textContent=c[0];$('title').textContent=c[1];$('text').textContent=c[2];$('count').textContent=(i+1)+' / '+cards.length;$('fill').style.width=((i+1)/cards.length*100)+'%';$('prev').disabled=i===0;$('next').textContent=i===cards.length-1?'Finish ✓':'Next ›';}
 function flip(){back=!back;$('text').textContent=back?cards[i][3]:cards[i][2];}
-$('card').onclick=flip;$('flip').onclick=flip;$('prev').onclick=()=>{if(i>0){i--;render()}};$('next').onclick=()=>{if(i<cards.length-1){i++;render()}else{alert('🎉 Flash cards completed!')}};render();
+$('card').onclick=flip;$('flip').onclick=flip;$('prev').onclick=()=>{if(i>0){i--;render()}};$('next').onclick=()=>{if(i<cards.length-1){i++;render()}else{finishFlashCards()}};render();
 </script>
 </body></html>
