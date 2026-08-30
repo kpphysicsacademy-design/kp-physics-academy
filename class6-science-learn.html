@@ -12,11 +12,55 @@
 .bottom-nav{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.97);border-top:1px solid var(--line);padding:10px 8px max(10px,env(safe-area-inset-bottom));z-index:10}.nav-inner{max-width:820px;margin:auto;display:flex;justify-content:space-around}.nav{color:#6a7381;text-decoration:none;display:grid;justify-items:center;gap:5px;font-size:13px;font-weight:800;min-width:58px}.nav i{font-style:normal;font-size:26px}.nav.home{color:#d58b00}.nav.learn{color:#5b45b7}.nav.practice{color:#19836d}.nav.compete{color:#b27a00}.nav.profile{color:#bd3a83}.nav.learn:after{content:"";height:4px;width:42px;border-radius:4px;background:#5b45b7}
 @media(max-width:600px){.top{padding:14px 16px}.brand-name{font-size:23px}.rocket{font-size:28px}.selector{padding:11px 12px;border-radius:16px;font-size:14px}.content{padding:22px 16px 100px}.heading{align-items:flex-start}.heading h1{font-size:30px}.heading p{font-size:16px}.count{font-size:13px;padding:9px 12px}.chapter-list{gap:12px}.chapter-card{min-height:92px;border-radius:21px;padding:18px 16px;gap:15px}.chapter-no{width:50px;height:50px;font-size:23px}.chapter-copy strong{font-size:18px}.chapter-copy span{font-size:15px}.chev{font-size:34px}}
 </style>
-</head>
+<style id="skillupPathStandard">
+.road,.duo-road{position:relative!important;height:auto!important;min-height:0!important;margin:10px auto 18px!important;padding:10px 0!important;display:grid!important;grid-template-columns:1fr 1fr!important;grid-template-rows:auto auto!important;gap:18px 42px!important;max-width:250px!important;box-sizing:border-box!important}
+.road:before,.duo-road:before{content:"";position:absolute!important;left:50%!important;top:16px!important;bottom:16px!important;width:4px!important;background:#e5e7eb!important;border-radius:999px!important;transform:translateX(-50%)!important;z-index:0!important}
+.road .skillup-stage,.duo-road .skillup-stage{position:relative!important;width:70px!important;height:70px!important;margin:0!important;z-index:2!important;transform:none!important;border-radius:50%!important;display:flex!important;align-items:center!important;justify-content:center!important;align-self:center!important;justify-self:center!important}
+.road .skillup-stage:nth-child(1),.duo-road .skillup-stage:nth-child(1){grid-column:1;grid-row:1}
+.road .skillup-stage:nth-child(2),.duo-road .skillup-stage:nth-child(2){grid-column:2;grid-row:1}
+.road .skillup-stage:nth-child(3),.duo-road .skillup-stage:nth-child(3){grid-column:1;grid-row:2}
+.road .skillup-stage:nth-child(4),.duo-road .skillup-stage:nth-child(4){grid-column:2;grid-row:2}
+.road .skillup-stage-link,.duo-road .skillup-stage-link{width:70px!important;height:70px!important;border-radius:50%!important;border:4px solid #fff!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;text-decoration:none!important;color:#fff!important;font-weight:950!important;line-height:1.05!important;box-shadow:0 6px 0 rgba(23,32,51,.18)!important;padding:0!important;box-sizing:border-box!important}
+.skillup-stage.learn .skillup-stage-link{background:#58CC02!important}.skillup-stage.challenge .skillup-stage-link{background:#FF9600!important}.skillup-stage.practice .skillup-stage-link{background:#1CB0F6!important}.skillup-stage.mastery .skillup-stage-link{background:#FFC800!important;color:#4B4B4B!important}.skillup-stage.locked .skillup-stage-link{background:#AFAFAF!important;color:#fff!important}
+.skillup-stage-link svg{width:23px!important;height:23px!important;margin:0 0 3px!important;fill:none!important;stroke:currentColor!important;stroke-width:2.4!important;stroke-linecap:round!important;stroke-linejoin:round!important;display:block!important;flex:0 0 auto!important}
+.skillup-stage-link .skillup-label{position:static!important;transform:none!important;white-space:normal!important;font-size:9px!important;line-height:1.05!important;color:inherit!important;font-weight:950!important;margin:0!important}
+@media(min-width:768px){.road,.duo-road{max-width:300px!important;grid-template-columns:1fr 1fr!important;gap:22px 60px!important}.road .skillup-stage,.duo-road .skillup-stage,.road .skillup-stage-link,.duo-road .skillup-stage-link{width:80px!important;height:80px!important}.skillup-stage-link svg{width:27px!important;height:27px!important}.skillup-stage-link .skillup-label{font-size:10px!important}}
+</style></head>
 <body>
 <div class="page">
 <header class="top"><div class="brand-row"><div class="brand"><span class="rocket">🚀</span><div><div class="brand-name">SKILLUP</div><div class="tag">LEARN · PRACTICE · MASTER</div></div></div><label class="selector">🔬 <select aria-label="Subject"><option>Class 6 – Science</option></select>⌄</label></div></header>
 <main class="content"><div class="heading"><div><h1>Chapters</h1><p>Select a chapter to start learning</p></div><div class="count">▣ 8 Chapters</div></div><section class="chapter-list"><a class="chapter-card current" href="chapter-preparation.html"><div class="chapter-no">1</div><div class="chapter-copy"><strong>Chapter 1</strong><span>The Wonderful World of Science</span></div><div class="chev">›</div></a><a class="chapter-card " href="chapter-preparation.html?chapter=2"><div class="chapter-no">2</div><div class="chapter-copy"><strong>Chapter 2</strong><span>Diversity in the Living World</span></div><div class="chev">›</div></a><a class="chapter-card " href="chapter-preparation.html?chapter=3"><div class="chapter-no">3</div><div class="chapter-copy"><strong>Chapter 3</strong><span>Mindful Eating: A Healthy Body and Mind</span></div><div class="chev">›</div></a><a class="chapter-card " href="chapter-preparation.html?chapter=4"><div class="chapter-no">4</div><div class="chapter-copy"><strong>Chapter 4</strong><span>Materials Around Us</span></div><div class="chev">›</div></a><a class="chapter-card " href="chapter-preparation.html?chapter=5"><div class="chapter-no">5</div><div class="chapter-copy"><strong>Chapter 5</strong><span>Separation of Substances</span></div><div class="chev">›</div></a><a class="chapter-card " href="chapter-preparation.html?chapter=6"><div class="chapter-no">6</div><div class="chapter-copy"><strong>Chapter 6</strong><span>Changes Around Us</span></div><div class="chev">›</div></a><a class="chapter-card " href="chapter-preparation.html?chapter=7"><div class="chapter-no">7</div><div class="chapter-copy"><strong>Chapter 7</strong><span>Getting to Know Our Planet</span></div><div class="chev">›</div></a><a class="chapter-card " href="chapter-preparation.html?chapter=8"><div class="chapter-no">8</div><div class="chapter-copy"><strong>Chapter 8</strong><span>Motion and Measurement of Distances</span></div><div class="chev">›</div></a></section></main>
 </div>
 <nav class="bottom-nav"><div class="nav-inner"><a class="nav home" href="skillup-home.html"><i>⌂</i><span>Home</span></a><a class="nav learn" href="learn.html"><i>▱</i><span>Learn</span></a><a class="nav practice" href="practice.html"><i>◎</i><span>Practice</span></a><a class="nav compete" href="compete.html"><i>♜</i><span>Compete</span></a><a class="nav profile" href="profile.html"><i>♙</i><span>Profile</span></a></div></nav>
-</body></html>
+<script id="skillupPathStandard">
+(function(){
+  const icons={
+    learn:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v16H6.5A2.5 2.5 0 0 0 4 21z"/><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v16h5.5A2.5 2.5 0 0 1 20 21z"/></svg>',
+    challenge:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 5 13h6l-1 9 8-11h-6z"/></svg>',
+    practice:'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1.2"/></svg>',
+    mastery:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v7a6 6 0 0 1-12 0z"/><path d="M6 7H3v2a5 5 0 0 0 5 5M18 7h3v2a5 5 0 0 1-5 5M12 17v4M8 21h8"/></svg>',
+    locked:'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>'
+  };
+  function stageFor(node){
+    const label=node.querySelector('.label,.word');
+    const t=(label?label.textContent:'').trim().toLowerCase();
+    if(t==='concepts'||t==='challenge'||t==='समझें') return 'challenge';
+    if(t==='practice'||t==='अभ्यास') return 'practice';
+    if(t==='mastery'||t==='मास्टर') return 'mastery';
+    if(t==='learn'||t==='पढ़ें') return 'learn';
+    if(node.classList.contains('locked')) return 'locked';
+    return 'learn';
+  }
+  document.querySelectorAll('.road .node,.duo-road .duo-node').forEach(function(node){
+    const stage=stageFor(node);
+    node.classList.add('skillup-stage',stage);
+    let target=node.tagName==='A'?node:node.querySelector('a');
+    if(!target) return;
+    const text=stage==='challenge'?'Challenge':stage==='practice'?'Practice':stage==='mastery'?'Mastery':'Learn';
+    target.classList.add('skillup-stage-link');
+    target.innerHTML=icons[stage]+'<span class="skillup-label">'+text+'</span>';
+  });
+  document.querySelectorAll('.hero p').forEach(function(p){p.textContent=p.textContent.replace(/Concepts/g,'Challenge')});
+  document.querySelectorAll('.version').forEach(function(v){v.textContent='SkillUp v20260826.41'});
+})();
+</script></body></html>
