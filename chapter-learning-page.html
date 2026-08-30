@@ -11,9 +11,9 @@
 </style>
 </head>
 <body>
-<main class="flash-only"><button class="back-top" onclick="goBack()">← <span>Back to Concepts</span></button>
+<main class="flash-only"><button class="back-top" onclick="goBack()">← <span>Back</span></button>
 <section class="flash-card" id="card" aria-label="Flash card">
-<div class="badge">▣ <span id="type">Concept</span></div>
+
 <div class="icon" id="icon">💡</div>
 <h1 id="title">What is Science?</h1>
 <p id="text">Science is a systematic way of understanding the natural world through observation and experimentation.</p>
@@ -35,7 +35,7 @@ const cards=[
 ['🚀','Keep Exploring','Science is a journey of observing, wondering and discovering.','Every answer can lead to a new question.']
 ];
 let i=Math.max(0,cards.findIndex(c=>conceptParam&&c[1].toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-$/,'')===conceptParam)); if(i<0)i=0; let back=false;const $=id=>document.getElementById(id);
-function goBack(){const ref=document.referrer;if(ref && ref.includes(location.host)){history.back()}else{location.href='chapter-learning-page.html#concepts'}}
+function goBack(){const from=new URLSearchParams(location.search).get('from');if(from==='chapter-preparation'){location.href='chapter-preparation.html'}else if(document.referrer&&document.referrer.includes(location.host)){history.back()}else{location.href='chapter-preparation.html'}}
 function render(){const c=cards[i];back=false;$('icon').textContent=c[0];$('title').textContent=c[1];$('text').textContent=c[2];$('count').textContent=(i+1)+' / '+cards.length;$('fill').style.width=((i+1)/cards.length*100)+'%';$('prev').disabled=i===0;$('next').textContent=i===cards.length-1?'Finish ✓':'Next ›';}
 function flip(){back=!back;$('text').textContent=back?cards[i][3]:cards[i][2];}
 $('card').onclick=flip;$('flip').onclick=flip;$('prev').onclick=()=>{if(i>0){i--;render()}};$('next').onclick=()=>{if(i<cards.length-1){i++;render()}else{alert('🎉 Flash cards completed!')}};render();
