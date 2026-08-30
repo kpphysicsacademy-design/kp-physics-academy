@@ -23,6 +23,7 @@
 @media(max-width:560px){.header{padding:12px 14px 4px}.title-row{padding:0 20px 12px}.title-row h1{font-size:23px}.hero{margin:0 14px 16px;padding:20px;gap:14px;border-radius:22px}.book{width:78px;height:78px;border-radius:20px}.book svg{width:48px}.hero h2{font-size:25px}.hero p{font-size:14px}.card{margin:14px;padding:20px;border-radius:22px}.card h3{font-size:21px}.card>p{font-size:16px}.stats{grid-template-columns:repeat(2,1fr);row-gap:20px}.tabs{padding:0 4px}.tab{min-width:76px;font-size:11px}.tab svg{width:22px;height:22px}}
 
 .content-panel{display:none}.content-panel.active-panel{display:block}.quiz-options{display:grid;gap:10px;margin-top:16px}.quiz-option{width:100%;text-align:left;border:1px solid #dfe3ee;background:#fff;border-radius:14px;padding:14px 16px;font:inherit;color:#344054;cursor:pointer}.quiz-option:hover{border-color:var(--purple);background:#f7f5ff}.quiz-option.correct{border-color:#16a34a;background:#effcf3;color:#166534}.quiz-option.wrong{border-color:#ef4444;background:#fff1f2;color:#b42318}.quiz-feedback{margin-top:14px;padding:12px 14px;border-radius:12px;display:none}.quiz-feedback.show{display:block}.quiz-feedback.success{background:#effcf3;color:#166534}.quiz-feedback.error{background:#fff1f2;color:#b42318}
+.concept-detail{margin:0 0 14px 62px;padding:16px;border-radius:16px;background:#f7f5ff;border:1px solid #e6e0ff}.concept-detail h4{margin:0 0 7px;color:#4f3a9e}.concept-detail p{margin:0;line-height:1.55;color:#475467}@media(max-width:560px){.concept-detail{margin-left:0}}
 </style>
 </head>
 <body>
@@ -42,12 +43,33 @@
 </nav>
 <section id="overview" class="card content-panel active-panel"><h3>About this Chapter</h3><p>In this chapter, we will learn about polynomials, their types, degree, zeros of a polynomial, and the relationship between zeros and coefficients.</p><div class="goal"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="m15 9 6-6M17 3h4v4"/></svg><div><b>Learning Goal</b><span>Understand polynomials, find zeros, and explore the relationship between zeros and coefficients.</span></div></div></section>
 
-<section id="concepts" class="card content-panel"><h3>What You Will Explore</h3>
-<a class="topic" href="#concepts"><span class="num">1</span><span class="topic-main"><b>What is Science?</b><span>Science as a way of thinking, observing and understanding the world.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
-<a class="topic" href="#concepts"><span class="num">2</span><span class="topic-main"><b>Science is Everywhere</b><span>Explore Earth, life, food, materials, water, weather and outer space.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
-<a class="topic" href="#concepts"><span class="num">3</span><span class="topic-main"><b>Curiosity and Questions</b><span>Learn why asking questions is the starting point of discovery.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
-<a class="topic" href="#concepts"><span class="num">4</span><span class="topic-main"><b>The Scientific Method</b><span>Observe → Question → Guess → Test → Analyse.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
-<a class="topic" href="#notes"><span class="num">5</span><span class="topic-main"><b>Science in Daily Life</b><span>See how problem-solving in everyday life can work like science.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
+<section id="concepts" class="card content-panel">
+<h3>Concepts</h3>
+<p>Explore the main ideas introduced in <b>The Wonderful World of Science</b>. Each concept follows the chapter's journey from curiosity to scientific investigation.</p>
+
+<a class="topic" href="#concept-1" data-concept="1"><span class="num">1</span><span class="topic-main"><b>What is Science?</b><span>Science is a way of thinking, observing and doing things to understand the world and uncover the secrets of the universe.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
+<div id="concept-1" class="concept-detail" hidden><h4>What is Science?</h4><p>Science begins with curiosity. We ask questions, explore our surroundings and try to understand how things work.</p></div>
+
+<a class="topic" href="#concept-2" data-concept="2"><span class="num">2</span><span class="topic-main"><b>Curiosity and Discovery</b><span>Every discovery can lead to more questions and more things to find out.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
+<div id="concept-2" class="concept-detail" hidden><h4>Curiosity and Discovery</h4><p>The chapter presents science as an unending journey of discovery. New knowledge can change our understanding and often creates new questions.</p></div>
+
+<a class="topic" href="#concept-3" data-concept="3"><span class="num">3</span><span class="topic-main"><b>Science is Everywhere</b><span>Explore mountains, oceans, forests, food, materials, water, weather and outer space.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
+<div id="concept-3" class="concept-detail" hidden><h4>Science is Everywhere</h4><p>Science helps us explore everything from tiny grains of sand and leaves of grass to massive mountains, oceans, galaxies and the stars in the night sky.</p></div>
+
+<a class="topic" href="#concept-4" data-concept="4"><span class="num">4</span><span class="topic-main"><b>Living Things and Our Planet</b><span>Plants and animals survive and thrive in different regions, while Earth provides the environment that supports life.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
+<div id="concept-4" class="concept-detail" hidden><h4>Living Things and Our Planet</h4><p>Observe how seeds grow into plants and caterpillars transform into butterflies. The chapter also introduces Earth as our home and an environment we must protect.</p></div>
+
+<a class="topic" href="#concept-5" data-concept="5"><span class="num">5</span><span class="topic-main"><b>Materials, Food and Water</b><span>Ask what everyday things are made of, how materials differ and how water changes with heating and cooling.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
+<div id="concept-5" class="concept-detail" hidden><h4>Materials, Food and Water</h4><p>Paper, metal, plastic, rubber, magnets and clothes are examples of different materials. The chapter also uses water to explore rain, ice, steam and the ideas of hot and cold.</p></div>
+
+<a class="topic" href="#concept-6" data-concept="6"><span class="num">6</span><span class="topic-main"><b>The Scientific Method</b><span>Observe → Question → Guess → Test → Analyse.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
+<div id="concept-6" class="concept-detail" hidden><h4>The Scientific Method</h4><p>First observe something interesting or not understood. Then ask a question, guess a possible answer, test the guess through experiments or observations and analyse the results.</p></div>
+
+<a class="topic" href="#concept-7" data-concept="7"><span class="num">7</span><span class="topic-main"><b>Thinking Like a Scientist</b><span>Anyone asking questions and finding answers can work like a scientist.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
+<div id="concept-7" class="concept-detail" hidden><h4>Thinking Like a Scientist</h4><p>The chapter gives everyday examples such as checking why a pen stopped writing, finding why a tyre is flat or investigating why a light bulb is not working.</p></div>
+
+<a class="topic" href="#concept-8" data-concept="8"><span class="num">8</span><span class="topic-main"><b>Joyful Exploration</b><span>Keep observing, wondering, asking “Why?” and discovering together.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
+<div id="concept-8" class="concept-detail" hidden><h4>Joyful Exploration</h4><p>Science is presented as a joyful journey. Stay curious, observe your surroundings keenly, ask questions and remember that discovery can be even more enjoyable when people work together.</p></div>
 </section>
 <section id="examples" class="card content-panel"><h3>Think Like a Scientist</h3><p>When a problem appears, start by observing it. Ask a question, make a possible explanation, test your idea and analyse what happens. This simple process helps us solve problems and make discoveries.</p></section>
 <section id="notes" class="card content-panel"><h3>Key Takeaways</h3><p>Be curious. Observe carefully. Ask questions. Test ideas using evidence. Learn from results. Science is a joyful journey of exploration, and discovery often leads to even more questions.</p></section>
@@ -74,6 +96,7 @@
    const href=tab.getAttribute('href');
    if(href && href.startsWith('#')){e.preventDefault();showTab(href.slice(1));history.replaceState(null,'',href);}
  }));
+ document.querySelectorAll('[data-concept]').forEach(item=>item.addEventListener('click',e=>{e.preventDefault();const detail=document.getElementById('concept-'+item.dataset.concept);if(!detail)return;const open=detail.hidden;document.querySelectorAll('.concept-detail').forEach(d=>d.hidden=true);detail.hidden=!open;if(open)detail.scrollIntoView({behavior:'smooth',block:'nearest'};}));
  const feedback=document.getElementById('quiz-feedback');
  document.querySelectorAll('.quiz-option').forEach(btn=>btn.addEventListener('click',()=>{
    document.querySelectorAll('.quiz-option').forEach(b=>b.disabled=true);
