@@ -27,7 +27,7 @@
 <script>
 let progress=0;
 function updateProgress(value,message){progress=Math.max(progress,value);document.getElementById('bar').style.width=progress+'%';document.getElementById('percent').textContent=progress+'%';document.getElementById('status').textContent=message;}
-function goLearn(){updateProgress(33,'Flash cards started! 🃏');location.href='chapter-learning-page.html?from=chapter-preparation&concept=1';}
+function goLearn(){updateProgress(33,'Flash cards started! 🃏');const p=new URLSearchParams(location.search);location.href='chapter-learning-page.html?from=chapter-preparation&class='+(p.get('class')||6)+'&subject='+(p.get('subject')||'science')+'&chapter='+(p.get('chapter')||1);}
 function startStage(stage){if(stage==='Practice'){updateProgress(66,'Practice started! 📝');location.href='question-bank.html?subject=science&chapter=wonderful-world-of-science';}else{updateProgress(100,'Chapter test started! 🏆');location.href='question-bank.html?subject=science&chapter=wonderful-world-of-science&mode=exam';}}
 </script>
 </body></html>
