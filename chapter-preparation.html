@@ -10,7 +10,7 @@
 .hero{background:linear-gradient(135deg,#6246c7,#8a6ee8);color:#fff;border-radius:28px;padding:28px;box-shadow:0 7px 0 #4a339c}.label{font-size:12px;font-weight:bold;letter-spacing:1px;opacity:.8}.hero h1{font-size:30px;margin:10px 0}.hero p{line-height:1.5;margin:0;color:#f0ecff}
 .section-title{margin:26px 4px 12px;font-size:18px}.path{display:grid;gap:14px}.card{background:#fff;border:2px solid #e4e7ef;border-radius:22px;padding:19px;box-shadow:0 4px 0 #e1e5ee}.row{display:flex;gap:14px;align-items:center}.icon{width:52px;height:52px;border-radius:17px;background:#f1edff;display:grid;place-items:center;font-size:27px}.card h2{font-size:19px;margin:0 0 5px}.card p{margin:0;color:#667085;font-size:14px}.card button{margin-top:16px;width:100%;border:0;border-radius:14px;padding:14px;background:#5b3cc4;color:white;font-size:16px;font-weight:bold;cursor:pointer;box-shadow:0 4px 0 #432a9e}.progress{margin-top:24px;background:#fff;border:2px solid #e4e7ef;border-radius:22px;padding:20px}.progress-top{display:flex;justify-content:space-between;font-weight:bold}.bar{height:12px;background:#e9edf3;border-radius:20px;margin-top:14px;overflow:hidden}.bar span{display:block;width:0%;height:100%;background:#5b3cc4;border-radius:20px;transition:.4s}.status{text-align:center;margin:18px 0 0;color:#667085;font-size:14px}
 @media(max-width:500px){.hero h1{font-size:26px}.app{padding:12px}}
-</style>
+.practice-preview{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.practice-preview span{background:#f0ecff;color:#5740ad;border-radius:16px;padding:7px 11px;font-size:12px;font-weight:700}</style>
 </head>
 <body>
 <main class="app">
@@ -19,7 +19,7 @@
 <h3 class="section-title">Your Chapter Journey</h3>
 <div class="path">
 <section class="card"><div class="row"><div class="icon">📖</div><div><h2>Learn</h2><p>Learn the chapter through simple interactive flash cards.</p></div></div><button onclick="goLearn()">Start Flash Cards</button></section>
-<section class="card"><div class="row"><div class="icon">📝</div><div><h2>Practice</h2><p>Practice important chapter questions.</p></div></div><button onclick="startStage('Practice')">Start Practice</button></section>
+<section class="card"><div class="row"><div class="icon">📝</div><div><h2>Practice</h2><p>Answer 20 important questions and check your chapter understanding.</p></div></div><div class="practice-preview"><span>20 Questions</span><span>MCQ Practice</span><span>Results & Score</span></div><button onclick="startStage('Practice')">Start 20 Questions</button></section>
 <section class="card"><div class="row"><div class="icon">🏆</div><div><h2>Chapter Test</h2><p>Check your understanding with a short test.</p></div></div><button onclick="startStage('Chapter Test')">Start Test</button></section>
 </div>
 <section class="progress"><div class="progress-top"><span>📊 Your Progress</span><span id="percent">0%</span></div><div class="bar"><span id="bar"></span></div><div class="status" id="status">Start your chapter journey!</div></section>
