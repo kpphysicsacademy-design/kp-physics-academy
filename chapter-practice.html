@@ -27,6 +27,10 @@ const bank=[
 ["New discoveries often lead to:",["More questions and investigation","The end of science","No further observation","No curiosity"],0,"Discoveries often create new questions for scientists to explore."],
 ["Science is best seen as a journey of:",["Wondering, investigating and discovering","Never asking questions","Only guessing","Avoiding nature"],0,"Science continues through curiosity, investigation and discovery."]
 ];
+const originalBank=bank.map(q=>[q[0],q[1].map((text,index)=>({text,correct:index===q[2]})),q[3]]);
+function shuffle(a){for(let n=a.length-1;n>0;n--){const j=Math.floor(Math.random()*(n+1));[a[n],a[j]]=[a[j],a[n]]}return a}
+let quizBank=shuffle(originalBank.map(q=>[q[0],shuffle(q[1].map(o=>({...o}))),q[2]]));
+bank.length=0;quizBank.forEach(q=>bank.push([q[0],q[1].map(o=>o.text),q[1].findIndex(o=>o.correct),q[2]]));
 let i=0,answers=Array(bank.length).fill(null),checked=Array(bank.length).fill(false);const $=id=>document.getElementById(id);
 const p=new URLSearchParams(location.search);if(p.get("title"))$("chapterTitle").textContent=decodeURIComponent(p.get("title"))+" Practice";
 function render(){let q=bank[i],answered=checked[i];$("count").textContent="Question "+(i+1)+" of "+bank.length;$("percent").textContent=Math.round((i+1)/bank.length*100)+"%";$("fill").style.width=((i+1)/bank.length*100)+"%";$("question").textContent=q[0];$("options").innerHTML=q[1].map((o,n)=>{let c="option";if(answered&&n===q[2])c+=" correct";if(answered&&answers[i]===n&&n!==q[2])c+=" wrong";return '<button class="'+c+'" onclick="pick('+n+')" '+(answered?"disabled":"")+'><b>'+String.fromCharCode(65+n)+'</b>'+o+"</button>"}).join("");$("explain").innerHTML=answered?'<div class="explain"><b>'+(answers[i]===q[2]?"✓ Correct! ":"Explanation: ")+'</b>'+q[3]+"</div>":"";$("nextBtn").textContent=i===bank.length-1?"Finish ›":"Next ›"}
