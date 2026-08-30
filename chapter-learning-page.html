@@ -30,106 +30,58 @@
 
 .flash-progress{display:flex;align-items:center;gap:12px;margin:18px 0;font-weight:800;color:#5b3cc4}.flash-progress>div{height:10px;flex:1;border-radius:99px;background:#ebe8f8;overflow:hidden}.flash-progress i{display:block;height:100%;width:20%;border-radius:99px;background:#5b3cc4;transition:.25s}.flash-card-wrap{perspective:1200px}.flash-card{position:relative;width:100%;min-height:330px;border:0;background:transparent;padding:0;cursor:pointer;transform-style:preserve-3d;transition:transform .55s ease}.flash-card.flipped{transform:rotateY(180deg)}.flash-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;border-radius:30px;backface-visibility:hidden;border:2px solid #e5eaf2;box-shadow:0 7px 0 #dfe5ef;text-align:center}.flash-front{background:linear-gradient(145deg,#ffffff,#f7f5ff)}.flash-back{background:linear-gradient(145deg,#5b3cc4,#6d53d1);color:#fff;transform:rotateY(180deg);box-shadow:0 7px 0 #432a9e}.flash-number{position:absolute;top:18px;left:20px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#ece8ff;color:#5b3cc4;font-weight:900}.flash-emoji{font-size:60px;margin-bottom:16px}.flash-face b{font-size:28px;font-weight:900}.flash-face p{max-width:440px;font-size:18px;line-height:1.55;margin:12px 0;color:#667085}.flash-back p{color:#f0edff}.flash-face small{position:absolute;bottom:20px;opacity:.7}.flash-controls{display:flex;gap:12px;margin-top:18px}.flash-controls button{flex:1;padding:14px;border-radius:16px;border:2px solid #e5eaf2;background:#fff;font:inherit;font-weight:850;cursor:pointer;box-shadow:0 4px 0 #dfe5ef}.flash-controls button:last-child{background:#5b3cc4;color:#fff;border-color:#5b3cc4;box-shadow:0 4px 0 #432a9e}.flash-controls button:disabled{opacity:.45;cursor:not-allowed}@media(max-width:560px){.flash-card{min-height:360px}.flash-face{padding:25px}.flash-face b{font-size:24px}.flash-face p{font-size:16px}.flash-emoji{font-size:52px}}
 .simple-example{margin-top:18px;padding:24px;border:2px solid #e5eaf2;border-radius:24px;background:#fff;text-align:center;box-shadow:0 4px 0 #e4e9f1}.simple-icon{font-size:52px}.simple-example h4{font-size:22px;margin:10px 0}.simple-example p{line-height:1.6;color:#475467}.simple-answer{margin-top:16px;padding:16px;border-radius:16px;background:#f5f3ff;line-height:1.55}
+
+/* Flash-card Learn architecture */
+body{background:#f5f6fb;color:#27313f}.flash-app{max-width:760px;margin:auto;padding:18px 22px 120px}.flash-top{display:flex;align-items:center;gap:12px;font-size:20px;color:#5f6876}.back-btn{border:0;background:transparent;font-size:34px;cursor:pointer;color:#3e4a5b}.how-btn{margin-left:auto;border:1px solid #d9dce5;border-radius:28px;background:#fff;padding:10px 18px;font-size:15px;color:#4e5968}.flash-hero{margin-top:18px;display:flex;gap:28px;align-items:center;padding:38px;border-radius:38px;background:linear-gradient(135deg,#332568,#4f3a91);color:#fff;box-shadow:0 10px 28px rgba(62,46,120,.18)}.hero-book{width:132px;height:132px;border-radius:34px;background:rgba(255,255,255,.12);display:grid;place-items:center;font-size:70px}.flash-hero small{font-size:17px;opacity:.82}.flash-hero h1{font-size:42px;line-height:1.15;margin:12px 0}.flash-hero p{font-size:19px;color:#ded8f5;margin:0 0 22px}.flash-pill{display:inline-block;border:1px solid rgba(255,255,255,.35);border-radius:25px;padding:10px 20px;background:rgba(255,255,255,.08);font-size:18px}.flash-intro{margin:38px 6px 22px}.flash-intro h2{font-size:28px;margin:0 0 8px}.flash-intro p{font-size:18px;color:#667085}.flash-card-new{min-height:410px;border:1px solid #dce1eb;border-radius:32px;background:#fff;padding:34px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(45,57,78,.06);cursor:pointer}.flash-card-new.is-flipped{background:#f4f1ff}.flash-tag{position:absolute;align-self:flex-start;align-self:flex-start;margin-top:-310px;background:#5c46b8;color:#fff;border-radius:10px;padding:9px 15px;font-weight:700}.flash-symbol{font-size:58px;margin:20px 0}.flash-card-new h2{font-size:32px;margin:8px 0 18px}.flash-card-new p{max-width:520px;font-size:22px;line-height:1.65;color:#485465;margin:0}.flash-card-new small{margin-top:28px;color:#8993a3}.flash-counter{text-align:center;margin:28px 0 18px;font-size:17px}.flash-track{height:8px;background:#e2e5ec;border-radius:99px;margin:14px auto 0;max-width:620px}.flash-track i{display:block;height:100%;width:12.5%;background:#5c46b8;border-radius:99px;transition:.25s}.flash-actions{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:18px}.flash-actions button{border:1px solid #d6d1e9;background:#fff;border-radius:28px;padding:17px;font-size:18px;color:#564b83;cursor:pointer}.flash-actions .flip-btn{background:#5b3cb8;color:#fff;border-color:#5b3cb8;font-weight:700}.flash-actions button:disabled{opacity:.45}.quick-card{margin-top:34px;display:flex;align-items:center;gap:18px;background:#f0eff9;border-radius:26px;padding:22px 28px}.quick-icon{font-size:42px;color:#5b3cb8}.quick-card div{display:grid;gap:7px}.quick-card b{font-size:20px;color:#4b4380}.quick-card span{font-size:16px;color:#5d6776}.quick-card button{margin-left:auto;border:1px solid #d6d1e9;background:#fff;border-radius:24px;padding:12px 20px;font-size:16px;color:#564b83}.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e3e6ed}.bottom-nav-inner{max-width:760px;margin:auto;display:flex;justify-content:space-around;padding:13px 6px 17px}.nav-item{display:grid;gap:4px;text-align:center;text-decoration:none;font-size:25px}.nav-item span{font-size:13px;font-weight:700}.home{color:#d68b00}.learn{color:#5b3cb8}.practice{color:#187c68}.compete{color:#b27a00}.profile{color:#b02b75}.nav-item.active span{border-bottom:4px solid currentColor;padding-bottom:7px}
+@media(max-width:600px){.flash-app{padding:12px 16px 110px}.flash-top{font-size:18px}.how-btn{font-size:13px;padding:9px 12px}.flash-hero{padding:28px 24px;gap:18px;border-radius:32px}.hero-book{width:90px;height:90px;font-size:48px;border-radius:24px}.flash-hero h1{font-size:31px}.flash-hero p{font-size:16px}.flash-card-new{min-height:380px;padding:25px}.flash-card-new h2{font-size:27px}.flash-card-new p{font-size:18px}.flash-tag{margin-top:-285px}.flash-actions{gap:8px}.flash-actions button{padding:14px 8px;font-size:14px}.quick-card{padding:18px}.quick-card button{padding:10px 14px}.flash-intro{margin-top:28px}}
 </style>
 </head>
 <body>
-<main class="app">
-<header class="header">
-<button class="icon-btn" aria-label="Back" onclick="history.back()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
-<button class="icon-btn" aria-label="Bookmark"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4V3Z"/></svg></button>
-</header>
-<section class="title-row"><div><h1>Class 6 Science</h1><p>Learn • NCERT Curiosity</p></div></section>
-<section class="hero"><div class="book"><svg viewBox="0 0 24 24"><path d="M3 5.5A3.5 3.5 0 0 1 7 5h5v14H7a4 4 0 0 0-4 1V5.5Z"/><path d="M21 5.5A3.5 3.5 0 0 0 17 5h-5v14h5a4 4 0 0 1 4 1V5.5Z"/></svg></div><div><small>Chapter 1</small><h2>The Wonderful World of Science</h2><p>Curiosity • Observation • Scientific Method</p><span class="pill">Ready to Explore</span></div></section>
-<nav class="tabs" aria-label="Chapter sections">
-<a class="tab active" href="#overview"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10H3V10Z"/><path d="M9 20v-6h6v6"/></svg>Overview</a>
-<a class="tab" href="#concepts"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="m8 7.5 3 8M16 7.5l-3 8"/></svg>Concepts</a>
-<a class="tab" href="#examples"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6V3Z"/><path d="M15 3v4h4M9 12h6M9 16h6"/></svg>Examples</a>
-<a class="tab" href="#notes"><svg viewBox="0 0 24 24"><path d="M5 3h10l4 4v14H5V3Z"/><path d="M15 3v5h4M8 13h8M8 17h8"/></svg>Notes</a>
-<a class="tab" href="#quiz"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="m9 12 2 2 4-5"/></svg>Quiz</a>
-</nav>
-<section id="overview" class="card content-panel active-panel"><h3>About this Chapter</h3><p>In this chapter, we will learn about polynomials, their types, degree, zeros of a polynomial, and the relationship between zeros and coefficients.</p><div class="goal"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="m15 9 6-6M17 3h4v4"/></svg><div><b>Learning Goal</b><span>Understand polynomials, find zeros, and explore the relationship between zeros and coefficients.</span></div></div></section>
-
-<section id="concepts" class="card content-panel">
-<h3>Concepts</h3>
-<p>Explore the main ideas introduced in <b>The Wonderful World of Science</b>. Each concept follows the chapter's journey from curiosity to scientific investigation.</p>
-
-<a class="topic" href="concept-detail.html?concept=1" target="_blank" rel="noopener"><span class="num">1</span><span class="topic-main"><b>What is Science?</b><span>Science is a way of thinking, observing and doing things to understand the world and uncover the secrets of the universe.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
-
-
-<a class="topic" href="concept-detail.html?concept=2" target="_blank" rel="noopener"><span class="num">2</span><span class="topic-main"><b>Curiosity and Discovery</b><span>Every discovery can lead to more questions and more things to find out.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
-
-
-<a class="topic" href="concept-detail.html?concept=3" target="_blank" rel="noopener"><span class="num">3</span><span class="topic-main"><b>Science is Everywhere</b><span>Explore mountains, oceans, forests, food, materials, water, weather and outer space.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
-
-
-<a class="topic" href="concept-detail.html?concept=4" target="_blank" rel="noopener"><span class="num">4</span><span class="topic-main"><b>Living Things and Our Planet</b><span>Plants and animals survive and thrive in different regions, while Earth provides the environment that supports life.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
-
-
-<a class="topic" href="concept-detail.html?concept=5" target="_blank" rel="noopener"><span class="num">5</span><span class="topic-main"><b>Materials, Food and Water</b><span>Ask what everyday things are made of, how materials differ and how water changes with heating and cooling.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
-
-
-<a class="topic" href="concept-detail.html?concept=6" target="_blank" rel="noopener"><span class="num">6</span><span class="topic-main"><b>The Scientific Method</b><span>Observe → Question → Guess → Test → Analyse.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
-
-
-<a class="topic" href="concept-detail.html?concept=7" target="_blank" rel="noopener"><span class="num">7</span><span class="topic-main"><b>Thinking Like a Scientist</b><span>Anyone asking questions and finding answers can work like a scientist.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
-
-
-<a class="topic" href="concept-detail.html?concept=8" target="_blank" rel="noopener"><span class="num">8</span><span class="topic-main"><b>Joyful Exploration</b><span>Keep observing, wondering, asking “Why?” and discovering together.</span></span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
-
-</section>
-<section id="examples" class="card content-panel">
-<h3>Examples</h3>
-<p>Learn with one simple real-life example.</p>
-<div class="simple-example">
-<span class="simple-icon">🌱</span>
-<h4>Why does a plant grow toward sunlight?</h4>
-<p><b>Observation:</b> A plant near a window bends toward the light.</p>
-<div class="simple-answer"><b>💡 Simple idea:</b> Living things respond to their surroundings. We can observe the plant and ask questions to learn more.</div>
+<main class="flash-app">
+<header class="flash-top"><button class="back-btn" onclick="history.back()">←</button><span>Learn · NCERT Curiosity</span><button class="how-btn">💡 How it works</button></header>
+<section class="flash-hero"><div class="hero-book">▱</div><div><small>CHAPTER 1</small><h1>The Wonderful<br>World of Science</h1><p>Curiosity · Observation · Scientific Method</p><span class="flash-pill">▣ Flash Cards</span></div></section>
+<section class="flash-intro"><h2>Learn with Flash Cards</h2><p>Swipe through important concepts in a simple way.</p></section>
+<section class="flash-stage">
+<div class="flash-card-new" id="flashCard">
+<div class="flash-tag">▣ <span id="flashType">Concept</span></div>
+<div class="flash-symbol" id="flashIcon">💡</div>
+<h2 id="flashTitle">What is Science?</h2>
+<p id="flashText">Science is a systematic way of understanding the natural world through observation and experimentation.</p>
+<small>Tap the card to flip</small>
 </div>
-<div class="example-check"><b>❓ Quick Check</b><p>What should we do first to investigate this?</p><div class="example-options"><button data-example="wrong">Guess the final answer</button><button data-example="correct">Observe carefully</button><button data-example="wrong">Ignore the plant</button></div><p id="example-feedback" class="example-feedback"></p></div>
-</section><section id="notes" class="card content-panel"><h3>Key Takeaways</h3><p>Be curious. Observe carefully. Ask questions. Test ideas using evidence. Learn from results. Science is a joyful journey of exploration, and discovery often leads to even more questions.</p></section>
-<section id="quiz" class="card content-panel"><h3>Quick Quiz</h3><p>Which sequence best represents a simple scientific investigation?</p><div class="quiz-options"><button class="quiz-option" data-answer="wrong">Guess → Ignore → Finish</button><button class="quiz-option" data-answer="correct">Observe → Question → Guess → Test → Analyse</button><button class="quiz-option" data-answer="wrong">Answer → Stop → Forget</button><button class="quiz-option" data-answer="wrong">Test → Observe → Avoid questions</button></div><div id="quiz-feedback" class="quiz-feedback">Good thinking!</div></section>
+<div class="flash-counter"><span id="flashCount">1 / 8</span><div class="flash-track"><i id="flashBar"></i></div></div>
+<div class="flash-actions"><button id="prevBtn">‹ Previous</button><button class="flip-btn" id="flipBtn">↻ Flip Card</button><button id="nextBtn">Next ›</button></div>
+</section>
+<section class="quick-card"><div class="quick-icon">◎</div><div><b>Quick Check</b><span id="quickQuestion">What is the main step in science?</span></div><button id="answerBtn">Answer ›</button></section>
 </main>
-<nav class="bottom-nav" aria-label="Main navigation"><div class="bottom-nav-inner">
-<a class="nav-item home" href="skillup-home.html"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10H3V10Z"/><path d="M9 20v-6h6v6"/></svg>Home</a>
-<a class="nav-item learn active" href="learn.html"><svg viewBox="0 0 24 24"><path d="M4 4h7a3 3 0 0 1 3 3v13H7a3 3 0 0 0-3 1V4Z"/><path d="M20 4h-7v17h4a3 3 0 0 1 3 1V4Z"/></svg>Learn</a>
-<a class="nav-item practice" href="practice.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="m16 8 5-5"/></svg>Practice</a>
-<a class="nav-item compete" href="compete.html"><svg viewBox="0 0 24 24"><path d="M8 3h8v4a4 4 0 0 1-8 0V3Z"/><path d="M10 11h4v5l3 2H7l3-2v-5Z"/><path d="M5 3v2a4 4 0 0 0 3 3.8M19 3v2a4 4 0 0 1-3 3.8"/></svg>Compete</a>
-<a class="nav-item profile" href="profile.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Profile</a>
+<nav class="bottom-nav"><div class="bottom-nav-inner">
+<a class="nav-item home" href="skillup-home.html">⌂<span>Home</span></a>
+<a class="nav-item learn active" href="learn.html">▱<span>Learn</span></a>
+<a class="nav-item practice" href="practice.html">◎<span>Practice</span></a>
+<a class="nav-item compete" href="compete.html">♜<span>Compete</span></a>
+<a class="nav-item profile" href="profile.html">♙<span>Profile</span></a>
 </div></nav>
 <script>
-(function(){
- const tabs=[...document.querySelectorAll('.tab')];
- const panels=[...document.querySelectorAll('.content-panel')];
- function showTab(id){
-   panels.forEach(p=>p.classList.toggle('active-panel',p.id===id));
-   document.querySelectorAll('.overview-extra').forEach(p=>p.style.display=id==='overview'?'block':'none');
-   tabs.forEach(t=>t.classList.toggle('active',t.getAttribute('href')==='#'+id));
-   window.scrollTo({top:0,behavior:'smooth'});
- }
- tabs.forEach(tab=>tab.addEventListener('click',e=>{
-   const href=tab.getAttribute('href');
-   if(href && href.startsWith('#')){e.preventDefault();showTab(href.slice(1));history.replaceState(null,'',href);}
- }));
- window.toggleConcept=function(id){const detail=document.getElementById(id);if(!detail)return;const shouldOpen=!detail.classList.contains('open');document.querySelectorAll('.concept-detail').forEach(d=>d.classList.remove('open'));if(shouldOpen){detail.classList.add('open');setTimeout(()=>detail.scrollIntoView({behavior:'smooth',block:'nearest'}),30);}};
- document.querySelectorAll('[data-example]').forEach(btn=>btn.addEventListener('click',()=>{const fb=document.getElementById('example-feedback');document.querySelectorAll('[data-example]').forEach(b=>b.disabled=true);const ok=btn.dataset.example==='correct';btn.style.background=ok?'#effcf3':'#fff1f2';btn.style.borderColor=ok?'#16a34a':'#ef4444';fb.textContent=ok?'✅ Correct! Scientific investigation starts with careful observation.':'❌ Not quite. The first step is to observe carefully.';fb.style.color=ok?'#166534':'#b42318';}));
- const flashData=[
-{emoji:'👀',title:'Observe',front:'A potted plant near a window bends toward the sunlight.',backTitle:'Why does this matter?',back:'Careful observation helps us notice patterns and interesting changes.'},
-{emoji:'❓',title:'Question',front:'Why is the plant growing toward one side?',backTitle:'Ask clearly',back:'A good scientific question gives direction to an investigation.'},
-{emoji:'💭',title:'Think',front:'Maybe the plant is responding to the direction of light.',backTitle:'Possible explanation',back:'We can suggest an idea, but it must be checked using observations or tests.'},
-{emoji:'🧪',title:'Test',front:'Observe similar plants placed in different light directions.',backTitle:'Check the idea',back:'Testing helps us collect evidence instead of depending only on guesses.'},
-{emoji:'💡',title:'Result',front:'Compare the observations and decide what the evidence shows.',backTitle:'Learn from evidence',back:'The result helps us understand whether our idea is supported.'}];
-let flashIndex=0;const fc=document.getElementById('flashCard');function renderFlash(){const d=flashData[flashIndex];fc.classList.remove('flipped');document.getElementById('flashNumber').textContent=flashIndex+1;document.getElementById('flashEmoji').textContent=d.emoji;document.getElementById('flashTitle').textContent=d.title;document.getElementById('flashFront').textContent=d.front;document.getElementById('flashBackTitle').textContent=d.backTitle;document.getElementById('flashBack').textContent=d.back;document.getElementById('flashCount').textContent=(flashIndex+1)+' / '+flashData.length;document.getElementById('flashBar').style.width=((flashIndex+1)/flashData.length*100)+'%';document.getElementById('flashPrev').disabled=flashIndex===0;document.getElementById('flashNext').textContent=flashIndex===flashData.length-1?'Finish →':'Next →';}
-fc.addEventListener('click',()=>fc.classList.toggle('flipped'));document.getElementById('flashPrev').addEventListener('click',()=>{if(flashIndex>0){flashIndex--;renderFlash();}});document.getElementById('flashNext').addEventListener('click',()=>{if(flashIndex<flashData.length-1){flashIndex++;renderFlash();}else{document.getElementById('flashCheck').hidden=false;document.getElementById('flashCheck').scrollIntoView({behavior:'smooth',block:'center'});}});renderFlash();
-
- const feedback=document.getElementById('quiz-feedback');
- document.querySelectorAll('.quiz-option').forEach(btn=>btn.addEventListener('click',()=>{
-   document.querySelectorAll('.quiz-option').forEach(b=>b.disabled=true);
-   const ok=btn.dataset.answer==='correct';
-   btn.classList.add(ok?'correct':'wrong');
-   if(!ok) document.querySelector('.quiz-option[data-answer="correct"]').classList.add('correct');
-   feedback.textContent=ok?'Excellent! The scientific process begins with observation and questions, then ideas are tested and analysed.':'Not quite. Review the order: Observe → Question → Guess → Test → Analyse.';
-   feedback.className='quiz-feedback show '+(ok?'success':'error');
- }));
-})();
-</script></body></html>
+const cards=[
+{icon:'💡',type:'Concept',title:'What is Science?',front:'Science is a systematic way of understanding the natural world through observation and experimentation.',back:'Science helps us ask questions, investigate ideas and understand how the world works.',q:'What is the main step in science?'},
+{icon:'❓',type:'Concept',title:'Curiosity',front:'Curiosity makes us ask questions about the things we see around us.',back:'Every discovery begins with a question and the desire to find an answer.',q:'What helps us start asking questions?'},
+{icon:'👀',type:'Concept',title:'Observation',front:'Observation means carefully noticing things using our senses and tools.',back:'Good observation helps us collect useful information before making conclusions.',q:'What should you do before making a conclusion?'},
+{icon:'🌍',type:'Concept',title:'Science is Everywhere',front:'Science is present in nature, food, water, weather, machines and space.',back:'Looking carefully at everyday life helps us discover science all around us.',q:'Where can we find science?'},
+{icon:'🌱',type:'Concept',title:'Living Things',front:'Plants and animals grow, respond and depend on their surroundings.',back:'Living things interact with their environment to survive and thrive.',q:'What do living things depend on?'},
+{icon:'🧪',type:'Concept',title:'Testing Ideas',front:'Scientists test ideas and collect evidence instead of relying only on guesses.',back:'Evidence helps us decide whether an explanation is supported.',q:'Why do we test ideas?'},
+{icon:'🔬',type:'Concept',title:'Scientific Method',front:'Observe, ask, think, test and analyse to investigate a question.',back:'A clear process helps us investigate problems in an organised way.',q:'What comes after observation?'},
+{icon:'🚀',type:'Concept',title:'Keep Exploring',front:'Science is a journey of observing, wondering and discovering.',back:'New answers often lead to new questions and more exploration.',q:'What should a curious learner keep doing?'}
+];
+let index=0,flipped=false;
+const el=id=>document.getElementById(id);
+function render(){
+const c=cards[index];flipped=false;
+el('flashIcon').textContent=c.icon;el('flashType').textContent=c.type;el('flashTitle').textContent=c.title;el('flashText').textContent=c.front;el('flashCount').textContent=(index+1)+' / '+cards.length;el('flashBar').style.width=((index+1)/cards.length*100)+'%';el('quickQuestion').textContent=c.q;el('prevBtn').disabled=index===0;el('nextBtn').textContent=index===cards.length-1?'Finish ✓':'Next ›';}
+function flip(){const c=cards[index];flipped=!flipped;el('flashCard').classList.toggle('is-flipped',flipped);el('flashText').textContent=flipped?c.back:c.front;}
+el('flashCard').onclick=flip;el('flipBtn').onclick=flip;
+el('prevBtn').onclick=()=>{if(index){index--;render();}};
+el('nextBtn').onclick=()=>{if(index<cards.length-1){index++;render();}else{alert('🎉 Chapter flash cards complete!');}};
+el('answerBtn').onclick=()=>alert('💡 Think about the current flash card, then check your understanding while practicing.');
+render();
+</script>
+</body></html>
