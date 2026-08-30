@@ -18,7 +18,7 @@
 <section class="hero"><div class="label">CLASS 6 • SCIENCE</div><h1>The Wonderful World of Science</h1><p>A simple chapter-by-chapter preparation journey.</p></section>
 <h3 class="section-title">Your Chapter Journey</h3>
 <div class="path">
-<section class="card"><div class="row"><div class="icon">📖</div><div><h2>Learn</h2><p>Understand concepts with simple explanations and examples.</p></div></div><button onclick="goLearn()">Start Learning</button></section>
+<section class="card"><div class="row"><div class="icon">📖</div><div><h2>Learn</h2><p>Learn the chapter through simple interactive flash cards.</p></div></div><button onclick="goLearn()">Start Flash Cards</button></section>
 <section class="card"><div class="row"><div class="icon">📝</div><div><h2>Practice</h2><p>Practice important chapter questions.</p></div></div><button onclick="startStage('Practice')">Start Practice</button></section>
 <section class="card"><div class="row"><div class="icon">🏆</div><div><h2>Chapter Test</h2><p>Check your understanding with a short test.</p></div></div><button onclick="startStage('Chapter Test')">Start Test</button></section>
 </div>
@@ -27,7 +27,7 @@
 <script>
 let progress=0;
 function updateProgress(value,message){progress=Math.max(progress,value);document.getElementById('bar').style.width=progress+'%';document.getElementById('percent').textContent=progress+'%';document.getElementById('status').textContent=message;}
-function goLearn(){updateProgress(33,'Learning started! 📖');location.href='chapter-learning-page.html';}
+function goLearn(){updateProgress(33,'Flash cards started! 🃏');location.href='chapter-learning-page.html#examples';}
 function startStage(stage){if(stage==='Practice')updateProgress(66,'Practice started! 📝');else updateProgress(100,'Chapter test started! 🏆');alert(stage+' section is ready for the next page update.');}
 </script>
 </body></html>
