@@ -1,109 +1,25 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SkillUp Admin | MCQ Upload</title>
-<style>
-body{font-family:Arial,sans-serif;margin:0;background:#f6f8fb;color:#182230}.wrap{max-width:1000px;margin:auto;padding:24px}.card{background:#fff;border-radius:16px;padding:24px;margin:16px 0;box-shadow:0 4px 18px #0001}button{padding:12px 18px;border:0;border-radius:10px;background:#2563eb;color:#fff;font-weight:700;cursor:pointer;margin:4px}button:disabled{opacity:.55;cursor:not-allowed}input{margin:12px 0}.hidden{display:none}.stat{display:inline-block;margin:8px 20px 8px 0}.ok{color:#15803d}.err{color:#dc2626}.warn{color:#b45309}progress{width:100%;height:20px}table{width:100%;border-collapse:collapse;font-size:13px;overflow:auto}td,th{padding:8px;border-bottom:1px solid #ddd;text-align:left;vertical-align:top}.notice{padding:12px;border-radius:10px;background:#eef4ff;margin-top:12px}.errors{max-height:180px;overflow:auto;background:#fff7f7;padding:10px;border-radius:8px}
-</style>
-</head>
-<body>
-<main class="wrap">
-<h1>🔐 SkillUp Admin</h1><p>Secure Bulk MCQ CSV Upload</p>
-<section class="card">
-<h2>📁 Select CSV</h2>
-<input id="csv" type="file" accept=".csv,text/csv">
-<p>Required columns: id, class, subject, chapter, topic, difficulty, question, option_a, option_b, option_c, option_d, correct_answer, explanation</p>
-<button onclick="validateCSV()">🔍 Validate & Preview</button>
-</section>
-<section id="results" class="card hidden">
-<h2>📊 Validation Results</h2>
-<div class="stat">Total: <b id="total">0</b></div><div class="stat ok">Valid: <b id="valid">0</b></div><div class="stat err">Errors: <b id="errors">0</b></div>
-<div id="errorList" class="errors hidden"></div>
-<h3>Preview</h3><table id="preview"></table>
-<div class="notice">Only valid rows are uploaded. Existing IDs are overwritten, so re-uploading the same CSV is safe.</div>
-<button id="uploadBtn" onclick="uploadQuestions()">☁️ Upload Valid Questions</button>
-<div id="uploadStatus" class="hidden"><p id="status"></p><progress id="progress" value="0" max="100"></progress><p id="report"></p></div>
-</section>
-</main>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SkillUp Admin | MCQ Upload</title><style>
+body{font-family:Arial,sans-serif;margin:0;background:#f6f8fb;color:#182230}.wrap{max-width:1000px;margin:auto;padding:24px}.card{background:#fff;border-radius:16px;padding:24px;margin:16px 0;box-shadow:0 4px 18px #0001}button{padding:12px 18px;border:0;border-radius:10px;background:#2563eb;color:#fff;font-weight:700;cursor:pointer;margin:4px}button:disabled{opacity:.55;cursor:not-allowed}.hidden{display:none}.stat{display:inline-block;margin:8px 20px 8px 0}.ok{color:#15803d}.err{color:#dc2626}progress{width:100%;height:20px}table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:8px;border-bottom:1px solid #ddd;text-align:left}.notice{padding:12px;border-radius:10px;background:#eef4ff;margin-top:12px}.errors{max-height:180px;overflow:auto;background:#fff7f7;padding:10px;border-radius:8px}.auth{padding:14px;border-radius:10px;background:#fff7ed}
+</style></head><body><main class="wrap"><h1>🔐 SkillUp Admin</h1><p>Secure Bulk MCQ CSV Upload</p>
+<section id="authCard" class="card"><h2>Admin Authentication</h2><div id="authState" class="auth">Checking sign-in status…</div><button id="googleBtn">Sign in with Google</button><button id="logoutBtn" class="hidden">Sign out</button></section>
+<section id="appCard" class="card hidden"><h2>📁 Select CSV</h2><input id="csv" type="file" accept=".csv,text/csv"><p>Required columns: id, class, subject, chapter, topic, difficulty, question, option_a, option_b, option_c, option_d, correct_answer, explanation</p><button onclick="validateCSV()">🔍 Validate & Preview</button></section>
+<section id="results" class="card hidden"><h2>📊 Validation Results</h2><div class="stat">Total: <b id="total">0</b></div><div class="stat ok">Valid: <b id="valid">0</b></div><div class="stat err">Errors: <b id="errors">0</b></div><div id="errorList" class="errors hidden"></div><h3>Preview</h3><table id="preview"></table><div class="notice">Only valid rows are uploaded. Existing IDs are overwritten.</div><button id="uploadBtn" onclick="uploadQuestions()">☁️ Upload Valid Questions</button><div id="uploadStatus" class="hidden"><p id="status"></p><progress id="progress" value="0" max="100"></progress><p id="report"></p></div></section></main>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import { getFirestore, writeBatch, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+import { getFirestore, writeBatch, doc, serverTimestamp, getDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import { firebaseConfig } from "./firebase-config.js";
-
-const app=initializeApp(firebaseConfig); const db=getFirestore(app);
-let rows=[];
-const required=['id','class','subject','chapter','topic','difficulty','question','option_a','option_b','option_c','option_d','correct_answer','explanation'];
-const BATCH_SIZE=450;
-
-function parseCSV(text){
-  const out=[]; let row=[],field='',quoted=false;
-  text=text.replace(/^\uFEFF/,'');
-  for(let i=0;i<text.length;i++){
-    const c=text[i],n=text[i+1];
-    if(c=='"'){if(quoted&&n=='"'){field+='"';i++;}else quoted=!quoted;}
-    else if(c===','&&!quoted){row.push(field);field='';}
-    else if((c==='\n'||c==='\r')&&!quoted){if(c==='\r'&&n==='\n')i++;row.push(field);field='';if(row.some(v=>v!==''))out.push(row);row=[];}
-    else field+=c;
-  }
-  if(field!==''||row.length){row.push(field);out.push(row);}
-  if(!out.length)return [];
-  const headers=out.shift().map(h=>h.trim());
-  return out.map((r,i)=>{const o={_line:i+2};headers.forEach((h,j)=>o[h]=(r[j]??'').trim());return o;});
-}
+const app=initializeApp(firebaseConfig),db=getFirestore(app),auth=getAuth(app),provider=new GoogleAuthProvider();
+let rows=[],authorized=false;const required=['id','class','subject','chapter','topic','difficulty','question','option_a','option_b','option_c','option_d','correct_answer','explanation'],BATCH_SIZE=450;
+const $=id=>document.getElementById(id);
+async function refreshAccess(user){authorized=false;$('appCard').classList.add('hidden');$('results').classList.add('hidden');if(!user){$('authState').textContent='Please sign in with your authorized admin Google account.';$('googleBtn').classList.remove('hidden');$('logoutBtn').classList.add('hidden');return;}try{const profile=await getDoc(doc(db,'users',user.uid));if(profile.exists()&&profile.data().role==='teacher'){authorized=true;$('authState').innerHTML='<b class="ok">Authorized:</b> '+user.email;$('appCard').classList.remove('hidden');}else $('authState').innerHTML='<b class="err">Access denied.</b> This account is not an admin/teacher.';$('googleBtn').classList.add('hidden');$('logoutBtn').classList.remove('hidden');}catch(e){$('authState').innerHTML='<b class="err">Access check failed:</b> '+esc(e.message);}}
+onAuthStateChanged(auth,refreshAccess);
+$('googleBtn').onclick=async()=>{try{await signInWithPopup(auth,provider);}catch(e){$('authState').innerHTML='<b class="err">Sign-in failed:</b> '+esc(e.message);}};
+$('logoutBtn').onclick=()=>signOut(auth);
+function parseCSV(t){const out=[];let row=[],field='',quoted=false;t=t.replace(/^\uFEFF/,'');for(let i=0;i<t.length;i++){const c=t[i],n=t[i+1];if(c=='"'){if(quoted&&n=='"'){field+='"';i++;}else quoted=!quoted;}else if(c===','&&!quoted){row.push(field);field='';}else if((c==='\n'||c==='\r')&&!quoted){if(c==='\r'&&n==='\n')i++;row.push(field);field='';if(row.some(v=>v!==''))out.push(row);row=[];}else field+=c;}if(field!==''||row.length){row.push(field);out.push(row);}if(!out.length)return[];const h=out.shift().map(x=>x.trim());return out.map((r,i)=>{const o={_line:i+2};h.forEach((k,j)=>o[k]=(r[j]??'').trim());return o;});}
 function esc(v){return String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
-function validateRow(x,seen){
-  const problems=[];
-  required.forEach(k=>{if(!String(x[k]??'').trim())problems.push('missing '+k);});
-  if(x.id&&seen.has(x.id))problems.push('duplicate id');
-  if(x.id)seen.add(x.id);
-  const answer=String(x.correct_answer||'').toUpperCase();
-  if(answer&&!['A','B','C','D'].includes(answer))problems.push('correct_answer must be A/B/C/D');
-  x.correct_answer=answer;
-  x._problems=problems;x._valid=!problems.length;
-}
-window.validateCSV=function(){
- const f=document.getElementById('csv').files[0];if(!f)return alert('Choose a CSV file');
- const reader=new FileReader();reader.onload=e=>{
-  try{
-   rows=parseCSV(e.target.result); const seen=new Set();rows.forEach(x=>validateRow(x,seen));
-   const bad=rows.filter(x=>!x._valid),good=rows.filter(x=>x._valid);
-   total.textContent=rows.length;valid.textContent=good.length;errors.textContent=bad.length;
-   const errorList=document.getElementById('errorList');
-   errorList.innerHTML=bad.slice(0,50).map(x=>'Line '+x._line+': '+esc(x._problems.join(', '))).join('<br>');
-   errorList.classList.toggle('hidden',!bad.length);
-   const cols=['id','class','subject','chapter','question','correct_answer'];
-   preview.innerHTML='<tr>'+cols.map(c=>'<th>'+c+'</th>').join('')+'</tr>'+rows.slice(0,10).map(x=>'<tr>'+cols.map(c=>'<td>'+esc(x[c])+'</td>').join('')+'</tr>').join('');
-   document.getElementById('results').classList.remove('hidden');
-  }catch(err){alert('CSV parsing failed: '+err.message);}
- };reader.readAsText(f);
-}
-function questionId(x){return String(x.id).trim();}
-function normalize(x){
- return {
-  id:questionId(x), class:String(x.class).trim(), subject:String(x.subject).trim().toLowerCase(),
-  chapter:String(x.chapter).trim(), topic:String(x.topic).trim(), difficulty:String(x.difficulty).trim().toLowerCase(),
-  question:x.question.trim(), options:[x.option_a.trim(),x.option_b.trim(),x.option_c.trim(),x.option_d.trim()],
-  correctAnswer:x.correct_answer, correctIndex:['A','B','C','D'].indexOf(x.correct_answer),
-  explanation:x.explanation.trim(), published:true, updatedAt:serverTimestamp()
- };
-}
-window.uploadQuestions=async function(){
- const good=rows.filter(x=>x._valid);if(!good.length)return alert('No valid questions to upload.');
- if(!confirm('Upload '+good.length+' valid MCQs to Firestore?'))return;
- const btn=document.getElementById('uploadBtn'),status=document.getElementById('status'),progress=document.getElementById('progress'),report=document.getElementById('report');
- btn.disabled=true;document.getElementById('uploadStatus').classList.remove('hidden');let uploaded=0,failed=0;
- try{
-  for(let start=0;start<good.length;start+=BATCH_SIZE){
-   const chunk=good.slice(start,start+BATCH_SIZE),batch=writeBatch(db);
-   chunk.forEach(x=>batch.set(doc(db,'questions',questionId(x)),normalize(x),{merge:true}));
-   await batch.commit();uploaded+=chunk.length;
-   progress.value=Math.round(uploaded/good.length*100);status.textContent='Uploaded '+uploaded+' / '+good.length+' questions';
-  }
-  report.innerHTML='<b class="ok">Import completed successfully.</b> Uploaded: '+uploaded+', Failed: '+failed;
- }catch(err){
-  failed=good.length-uploaded;report.innerHTML='<b class="err">Upload stopped:</b> '+esc(err.message)+'<br>Uploaded successfully: '+uploaded+'.';
- }finally{btn.disabled=false;}
-}
-</script>
-</body></html>
+function validateRow(x,seen){const p=[];required.forEach(k=>{if(!String(x[k]??'').trim())p.push('missing '+k);});if(x.id&&seen.has(x.id))p.push('duplicate id');if(x.id)seen.add(x.id);x.correct_answer=String(x.correct_answer||'').toUpperCase();if(x.correct_answer&&!['A','B','C','D'].includes(x.correct_answer))p.push('correct_answer must be A/B/C/D');x._problems=p;x._valid=!p.length;}
+window.validateCSV=function(){if(!authorized)return alert('Admin authorization required.');const f=$('csv').files[0];if(!f)return alert('Choose a CSV file');const r=new FileReader();r.onload=e=>{try{rows=parseCSV(e.target.result);const seen=new Set();rows.forEach(x=>validateRow(x,seen));const bad=rows.filter(x=>!x._valid),good=rows.filter(x=>x._valid);$('total').textContent=rows.length;$('valid').textContent=good.length;$('errors').textContent=bad.length;$('errorList').innerHTML=bad.slice(0,50).map(x=>'Line '+x._line+': '+esc(x._problems.join(', '))).join('<br>');$('errorList').classList.toggle('hidden',!bad.length);const cols=['id','class','subject','chapter','question','correct_answer'];$('preview').innerHTML='<tr>'+cols.map(c=>'<th>'+c+'</th>').join('')+'</tr>'+rows.slice(0,10).map(x=>'<tr>'+cols.map(c=>'<td>'+esc(x[c])+'</td>').join('')+'</tr>').join('');$('results').classList.remove('hidden');}catch(e){alert('CSV parsing failed: '+e.message);}};r.readAsText(f);}
+function normalize(x){return{id:String(x.id).trim(),class:String(x.class).trim(),subject:String(x.subject).trim().toLowerCase(),chapter:String(x.chapter).trim(),topic:String(x.topic).trim(),difficulty:String(x.difficulty).trim().toLowerCase(),question:x.question.trim(),options:[x.option_a.trim(),x.option_b.trim(),x.option_c.trim(),x.option_d.trim()],correctAnswer:x.correct_answer,correctIndex:['A','B','C','D'].indexOf(x.correct_answer),explanation:x.explanation.trim(),published:true,updatedAt:serverTimestamp()};}
+window.uploadQuestions=async function(){if(!authorized)return alert('Admin authorization required.');const good=rows.filter(x=>x._valid);if(!good.length)return alert('No valid questions.');if(!confirm('Upload '+good.length+' MCQs?'))return;const btn=$('uploadBtn');btn.disabled=true;$('uploadStatus').classList.remove('hidden');let uploaded=0;try{for(let s=0;s<good.length;s+=BATCH_SIZE){const chunk=good.slice(s,s+BATCH_SIZE),batch=writeBatch(db);chunk.forEach(x=>batch.set(doc(db,'questions',String(x.id).trim()),normalize(x),{merge:true}));await batch.commit();uploaded+=chunk.length;$('progress').value=Math.round(uploaded/good.length*100);$('status').textContent='Uploaded '+uploaded+' / '+good.length;}$('report').innerHTML='<b class="ok">Import completed successfully.</b> Uploaded: '+uploaded;}catch(e){$('report').innerHTML='<b class="err">Upload stopped:</b> '+esc(e.message)+'<br>Uploaded: '+uploaded;}finally{btn.disabled=false;}}
+</script></body></html>
