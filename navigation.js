@@ -10,10 +10,11 @@
  function install(){
   if(!document.getElementById("skillup-nav-style")){
    const s=document.createElement("style");s.id="skillup-nav-style";s.textContent=`
-   .skillup-bottom-nav{position:fixed;left:0;right:0;bottom:0;height:60px;background:#fff;border-top:1px solid #e7ebf2;display:flex;align-items:center;justify-content:space-around;z-index:9999;padding:4px 3px calc(4px + env(safe-area-inset-bottom,0px));box-shadow:0 -4px 18px rgba(23,32,51,.06)}
-   .skillup-bottom-nav a{min-width:55px;flex:1;text-decoration:none;color:#6b7280;font-size:10px;font-weight:900;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;line-height:1}
-   .skillup-nav-icon{font-size:20px;line-height:1;display:grid;place-items:center}
-   .skillup-bottom-nav a.active{color:#16a34a;transform:translateY(-2px);filter:saturate(1.1);text-shadow:0 1px 0 rgba(0,0,0,.03)}
+   .skillup-bottom-nav{position:fixed!important;left:0!important;right:0!important;bottom:0!important;height:60px!important;box-sizing:border-box!important;background:#fff!important;border-top:1px solid #e7ebf2!important;display:flex!important;align-items:center!important;justify-content:space-around!important;z-index:9999!important;padding:4px 3px calc(4px + env(safe-area-inset-bottom,0px))!important;box-shadow:0 -4px 18px rgba(23,32,51,.06)!important}
+   .skillup-bottom-nav a{min-width:0!important;flex:1 1 20%!important;max-width:20%!important;text-decoration:none!important;color:#6b7280!important;font-size:10px!important;font-weight:800!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:2px!important;line-height:1!important;padding:0!important;margin:0!important}
+   .skillup-bottom-nav a>span:not(.skillup-nav-icon){font-size:10px!important;font-weight:800!important;line-height:1.1!important;margin:0!important;padding:0!important;white-space:nowrap!important}
+   .skillup-nav-icon{font-size:20px!important;line-height:1!important;width:22px!important;height:22px!important;display:grid!important;place-items:center!important}
+   .skillup-bottom-nav a.active{color:#16a34a!important;transform:translateY(-1px)!important;filter:saturate(1.1)!important;text-shadow:none!important}
    body{padding-bottom:68px!important}
    `;document.head.appendChild(s);
   }
