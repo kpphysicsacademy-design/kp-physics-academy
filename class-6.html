@@ -58,12 +58,31 @@ chapters.forEach((c,i)=>{
  card.innerHTML=`<div class="chapter-head"><div class="number">${c[0]}</div><div><h3>${c[1]}</h3><div class="chapter-meta">${c[3]} • ${c[2]}</div></div></div><div class="stages">${['learn','challenge','practice','mastery'].map((s)=>`<button class="stage ${s}" data-stage="${s}" data-chapter="${c[1]}"><div class="circle">${icons[s]}<span>${s[0].toUpperCase()+s.slice(1)}</span></div><div class="stage-label">${s==='learn'?'Start here':s==='challenge'?'Check it':'Build skill'}</div></button>`).join('')}</div><div class="next" id="next-${i}"></div>`;
  path.appendChild(card);
 });
-let completed=JSON.parse(localStorage.getItem('skillup_class6_progress')||'{}');
-function updateProgress(){const total=chapters.length*4;const done=Object.keys(completed).length;const pct=Math.round(done/total*100);document.getElementById('progressText').textContent=pct+'%';document.getElementById('progressBar').style.width=pct+'%';document.querySelectorAll('.stage').forEach(el=>{const key=el.dataset.chapter+'|'+el.dataset.stage;if(completed[key])el.classList.add('done')});}
-function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.remove('show'),1800)}
-document.querySelectorAll('.stage').forEach(btn=>btn.addEventListener('click',()=>{const key=btn.dataset.chapter+'|'+btn.dataset.stage;completed[key]=true;localStorage.setItem('skillup_class6_progress',JSON.stringify(completed));updateProgress();const chapter=btn.closest('.chapter');chapter.querySelector('.next').textContent=`${btn.dataset.stage[0].toUpperCase()+btn.dataset.stage.slice(1)} complete ✓  •  Continue to the next stage when you are ready.`;chapter.querySelector('.next').classList.add('show');toast(btn.dataset.stage[0].toUpperCase()+btn.dataset.stage.slice(1)+' stage completed');}));
-document.querySelectorAll('.nav-btn').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');toast(btn.textContent.trim()+' selected');}));
-updateProgress();
+const chapterIdByName=Object.fromEntries(chapters.map((c,i)=>[c[1],i+1]));
+function chapterData(n){return JSON.parse(localStorage.getItem('skillup_progress_6_science_'+n)||'{}')||{flash:0,practice:0,best:0};}
+function updateProgress(){
+  let sum=0;
+  chapters.forEach((c,i)=>{
+    const d=chapterData(i+1),overall=Math.round((Number(d.flash)||0)*.25+(Number(d.practice)||0)*.35+(Number(d.best)||0)*.40);
+    sum+=overall;
+  });
+  const pct=Math.round(sum/chapters.length);
+  document.getElementById('progressText').textContent=pct+'%';document.getElementById('progressBar').style.width=pct+'%';
+  document.querySelectorAll('.stage').forEach(el=>{
+    const n=chapterIdByName[el.dataset.chapter],d=chapterData(n),s=el.dataset.stage;
+    const done=s==='learn'?(Number(d.flash)||0)>=100:s==='challenge'?(Number(d.flash)||0)>=50:s==='practice'?(Number(d.practice)||0)>=100:(Number(d.best)||0)>=50;
+    el.classList.toggle('done',done);
+  });
+}
+function goStage(btn){
+ const n=chapterIdByName[btn.dataset.chapter],title=btn.dataset.chapter,stage=btn.dataset.stage;
+ const q='class=6&subject=science&chapter='+n+'&title='+encodeURIComponent(title);
+ const urls={learn:'chapter-learning-page.html?',challenge:'chapter-practice.html?',practice:'chapter-practice.html?',mastery:'chapter-test.html?'};
+ location.href=urls[stage]+q+(stage==='challenge'?'&questions=10':'');
+}
+document.querySelectorAll('.stage').forEach(btn=>btn.addEventListener('click',()=>goStage(btn)));
+document.querySelectorAll('.nav-btn').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}));
+window.addEventListener('focus',updateProgress);window.addEventListener('storage',updateProgress);updateProgress();
 </script>
 </body>
 </html>
