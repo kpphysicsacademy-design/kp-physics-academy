@@ -68,6 +68,23 @@ This schema is the backend plan for the Duolingo-style app. It is intentionally 
 - lastAnsweredAt: timestamp
 - mastered: boolean
 
+
+### user_progress/{uid}/skillup/{classId}_{subjectId}_{chapterId}
+- flash: number (0–100)
+- practice: number (0–100)
+- best: number (0–100)
+- incorrectAnswers: array
+- updatedAt: timestamp
+
+### user_progress/{uid}/skillup_summary/{classId}_{subjectId}
+- subjectProgress: number (0–100)
+- chapters: map
+- updatedAt: timestamp
+
+## Multi-device backup flow
+
+After Firebase Authentication resolves the user UID, each SkillUp progress update is written to Firestore under that UID. On another device, login loads the cloud progress and restores the local cache before rendering the dashboard. Use Firestore server timestamps and merge writes; protect each user's records with rules requiring request.auth.uid == uid.
+
 ## Learning flow
 
 Home → Physics Path → Area → Concept → Lesson → Question → Result → XP → Progress → Unlock next.
