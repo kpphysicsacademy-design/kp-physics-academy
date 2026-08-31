@@ -84,5 +84,5 @@ document.querySelectorAll('.stage').forEach(btn=>btn.addEventListener('click',()
 document.querySelectorAll('.nav-btn').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}));
 window.addEventListener('focus',updateProgress);window.addEventListener('storage',updateProgress);updateProgress();
 </script>
-</body>
+<script type="module">import {backupChapterProgress} from "./skillup-progress-sync.js";window.addEventListener("skillup-progress-changed",()=>backupChapterProgress(6,"science",1));</script></body>
 </html>
