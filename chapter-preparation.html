@@ -3,4 +3,24 @@ const p=new URLSearchParams(location.search),cls=p.get('class')||'6',sub=p.get('
 document.getElementById('meta').textContent='CLASS '+cls+' • '+sub.toUpperCase();document.getElementById('title').textContent=chapterTitle;
 function progress(){let d=JSON.parse(localStorage.getItem(key)||'null')||{flash:0,practice:0,best:0,attempts:0};let f=Math.max(0,Math.min(100,Number(d.flash)||0)),pr=Math.max(0,Math.min(100,Number(d.practice)||0)),t=Math.max(0,Math.min(100,Number(d.best)||0)),o=Math.round(f*.25+pr*.35+t*.40);document.getElementById('bar').style.width=o+'%';document.getElementById('percent').textContent=o+'%';document.getElementById('details').textContent='Flashcards '+f+'% • Practice '+pr+'% • Test '+t+'%';document.getElementById('status').textContent=o===0?'Start your chapter journey!':o>=90?'🏆 Chapter Mastered!':o>=75?'🟢 Strong Progress!':o>=50?'🟡 Good Progress!':'🟠 Keep learning and practising!'}
 function qs(){return 'class='+encodeURIComponent(cls)+'&subject='+encodeURIComponent(sub)+'&chapter='+encodeURIComponent(ch)+'&title='+encodeURIComponent(chapterTitle)}function goLearn(){location.href='chapter-learning-page.html?'+qs()}function goPractice(){location.href='chapter-practice.html?'+qs()+'&questions=20'}function goTest(){location.href='chapter-test.html?'+qs()}window.addEventListener('focus',progress);progress();
+
+// Unified Class 6 progress synchronisation
+function syncClass6Progress(){
+  const all={}; let total=0;
+  for(let n=1;n<=12;n++){
+    const k='skillup_progress_6_science_'+n;
+    const d=JSON.parse(localStorage.getItem(k)||'{}')||{};
+    const flash=Math.max(0,Math.min(100,Number(d.flash)||0));
+    const practice=Math.max(0,Math.min(100,Number(d.practice)||0));
+    const test=Math.max(0,Math.min(100,Number(d.best)||0));
+    const overall=Math.round(flash*.25+practice*.35+test*.40);
+    all[n]={flash,practice,test,overall,updatedAt:Date.now()}; total+=overall;
+  }
+  const subject=Math.round(total/12);
+  localStorage.setItem('skillup_science_progress_6',JSON.stringify({chapters:all,subjectProgress:subject,updatedAt:Date.now()}));
+  localStorage.setItem('skillup_class6_progress',JSON.stringify({science:subject,updatedAt:Date.now()}));
+  return all;
+}
+
+window.addEventListener('storage',progress);window.addEventListener('focus',()=>{progress();syncClass6Progress()});syncClass6Progress();
 </script></body></html>
