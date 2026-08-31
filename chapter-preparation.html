@@ -23,4 +23,4 @@ function syncClass6Progress(){
 }
 
 window.addEventListener('storage',progress);window.addEventListener('focus',()=>{progress();syncClass6Progress()});syncClass6Progress();
-</script></body></html>
+</script><script type="module">import {backupChapterProgress} from "./skillup-progress-sync.js";window.addEventListener("skillup-progress-changed",()=>backupChapterProgress(6,"science",1));</script></body></html>
