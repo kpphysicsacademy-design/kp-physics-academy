@@ -18,7 +18,9 @@ function syncClass6Progress(){
   }
   const subject=Math.round(total/12);
   localStorage.setItem('skillup_science_progress_6',JSON.stringify({chapters:all,subjectProgress:subject,updatedAt:Date.now()}));
+window.dispatchEvent(new Event('skillup-progress-changed'));
   localStorage.setItem('skillup_class6_progress',JSON.stringify({science:subject,updatedAt:Date.now()}));
+window.dispatchEvent(new Event('skillup-progress-changed'));
   return all;
 }
 
