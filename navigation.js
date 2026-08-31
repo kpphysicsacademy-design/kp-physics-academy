@@ -10,11 +10,11 @@
  function install(){
   if(!document.getElementById("skillup-nav-style")){
    const s=document.createElement("style");s.id="skillup-nav-style";s.textContent=`
-   .skillup-bottom-nav{position:fixed;left:0;right:0;bottom:0;height:68px;background:#fff;border-top:1px solid #e7ebf2;display:flex;align-items:center;justify-content:space-around;z-index:9999;padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));box-shadow:0 -4px 18px rgba(23,32,51,.06)}
-   .skillup-bottom-nav a{min-width:60px;flex:1;text-decoration:none;color:#6b7280;font-size:11px;font-weight:900;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;line-height:1}
-   .skillup-nav-icon{font-size:22px;line-height:1;display:grid;place-items:center}
+   .skillup-bottom-nav{position:fixed;left:0;right:0;bottom:0;height:60px;background:#fff;border-top:1px solid #e7ebf2;display:flex;align-items:center;justify-content:space-around;z-index:9999;padding:4px 3px calc(4px + env(safe-area-inset-bottom,0px));box-shadow:0 -4px 18px rgba(23,32,51,.06)}
+   .skillup-bottom-nav a{min-width:55px;flex:1;text-decoration:none;color:#6b7280;font-size:10px;font-weight:900;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;line-height:1}
+   .skillup-nav-icon{font-size:20px;line-height:1;display:grid;place-items:center}
    .skillup-bottom-nav a.active{color:#16a34a;transform:translateY(-2px);filter:saturate(1.1);text-shadow:0 1px 0 rgba(0,0,0,.03)}
-   body{padding-bottom:76px!important}
+   body{padding-bottom:68px!important}
    `;document.head.appendChild(s);
   }
   document.querySelectorAll("nav.bottom,nav.bottom-nav,nav.skillup-bottom-nav").forEach(n=>{if(!n.classList.contains("skillup-bottom-nav"))n.remove();});
