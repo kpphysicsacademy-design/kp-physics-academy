@@ -1,4 +1,5 @@
 rules_version = '2';
+
 service cloud.firestore {
   match /databases/{database}/documents {
 
@@ -8,42 +9,39 @@ service cloud.firestore {
 
     function isTeacher() {
       return signedIn()
-        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
-        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'teacher';
+        && get(/databases/$(database)/documents/users/$(request.auth.uid))
+             .data.role == 'teacher';
     }
 
-    // Student-facing SkillUp MCQ bank.
+    function isAdmin() {
+      return signedIn()
+        && get(/databases/$(database)/documents/users/$(request.auth.uid))
+             .data.role == 'admin';
+    }
+
+    function canManageQuestions() {
+      return isTeacher() || isAdmin();
+    }
+
+    // Questions
     match /questions/{questionId} {
       allow read: if true;
-      allow create, update, delete: if isTeacher();
+
+      allow create, update, delete: if canManageQuestions();
     }
 
-    // Legacy physics question bank.
-    match /physics_questions/{questionId} {
-      allow read: if true;
-      allow write: if isTeacher();
-    }
-
-    // Student/teacher profiles.
+    // User profiles
     match /users/{userId} {
       allow read: if signedIn() && request.auth.uid == userId;
-      allow create: if signedIn() && request.auth.uid == userId
-                    && request.resource.data.role == 'student';
-      allow update: if signedIn() && request.auth.uid == userId
-                    && request.resource.data.role == resource.data.role;
+
+      // Users cannot create or change their own role.
+      allow create: if false;
+
+      allow update: if signedIn()
+        && request.auth.uid == userId
+        && request.resource.data.role == resource.data.role;
+
       allow delete: if false;
     }
-
-    // SkillUp learning progress: users access only their own records.
-    match /user_progress/{userId}/{document=**} {
-      allow read, write: if signedIn() && request.auth.uid == userId;
-    }
-
-    match /concepts/{conceptId} {
-      allow read: if signedIn();
-      allow create, update, delete: if isTeacher();
-    }
-
-    // Everything else is denied by default.
   }
 }
