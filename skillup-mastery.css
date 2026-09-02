@@ -1,0 +1,10 @@
+/* SkillUp Mastery Practice Standard */
+:root{--su-green:#18a64a;--su-dark:#183028;--su-soft:#f3fbf5;--su-line:#d9e9df}
+.su-practice{max-width:760px;margin:auto;min-height:100vh;padding:16px;background:var(--su-soft);color:var(--su-dark);font-family:Arial,sans-serif}
+.su-progress{height:12px;background:#dcece2;border-radius:999px;overflow:hidden}.su-progress>i{display:block;height:100%;width:0;background:var(--su-green);transition:width .3s}
+.su-card{background:#fff;border:1px solid var(--su-line);border-radius:24px;padding:24px;box-shadow:0 8px 24px rgba(20,60,35,.08)}
+.su-option,.su-primary{width:100%;padding:16px;margin:10px 0;border-radius:16px;font-weight:800;font-size:16px}.su-option{background:#fff;border:2px solid var(--su-line);text-align:left}.su-primary{border:0;background:var(--su-green);color:#fff}
+.su-summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.su-stat{background:#f3fbf5;border:1px solid var(--su-line);border-radius:16px;padding:14px;text-align:center}
+.su-skill{padding:13px 0;border-bottom:1px solid var(--su-line)}.su-skill-bar{height:8px;background:#e2eee5;border-radius:99px;overflow:hidden}.su-skill-bar i{display:block;height:100%;background:var(--su-green)}
+.su-weak{background:#fff7e8;border:1px solid #f2d39a;border-radius:14px;padding:12px;margin:8px 0}
+@media(max-width:520px){.su-practice{padding:12px}.su-card{padding:18px}.su-summary-grid{grid-template-columns:1fr 1fr 1fr}}
