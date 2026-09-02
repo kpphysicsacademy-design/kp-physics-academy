@@ -156,3 +156,7 @@ Before release verify:
 
 ## Golden rule
 Build one standard responsive learning-path component and reuse it for **every class and every subject**. Do not manually create a different learning-path design for individual pages.
+
+
+## Mastery Practice Standard
+Every concept practice page must use the rules in `SKILLUP_MASTERY_PRACTICE_STANDARD.md`: one question at a time, wrong answers earn no progress, missed questions repeat until 100% mastery, and the final summary includes skills progress and weak areas.
