@@ -6,29 +6,29 @@ const data=[
 ['🦠','Biological Classification','',40,'botany-biological-classification.html'],
 ['🌿','Plant Kingdom','',50,'botany-plant-kingdom.html']]],
 ['🌸','UNIT 2','Structural Organisation',[
-['🌺','Morphology of Flowering Plants','🌱 Learn roots → 🌿 stem → 🍃 leaf → 🌸 flower → 🍎 fruit → 🌰 seed • Duolingo-style lessons',60,'botany-morphology-flowering-plants.html'],
-['🔬','Anatomy of Flowering Plants','Plant tissues, tissue systems and internal structure',50,'coming']]],
+['🌺','Morphology of Flowering Plants','',60,'botany-morphology-flowering-plants.html'],
+['🔬','Anatomy of Flowering Plants','',50,'coming']]],
 ['🧫','UNIT 3','Cell Structure and Function',[
-['🧫','Cell: The Unit of Life','Cell structure, organelles and plant cell organisation',45,'coming'],
-['🧪','Biomolecules','Biological molecules, enzymes and metabolism basics',45,'coming'],
-['🔄','Cell Cycle and Cell Division','Cell cycle, mitosis and meiosis',45,'coming']]],
+['🧫','Cell: The Unit of Life','',45,'coming'],
+['🧪','Biomolecules','',45,'coming'],
+['🔄','Cell Cycle and Cell Division','',45,'coming']]],
 ['🌱','UNIT 4','Plant Physiology',[
-['💧','Transport in Plants','Water, minerals and translocation',50,'coming'],
-['🧂','Mineral Nutrition','Essential elements and nitrogen metabolism',45,'coming'],
-['☀️','Photosynthesis in Higher Plants','Light reactions, carbon fixation and factors',55,'coming'],
-['🔥','Respiration in Plants','Glycolysis, TCA cycle and electron transport',50,'coming'],
-['🌿','Plant Growth and Development','Growth, differentiation and plant regulators',50,'coming']]],
+['💧','Transport in Plants','',50,'coming'],
+['🧂','Mineral Nutrition','',45,'coming'],
+['☀️','Photosynthesis in Higher Plants','',55,'coming'],
+['🔥','Respiration in Plants','',50,'coming'],
+['🌿','Plant Growth and Development','',50,'coming']]],
 ['🌺','UNIT 5','Reproduction',[
-['🌸','Sexual Reproduction in Flowering Plants','Flower structure, gametophytes, pollination, fertilisation and seed',60,'coming']]],
+['🌸','Sexual Reproduction in Flowering Plants','',60,'coming']]],
 ['🧬','UNIT 6','Genetics and Evolution',[
-['🧬','Principles of Inheritance and Variation','Mendelian inheritance and variation',60,'coming'],
-['🧬','Molecular Basis of Inheritance','DNA, RNA and gene expression',60,'coming'],
-['🦋','Evolution','Evidence, mechanisms and evolutionary relationships',50,'coming']]],
+['🧬','Principles of Inheritance and Variation','',60,'coming'],
+['🧬','Molecular Basis of Inheritance','',60,'coming'],
+['🦋','Evolution','',50,'coming']]],
 ['🌍','UNIT 7','Ecology and Environment',[
-['🌱','Organisms and Populations','Ecological adaptations and population interactions',45,'coming'],
-['🌳','Ecosystem','Energy flow, productivity and ecological pyramids',50,'coming'],
-['🦚','Biodiversity and Conservation','Biodiversity patterns and conservation',45,'coming'],
-['♻️','Environmental Issues','Pollution and environmental management',40,'coming']]]
+['🌱','Organisms and Populations','',45,'coming'],
+['🌳','Ecosystem','',50,'coming'],
+['🦚','Biodiversity and Conservation','',45,'coming'],
+['♻️','Environmental Issues','',40,'coming']]]
 ];
 const key='skillupBotanyProgressV2';
 let s=JSON.parse(localStorage.getItem(key)||'{"done":[],"xp":0,"streak":0}');
@@ -48,7 +48,7 @@ function build(){
    const el=document.createElement('div');
    el.className='node '+side+' '+(active?'current':done?'done':'locked');
    const testPage=n[4].replace('.html','-test.html');const action=active?'<div class="chapter-options"><a class="continue" href="'+n[4]+'">📖 CONCEPTS & LEARN</a><a class="continue test" href="'+testPage+'">🎯 TEST & PRACTICE</a></div>':'<span class="status">COMING NEXT</span>';
-   el.innerHTML='<div class="node-card"><div class="node-top"><h3>'+n[0]+' '+n[1]+'</h3><span class="status">'+statusFor(n,i)+'</span></div><p>'+n[2]+'</p><span class="xp">⭐ +'+n[3]+' XP</span>'+action+'</div><div class="node-dot">'+(active?n[0]:'🔒')+'</div>';
+   el.innerHTML='<div class="node-card"><div class="node-top"><h3>'+n[0]+' '+n[1]+'</h3><span class="status">'+statusFor(n,i)+'</span></div>'+(n[2]?'<p>'+n[2]+'</p>':'')+'<span class="xp">⭐ +'+n[3]+' XP</span>'+action+'</div><div class="node-dot">'+(active?n[0]:'🔒')+'</div>';
    if(!active)el.querySelector('.node-card').addEventListener('click',()=>openLesson(i));
    p.appendChild(el);
   });
