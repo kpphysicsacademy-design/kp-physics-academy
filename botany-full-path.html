@@ -9,33 +9,33 @@ const data=[
 ['🌺','Morphology of Flowering Plants','',60,'botany-morphology-flowering-plants.html'],
 ['🔬','Anatomy of Flowering Plants','',60,'botany-anatomy-flowering-plants.html']]],
 ['🧫','UNIT 3','Cell Structure and Function',[
-['🧫','Cell: The Unit of Life','',45,'coming'],
-['🧪','Biomolecules','',45,'coming'],
-['🔄','Cell Cycle and Cell Division','',45,'coming']]],
+['🧫','Cell: The Unit of Life','',45, 'botany-chapter-learn.html'],
+['🧪','Biomolecules','',45, 'botany-chapter-learn.html'],
+['🔄','Cell Cycle and Cell Division','',45, 'botany-chapter-learn.html']]],
 ['🌱','UNIT 4','Plant Physiology',[
-['💧','Transport in Plants','',50,'coming'],
-['🧂','Mineral Nutrition','',45,'coming'],
-['☀️','Photosynthesis in Higher Plants','',55,'coming'],
-['🔥','Respiration in Plants','',50,'coming'],
-['🌿','Plant Growth and Development','',50,'coming']]],
+['💧','Transport in Plants','',50, 'botany-chapter-learn.html'],
+['🧂','Mineral Nutrition','',45, 'botany-chapter-learn.html'],
+['☀️','Photosynthesis in Higher Plants','',55, 'botany-chapter-learn.html'],
+['🔥','Respiration in Plants','',50, 'botany-chapter-learn.html'],
+['🌿','Plant Growth and Development','',50, 'botany-chapter-learn.html']]],
 ['🌺','UNIT 5','Reproduction',[
-['🌸','Sexual Reproduction in Flowering Plants','',60,'coming']]],
+['🌸','Sexual Reproduction in Flowering Plants','',60, 'botany-chapter-learn.html']]],
 ['🧬','UNIT 6','Genetics and Evolution',[
-['🧬','Principles of Inheritance and Variation','',60,'coming'],
-['🧬','Molecular Basis of Inheritance','',60,'coming'],
-['🦋','Evolution','',50,'coming']]],
+['🧬','Principles of Inheritance and Variation','',60, 'botany-chapter-learn.html'],
+['🧬','Molecular Basis of Inheritance','',60, 'botany-chapter-learn.html'],
+['🦋','Evolution','',50, 'botany-chapter-learn.html']]],
 ['🌍','UNIT 7','Ecology and Environment',[
-['🌱','Organisms and Populations','',45,'coming'],
-['🌳','Ecosystem','',50,'coming'],
-['🦚','Biodiversity and Conservation','',45,'coming'],
-['♻️','Environmental Issues','',40,'coming']]]
+['🌱','Organisms and Populations','',45, 'botany-chapter-learn.html'],
+['🌳','Ecosystem','',50, 'botany-chapter-learn.html'],
+['🦚','Biodiversity and Conservation','',45, 'botany-chapter-learn.html'],
+['♻️','Environmental Issues','',40, 'botany-chapter-learn.html']]]
 ];
 const key='skillupBotanyProgressV2';
 let s=JSON.parse(localStorage.getItem(key)||'{"done":[],"xp":0,"streak":0}');
 let all=[];data.forEach(c=>c[3].forEach(n=>all.push(n)));
 const path=document.getElementById('path');
 function startIndex(ci){return data.slice(0,ci).reduce((a,c)=>a+c[3].length,0)}
-function statusFor(n,i){if(n[4]!=='coming')return 'ACTIVE CHAPTER';return s.done.includes(i)?'MASTERED ✓':'COMING NEXT'}
+function statusFor(n,i){return s.done.includes(i)?'MASTERED ✓':'READY'}
 function build(){
  path.innerHTML='';
  data.forEach((c,ci)=>{
@@ -44,11 +44,11 @@ function build(){
   const p=sec.querySelector('.path');
   c[3].forEach((n,li)=>{
    const i=startIndex(ci)+li,done=s.done.includes(i),side=li%2===0?'left':'right';
-   const active=n[4]!=='coming';
+   const active=true;
    const el=document.createElement('div');
    el.className='node '+side+' '+(active?'current':done?'done':'locked');
-   const testPage=n[4].replace('.html','-test.html');const action=active?'<div class="chapter-options"><a class="continue" href="'+n[4]+'">📖 LEARN</a><a class="continue test" href="'+testPage+'">🎯 TEST</a></div>':'<span class="status">COMING NEXT</span>';
-   el.innerHTML='<div class="node-card"><div class="node-top"><h3>'+n[0]+' '+n[1]+'</h3><span class="status">'+statusFor(n,i)+'</span></div>'+(n[2]?'<p>'+n[2]+'</p>':'')+'<span class="xp">⭐ +'+n[3]+' XP</span>'+action+'</div><div class="node-dot">'+(active?n[0]:'🔒')+'</div>';
+   const generic=n[4]==='botany-chapter-learn.html';const slug=n[1].toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');const learnPage=generic?'botany-chapter-learn.html?chapter='+encodeURIComponent(n[1]):n[4];const testPage=generic?'botany-chapter-test.html?chapter='+encodeURIComponent(n[1]):n[4].replace('.html','-test.html');const action='<div class="chapter-options"><a class="continue" href="'+learnPage+'">📖 LEARN</a><a class="continue test" href="'+testPage+'">🎯 TEST</a></div>';
+   el.innerHTML='<div class="node-card"><div class="node-top"><h3>'+n[0]+' '+n[1]+'</h3><span class="status">'+statusFor(n,i)+'</span></div>'+(n[2]?'<p>'+n[2]+'</p>':'')+'<span class="xp">⭐ +'+n[3]+' XP</span>'+action+'</div><div class="node-dot">'+n[0]+'</div>';
    if(!active)el.querySelector('.node-card').addEventListener('click',()=>openLesson(i));
    p.appendChild(el);
   });
