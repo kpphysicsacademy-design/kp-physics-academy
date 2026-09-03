@@ -62,6 +62,10 @@ function showSummary(){
  document.getElementById('sumAccuracy').textContent=Math.round((firstCorrect/qs.length)*100)+'%';
  document.getElementById('summaryMessage').textContent='Level '+selectedLevel+' — '+levelNames[selectedLevel]+'. '+(totalWrong?'You reached 100% mastery after reviewing missed questions.':'Perfect first-round mastery! Every answer was correct.');
  document.getElementById('sumRounds').textContent=round;
+ const chapterStatus=document.getElementById('chapterMasteryStatus');
+ const chapterWeak=document.getElementById('chapterWeakAreas');
+ if(chapterStatus){const levelDone='Level '+selectedLevel+' mastered: '+mastered.size+'/'+qs.length+' • '+(totalWrong?'retry completed':'perfect first round');chapterStatus.textContent='🏆 '+levelDone;chapterWeak.innerHTML=weak.length?'<div class="feedback bad">🎯 Review focus: '+weak.map(([name])=>name).join(' • ')+'</div>':'<div class="feedback good">💪 No weak areas detected in this level.</div>';}
+ if(selectedLevel<3){localStorage.setItem('plantKingdomLevel'+selectedLevel,'mastered');}
  const nextBtn=document.getElementById('restart');if(selectedLevel<3){nextBtn.textContent='UNLOCK LEVEL '+(selectedLevel+1)+' →';nextBtn.onclick=()=>location.href='botany-plant-kingdom-practice.html?level='+(selectedLevel+1)+'&questions=10'}else{nextBtn.textContent='🏆 CONCEPT COMPLETE';nextBtn.onclick=()=>location.href='botany-plant-kingdom-basis.html'};
  const skills=document.getElementById('skills');skills.innerHTML='';
  skillNames.forEach(name=>{const s=skillStats[name],rate=s.seen?Math.round((s.correct/s.seen)*100):100;skills.innerHTML+=`<div class="skill"><div class="skillTop"><span>${name}</span><span>${rate}%</span></div><div class="skillBar"><div class="skillFill" style="width:${rate}%"></div></div></div>`});
