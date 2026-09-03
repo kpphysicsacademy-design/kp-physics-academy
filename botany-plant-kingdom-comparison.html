@@ -18,17 +18,34 @@
 
 <section class="box"><h2>⚡ Rapid Recall Cards</h2><div class="fact" id="fact">Tap “Next Fact” to revise one high-yield difference at a time.</div><button class="btn" id="nextFact">NEXT FACT →</button></section>
 
-<section class="box"><h2>🧠 Interactive Revision Challenge</h2><p id="qText">Which plant group has vascular tissue but does not produce seeds?</p><div id="options"></div><p class="score" id="score">Score: 0 / 0</p><button class="btn" id="nextQ">NEXT QUESTION →</button></section>
-
+<section class="box"><h2>🧠 Interactive Revision Challenge</h2><p id="qCount"></p><p id="qText"></p><div id="options"></div><p class="score" id="score">Correct: 0 • Remaining: 10</p><div class="fact" id="feedback">Answer each question. Wrong answers return until you master them.</div><button class="btn" id="nextQ">CHECK & CONTINUE →</button></section>
+<section class="box"><h2>🔗 Match the Following</h2><p>Match each group with its strongest clue.</p><div id="matchArea"></div><button class="btn" id="checkMatch">CHECK MATCHES →</button><p class="score" id="matchResult"></p></section>
+<section class="box"><h2>🎯 Weak Areas</h2><div id="weakAreas" class="fact">Your weak areas will appear here after the revision challenge.</div></section>
 <section class="box tip"><h2>⚠️ NEET Quick Rule</h2><p><b>Vascular tissue appears clearly in pteridophytes and continues in seed plants. Seeds appear in gymnosperms; fruits are characteristic of angiosperms.</b></p></section>
 
 <section class="box"><h2>🏁 30-Second Mastery Check</h2><p>Can you identify a group using only: <b>vascular tissue → seeds → flowers/fruits → dominant generation</b>?</p><a class="btn" href="botany-plant-kingdom.html">📖 BACK TO CONCEPT PATH</a></section>
 </main><script>
-const facts=["Algae: chlorophyll-bearing, largely aquatic and thalloid.","Bryophytes: gametophyte dominant and dependent on water for sexual reproduction.","Pteridophytes: dominant vascular sporophyte; reproduction by spores.","Gymnosperms: exposed ovules and naked seeds.","Angiosperms: ovules enclosed in ovary; seeds enclosed in fruits."];
-let fi=0;const fact=document.getElementById("fact");document.getElementById("nextFact").onclick=()=>{fact.textContent=facts[fi++%facts.length]};
+const facts=["Algae: simple, largely aquatic and thalloid.","Bryophytes: gametophyte dominant; water needed for sexual reproduction.","Pteridophytes: vascular plants reproducing by spores.","Gymnosperms: cones and naked seeds.","Angiosperms: flowers, fruits and double fertilisation."];
+let fi=0;const fact=document.getElementById("fact");document.getElementById("nextFact").onclick=()=>fact.textContent=facts[fi++%facts.length];
 document.querySelectorAll(".filter").forEach(b=>b.onclick=()=>{document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");const f=b.dataset.feature;document.querySelectorAll("#compare [data-f]").forEach(x=>x.style.opacity=(f==="all"||x.dataset.f===f)?"1":".18")});
-const qs=[{q:"Which plant group has vascular tissue but does not produce seeds?",a:["Bryophytes","Pteridophytes","Gymnosperms","Angiosperms"],c:1},{q:"Which group has naked seeds?",a:["Algae","Bryophytes","Gymnosperms","Angiosperms"],c:2},{q:"Which group is characterised by double fertilisation?",a:["Pteridophytes","Gymnosperms","Angiosperms","Bryophytes"],c:2},{q:"Which generation is dominant in bryophytes?",a:["Sporophyte","Gametophyte","Seed","Embryo"],c:1}];
-let qi=0,correct=0,answered=false;const qText=document.getElementById("qText"),opts=document.getElementById("options"),score=document.getElementById("score");
-function render(){answered=false;const q=qs[qi%qs.length];qText.textContent=q.q;opts.innerHTML="";q.a.forEach((x,i)=>{const b=document.createElement("button");b.className="quizOpt";b.textContent=x;b.onclick=()=>{if(answered)return;answered=true;if(i===q.c){b.classList.add("correct");correct++}else{b.classList.add("wrong");opts.children[q.c].classList.add("correct")}score.textContent="Score: "+correct+" / "+(qi+1)};opts.appendChild(b)})}
-document.getElementById("nextQ").onclick=()=>{if(answered||qi===0){qi++;render()}};render();
+const bank=[
+["Which group has vascular tissue but no seeds?",["Bryophytes","Pteridophytes","Gymnosperms","Angiosperms"],1,"Vascular tissue first appears clearly in pteridophytes."],
+["Which group has naked seeds?",["Algae","Bryophytes","Gymnosperms","Angiosperms"],2,"Gymnosperm seeds are not enclosed in fruits."],
+["Which group shows double fertilisation?",["Pteridophytes","Gymnosperms","Angiosperms","Bryophytes"],2,"Double fertilisation is characteristic of angiosperms."],
+["Which generation is dominant in bryophytes?",["Sporophyte","Gametophyte","Seed","Embryo"],1,"The green independent plant body is the gametophyte."],
+["Which group is known as the first vascular cryptogams?",["Algae","Bryophytes","Pteridophytes","Angiosperms"],2,"Pteridophytes have vascular tissue but reproduce by spores."],
+["Which group forms flowers and fruits?",["Gymnosperms","Angiosperms","Pteridophytes","Bryophytes"],1,"Angiosperms have enclosed ovules and fruits."],
+["Which group needs water for sexual reproduction and lacks vascular tissue?",["Bryophytes","Gymnosperms","Angiosperms","None"],0,"Bryophytes require water for fertilisation."],
+["Which seed plant lacks fruits?",["Angiosperms","Gymnosperms","Pteridophytes","Bryophytes"],1,"Gymnosperms produce exposed seeds."],
+["Which group mainly has a thalloid body?",["Algae","Gymnosperms","Angiosperms","Pteridophytes"],0,"Algae commonly have simple thalloid organisation."],
+["Which group has a dominant sporophyte and highly reduced gametophytes?",["Bryophytes","Algae","Seed plants","None"],2,"Gymnosperms and angiosperms are seed plants with dominant sporophytes."]
+];
+let queue=bank.map((_,i)=>i), current=null, correct=0, attempts=0, weak=new Set(), answered=false;
+const qText=document.getElementById("qText"),opts=document.getElementById("options"),score=document.getElementById("score"),qCount=document.getElementById("qCount"),feedback=document.getElementById("feedback"),weakAreas=document.getElementById("weakAreas");
+function renderQ(){if(!queue.length){qCount.textContent="🎉 Mastery complete";qText.textContent="You answered every revision question correctly.";opts.innerHTML="";score.textContent="Mastery: 100% • Correct answers: "+correct;feedback.textContent="Excellent! Review weak areas below.";weakAreas.textContent=weak.size?"Areas that needed extra practice: "+[...weak].join(", "):"No persistent weak areas — excellent mastery!";document.getElementById("nextQ").style.display="none";return}current=queue.shift();answered=false;const q=bank[current];qCount.textContent="Question "+(attempts+1)+" • "+(queue.length+1)+" mastery items remaining";qText.textContent=q[0];opts.innerHTML="";feedback.textContent="Choose an answer to validate your understanding.";q[1].forEach((x,i)=>{const b=document.createElement("button");b.className="quizOpt";b.textContent=x;b.onclick=()=>answer(i)});score.textContent="Correct: "+correct+" • Remaining: "+(queue.length+1)}
+function answer(i){if(answered)return;answered=true;attempts++;const q=bank[current];if(i===q[2]){opts.children[i].classList.add("correct");correct++;feedback.textContent="✅ Correct! "+q[3]}else{opts.children[i].classList.add("wrong");opts.children[q[2]].classList.add("correct");weak.add(q[0]);queue.push(current);feedback.textContent="❌ Not yet. "+q[3]+" This question will return later."}score.textContent="Correct: "+correct+" • Remaining: "+queue.length}
+document.getElementById("nextQ").onclick=()=>{if(!answered){feedback.textContent="Choose an option first."}else renderQ()};renderQ();
+const matches=[["Algae","Simple thalloid body"],["Bryophytes","Gametophyte dominant"],["Pteridophytes","Vascular but seedless"],["Gymnosperms","Naked seeds"],["Angiosperms","Flowers and double fertilisation"]];
+const area=document.getElementById("matchArea");matches.forEach((m,i)=>{const d=document.createElement("div");d.className="mini";d.innerHTML="<b>"+m[0]+"</b><select data-i='"+i+"'><option value=''>Choose clue</option>"+matches.map(x=>"<option>"+x[1]+"</option>").join("")+"</select>";area.appendChild(d)});
+document.getElementById("checkMatch").onclick=()=>{let n=0;area.querySelectorAll("select").forEach((s,i)=>{if(s.value===matches[i][1])n++});document.getElementById("matchResult").textContent="Matched correctly: "+n+" / "+matches.length+(n===matches.length?" 🎉 Perfect!":" — review and try again.")};
 </script></body></html>
