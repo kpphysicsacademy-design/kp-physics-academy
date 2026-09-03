@@ -19,19 +19,49 @@ topics:{
 }}};
 
 const defaultTopics={
-'living-nonliving':[['Which is a defining feature of living organisms?','Metabolism','External accumulation only','Rusting','Crystallisation',0],['Growth in non-living objects occurs mainly by','External accumulation','Cell division','Cell enlargement from within','Metabolism',0],['Living organisms show organised','Cellular organisation','Mineral deposition only','Crystal growth only','External layering',0]],
-'growth':[['Growth in living organisms generally means','Increase in mass and number of individuals','Only increase in height','Only movement','Loss of mass',0],['Plant growth is generally','Indeterminate','Always absent after maturity','Only external','Non-cellular',0],['Growth alone cannot define life because','Non-living objects may also grow','Plants never grow','Animals never reproduce','Cells have no metabolism',0]],
-'reproduction':[['Reproduction is','Production of progeny','Only increase in body size','Breakdown of food','Response to light only',0],['Reproduction is not an all-inclusive defining property because','Some living organisms are sterile','All organisms reproduce sexually','Plants cannot reproduce','Only animals are living',0],['Asexual reproduction usually involves','One parent','Two gamete-producing parents','No living parent','Only non-living matter',0]],
-'metabolism':[['Metabolism is','Sum total of all chemical reactions','Only digestion','Only breathing','Only reproduction',0],['Anabolism is mainly','Building complex molecules','Breaking molecules only','Movement','Reproduction only',0],['Catabolism mainly involves','Breakdown of complex molecules','Building proteins only','Cell division only','Pollination',0],['Metabolism is a defining feature of','Living organisms','Rocks only','Clouds only','Machines only',0]],
-'consciousness':[['Consciousness is the ability to','Sense and respond to surroundings','Only reproduce','Only grow','Only move fast',0],['Human beings show self-consciousness because they can','Be aware of themselves','Stop metabolism','Live without cells','Avoid all stimuli',0],['Response to environment includes response to','Physical, chemical and biological stimuli','Only colour','Only sound','Only size',0]],
-'ncert-traps':[['NCERT describes living organisms as','Self-replicating, evolving and self-regulating systems','Only growing objects','Only reproducing objects','Only green objects',0],['Which pair is most reliable for recognising life in NCERT context?','Metabolism and consciousness','Height and colour','Size and movement','Age and weight',0],['Sterile organisms are','Living despite inability to reproduce','Non-living','Always plants','Always microbes',0]]
+'living-nonliving':[
+['Which is a defining feature of living organisms?','Metabolism','External accumulation only','Rusting','Crystallisation',0],
+['Growth in non-living objects occurs mainly by','External accumulation','Cell division','Cell enlargement from within','Metabolism',0],
+['Living organisms show organised','Cellular organisation','Mineral deposition only','Crystal growth only','External layering',0],
+['Which statement best distinguishes living growth from non-living growth?','Living growth occurs from within through cellular processes','It always increases height','It is always visible','It occurs only by external deposition',0],
+['A crystal increasing in size is an example of','Non-living growth by external addition','Cellular reproduction','Metabolism','Consciousness',0]],
+'growth':[
+['Growth in living organisms generally means','Increase in mass and number of individuals','Only increase in height','Only movement','Loss of mass',0],
+['Plant growth is generally','Indeterminate','Always absent after maturity','Only external','Non-cellular',0],
+['Growth alone cannot define life because','Non-living objects may also grow','Plants never grow','Animals never reproduce','Cells have no metabolism',0],
+['Growth in living organisms is primarily due to','Cell division and cell enlargement','External layering only','Rusting','Crystallisation',0],
+['In most animals, growth is','Determinate after a certain stage','Indeterminate throughout life','Only external','Unrelated to cells',0]],
+'reproduction':[
+['Reproduction is','Production of progeny','Only increase in body size','Breakdown of food','Response to light only',0],
+['Reproduction is not an all-inclusive defining property because','Some living organisms are sterile','All organisms reproduce sexually','Plants cannot reproduce','Only animals are living',0],
+['Asexual reproduction usually involves','One parent','Two gamete-producing parents','No living parent','Only non-living matter',0],
+['Mules are considered living although they may be sterile because','Reproduction is not a universal defining property','Metabolism stops in sterile organisms','They are non-cellular','They never respond to stimuli',0],
+['The main biological significance of reproduction is','Continuity of the species','Increase of body size only','Breakdown of food','Crystal formation',0]],
+'metabolism':[
+['Metabolism is','Sum total of all chemical reactions','Only digestion','Only breathing','Only reproduction',0],
+['Anabolism is mainly','Building complex molecules','Breaking molecules only','Movement','Reproduction only',0],
+['Catabolism mainly involves','Breakdown of complex molecules','Building proteins only','Cell division only','Pollination',0],
+['Metabolism is a defining feature of','Living organisms','Rocks only','Clouds only','Machines only',0],
+['Which process is an anabolic reaction?','Synthesis of complex molecules','Breakdown of glucose','Rusting of iron','Crystallisation',0]],
+'consciousness':[
+['Consciousness is the ability to','Sense and respond to surroundings','Only reproduce','Only grow','Only move fast',0],
+['Human beings show self-consciousness because they can','Be aware of themselves','Stop metabolism','Live without cells','Avoid all stimuli',0],
+['Response to environment includes response to','Physical, chemical and biological stimuli','Only colour','Only sound','Only size',0],
+['The ability to sense changes in surroundings is related to','Consciousness','Crystallisation','External accumulation','Rusting',0],
+['Self-consciousness is most clearly associated with','Human beings','Rocks','Crystals','Non-living objects',0]],
+'ncert-traps':[
+['NCERT describes living organisms as','Self-replicating, evolving and self-regulating systems','Only growing objects','Only reproducing objects','Only green objects',0],
+['Which pair is most reliable for recognising life in NCERT context?','Metabolism and consciousness','Height and colour','Size and movement','Age and weight',0],
+['Sterile organisms are','Living despite inability to reproduce','Non-living','Always plants','Always microbes',0],
+['Viruses are difficult to classify because outside a host they','Show no independent metabolism','Always reproduce independently','Have no genetic material','Are made of minerals only',0],
+['A defining NCERT feature strongly associated with living organisms is','Metabolism','External accumulation','Crystallisation','Rusting',0]]
 };
 let topics=defaultTopics;
 if(chapterConfigs[chapter])topics=chapterConfigs[chapter].topics;
 const labels=chapterConfigs[chapter]?['Cellular Organisation','Cell: Basic Unit of Life','Genetic Material','Unicellular & Multicellular Organisation','Consciousness','Response to Stimuli','Self-Consciousness','NCERT & NEET Key Points']:['Living vs Non-living','Growth','Reproduction','Metabolism','Consciousness & Response','NCERT Concepts & NEET Traps'];
 const keys=Object.keys(topics),emojis=chapterConfigs[chapter]?['🧫','🔬','🧬','🌐','👁️','⚡','🧠','🎯']:['🌱','📈','🧬','⚙️','👁️','⚠️'];
 const app=document.getElementById('app');const params=new URLSearchParams(location.search);const key=params.get('topic');const state={chapter,topic:key,question:0,score:0,wrong:[],answers:[]};function navigate(topic){location.href=location.pathname+'?chapter='+encodeURIComponent(chapter)+(topic?'&topic='+topic:'')}
-function list(){app.innerHTML='<section class="hero"><div style="font-size:50px">🔬</div><h1>'+chapter+'</h1><p>NCERT-focused concept-wise NEET practice with instant feedback, progress tracking and error review.</p><div class="mode">🎯 CONCEPT-WISE PRACTICE</div></section><div class="label">CHOOSE A TEST</div>'+keys.map((k,i)=>'<a class="topic" href="?chapter='+encodeURIComponent(chapter)+'&topic='+k+'"><span class="num">'+(i+1)+'</span><span class="emoji">'+emojis[i]+'</span><span class="copy"><b>'+labels[i]+'</b><small>'+topics[k].length+' practice questions</small></span><span class="start">START →</span></a>').join('')}
+function list(){app.innerHTML='<section class="hero"><div style="font-size:50px">🔬</div><h1>'+chapter+'</h1><p>Duolingo-style concept practice with instant feedback, progress tracking, explanations and error review.</p><div class="mode">🎯 CONCEPT-WISE PRACTICE</div></section><div class="label">CHOOSE A TEST</div>'+keys.map((k,i)=>'<a class="topic" href="?chapter='+encodeURIComponent(chapter)+'&topic='+k+'"><span class="num">'+(i+1)+'</span><span class="emoji">'+emojis[i]+'</span><span class="copy"><b>'+labels[i]+'</b><small>'+topics[k].length+' practice questions</small></span><span class="start">START →</span></a>').join('')}
 function test(){
   const qs=topics[state.topic];
   if(!qs){ list(); return; }
