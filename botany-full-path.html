@@ -3,7 +3,7 @@
 const data=[
 ['🌍','UNIT 1','Diversity in the Living World — NEET Foundation',[
 ['🔬','The Living World','ACTIVE: Learn → Concepts → 30-MCQ Test → Revision → Full-Length Chapter Test',35,'botany-the-living-world.html'],
-['🦠','Biological Classification','Learn → Concepts → 30-MCQ Test → Revision → Chapter Test',40,'coming'],
+['🦠','Biological Classification','ACTIVE: Concepts → 30-MCQ Test → Revision → Chapter Test',40,'botany-biological-classification.html'],
 ['🌿','Plant Kingdom','ACTIVE: Learn → Concepts → 3 Levels (30 MCQs) → Revision → Full-Length Test',50,'botany-plant-kingdom.html']]],
 ['🌸','UNIT 2','Structural Organisation',[
 ['🌺','Morphology of Flowering Plants','Root, stem, leaf, flower, fruit and seed',50,'coming'],
@@ -47,7 +47,7 @@ function build(){
    const active=n[4]!=='coming';
    const el=document.createElement('div');
    el.className='node '+side+' '+(active?'current':done?'done':'locked');
-   const action=active?'<div class="chapter-options"><a class="continue" href="'+n[4]+'">📖 CONCEPTS & LEARN</a><a class="continue test" href="botany-the-living-world-test.html">🎯 TEST & PRACTICE</a></div>':'<span class="status">COMING NEXT</span>';
+   const testPage=n[4].replace('.html','-test.html');const action=active?'<div class="chapter-options"><a class="continue" href="'+n[4]+'">📖 CONCEPTS & LEARN</a><a class="continue test" href="'+testPage+'">🎯 TEST & PRACTICE</a></div>':'<span class="status">COMING NEXT</span>';
    el.innerHTML='<div class="node-card"><div class="node-top"><h3>'+n[0]+' '+n[1]+'</h3><span class="status">'+statusFor(n,i)+'</span></div><p>'+n[2]+'</p><span class="xp">⭐ +'+n[3]+' XP</span>'+action+'</div><div class="node-dot">'+(active?n[0]:'🔒')+'</div>';
    if(!active)el.querySelector('.node-card').addEventListener('click',()=>openLesson(i));
    p.appendChild(el);
