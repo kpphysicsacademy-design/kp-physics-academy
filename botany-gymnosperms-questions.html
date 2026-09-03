@@ -1,0 +1,67 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>SkillUp | Gymnosperms Initial Practice</title><style>
+:root{--green:#18a64a;--dark:#183028;--soft:#f3fbf5;--line:#d9e9df}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:var(--soft);color:var(--dark)}
+.app{max-width:760px;margin:auto;min-height:100vh;padding:16px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:10px 0 18px}
+.back{color:var(--green);font-weight:800;text-decoration:none}
+.progress{height:12px;background:#dcece2;border-radius:999px;overflow:hidden;margin:4px 0 12px}
+.bar{height:100%;width:0;background:var(--green);border-radius:999px;transition:width .3s ease}
+#c{font-size:13px;font-weight:800;color:#617369;letter-spacing:.4px;margin:14px 0}
+.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:0 8px 24px rgba(20,60,35,.08)}
+.card h1{margin:0 0 18px;font-size:18px;color:var(--green)}
+#q{font-size:25px;line-height:1.4;margin:0 0 22px}
+.option{display:block;width:100%;padding:17px 18px;margin:12px 0;background:#fff;border:2px solid #d9e9df;border-radius:16px;text-align:left;font-size:16px;font-weight:700;color:var(--dark);cursor:pointer;box-shadow:0 2px 0 #d9e9df}
+.option:hover{border-color:var(--green);transform:translateY(-1px)}
+.option:active{transform:translateY(1px)}
+.feedback{display:none;padding:15px;border-radius:14px;margin-top:16px;line-height:1.5;font-weight:600}
+.feedback.good,.feedback.bad{display:block}
+.good{background:#e8f8ec;color:#087a2d}
+.bad{background:#fff0ee;color:#b42318}
+#n{width:100%;padding:17px;border:0;border-radius:16px;background:var(--green);color:#fff;font-size:16px;font-weight:900;margin-top:16px;cursor:pointer;box-shadow:0 4px 0 #0b7830}
+#n:active{transform:translateY(3px);box-shadow:0 1px 0 #0b7830}
+@media(max-width:520px){.app{padding:12px}.card{padding:18px;border-radius:20px}#q{font-size:21px}.option{padding:15px;font-size:15px}}
+.summary{display:none}.summary.show{display:block}.summaryHero{text-align:center;padding:10px 0 20px}.summaryScore{font-size:52px;font-weight:900;color:var(--green);margin:8px 0}.summaryGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}.stat{background:#f3fbf5;border:1px solid var(--line);border-radius:16px;padding:14px;text-align:center}.stat b{display:block;font-size:22px;color:var(--green)}.sectionTitle{font-size:18px;margin:22px 0 10px}.skill{padding:13px 0;border-bottom:1px solid var(--line)}.skillTop{display:flex;justify-content:space-between;gap:10px;font-weight:700}.skillBar{height:8px;background:#e2eee5;border-radius:999px;overflow:hidden;margin-top:8px}.skillFill{height:100%;background:var(--green);border-radius:999px}.weakItem{background:#fff7e8;border:1px solid #f2d39a;border-radius:14px;padding:12px;margin:8px 0}.summaryActions{display:flex;gap:10px;margin-top:22px}.summaryActions a,.summaryActions button{flex:1;text-align:center;text-decoration:none}</style></head><body><main class="app"><div class="top"><a class="back" href="botany-plant-kingdom-gymnosperms.html">← LEARN</a><strong>🌿 PTERIDOPHYTES</strong></div><div class="progress"><div class="bar" id="bar"></div></div><p id="c"></p><section class="card"><h1>Practice</h1><h2 id="q"></h2><div id="o"></div><p id="f"></p><button id="n" hidden>CONTINUE →</button></section><section class="card summary" id="summary">
+<div class="summaryHero"><h1>🎉 Practice Complete!</h1><div class="summaryScore">100%</div><p id="summaryMessage">You completed the initial Gymnosperms practice.</p></div>
+<div class="summaryGrid"><div class="stat"><b id="sumMastered">0/0</b>Mastered</div><div class="stat"><b id="sumAccuracy">0%</b>First-pass accuracy</div><div class="stat"><b id="sumRounds">1</b>Rounds</div></div>
+<h2 class="sectionTitle">🧠 Skills progress</h2><div id="skills"></div>
+<h2 class="sectionTitle">🎯 Weak areas</h2><div id="weakAreas"></div>
+<div class="summaryActions"><a class="back option" href="botany-gymnosperms-preparation.html">BACK TO PREPARATION</a><a class="btn" href="botany-gymnosperms-practice.html">START FULL 50-MCQ TEST</a></div>
+</section></main><script>const qs=[["Gymnosperms MCQ 1: Gymnosperms are characterised by:","Naked seeds","Seeds enclosed in fruits","Flowers only","Absence of vascular tissue",0,"Gymnosperms bear naked ovules and seeds that are not enclosed in an ovary."],["Gymnosperms MCQ 2: The dominant plant body of gymnosperms is the:","Gametophyte","Sporophyte","Protonema","Endosperm",1,"The diploid sporophyte is the dominant plant body."],["Gymnosperms MCQ 3: Which of the following is a gymnosperm?","Pinus","Marchantia","Pteris","Mango",0,"Pinus is a gymnosperm."],["Gymnosperms MCQ 4: Gymnosperms generally bear reproductive structures called:","Cones or strobili","Flowers only","Fruits","Sori",0,"Male and female reproductive structures are commonly organised into cones or strobili."],["Gymnosperms MCQ 5: Which plant has coralloid roots?","Cycas","Pinus","Mango","Pteris",0,"Cycas has coralloid roots associated with nitrogen-fixing cyanobacteria."],["Gymnosperms MCQ 6: Mycorrhizal roots occur in:","Pinus","Cycas","Funaria","Selaginella",0,"Pinus commonly has mycorrhizal roots."],["Gymnosperms MCQ 7: Gymnosperms are:","Heterosporous","Always homosporous","Seedless","Non-vascular",0,"They produce microspores and megaspores."],["Gymnosperms MCQ 8: Microspores develop into the:","Male gametophyte","Female gametophyte","Sporophyte","Fruit",0,"The male gametophyte develops from the microspore."],["Gymnosperms MCQ 9: Which statement is correct?","Ovules are not enclosed by an ovary","Fruits always enclose seeds","Flowers are required for seeds","Gymnosperms lack vascular tissue",0,"The naked ovule is a defining gymnosperm feature."],["Gymnosperms MCQ 10: Which sequence best describes the life cycle?","Sporophyte → spores → gametophytes → gametes → zygote → sporophyte","Fruit → seed → flower","Gametophyte → fruit → sporophyte","Spore → fruit → seed",0,"Gymnosperms show alternation of generations with a dominant sporophyte."]];let i=0,lock=false,round=1,queue=qs.map((_,index)=>index),mastered=new Set(),wrongThisRound=[],firstAttempts=0,firstCorrect=0,totalWrong=0;
+const skillNames=["Core features","Classification","Reproduction","Life cycle","Vascular tissues"];
+const skillStats=Object.fromEntries(skillNames.map(s=>[s,{seen:0,correct:0,wrong:0}]));
+function skillFor(q){const t=q[0].toLowerCase();if(/selaginella|pteridophyte|classification/.test(t))return"Classification";if(/fertilis|gamete|water|sex organ/.test(t))return"Reproduction";if(/sporophyte|gametophyte|prothallus|spore|heterospory|homospory|seed habit/.test(t))return"Life cycle";if(/vascular|xylem|phloem/.test(t))return"Vascular tissues";return"Core features"}
+function updateProgress(){document.getElementById('bar').style.width=((mastered.size/qs.length)*100)+'%'}
+function render(){
+ lock=false;const id=queue[i],z=qs[id],skill=skillFor(z);
+ document.getElementById('c').textContent='ROUND '+round+' • QUESTION '+(i+1)+' OF '+queue.length+' • MASTERED '+mastered.size+'/'+qs.length;
+ document.getElementById('q').textContent=z[0];const o=document.getElementById('o'),f=document.getElementById('f'),n=document.getElementById('n');
+ o.innerHTML='';f.className='feedback';f.textContent='';n.hidden=true;updateProgress();
+ [1,2,3,4].map((x,k)=>[z[x],k]).sort(()=>Math.random()-.5).forEach(x=>{const b=document.createElement('button');b.className='option';b.type='button';b.textContent=x[0];b.onclick=()=>{
+   if(lock)return;lock=true;const ok=x[1]===z[5];const stat=skillStats[skill];stat.seen++;
+   if(round===1)firstAttempts++;
+   if(ok){stat.correct++;if(round===1)firstCorrect++;mastered.add(id);f.className='feedback good';f.textContent='✅ Correct! '+z[6]}
+   else{stat.wrong++;totalWrong++;if(!wrongThisRound.includes(id))wrongThisRound.push(id);f.className='feedback bad';f.textContent='❌ Incorrect. '+z[6]}
+   [...o.querySelectorAll('.option')].forEach(btn=>btn.disabled=true);n.hidden=false;updateProgress();
+ };o.appendChild(b)});
+}
+function showSummary(){
+ document.querySelector('.card:not(#summary)').style.display='none';document.getElementById('c').style.display='none';
+ const summary=document.getElementById('summary');summary.classList.add('show');
+ document.getElementById('sumMastered').textContent=mastered.size+'/'+qs.length;
+ document.getElementById('sumAccuracy').textContent=Math.round((firstCorrect/qs.length)*100)+'%';
+ document.getElementById('sumRounds').textContent=round;
+ document.getElementById('summaryMessage').textContent=totalWrong?'You reached 100% mastery after reviewing missed questions.':'Perfect first-round mastery! Every answer was correct.';
+ const skills=document.getElementById('skills');skills.innerHTML='';
+ skillNames.forEach(name=>{const s=skillStats[name],rate=s.seen?Math.round((s.correct/s.seen)*100):100;skills.innerHTML+=`<div class="skill"><div class="skillTop"><span>${name}</span><span>${rate}%</span></div><div class="skillBar"><div class="skillFill" style="width:${rate}%"></div></div></div>`});
+ const weak=[...skillNames].map(name=>[name,skillStats[name]]).filter(([,s])=>s.wrong>0).sort((a,b)=>b[1].wrong-a[1].wrong);
+ document.getElementById('weakAreas').innerHTML=weak.length?weak.map(([name,s])=>`<div class="weakItem"><b>${name}</b><br>Missed ${s.wrong} time(s). Review this skill before your next test.</div>`).join(''):'<div class="feedback good">💪 No weak areas detected. Perfect first-attempt performance!</div>';
+ updateProgress();
+}
+document.getElementById('n').onclick=()=>{
+ if(i<queue.length-1){i++;render();return}
+ if(wrongThisRound.length){queue=[...wrongThisRound];wrongThisRound=[];i=0;round++;render();return}
+ showSummary();
+};
+document.getElementById('restart').onclick=()=>location.reload();
+render();</script></body></html>
