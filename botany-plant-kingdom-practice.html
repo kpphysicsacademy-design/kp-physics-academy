@@ -65,8 +65,20 @@ function showSummary(){
  const chapterStatus=document.getElementById('chapterMasteryStatus');
  const chapterWeak=document.getElementById('chapterWeakAreas');
  if(chapterStatus){const levelDone='Level '+selectedLevel+' mastered: '+mastered.size+'/'+qs.length+' • '+(totalWrong?'retry completed':'perfect first round');chapterStatus.textContent='🏆 '+levelDone;chapterWeak.innerHTML=weak.length?'<div class="feedback bad">🎯 Review focus: '+weak.map(([name])=>name).join(' • ')+'</div>':'<div class="feedback good">💪 No weak areas detected in this level.</div>';}
- if(selectedLevel<3){localStorage.setItem('plantKingdomLevel'+selectedLevel,'mastered');}
- const nextBtn=document.getElementById('restart');if(selectedLevel<3){nextBtn.textContent='UNLOCK LEVEL '+(selectedLevel+1)+' →';nextBtn.onclick=()=>location.href='botany-plant-kingdom-practice.html?level='+(selectedLevel+1)+'&questions=10'}else{nextBtn.textContent='🏆 CONCEPT COMPLETE';nextBtn.onclick=()=>location.href='botany-plant-kingdom-basis.html'};
+ if(selectedLevel<=3){localStorage.setItem('plantKingdomLevel'+selectedLevel,'mastered');}
+ const nextBtn=document.getElementById('restart');if(selectedLevel<3){nextBtn.textContent='UNLOCK LEVEL '+(selectedLevel+1)+' →';nextBtn.onclick=()=>location.href='botany-plant-kingdom-practice.html?level='+(selectedLevel+1)+'&questions=10'}else{
+   nextBtn.textContent='🏆 VIEW CHAPTER MASTERY SUMMARY';
+   nextBtn.onclick=()=>{
+     const l1=localStorage.getItem('plantKingdomLevel1')==='mastered';
+     const l2=localStorage.getItem('plantKingdomLevel2')==='mastered';
+     const l3=localStorage.getItem('plantKingdomLevel3')==='mastered';
+     document.querySelector('.card:not(#summary)').style.display='none';
+     summary.innerHTML='<h2>🏆 Plant Kingdom Mastery</h2><div class="feedback good">🎉 Chapter Mastery Complete!</div><p>Foundation: '+(l1?'✅ Mastered':'⬜ Not completed')+'<br>Application: '+(l2?'✅ Mastered':'⬜ Not completed')+'<br>Challenge: '+(l3?'✅ Mastered':'⬜ Not completed')+'</p><div id="chapterFinalStats"></div><h3>🎯 Your Learning Outcome</h3><p>You completed the Plant Kingdom mastery pathway with retry-based learning. Incorrect answers were revisited until mastered.</p><button id="chapterRestart" class="restart">🔄 PRACTICE CHAPTER AGAIN</button><button id="chapterPath" class="restart">📖 BACK TO CONCEPT PATH</button>';
+     document.getElementById('chapterFinalStats').innerHTML='<div class="weakItem"><b>🏆 Final Mastery Score</b><br>'+((l1&&l2&&l3)?'100% chapter levels completed':'Complete all three levels to unlock full chapter mastery')+'</div>';
+     document.getElementById('chapterRestart').onclick=()=>location.href='botany-plant-kingdom-practice.html';
+     document.getElementById('chapterPath').onclick=()=>location.href='botany-plant-kingdom.html';
+   };
+ };
  const skills=document.getElementById('skills');skills.innerHTML='';
  skillNames.forEach(name=>{const s=skillStats[name],rate=s.seen?Math.round((s.correct/s.seen)*100):100;skills.innerHTML+=`<div class="skill"><div class="skillTop"><span>${name}</span><span>${rate}%</span></div><div class="skillBar"><div class="skillFill" style="width:${rate}%"></div></div></div>`});
  const weak=[...skillNames].map(name=>[name,skillStats[name]]).filter(([,s])=>s.wrong>0).sort((a,b)=>b[1].wrong-a[1].wrong);
