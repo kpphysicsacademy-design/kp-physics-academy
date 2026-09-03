@@ -1,0 +1,67 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>SkillUp | Angiosperms Initial Practice</title><style>
+:root{--green:#18a64a;--dark:#183028;--soft:#f3fbf5;--line:#d9e9df}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:var(--soft);color:var(--dark)}
+.app{max-width:760px;margin:auto;min-height:100vh;padding:16px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:10px 0 18px}
+.back{color:var(--green);font-weight:800;text-decoration:none}
+.progress{height:12px;background:#dcece2;border-radius:999px;overflow:hidden;margin:4px 0 12px}
+.bar{height:100%;width:0;background:var(--green);border-radius:999px;transition:width .3s ease}
+#c{font-size:13px;font-weight:800;color:#617369;letter-spacing:.4px;margin:14px 0}
+.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:0 8px 24px rgba(20,60,35,.08)}
+.card h1{margin:0 0 18px;font-size:18px;color:var(--green)}
+#q{font-size:25px;line-height:1.4;margin:0 0 22px}
+.option{display:block;width:100%;padding:17px 18px;margin:12px 0;background:#fff;border:2px solid #d9e9df;border-radius:16px;text-align:left;font-size:16px;font-weight:700;color:var(--dark);cursor:pointer;box-shadow:0 2px 0 #d9e9df}
+.option:hover{border-color:var(--green);transform:translateY(-1px)}
+.option:active{transform:translateY(1px)}
+.feedback{display:none;padding:15px;border-radius:14px;margin-top:16px;line-height:1.5;font-weight:600}
+.feedback.good,.feedback.bad{display:block}
+.good{background:#e8f8ec;color:#087a2d}
+.bad{background:#fff0ee;color:#b42318}
+#n{width:100%;padding:17px;border:0;border-radius:16px;background:var(--green);color:#fff;font-size:16px;font-weight:900;margin-top:16px;cursor:pointer;box-shadow:0 4px 0 #0b7830}
+#n:active{transform:translateY(3px);box-shadow:0 1px 0 #0b7830}
+@media(max-width:520px){.app{padding:12px}.card{padding:18px;border-radius:20px}#q{font-size:21px}.option{padding:15px;font-size:15px}}
+.summary{display:none}.summary.show{display:block}.summaryHero{text-align:center;padding:10px 0 20px}.summaryScore{font-size:52px;font-weight:900;color:var(--green);margin:8px 0}.summaryGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}.stat{background:#f3fbf5;border:1px solid var(--line);border-radius:16px;padding:14px;text-align:center}.stat b{display:block;font-size:22px;color:var(--green)}.sectionTitle{font-size:18px;margin:22px 0 10px}.skill{padding:13px 0;border-bottom:1px solid var(--line)}.skillTop{display:flex;justify-content:space-between;gap:10px;font-weight:700}.skillBar{height:8px;background:#e2eee5;border-radius:999px;overflow:hidden;margin-top:8px}.skillFill{height:100%;background:var(--green);border-radius:999px}.weakItem{background:#fff7e8;border:1px solid #f2d39a;border-radius:14px;padding:12px;margin:8px 0}.summaryActions{display:flex;gap:10px;margin-top:22px}.summaryActions a,.summaryActions button{flex:1;text-align:center;text-decoration:none}</style></head><body><main class="app"><div class="top"><a class="back" href="botany-plant-kingdom-angiosperms.html">← LEARN</a><strong>🌿 PTERIDOPHYTES</strong></div><div class="progress"><div class="bar" id="bar"></div></div><p id="c"></p><section class="card"><h1>Practice</h1><h2 id="q"></h2><div id="o"></div><p id="f"></p><button id="n" hidden>CONTINUE →</button></section><section class="card summary" id="summary">
+<div class="summaryHero"><h1>🎉 Practice Complete!</h1><div class="summaryScore">100%</div><p id="summaryMessage">You completed the initial Angiosperms practice.</p></div>
+<div class="summaryGrid"><div class="stat"><b id="sumMastered">0/0</b>Mastered</div><div class="stat"><b id="sumAccuracy">0%</b>First-pass accuracy</div><div class="stat"><b id="sumRounds">1</b>Rounds</div></div>
+<h2 class="sectionTitle">🧠 Skills progress</h2><div id="skills"></div>
+<h2 class="sectionTitle">🎯 Weak areas</h2><div id="weakAreas"></div>
+<div class="summaryActions"><a class="back option" href="botany-angiosperms-preparation.html">BACK TO PREPARATION</a><a class="btn" href="botany-angiosperms-practice.html">START FULL 50-MCQ TEST</a></div>
+</section></main><script>const qs=[["Angiosperms MCQ 1: Angiosperms are characterised by:","Ovules enclosed within an ovary","Naked seeds only","Absence of flowers","No vascular tissue",0,"In angiosperms, ovules are enclosed within an ovary."],["Angiosperms MCQ 2: The dominant plant body in angiosperms is the:","Sporophyte","Gametophyte","Protonema","Endosperm",0,"The diploid sporophyte is dominant in angiosperms."],["Angiosperms MCQ 3: The male reproductive organ of a flower is the:","Stamen","Carpel","Sepal","Petal",0,"The stamen is the male reproductive organ."],["Angiosperms MCQ 4: Pollen grains are produced in the:","Anther","Stigma","Ovary","Ovule",0,"Anthers produce pollen grains."],["Angiosperms MCQ 5: The female reproductive organ is the:","Carpel","Stamen","Anther","Petal",0,"The carpel bears stigma, style and ovary."],["Angiosperms MCQ 6: Double fertilisation is characteristic of:","Angiosperms","Bryophytes","Pteridophytes","Gymnosperms",0,"Double fertilisation is a defining feature of angiosperms."],["Angiosperms MCQ 7: After fertilisation, the ovule develops into:","Seed","Fruit","Flower","Pollen grain",0,"The fertilised ovule develops into a seed."],["Angiosperms MCQ 8: After fertilisation, the ovary generally develops into:","Fruit","Root","Leaf","Pollen grain",0,"The ovary develops into the fruit."],["Angiosperms MCQ 9: Pollination is the transfer of pollen to the:","Stigma","Ovary","Ovule","Endosperm",0,"Pollination is transfer of pollen grains to the stigma."],["Angiosperms MCQ 10: Monocots and dicots differ primarily in the number of:","Cotyledons","Petals only","Roots","Flowers",0,"The number of cotyledons is a major distinction between monocots and dicots."]];let i=0,lock=false,round=1,queue=qs.map((_,index)=>index),mastered=new Set(),wrongThisRound=[],firstAttempts=0,firstCorrect=0,totalWrong=0;
+const skillNames=["Core features","Classification","Reproduction","Life cycle","Vascular tissues"];
+const skillStats=Object.fromEntries(skillNames.map(s=>[s,{seen:0,correct:0,wrong:0}]));
+function skillFor(q){const t=q[0].toLowerCase();if(/selaginella|pteridophyte|classification/.test(t))return"Classification";if(/fertilis|gamete|water|sex organ/.test(t))return"Reproduction";if(/sporophyte|gametophyte|prothallus|spore|heterospory|homospory|seed habit/.test(t))return"Life cycle";if(/vascular|xylem|phloem/.test(t))return"Vascular tissues";return"Core features"}
+function updateProgress(){document.getElementById('bar').style.width=((mastered.size/qs.length)*100)+'%'}
+function render(){
+ lock=false;const id=queue[i],z=qs[id],skill=skillFor(z);
+ document.getElementById('c').textContent='ROUND '+round+' • QUESTION '+(i+1)+' OF '+queue.length+' • MASTERED '+mastered.size+'/'+qs.length;
+ document.getElementById('q').textContent=z[0];const o=document.getElementById('o'),f=document.getElementById('f'),n=document.getElementById('n');
+ o.innerHTML='';f.className='feedback';f.textContent='';n.hidden=true;updateProgress();
+ [1,2,3,4].map((x,k)=>[z[x],k]).sort(()=>Math.random()-.5).forEach(x=>{const b=document.createElement('button');b.className='option';b.type='button';b.textContent=x[0];b.onclick=()=>{
+   if(lock)return;lock=true;const ok=x[1]===z[5];const stat=skillStats[skill];stat.seen++;
+   if(round===1)firstAttempts++;
+   if(ok){stat.correct++;if(round===1)firstCorrect++;mastered.add(id);f.className='feedback good';f.textContent='✅ Correct! '+z[6]}
+   else{stat.wrong++;totalWrong++;if(!wrongThisRound.includes(id))wrongThisRound.push(id);f.className='feedback bad';f.textContent='❌ Incorrect. '+z[6]}
+   [...o.querySelectorAll('.option')].forEach(btn=>btn.disabled=true);n.hidden=false;updateProgress();
+ };o.appendChild(b)});
+}
+function showSummary(){
+ document.querySelector('.card:not(#summary)').style.display='none';document.getElementById('c').style.display='none';
+ const summary=document.getElementById('summary');summary.classList.add('show');
+ document.getElementById('sumMastered').textContent=mastered.size+'/'+qs.length;
+ document.getElementById('sumAccuracy').textContent=Math.round((firstCorrect/qs.length)*100)+'%';
+ document.getElementById('sumRounds').textContent=round;
+ document.getElementById('summaryMessage').textContent=totalWrong?'You reached 100% mastery after reviewing missed questions.':'Perfect first-round mastery! Every answer was correct.';
+ const skills=document.getElementById('skills');skills.innerHTML='';
+ skillNames.forEach(name=>{const s=skillStats[name],rate=s.seen?Math.round((s.correct/s.seen)*100):100;skills.innerHTML+=`<div class="skill"><div class="skillTop"><span>${name}</span><span>${rate}%</span></div><div class="skillBar"><div class="skillFill" style="width:${rate}%"></div></div></div>`});
+ const weak=[...skillNames].map(name=>[name,skillStats[name]]).filter(([,s])=>s.wrong>0).sort((a,b)=>b[1].wrong-a[1].wrong);
+ document.getElementById('weakAreas').innerHTML=weak.length?weak.map(([name,s])=>`<div class="weakItem"><b>${name}</b><br>Missed ${s.wrong} time(s). Review this skill before your next test.</div>`).join(''):'<div class="feedback good">💪 No weak areas detected. Perfect first-attempt performance!</div>';
+ updateProgress();
+}
+document.getElementById('n').onclick=()=>{
+ if(i<queue.length-1){i++;render();return}
+ if(wrongThisRound.length){queue=[...wrongThisRound];wrongThisRound=[];i=0;round++;render();return}
+ showSummary();
+};
+document.getElementById('restart').onclick=()=>location.reload();
+render();</script></body></html>
