@@ -20,8 +20,7 @@ const chapterData={
 ['👁️','Consciousness','Understand sensing and awareness in living organisms.','Consciousness is the ability to sense surroundings and respond to environmental stimuli.'],
 ['🌍','Response to Stimuli','Study responses to environmental changes.','Living organisms respond to physical, chemical and biological stimuli through coordinated physiological or behavioural changes.'],
 ['🧠','Self-Consciousness','Learn the special feature of human consciousness.','Human beings possess self-consciousness, the capacity to be aware of themselves in addition to sensing the external environment.'],
-['⚠️','NCERT & NEET Key Points','Revise high-yield definitions and exceptions.','Cellular organisation and consciousness are important characteristics of living systems. Focus on NCERT terminology and examples.']
-]};
+['⚠️','NCERT & NEET Key Points','Revise high-yield definitions and exceptions.','Cellular organisation and consciousness are important characteristics of living systems. Focus on NCERT terminology and examples.']};
 const lessons=chapterData[chapter]||chapterData['What is Living? Growth, Reproduction & Metabolism'];
 const storageKey='skillup-progress-'+chapter;
 function getProgress(){try{return JSON.parse(localStorage.getItem(storageKey)||'[]')}catch(e){return []}}
