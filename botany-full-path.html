@@ -47,7 +47,7 @@ function build(){
    const active=n[4]!=='coming';
    const el=document.createElement('div');
    el.className='node '+side+' '+(active?'current':done?'done':'locked');
-   const testPage=n[4].replace('.html','-test.html');const action=active?'<div class="chapter-options"><a class="continue" href="'+n[4]+'">📖 CONCEPTS & LEARN</a><a class="continue test" href="'+testPage+'">🎯 TEST & PRACTICE</a></div>':'<span class="status">COMING NEXT</span>';
+   const testPage=n[4].replace('.html','-test.html');const action=active?'<div class="chapter-options"><a class="continue" href="'+n[4]+'">📖 LEARN</a><a class="continue test" href="'+testPage+'">🎯 TEST</a></div>':'<span class="status">COMING NEXT</span>';
    el.innerHTML='<div class="node-card"><div class="node-top"><h3>'+n[0]+' '+n[1]+'</h3><span class="status">'+statusFor(n,i)+'</span></div>'+(n[2]?'<p>'+n[2]+'</p>':'')+'<span class="xp">⭐ +'+n[3]+' XP</span>'+action+'</div><div class="node-dot">'+(active?n[0]:'🔒')+'</div>';
    if(!active)el.querySelector('.node-card').addEventListener('click',()=>openLesson(i));
    p.appendChild(el);
