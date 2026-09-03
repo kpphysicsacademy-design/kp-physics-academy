@@ -50,10 +50,11 @@ function render(){
 function showSummary(){
  document.querySelector('.card:not(#summary)').style.display='none';document.getElementById('c').style.display='none';
  const summary=document.getElementById('summary');summary.classList.add('show');
- document.getElementById('sumMastered').textContent=mastered.size+'/'+qs.length;
+ document.getElementById('sumMastered').textContent='Level '+selectedLevel+' • '+mastered.size+'/'+qs.length;
  document.getElementById('sumAccuracy').textContent=Math.round((firstCorrect/qs.length)*100)+'%';
+ document.getElementById('summaryMessage').textContent='Level '+selectedLevel+' — '+levelNames[selectedLevel]+'. '+(totalWrong?'You reached 100% mastery after reviewing missed questions.':'Perfect first-round mastery! Every answer was correct.');
  document.getElementById('sumRounds').textContent=round;
- document.getElementById('summaryMessage').textContent=totalWrong?'You reached 100% mastery after reviewing missed questions.':'Perfect first-round mastery! Every answer was correct.';
+ const nextBtn=document.getElementById('restart');if(selectedLevel<3){nextBtn.textContent='UNLOCK LEVEL '+(selectedLevel+1)+' →';nextBtn.onclick=()=>location.href='botany-plant-kingdom-level'+(selectedLevel+1)+'.html'}else{nextBtn.textContent='🏆 CONCEPT COMPLETE';nextBtn.onclick=()=>location.href='botany-plant-kingdom-basis.html'};
  const skills=document.getElementById('skills');skills.innerHTML='';
  skillNames.forEach(name=>{const s=skillStats[name],rate=s.seen?Math.round((s.correct/s.seen)*100):100;skills.innerHTML+=`<div class="skill"><div class="skillTop"><span>${name}</span><span>${rate}%</span></div><div class="skillBar"><div class="skillFill" style="width:${rate}%"></div></div></div>`});
  const weak=[...skillNames].map(name=>[name,skillStats[name]]).filter(([,s])=>s.wrong>0).sort((a,b)=>b[1].wrong-a[1].wrong);
