@@ -166,7 +166,38 @@ topics:{
 ['Chitinous cell wall with absorptive nutrition indicates','Fungi','Plantae','Animalia','Monera',0],
 ['An organism that is unicellular, eukaryotic and mixotrophic is most likely placed in','Protista','Monera','Animalia','Fungi',0],
 ['Which combination is correctly matched?','Methanogen—Archaebacteria','Diatom—Prokaryote','Basidium—Plant organ','Mycoplasma—Cellulose wall',0],
-['Assertion: Fungi were separated from plants by Whittaker. Reason: Fungi are heterotrophic and obtain nutrition by absorption.','Both assertion and reason are true and the reason correctly explains the assertion','Both are true but reason does not explain assertion','Assertion true but reason false','Assertion false but reason true',0]]
+['Assertion: Fungi were separated from plants by Whittaker. Reason: Fungi are heterotrophic and obtain nutrition by absorption.','Both assertion and reason are true and the reason correctly explains the assertion','Both are true but reason does not explain assertion','Assertion true but reason false','Assertion false but reason true',0]],
+'big-quiz':[
+['The five-kingdom classification was proposed by','R.H. Whittaker','Carolus Linnaeus','Aristotle','Ernst Haeckel',0],
+['Whittaker proposed the five-kingdom system in','1969','1959','1975','1989',0],
+['Which kingdom contains prokaryotic organisms?','Monera','Protista','Fungi','Animalia',0],
+['Which is NOT a kingdom in Whittaker’s system?','Virus','Monera','Protista','Fungi',0],
+['The criterion that distinguishes prokaryotes from eukaryotes is mainly','Cell structure','Body colour','Habitat','Size alone',0],
+['Most bacteria reproduce by','Binary fission','Pollination','Seed formation','Budding of flowers',0],
+['The cell wall of eubacteria contains','Peptidoglycan','Chitin','Cellulose','Silica',0],
+['Methanogens are commonly found in the gut of','Ruminants','Birds only','Flowering plants','Fungi',0],
+['Cyanobacteria are photosynthetic members of','Monera','Protista','Fungi','Animalia',0],
+['Mycoplasma differs from most bacteria because it','Lacks a cell wall','Lacks DNA','Lacks ribosomes','Is multicellular',0],
+['Kingdom Protista primarily includes','Unicellular eukaryotes','Multicellular prokaryotes','Only plants','Only animals',0],
+['The cell wall of diatoms is rich in','Silica','Peptidoglycan','Chitin','Lignin',0],
+['Diatomaceous earth is mainly formed from','Diatom frustules','Fungal spores','Bacterial walls','Plant cuticles',0],
+['Red tides are often caused by','Dinoflagellates','Mosses','Mycoplasma','Basidiomycetes',0],
+['Euglenoids can show both autotrophic and heterotrophic nutrition because they are','Mixotrophic','Prokaryotic','Acellular','Saprophytic only',0],
+['Slime moulds belong to','Protista','Monera','Plantae','Animalia',0],
+['The mode of nutrition in fungi is mainly','Absorptive heterotrophy','Ingestive heterotrophy','Photosynthesis','Chemosynthesis',0],
+['The fungal body usually consists of a network of','Hyphae','Xylem vessels','Nephrons','Axons',0],
+['The mass of hyphae is called','Mycelium','Pellicle','Frustule','Thallus of a bacterium',0],
+['Fungal cell walls generally contain','Chitin','Peptidoglycan','Cellulose only','Silica',0],
+['Ascomycetes are commonly called','Sac fungi','Club fungi','Blue-green algae','Slime fungi only',0],
+['Basidiospores are produced on','Basidia','Asci','Sporangia of bacteria','Heterocysts',0],
+['Deuteromycetes are called fungi imperfecti because','Their sexual stage is absent or unknown','They lack nuclei','They are prokaryotic','They have no cell wall',0],
+['Kingdom Plantae mainly consists of','Multicellular eukaryotic autotrophs','Prokaryotic autotrophs','Absorptive heterotrophs','Acellular forms',0],
+['Plants generally store reserve food as','Starch','Glycogen','Chitin','Peptidoglycan',0],
+['Animals obtain nutrition mainly by','Ingestion','Absorption through hyphae','Photosynthesis','Chemosynthesis only',0],
+['Animal cells generally lack','Cell walls','Nuclei','Mitochondria','DNA',0],
+['An organism with prokaryotic cells and peptidoglycan wall belongs to','Monera','Protista','Fungi','Plantae',0],
+['An organism with silica-impregnated walls is most likely a','Diatom','Methanogen','Mycoplasma','Basidiomycete',0],
+['Which statement best explains separation of fungi from plants?','Fungi are heterotrophic and absorb nutrients','Fungi are always unicellular','Fungi are prokaryotic','Fungi lack nuclei',0]]
 }},
 'Biological Classification':{
 icon:'🧬',
@@ -407,8 +438,8 @@ const aidsChapter=chapter==='Taxonomical Aids';
 const taxonomyChapter=chapter==='Taxonomy, Systematics & Classification';
 const nomenclatureChapter=chapter==='Nomenclature: Binomial System & Rules';
 const fiveKingdomChapter=chapter==='Five Kingdom Classification';
-const labels=livingChapter?['Characteristics of Living','Growth','Reproduction','Metabolism','Consciousness','NEET Application']:biologicalChapter?['Whittaker Classification','Kingdom Monera','Kingdom Protista','Kingdom Fungi','Plantae & Animalia','Viruses, Viroids & Prions','Hard NEET Application']:aidsChapter?['Herbarium & Museum','Botanical Garden & Zoo','Taxonomic Keys','Flora, Manual & Monograph','NEET Application']:taxonomyChapter?['Taxonomy Basics','Systematics','Biological Classification','Taxonomic Hierarchy','Species Concept','Taxonomical Aids','Nomenclature','NCERT & NEET Key Points']:nomenclatureChapter?['Nomenclature Basics','Binomial System','Writing Rules','Latinisation','Author Citation','International Codes','Principle of Priority','Type Concept','Common vs Scientific Names','NCERT & NEET Key Points']:fiveKingdomChapter?['Five Kingdom Basics','Kingdom Monera','Kingdom Protista','Kingdom Fungi','Plantae & Animalia','NEET Application']:chapterConfigs[chapter]?['Cellular Organisation','Cell: Basic Unit of Life','Genetic Material','Unicellular & Multicellular Organisation','Consciousness','Response to Stimuli','Self-Consciousness','NCERT & NEET Key Points']:['Living vs Non-living','Growth','Reproduction','Metabolism','Consciousness & Response','NCERT Concepts & NEET Traps'];
-const keys=Object.keys(topics),emojis=livingChapter?['🌱','📈','🧬','⚗️','🧠','🔥']:biologicalChapter?['🧭','🦠','🧫','🍄','🌿','🧬','🔥']:aidsChapter?['🌿','🏛️','🔑','📚','🎯']:taxonomyChapter?['📚','🧭','🗂️','🔢','🧬','🌿','✍️','🎯']:nomenclatureChapter?['✍️','🔤','📐','🌐','👤','📜','⏳','🏷️','🗣️','🎯']:fiveKingdomChapter?['👑','🦠','🔬','🍄','🌿','🎯']:chapterConfigs[chapter]?['🧫','🔬','🧬','🌐','👁️','⚡','🧠','🎯']:['🌱','📈','🧬','⚙️','👁️','⚠️'];
+const labels=livingChapter?['Characteristics of Living','Growth','Reproduction','Metabolism','Consciousness','NEET Application']:biologicalChapter?['Whittaker Classification','Kingdom Monera','Kingdom Protista','Kingdom Fungi','Plantae & Animalia','Viruses, Viroids & Prions','Hard NEET Application']:aidsChapter?['Herbarium & Museum','Botanical Garden & Zoo','Taxonomic Keys','Flora, Manual & Monograph','NEET Application']:taxonomyChapter?['Taxonomy Basics','Systematics','Biological Classification','Taxonomic Hierarchy','Species Concept','Taxonomical Aids','Nomenclature','NCERT & NEET Key Points']:nomenclatureChapter?['Nomenclature Basics','Binomial System','Writing Rules','Latinisation','Author Citation','International Codes','Principle of Priority','Type Concept','Common vs Scientific Names','NCERT & NEET Key Points']:fiveKingdomChapter?['Five Kingdom Basics','Kingdom Monera','Kingdom Protista','Kingdom Fungi','Plantae & Animalia','NEET Application','Big Quiz • 30 MCQs']:chapterConfigs[chapter]?['Cellular Organisation','Cell: Basic Unit of Life','Genetic Material','Unicellular & Multicellular Organisation','Consciousness','Response to Stimuli','Self-Consciousness','NCERT & NEET Key Points']:['Living vs Non-living','Growth','Reproduction','Metabolism','Consciousness & Response','NCERT Concepts & NEET Traps'];
+const keys=Object.keys(topics),emojis=livingChapter?['🌱','📈','🧬','⚗️','🧠','🔥']:biologicalChapter?['🧭','🦠','🧫','🍄','🌿','🧬','🔥']:aidsChapter?['🌿','🏛️','🔑','📚','🎯']:taxonomyChapter?['📚','🧭','🗂️','🔢','🧬','🌿','✍️','🎯']:nomenclatureChapter?['✍️','🔤','📐','🌐','👤','📜','⏳','🏷️','🗣️','🎯']:fiveKingdomChapter?['👑','🦠','🔬','🍄','🌿','🎯','🏆']:chapterConfigs[chapter]?['🧫','🔬','🧬','🌐','👁️','⚡','🧠','🎯']:['🌱','📈','🧬','⚙️','👁️','⚠️'];
 const app=document.getElementById('app');const params=new URLSearchParams(location.search);const key=params.get('topic');const state={chapter,topic:key,question:0,score:0,wrong:[],answers:[]};function navigate(topic){location.href=location.pathname+'?chapter='+encodeURIComponent(chapter)+(topic?'&topic='+topic:'')}
 function list(){app.innerHTML='<section class="hero"><div style="font-size:50px">🔬</div><h1>'+chapter+'</h1><div class="mode">🎯 CHAPTER PRACTICE</div></section><div class="label">CHOOSE A TEST</div>'+keys.map((k,i)=>'<a class="topic" href="?chapter='+encodeURIComponent(chapter)+'&topic='+k+'"><span class="num">'+(i+1)+'</span><span class="emoji">'+emojis[i]+'</span><span class="copy"><b>'+labels[i]+'</b><small>'+topics[k].length+' practice questions</small></span><span class="start">START →</span></a>').join('')}
 function test(){
