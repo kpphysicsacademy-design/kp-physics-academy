@@ -34,8 +34,8 @@ window.SkillUpQuizEngine=(function(){
         const selected=+b.dataset.i,correct=q.answer,buttons=root.querySelectorAll('.quiz-options button'),fb=root.querySelector('.quiz-feedback');
         buttons.forEach(x=>{x.disabled=true;if(+x.dataset.i===correct)x.classList.add('correct')});
         fb.hidden=false;
-        if(selected===correct){score++;fb.innerHTML='🎉 <b>CORRECT!</b><br>📘 '+(q.explanation||'Review this NCERT concept to strengthen your understanding.')}
-        else{b.classList.add('wrong');wrong.push({question:q.question,selected:q.options[selected],correct:q.options[correct],explanation:q.explanation||''});fb.innerHTML='❌ <b>INCORRECT</b><br>✅ Correct answer: <b>'+q.options[correct]+'</b><br>📘 '+(q.explanation||'Review this NCERT concept carefully.')}
+        if(selected===correct){score++;fb.innerHTML='🎉 <b>CORRECT!</b><br>📘 '+(q.explanation||'The selected option is correct. Review the related NCERT concept to strengthen your understanding.')}
+        else{b.classList.add('wrong');wrong.push({question:q.question,selected:q.options[selected],correct:q.options[correct],explanation:q.explanation||''});fb.innerHTML='❌ <b>INCORRECT</b><br>📘 <b>'+q.options[correct]+'</b> is correct because '+(q.explanation||'this follows the relevant NCERT concept being tested.')}
         fb.innerHTML+='<button type="button" class="quiz-next">'+(i===questions.length-1?'FINISH →':'NEXT →')+'</button>';
         root.querySelector('.quiz-next').onclick=()=>{i++;draw()};
       });
