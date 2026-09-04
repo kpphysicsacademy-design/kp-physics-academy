@@ -1010,6 +1010,30 @@ function test(){
 
   function explanation(q){
  const a=q[q[5]+1];
+ if(chapter==='Kingdom Protista'){
+  const detailed={
+   'Unicellular eukaryotes':'Protists are predominantly unicellular eukaryotes with a well-defined nucleus and membrane-bound organelles.',
+   'A well-defined nucleus':'A true nucleus enclosed by a nuclear membrane is a defining eukaryotic feature of protists.',
+   'Chrysophytes, dinoflagellates, euglenoids, slime moulds and protozoans':'These are the major groups of Kingdom Protista described in NCERT biological classification.',
+   'The boundaries of the kingdom are not well defined':'Protists show great diversity, and some members share characteristics with plants, animals or fungi.',
+   'Silica':'Diatom cell walls are impregnated with silica, forming characteristic durable frustules.',
+   'Two overlapping shells like a soap box':'The two halves of a diatom frustule fit together like the overlapping halves of a soap box.',
+   'Diatom cell wall deposits':'Accumulated siliceous remains of diatoms form diatomaceous earth.',
+   'Dinoflagellates':'Rapid multiplication of certain marine dinoflagellates can produce red tides.',
+   'Two flagella':'Dinoflagellates typically possess two flagella arranged in grooves that help in movement.',
+   'Cellulose plates':'Many dinoflagellates have stiff cellulose plates on the cell surface.',
+   'Protein-rich pellicle':'Euglenoids possess a flexible protein-rich pellicle instead of a rigid cell wall.',
+   'May show both autotrophic and heterotrophic nutrition':'Euglenoids can photosynthesise in light and behave heterotrophically when suitable light is unavailable.',
+   'Saprophytic protists':'Slime moulds feed on decaying organic matter and are treated as saprophytic protists in NCERT.',
+   'Fruiting bodies bearing spores':'Under unfavourable conditions slime mould plasmodium forms fruiting bodies that produce resistant spores.',
+   'Pseudopodia':'Amoeboid protozoans use temporary cytoplasmic projections called pseudopodia for movement and food capture.',
+   'Cilia':'Paramecium and other ciliates use numerous cilia for active locomotion.',
+   'Flagella':'Flagellated protozoans move primarily using one or more flagella.',
+   'Sporozoans':'Plasmodium is placed among sporozoans in the traditional NCERT classification.',
+   'Heterotrophic animal-like protists':'Protozoans are animal-like protists that generally obtain nutrition heterotrophically.'
+  };
+  return detailed[a]||('The correct answer is '+a+' because it represents the characteristic feature of the Protista group described in the question.');
+ }
  if(chapter==='What is Living? Growth, Reproduction & Metabolism'){
   const detailed={
    'Growth':'living organisms show intrinsic growth through cellular activities, but growth alone cannot define life because non-living objects can also increase in size by external accretion.',
