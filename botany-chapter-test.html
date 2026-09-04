@@ -132,9 +132,7 @@ topics:{
 ['Taxonomy helps in recognising organisms through','Identification and classification','Only respiration','Only reproduction','Only movement',0],
 ['The most appropriate taxonomic aid for dried plant specimens is','Herbarium','Aquarium','Zoo','Greenhouse only',0],
 ['A taxon can represent','Any rank in the taxonomic hierarchy','Only a species','Only a kingdom','Only a genus',0]]
-}}};
-
-,
+}};
 
 const defaultTopics={
 'living-nonliving':[
@@ -178,7 +176,7 @@ let topics=defaultTopics;
 if(chapterConfigs[chapter])topics=chapterConfigs[chapter].topics;
 const taxonomyChapter=chapter==='Taxonomy, Systematics & Classification';
 const nomenclatureChapter=chapter==='Nomenclature: Binomial System & Rules';
-const hierarchyChapter=chapter==='Taxonomic Categories & Hierarchy';
+const hierarchyChapter=chapter==='Taxonomic Categories & Hierarchy' && !!chapterConfigs[chapter];
 const labels=taxonomyChapter?['Taxonomy Basics','Systematics','Biological Classification','Taxonomic Hierarchy','Species Concept','Taxonomical Aids','Nomenclature','NCERT & NEET Key Points']:nomenclatureChapter?['Nomenclature Basics','Binomial System','Writing Rules','Latinisation','Author Citation','International Codes','Principle of Priority','Type Concept','Common vs Scientific Names','NCERT & NEET Key Points']:hierarchyChapter?['Species & Genus','Family & Order','Class, Phylum & Kingdom','Hierarchy & Inclusiveness','Taxon vs Category','Intermediate Ranks','Binomial-Hierarchy Link', 'NCERT Examples','Assertion–Reason']:chapterConfigs[chapter]?['Cellular Organisation','Cell: Basic Unit of Life','Genetic Material','Unicellular & Multicellular Organisation','Consciousness','Response to Stimuli','Self-Consciousness','NCERT & NEET Key Points']:['Living vs Non-living','Growth','Reproduction','Metabolism','Consciousness & Response','NCERT Concepts & NEET Traps'];
 const keys=Object.keys(topics),emojis=taxonomyChapter?['📚','🧭','🗂️','🔢','🧬','🌿','✍️','🎯']:nomenclatureChapter?['✍️','🔤','📐','🌐','👤','📜','⏳','🏷️','🗣️','🎯']:hierarchyChapter?['🧬','👨‍👩‍👧','🏛️','📊','🏷️','🔗','🔤', '📖','⚖️']:chapterConfigs[chapter]?['🧫','🔬','🧬','🌐','👁️','⚡','🧠','🎯']:['🌱','📈','🧬','⚙️','👁️','⚠️'];
 const app=document.getElementById('app');const params=new URLSearchParams(location.search);const key=params.get('topic');const state={chapter,topic:key,question:0,score:0,wrong:[],answers:[]};function navigate(topic){location.href=location.pathname+'?chapter='+encodeURIComponent(chapter)+(topic?'&topic='+topic:'')}
