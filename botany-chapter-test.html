@@ -125,6 +125,34 @@ topics:{
 ['Which convention is correct for printed scientific names?','Italicise both words','Bold only the genus','Capitalise both words','Use quotation marks',0],
 ['The best purpose of binomial nomenclature is','Provide one universally accepted scientific name for a species','Provide many local names','Replace taxonomy','Describe metabolism',0]]
 }},
+'Kingdom Monera':{
+icon:'🦠',
+topics:{
+'prokaryotic-organisation':[
+['Kingdom Monera primarily includes','Prokaryotic organisms','Unicellular eukaryotes','Multicellular plants','Acellular viruses',0],
+['A typical prokaryotic cell lacks a','Membrane-bound nucleus','Plasma membrane','Ribosome','DNA',0],
+['Membrane-bound organelles are absent in','Monera','Plantae','Animalia','Fungi',0],
+['Genetic material in bacteria is mainly located in the','Nucleoid region','Nucleolus','Golgi body','Mitochondrion',0],
+['Ribosomes in prokaryotes are','Present but not membrane-bound','Absent','Inside a nucleus','Membrane-bound',0]],
+'bacteria-shapes':[
+['Spherical bacteria are called','Cocci','Bacilli','Vibrios','Spirilla',0],
+['Rod-shaped bacteria are called','Bacilli','Cocci','Vibrios','Spirochetes only',0],
+['Comma-shaped bacteria are called','Vibrios','Cocci','Bacilli','Hyphae',0],
+['Spiral bacteria are commonly termed','Spirilla','Cocci','Bacilli','Vibrios',0],
+['Most eubacterial cell walls contain','Peptidoglycan','Cellulose','Chitin','Silica',0]],
+'archaea-cyanobacteria':[
+['Methanogens belong to','Archaebacteria','Protista','Fungi','Animalia',0],
+['Methanogens are commonly found in the rumen of','Cattle','Diatoms','Mosses','Mushrooms',0],
+['Cyanobacteria are commonly called','Blue-green algae','Red algae','Brown algae','True fungi',0],
+['Which is a cyanobacterium?','Nostoc','Amoeba','Yeast','Paramecium',0],
+['Some cyanobacteria can fix','Atmospheric nitrogen','Atmospheric oxygen','Only carbon dioxide','Methane',0]],
+'nutrition-reproduction':[
+['Photosynthetic bacteria are','Autotrophic','Always parasitic','Always multicellular','Acellular',0],
+['Chemosynthetic bacteria obtain energy from','Oxidation of inorganic substances','Sunlight only','Ingestion','Seed germination',0],
+['The principal mode of reproduction in bacteria is','Binary fission','Pollination','Seed formation','Sexual reproduction by flowers',0],
+['Conjugation in bacteria is associated with','Genetic recombination','Seed production','Photosynthesis','Cell-wall loss',0],
+['Transformation and transduction are related to','Genetic recombination','Digestion','Locomotion','Pollination',0]]
+}},
 'Five Kingdom Classification':{
 icon:'👑',
 topics:{
@@ -438,8 +466,9 @@ const aidsChapter=chapter==='Taxonomical Aids';
 const taxonomyChapter=chapter==='Taxonomy, Systematics & Classification';
 const nomenclatureChapter=chapter==='Nomenclature: Binomial System & Rules';
 const fiveKingdomChapter=chapter==='Five Kingdom Classification';
-const labels=livingChapter?['Characteristics of Living','Growth','Reproduction','Metabolism','Consciousness','NEET Application']:biologicalChapter?['Whittaker Classification','Kingdom Monera','Kingdom Protista','Kingdom Fungi','Plantae & Animalia','Viruses, Viroids & Prions','Hard NEET Application']:aidsChapter?['Herbarium & Museum','Botanical Garden & Zoo','Taxonomic Keys','Flora, Manual & Monograph','NEET Application']:taxonomyChapter?['Taxonomy Basics','Systematics','Biological Classification','Taxonomic Hierarchy','Species Concept','Taxonomical Aids','Nomenclature','NCERT & NEET Key Points']:nomenclatureChapter?['Nomenclature Basics','Binomial System','Writing Rules','Latinisation','Author Citation','International Codes','Principle of Priority','Type Concept','Common vs Scientific Names','NCERT & NEET Key Points']:fiveKingdomChapter?['Five Kingdom Basics','Kingdom Monera','Kingdom Protista','Kingdom Fungi','Plantae & Animalia','NEET Application','Big Quiz • 30 MCQs']:chapterConfigs[chapter]?['Cellular Organisation','Cell: Basic Unit of Life','Genetic Material','Unicellular & Multicellular Organisation','Consciousness','Response to Stimuli','Self-Consciousness','NCERT & NEET Key Points']:['Living vs Non-living','Growth','Reproduction','Metabolism','Consciousness & Response','NCERT Concepts & NEET Traps'];
-const keys=Object.keys(topics),emojis=livingChapter?['🌱','📈','🧬','⚗️','🧠','🔥']:biologicalChapter?['🧭','🦠','🧫','🍄','🌿','🧬','🔥']:aidsChapter?['🌿','🏛️','🔑','📚','🎯']:taxonomyChapter?['📚','🧭','🗂️','🔢','🧬','🌿','✍️','🎯']:nomenclatureChapter?['✍️','🔤','📐','🌐','👤','📜','⏳','🏷️','🗣️','🎯']:fiveKingdomChapter?['👑','🦠','🔬','🍄','🌿','🎯','🏆']:chapterConfigs[chapter]?['🧫','🔬','🧬','🌐','👁️','⚡','🧠','🎯']:['🌱','📈','🧬','⚙️','👁️','⚠️'];
+const moneraChapter=chapter==='Kingdom Monera';
+const labels=livingChapter?['Characteristics of Living','Growth','Reproduction','Metabolism','Consciousness','NEET Application']:biologicalChapter?['Whittaker Classification','Kingdom Monera','Kingdom Protista','Kingdom Fungi','Plantae & Animalia','Viruses, Viroids & Prions','Hard NEET Application']:aidsChapter?['Herbarium & Museum','Botanical Garden & Zoo','Taxonomic Keys','Flora, Manual & Monograph','NEET Application']:taxonomyChapter?['Taxonomy Basics','Systematics','Biological Classification','Taxonomic Hierarchy','Species Concept','Taxonomical Aids','Nomenclature','NCERT & NEET Key Points']:nomenclatureChapter?['Nomenclature Basics','Binomial System','Writing Rules','Latinisation','Author Citation','International Codes','Principle of Priority','Type Concept','Common vs Scientific Names','NCERT & NEET Key Points']:moneraChapter?['Prokaryotic Organisation','Bacteria & Shapes','Archaebacteria & Cyanobacteria','Nutrition & Reproduction']:fiveKingdomChapter?['Five Kingdom Basics','Kingdom Monera','Kingdom Protista','Kingdom Fungi','Plantae & Animalia','NEET Application','Big Quiz • 30 MCQs']:chapterConfigs[chapter]?['Cellular Organisation','Cell: Basic Unit of Life','Genetic Material','Unicellular & Multicellular Organisation','Consciousness','Response to Stimuli','Self-Consciousness','NCERT & NEET Key Points']:['Living vs Non-living','Growth','Reproduction','Metabolism','Consciousness & Response','NCERT Concepts & NEET Traps'];
+const keys=Object.keys(topics),emojis=livingChapter?['🌱','📈','🧬','⚗️','🧠','🔥']:biologicalChapter?['🧭','🦠','🧫','🍄','🌿','🧬','🔥']:aidsChapter?['🌿','🏛️','🔑','📚','🎯']:taxonomyChapter?['📚','🧭','🗂️','🔢','🧬','🌿','✍️','🎯']:nomenclatureChapter?['✍️','🔤','📐','🌐','👤','📜','⏳','🏷️','🗣️','🎯']:moneraChapter?['🔬','🦠','🌋','🔁']:fiveKingdomChapter?['👑','🦠','🔬','🍄','🌿','🎯','🏆']:chapterConfigs[chapter]?['🧫','🔬','🧬','🌐','👁️','⚡','🧠','🎯']:['🌱','📈','🧬','⚙️','👁️','⚠️'];
 const app=document.getElementById('app');const params=new URLSearchParams(location.search);const key=params.get('topic');const state={chapter,topic:key,question:0,score:0,wrong:[],answers:[]};function navigate(topic){location.href=location.pathname+'?chapter='+encodeURIComponent(chapter)+(topic?'&topic='+topic:'')}
 function list(){app.innerHTML='<section class="hero"><div style="font-size:50px">🔬</div><h1>'+chapter+'</h1><div class="mode">🎯 CHAPTER PRACTICE</div></section><div class="label">CHOOSE A TEST</div>'+keys.map((k,i)=>'<a class="topic" href="?chapter='+encodeURIComponent(chapter)+'&topic='+k+'"><span class="num">'+(i+1)+'</span><span class="emoji">'+emojis[i]+'</span><span class="copy"><b>'+labels[i]+'</b><small>'+topics[k].length+' practice questions</small></span><span class="start">START →</span></a>').join('')}
 function test(){
