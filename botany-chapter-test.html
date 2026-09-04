@@ -502,7 +502,7 @@ function test(){
     bs.forEach(b=>{b.disabled=true;if(Number(b.dataset.choice)===q[5])b.classList.add('correct');});
     const fb=document.getElementById('fb');
     if(choice===q[5]){score++;fb.innerHTML='<b>🎉 Correct!</b><br>'+explanation(q);}
-    else{const selected=bs.find(b=>Number(b.dataset.choice)===choice);if(selected)selected.classList.add('wrong');wrong.push({q:q[0],correct:q[q[5]+1],explanation:explanation(q)});fb.innerHTML='<b>❌ Not quite.</b><br>✅ Correct answer: '+q[q[5]+1]+'<br>'+explanation(q);}
+    else{const selected=bs.find(b=>Number(b.dataset.choice)===choice);if(selected)selected.classList.add('wrong');wrong.push({q:q[0],correct:q[q[5]+1],explanation:explanation(q)});fb.innerHTML='<b>❌ Not quite.</b><br>📘 <b>'+q[q[5]+1]+'</b> is correct because '+explanation(q);}
   }
 
   function finish(){
@@ -510,7 +510,7 @@ function test(){
     document.getElementById('result').classList.remove('hidden');
     const pct=Math.round(score/qs.length*100);
     document.getElementById('score').innerHTML='Score: <b>'+score+' / '+qs.length+'</b> ('+pct+'%)<br><small>Correct: '+score+' • Wrong: '+wrong.length+'</small>'+(score===qs.length?'<br>🏆 PERFECT SCORE — 100% CORRECT!':'');
-    document.getElementById('review').innerHTML=wrong.length?'<h2>📝 Review Wrong Attempts</h2>'+wrong.map(x=>'<div class="review-item"><b>❌ '+x.q+'</b><br>✅ '+x.correct+'<br><small>'+x.explanation+'</small></div>').join(''):'🎉 <b>Perfect! 100% correct answers.</b>';
+    document.getElementById('review').innerHTML=wrong.length?'<h2>📝 Review Wrong Attempts</h2>'+wrong.map(x=>'<div class="review-item"><b>❌ '+x.q+'</b><br>📘 <b>'+x.correct+'</b> is correct because <small>'+x.explanation+'</small></div>').join(''):'🎉 <b>Perfect! 100% correct answers.</b>';
     document.getElementById('restart').onclick=()=>{i=0;score=0;wrong=[];answered=new Set();document.getElementById('result').classList.add('hidden');render();};
   }
   render();
