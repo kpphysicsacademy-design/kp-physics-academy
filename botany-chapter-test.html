@@ -768,5 +768,11 @@ return 'the biological concept described in the question supports this option.';
   }
   render();
 }
-const routes={home:list,test};(state.topic&&topics[state.topic]?routes.test:routes.home)();
+try{
+ const routes={home:list,test};
+ (state.topic&&topics[state.topic]?routes.test:routes.home)();
+}catch(err){
+ console.error('Quiz page error:',err);
+ app.innerHTML='<section class="hero"><div style="font-size:50px">⚠️</div><h1>Quiz loading issue</h1><p style="color:#64748b">This chapter could not be loaded. Please return to the chapter list.</p><button class="next" onclick="location.href=location.pathname">RETURN TO QUIZZES</button></section>';
+}
 </script></body></html>
