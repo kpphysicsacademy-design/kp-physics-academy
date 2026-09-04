@@ -5,6 +5,50 @@
 </style></head><body><main class="w"><div id="app"></div></main><script>
 const chapter=new URLSearchParams(location.search).get('chapter')||'What is Living? Growth, Reproduction & Metabolism';
 const chapterConfigs={
+'What is Living? Growth, Reproduction & Metabolism':{
+icon:'🌱',
+topics:{
+'living-characteristics':[
+['Which property is NOT an all-inclusive defining property of living organisms?','Growth','Metabolism','Consciousness','Cellular organisation',0],
+['The defining property of living organisms that occurs in all living organisms is','Metabolism','Growth','Reproduction','Increase in body mass',0],
+['Plants show growth throughout life mainly because of','Meristematic tissue','Muscle contraction','Locomotion','External deposition only',0],
+['Growth in non-living objects such as mountains occurs by','External accretion','Cell division','Metabolism','Reproduction',0],
+['Increase in body mass by cell division is characteristic of','Living organisms','Crystals only','Mountains only','Clouds only',0],
+['Living organisms are best distinguished from non-living objects by','Metabolism and cellular organisation','Increase in size alone','Movement alone','External shape',0],
+['All living organisms possess','Cellular organisation','Only multicellularity','Chlorophyll','Locomotion',0]],
+'growth':[
+['Growth in multicellular organisms occurs mainly by','Cell division','External deposition','Only absorption of minerals','Crystallisation',0],
+['Unicellular organisms grow mainly by','Increase in cell mass followed by division','External accretion','Tissue differentiation','Seed formation',0],
+['A crystal increasing in size does not prove that it is living because crystal growth occurs by','Accretion of material on the surface','Cell division','Metabolism','Reproduction',0],
+['Growth cannot be used as a defining property of living organisms because','Non-living objects may also increase in size','Living organisms never grow','Only plants grow','Growth is absent in cells',0],
+['Which is an example of intrinsic growth?','Growth of a seedling into a plant','Increase in size of a snowball','Growth of a crystal','Accumulation of sediment',0]],
+'reproduction':[
+['Reproduction is not an all-inclusive defining feature because','Some living organisms such as mules and sterile worker bees do not reproduce','All non-living objects reproduce','All plants are sterile','Only viruses reproduce',0],
+['Asexual reproduction generally produces offspring from','A single parent','Two parents only','No parent','Only gametes from two species',0],
+['Mules are commonly cited in NCERT to show that','Reproduction is not an all-inclusive defining property','Metabolism is absent in animals','Growth never occurs in animals','Cells are non-living',0],
+['The fundamental purpose of reproduction is','Continuity of species','Immediate increase in body mass','External accretion','Formation of crystals',0],
+['Reproduction at cellular level is closely associated with','Cell division','External deposition','Only locomotion','Photosynthesis only',0]],
+'metabolism':[
+['Metabolism refers to','Sum total of all biochemical reactions occurring in a living organism','Only breakdown reactions','Only synthesis reactions','Increase in body size',0],
+['Anabolism is characterised mainly by','Synthesis of complex molecules','Breakdown of molecules only','External accretion','No energy use',0],
+['Catabolism is characterised mainly by','Breakdown of complex molecules','Only biosynthesis','Cellular reproduction only','External growth',0],
+['Metabolic reactions in a living organism are','Coordinated and enzyme-mediated','Always absent outside cells','Only destructive','Independent of cells in every situation',0],
+['Isolated metabolic reactions performed in vitro are','Not considered living because the complete cellular organisation is absent','Always living organisms','Proof that crystals are alive','A type of reproduction',0],
+['No non-living object exhibits','Metabolism as an integrated property','Increase in size','Movement due to external force','Change in temperature',0],
+['Metabolism is considered a defining feature because it is','Present in all living organisms','Absent in microbes','Found only in plants','Restricted to animals',0]],
+'consciousness':[
+['Consciousness in living organisms is best described as','Ability to sense surroundings and respond to stimuli','Ability to increase size only','Ability to form crystals','Only locomotion',0],
+['The ability to sense environmental stimuli is called','Irritability or responsiveness','Accretion','Crystallisation','Dormancy',0],
+['Human beings possess self-consciousness, meaning','Awareness of oneself in addition to surroundings','Only growth','Absence of response','Only reproduction',0],
+['The property regarded as a defining feature because living organisms respond to stimuli is','Consciousness','External accretion','Crystal growth','Sedimentation',0],
+['Plants demonstrate consciousness by','Responding to environmental stimuli','Moving from place to place like animals','Producing only seeds','Lacking all responses',0]],
+'neet-application':[
+['Which combination is correctly matched?','Living growth—intrinsic and cellular; crystal growth—external accretion','Living growth—external only; crystal growth—cell division','Both forms of growth require metabolism','Neither can increase in size',0],
+['An organism that does not reproduce but performs metabolism and responds to stimuli is','Living','Non-living','Necessarily a virus','A crystal',0],
+['Which feature most reliably distinguishes living organisms from non-living objects?','Integrated metabolism within cellular organisation','Increase in size','Movement','Increase in mass',0],
+['Assertion: Reproduction cannot define all living organisms. Reason: Some living organisms are sterile.','Both assertion and reason are true and the reason correctly explains the assertion','Both are true but reason does not explain assertion','Assertion true but reason false','Assertion false but reason true',0],
+['Assertion: Growth alone cannot define life. Reason: Non-living objects may also increase in size by external accretion.','Both assertion and reason are true and the reason correctly explains the assertion','Both are true but reason does not explain assertion','Assertion true but reason false','Assertion false but reason true',0]]
+}},
 'Cellular Organisation & Consciousness':{
 icon:'🧫',
 topics:{
@@ -314,12 +358,13 @@ const defaultTopics={
 };
 let topics=defaultTopics;
 if(chapterConfigs[chapter])topics=chapterConfigs[chapter].topics;
+const livingChapter=chapter==='What is Living? Growth, Reproduction & Metabolism';
 const biologicalChapter=chapter==='Biological Classification';
 const aidsChapter=chapter==='Taxonomical Aids';
 const taxonomyChapter=chapter==='Taxonomy, Systematics & Classification';
 const nomenclatureChapter=chapter==='Nomenclature: Binomial System & Rules';
-const labels=biologicalChapter?['Whittaker Classification','Kingdom Monera','Kingdom Protista','Kingdom Fungi','Plantae & Animalia','Viruses, Viroids & Prions','Hard NEET Application']:aidsChapter?['Herbarium & Museum','Botanical Garden & Zoo','Taxonomic Keys','Flora, Manual & Monograph','NEET Application']:taxonomyChapter?['Taxonomy Basics','Systematics','Biological Classification','Taxonomic Hierarchy','Species Concept','Taxonomical Aids','Nomenclature','NCERT & NEET Key Points']:nomenclatureChapter?['Nomenclature Basics','Binomial System','Writing Rules','Latinisation','Author Citation','International Codes','Principle of Priority','Type Concept','Common vs Scientific Names','NCERT & NEET Key Points']:hierarchyChapter?['Species & Genus','Family & Order','Class, Phylum & Kingdom','Hierarchy & Inclusiveness','Taxon vs Category','Intermediate Ranks','Binomial-Hierarchy Link', 'NCERT Examples','Assertion–Reason']:chapterConfigs[chapter]?['Cellular Organisation','Cell: Basic Unit of Life','Genetic Material','Unicellular & Multicellular Organisation','Consciousness','Response to Stimuli','Self-Consciousness','NCERT & NEET Key Points']:['Living vs Non-living','Growth','Reproduction','Metabolism','Consciousness & Response','NCERT Concepts & NEET Traps'];
-const keys=Object.keys(topics),emojis=biologicalChapter?['🧭','🦠','🧫','🍄','🌿','🧬','🔥']:aidsChapter?['🌿','🏛️','🔑','📚','🎯']:taxonomyChapter?['📚','🧭','🗂️','🔢','🧬','🌿','✍️','🎯']:nomenclatureChapter?['✍️','🔤','📐','🌐','👤','📜','⏳','🏷️','🗣️','🎯']:hierarchyChapter?['🧬','👨‍👩‍👧','🏛️','📊','🏷️','🔗','🔤', '📖','⚖️']:chapterConfigs[chapter]?['🧫','🔬','🧬','🌐','👁️','⚡','🧠','🎯']:['🌱','📈','🧬','⚙️','👁️','⚠️'];
+const labels=livingChapter?['Characteristics of Living','Growth','Reproduction','Metabolism','Consciousness','NEET Application']:biologicalChapter?['Whittaker Classification','Kingdom Monera','Kingdom Protista','Kingdom Fungi','Plantae & Animalia','Viruses, Viroids & Prions','Hard NEET Application']:aidsChapter?['Herbarium & Museum','Botanical Garden & Zoo','Taxonomic Keys','Flora, Manual & Monograph','NEET Application']:taxonomyChapter?['Taxonomy Basics','Systematics','Biological Classification','Taxonomic Hierarchy','Species Concept','Taxonomical Aids','Nomenclature','NCERT & NEET Key Points']:nomenclatureChapter?['Nomenclature Basics','Binomial System','Writing Rules','Latinisation','Author Citation','International Codes','Principle of Priority','Type Concept','Common vs Scientific Names','NCERT & NEET Key Points']:hierarchyChapter?['Species & Genus','Family & Order','Class, Phylum & Kingdom','Hierarchy & Inclusiveness','Taxon vs Category','Intermediate Ranks','Binomial-Hierarchy Link', 'NCERT Examples','Assertion–Reason']:chapterConfigs[chapter]?['Cellular Organisation','Cell: Basic Unit of Life','Genetic Material','Unicellular & Multicellular Organisation','Consciousness','Response to Stimuli','Self-Consciousness','NCERT & NEET Key Points']:['Living vs Non-living','Growth','Reproduction','Metabolism','Consciousness & Response','NCERT Concepts & NEET Traps'];
+const keys=Object.keys(topics),emojis=livingChapter?['🌱','📈','🧬','⚗️','🧠','🔥']:biologicalChapter?['🧭','🦠','🧫','🍄','🌿','🧬','🔥']:aidsChapter?['🌿','🏛️','🔑','📚','🎯']:taxonomyChapter?['📚','🧭','🗂️','🔢','🧬','🌿','✍️','🎯']:nomenclatureChapter?['✍️','🔤','📐','🌐','👤','📜','⏳','🏷️','🗣️','🎯']:hierarchyChapter?['🧬','👨‍👩‍👧','🏛️','📊','🏷️','🔗','🔤', '📖','⚖️']:chapterConfigs[chapter]?['🧫','🔬','🧬','🌐','👁️','⚡','🧠','🎯']:['🌱','📈','🧬','⚙️','👁️','⚠️'];
 const app=document.getElementById('app');const params=new URLSearchParams(location.search);const key=params.get('topic');const state={chapter,topic:key,question:0,score:0,wrong:[],answers:[]};function navigate(topic){location.href=location.pathname+'?chapter='+encodeURIComponent(chapter)+(topic?'&topic='+topic:'')}
 function list(){app.innerHTML='<section class="hero"><div style="font-size:50px">🔬</div><h1>'+chapter+'</h1><p>Duolingo-style concept practice with instant feedback, progress tracking, explanations and error review.</p><div class="mode">🎯 CONCEPT-WISE PRACTICE</div></section><div class="label">CHOOSE A TEST</div>'+keys.map((k,i)=>'<a class="topic" href="?chapter='+encodeURIComponent(chapter)+'&topic='+k+'"><span class="num">'+(i+1)+'</span><span class="emoji">'+emojis[i]+'</span><span class="copy"><b>'+labels[i]+'</b><small>'+topics[k].length+' practice questions</small></span><span class="start">START →</span></a>').join('')}
 function test(){
