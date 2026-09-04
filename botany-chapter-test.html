@@ -281,6 +281,38 @@ topics:{
 ['Before a bacterial cell divides, its chromosome usually','Replicates','Disappears','Forms gametes','Enters a nucleus',0],
 ['Which structure is directly responsible for bacterial movement?','Flagellum','Fimbriae','Capsule','Plasmid',0],
 ['Bacteria generally reproduce most commonly by','Binary fission','Meiosis','Fertilisation','Seed formation',0]
+],
+'bacteria-mixed-practice-30':[
+['Which bacterial shape is spherical?','Coccus','Bacillus','Vibrio','Spirillum',0],
+['Rod-shaped bacteria are called','Bacilli','Cocci','Vibrios','Spirilla',0],
+['Which bacterial form is comma-shaped?','Vibrio','Coccus','Bacillus','Spirillum',0],
+['Which bacterial shape is described as a rigid spiral?','Spirillum','Coccus','Vibrio','Bacillus',0],
+['A chain of spherical bacterial cells is called','Streptococci','Staphylococci','Diplococci','Sarcinae',0],
+['Which structure is absent in a typical bacterial cell?','Mitochondrion','Ribosome','Plasma membrane','DNA',0],
+['The main bacterial chromosome is generally','Circular DNA','Linear DNA inside a nucleus','RNA only','Absent',0],
+['Which region contains the main bacterial chromosome?','Nucleoid','Nucleolus','Golgi body','Mitochondrion',0],
+['Which bacterial component may carry antibiotic-resistance genes?','Plasmid','Capsule','Ribosome','Flagellum',0],
+['Which structure is the site of protein synthesis in bacteria?','70S ribosome','Nucleoid','Capsule','Flagellum',0],
+['Which structure provides rigidity to most bacterial cells?','Peptidoglycan cell wall','Capsule','Flagellum','Ribosome',0],
+['Which layer may protect bacteria from drying?','Capsule','Nucleoid','Ribosome','Chromosome',0],
+['Which appendage mainly helps bacterial locomotion?','Flagellum','Fimbriae','Capsule','Plasmid',0],
+['Which appendage mainly helps attachment to surfaces?','Fimbriae','Flagellum','Nucleoid','Ribosome',0],
+['A bacterium with one flagellum at one pole is','Monotrichous','Peritrichous','Atrichous','Lophotrichous',0],
+['Flagella all around a bacterial cell are','Peritrichous','Monotrichous','Lophotrichous','Atrichous',0],
+['Flagella at both poles are described as','Amphitrichous','Monotrichous','Atrichous','Peritrichous',0],
+['Which process transfers DNA directly between bacterial cells?','Conjugation','Transformation','Transduction','Binary fission',0],
+['Uptake of free DNA by a bacterium is called','Transformation','Transduction','Conjugation','Binary fission',0],
+['DNA transfer through a bacteriophage is called','Transduction','Transformation','Conjugation','Germination',0],
+['Which structure commonly helps conjugation?','Sex pilus','Capsule','Ribosome','Endospore',0],
+['The usual method of bacterial reproduction is','Binary fission','Meiosis','Fertilisation','Seed formation',0],
+['What occurs before bacterial cell division?','Replication of genetic material','Formation of gametes','Pollination','Seed formation',0],
+['A cross-wall during bacterial division is called','Septum','Capsule','Pilus','Nucleoid',0],
+['The main purpose of endospore formation is','Survival under adverse conditions','Routine multiplication','Protein synthesis','Locomotion',0],
+['An endospore becomes an active cell by','Germination','Conjugation','Transformation','Transduction',0],
+['The bacterial plasma membrane mainly controls','Selective movement of substances','Storage of DNA','Formation of nucleus','Seed production',0],
+['Bacteria are prokaryotic because they lack','A membrane-bound nucleus','DNA','Ribosomes','A plasma membrane',0],
+['Which bacterial arrangement forms grape-like clusters?','Staphylococci','Streptococci','Diplococci','Vibrios',0],
+['Under favourable conditions bacteria multiply rapidly mainly through','Repeated binary fission','Pollination','Seed formation','Meiosis',0]
 ]
 }
 },
@@ -598,8 +630,8 @@ const taxonomyChapter=chapter==='Taxonomy, Systematics & Classification';
 const nomenclatureChapter=chapter==='Nomenclature: Binomial System & Rules';
 const fiveKingdomChapter=chapter==='Five Kingdom Classification';
 const moneraChapter=chapter==='Kingdom Monera';
-const labels=livingChapter?['Characteristics of Living','Growth','Reproduction','Metabolism','Consciousness','NEET Application']:biologicalChapter?['Whittaker Classification','Kingdom Monera','Kingdom Protista','Kingdom Fungi','Plantae & Animalia','Viruses, Viroids & Prions','Hard NEET Application']:aidsChapter?['Herbarium & Museum','Botanical Garden & Zoo','Taxonomic Keys','Flora, Manual & Monograph','NEET Application']:taxonomyChapter?['Taxonomy Basics','Systematics','Biological Classification','Taxonomic Hierarchy','Species Concept','Taxonomical Aids','Nomenclature','NCERT & NEET Key Points']:nomenclatureChapter?['Nomenclature Basics','Binomial System','Writing Rules','Latinisation','Author Citation','International Codes','Principle of Priority','Type Concept','Common vs Scientific Names','NCERT & NEET Key Points']:moneraChapter?['Prokaryotic Organisation','Bacteria & Shapes','Archaebacteria & Cyanobacteria','Nutrition & Reproduction']:fiveKingdomChapter?['Five Kingdom Basics','Kingdom Monera','Kingdom Protista','Kingdom Fungi','Plantae & Animalia','NEET Application','Big Quiz • 30 MCQs']:chapter==='Bacteria: Shapes, Structure & Reproduction'?['Bacteria: Shapes, Structure & Reproduction','Bacteria Set 2 • Structure & Reproduction','Bacteria Set 3 • Structure & Genetic Exchange','Bacteria Set 4 • Cell Envelope & Survival','Bacteria Set 5 • Comprehensive Review','Bacteria Set 6 • NEET Practice','Bacteria Set 7 • Mixed Practice','Bacteria Set 8 • Revision Practice']:chapterConfigs[chapter]?['Cellular Organisation','Cell: Basic Unit of Life','Genetic Material','Unicellular & Multicellular Organisation','Consciousness','Response to Stimuli','Self-Consciousness','NCERT & NEET Key Points']:['Living vs Non-living','Growth','Reproduction','Metabolism','Consciousness & Response','NCERT Concepts & NEET Traps'];
-const keys=Object.keys(topics),emojis=livingChapter?['🌱','📈','🧬','⚗️','🧠','🔥']:biologicalChapter?['🧭','🦠','🧫','🍄','🌿','🧬','🔥']:aidsChapter?['🌿','🏛️','🔑','📚','🎯']:taxonomyChapter?['📚','🧭','🗂️','🔢','🧬','🌿','✍️','🎯']:nomenclatureChapter?['✍️','🔤','📐','🌐','👤','📜','⏳','🏷️','🗣️','🎯']:moneraChapter?['🔬','🦠','🌋','🔁']:fiveKingdomChapter?['👑','🦠','🔬','🍄','🌿','🎯','🏆']:chapter==='Bacteria: Shapes, Structure & Reproduction'?['🦠','🧫','🧬','🛡️','🎯','⚡','📘','🏆']:chapterConfigs[chapter]?['🧫','🔬','🧬','🌐','👁️','⚡','🧠','🎯']:['🌱','📈','🧬','⚙️','👁️','⚠️'];
+const labels=livingChapter?['Characteristics of Living','Growth','Reproduction','Metabolism','Consciousness','NEET Application']:biologicalChapter?['Whittaker Classification','Kingdom Monera','Kingdom Protista','Kingdom Fungi','Plantae & Animalia','Viruses, Viroids & Prions','Hard NEET Application']:aidsChapter?['Herbarium & Museum','Botanical Garden & Zoo','Taxonomic Keys','Flora, Manual & Monograph','NEET Application']:taxonomyChapter?['Taxonomy Basics','Systematics','Biological Classification','Taxonomic Hierarchy','Species Concept','Taxonomical Aids','Nomenclature','NCERT & NEET Key Points']:nomenclatureChapter?['Nomenclature Basics','Binomial System','Writing Rules','Latinisation','Author Citation','International Codes','Principle of Priority','Type Concept','Common vs Scientific Names','NCERT & NEET Key Points']:moneraChapter?['Prokaryotic Organisation','Bacteria & Shapes','Archaebacteria & Cyanobacteria','Nutrition & Reproduction']:fiveKingdomChapter?['Five Kingdom Basics','Kingdom Monera','Kingdom Protista','Kingdom Fungi','Plantae & Animalia','NEET Application','Big Quiz • 30 MCQs']:chapter==='Bacteria: Shapes, Structure & Reproduction'?['Bacteria: Shapes, Structure & Reproduction','Bacteria Set 2 • Structure & Reproduction','Bacteria Set 3 • Structure & Genetic Exchange','Bacteria Set 4 • Cell Envelope & Survival','Bacteria Set 5 • Comprehensive Review','Bacteria Set 6 • NEET Practice','Bacteria Set 7 • Mixed Practice','Bacteria Set 8 • Revision Practice','Mixed Practice • 30 Random Questions']:chapterConfigs[chapter]?['Cellular Organisation','Cell: Basic Unit of Life','Genetic Material','Unicellular & Multicellular Organisation','Consciousness','Response to Stimuli','Self-Consciousness','NCERT & NEET Key Points']:['Living vs Non-living','Growth','Reproduction','Metabolism','Consciousness & Response','NCERT Concepts & NEET Traps'];
+const keys=Object.keys(topics),emojis=livingChapter?['🌱','📈','🧬','⚗️','🧠','🔥']:biologicalChapter?['🧭','🦠','🧫','🍄','🌿','🧬','🔥']:aidsChapter?['🌿','🏛️','🔑','📚','🎯']:taxonomyChapter?['📚','🧭','🗂️','🔢','🧬','🌿','✍️','🎯']:nomenclatureChapter?['✍️','🔤','📐','🌐','👤','📜','⏳','🏷️','🗣️','🎯']:moneraChapter?['🔬','🦠','🌋','🔁']:fiveKingdomChapter?['👑','🦠','🔬','🍄','🌿','🎯','🏆']:chapter==='Bacteria: Shapes, Structure & Reproduction'?['🦠','🧫','🧬','🛡️','🎯','⚡','📘','🏆','🎲']:chapterConfigs[chapter]?['🧫','🔬','🧬','🌐','👁️','⚡','🧠','🎯']:['🌱','📈','🧬','⚙️','👁️','⚠️'];
 const app=document.getElementById('app');const params=new URLSearchParams(location.search);const key=params.get('topic');const state={chapter,topic:key,question:0,score:0,wrong:[],answers:[]};function navigate(topic){location.href=location.pathname+'?chapter='+encodeURIComponent(chapter)+(topic?'&topic='+topic:'')}
 function list(){app.innerHTML='<section class="hero"><div style="font-size:50px">🔬</div><h1>'+chapter+'</h1><div class="mode">🎯 CHAPTER PRACTICE</div></section><div class="label">CHOOSE A TEST</div>'+keys.map((k,i)=>'<a class="topic" href="?chapter='+encodeURIComponent(chapter)+'&topic='+k+'"><span class="num">'+(i+1)+'</span><span class="emoji">'+emojis[i]+'</span><span class="copy"><b>'+labels[i]+'</b><small>'+topics[k].length+' practice questions</small></span><span class="start">START →</span></a>').join('')}
 function test(){
