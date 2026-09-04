@@ -1055,7 +1055,35 @@ function test(){
    'Aggregation under suitable conditions':'Slime mould cells can aggregate under suitable conditions to form a plasmodial feeding stage.',
    'Heterotrophic animal-like protists':'Protozoans are animal-like protists that generally obtain food heterotrophically.'
   };
-  return detailed[a]||meaningful[a]||('The correct option is supported by the specific biological concept tested in this Protista question.');
+  const questionSpecific={
+   'Kingdom Protista mainly includes':'Kingdom Protista mainly includes predominantly unicellular eukaryotes. Their cells possess a true nucleus and membrane-bound organelles.',
+   'Members of Protista are primarily':'Most protists occur in aquatic or moist habitats, although some live as parasites.',
+   'Protists may show':'Protists show nutritional diversity: photosynthetic forms are autotrophic, protozoans are heterotrophic, and euglenoids may show mixotrophy.',
+   'The major groups included in Protista are':'NCERT divides Protista into chrysophytes, dinoflagellates, euglenoids, slime moulds and protozoans.',
+   'Protists are eukaryotic because they possess':'Protists are eukaryotic because their genetic material is enclosed within a well-defined nucleus and they possess membrane-bound organelles.',
+   'Which statement about Protista is correct?':'The boundaries of Protista are not sharply defined because different members show plant-like, animal-like or fungus-like characteristics.',
+   'The diatom wall is commonly described as':'A diatom frustule has two siliceous halves that overlap like the lid and base of a soap box.',
+   'Diatomaceous earth is useful in industry mainly because it is':'Diatomaceous earth is made of porous siliceous frustules, making it useful as a filtering and polishing material.',
+   'Most dinoflagellates are':'Most dinoflagellates are marine and photosynthetic; many possess characteristic coloured pigments.',
+   'Dinoflagellates generally possess':'Dinoflagellates usually have two flagella, one longitudinal and one transverse, which help in their movement.',
+   'A common feature of dinoflagellates is':'Some dinoflagellates are bioluminescent and can produce visible light in seawater.',
+   'Euglenoids are commonly found in':'Euglenoids commonly inhabit stagnant freshwater, especially nutrient-rich pools.',
+   'The pellicle of euglenoids makes the body':'The protein-rich pellicle provides support while allowing the euglenoid cell to remain flexible.',
+   'Euglenoids can behave like heterotrophs when':'In the absence of sunlight, euglenoids cannot photosynthesise and may obtain nutrition heterotrophically.',
+   'Slime moulds are':'Slime moulds are saprophytic protists that feed on decaying organic matter and can form a plasmodial mass.',
+   'Under suitable conditions slime moulds form an aggregation called':'The vegetative body of many slime moulds forms a multinucleate, wall-less plasmodium that can move and feed.',
+   'During unfavourable conditions, plasmodium forms':'During adverse conditions, the plasmodium differentiates into fruiting bodies that produce spores for survival and dispersal.',
+   'Spores of slime moulds possess':'Slime mould spores have resistant walls that protect them during unfavourable environmental conditions.',
+   'Slime mould spores are commonly dispersed by':'The light spores released from slime mould fruiting bodies are carried and dispersed by air currents.',
+   'Slime moulds move along decaying material and engulf':'Slime moulds obtain nutrients from decaying organic material and microorganisms present on the substrate.',
+   'Protozoans are generally':'Protozoans are animal-like, heterotrophic protists that may ingest food and show specialised locomotion.',
+   'Amoeboid protozoans move and capture prey using':'Pseudopodia are temporary cytoplasmic extensions used by amoeboid protozoans for movement and engulfing food.',
+   'A ciliated protozoan is':'Paramecium is a ciliate whose numerous cilia beat in coordination for locomotion and feeding.',
+   'Flagellated protozoans move mainly using':'Flagella are long whip-like structures that propel flagellated protozoans through water.',
+   'Plasmodium belongs to':'In the traditional NCERT classification, Plasmodium is grouped with sporozoans, which are parasitic protozoans.',
+   'Ciliated protozoans are aquatic and actively moving because of':'Numerous cilia beat rhythmically to propel ciliated protozoans through their aquatic environment.'
+  };
+  return questionSpecific[q[0]]||detailed[a]||meaningful[a]||'This answer follows from the defining characteristic of the specific Protista group tested in the question.';
  }
  if(chapter==='What is Living? Growth, Reproduction & Metabolism'){
   const detailed={
