@@ -508,7 +508,30 @@ function test(){
   };
   return detailed[a]||a+' is correct because it matches the NCERT concept tested in this question.';
  }
- return a+' is correct because it best matches the concept being tested.';
+ if(chapter==='Cellular Organisation & Consciousness'){
+ const detailed={
+ 'Cell':'the cell is the basic structural and functional unit because essential life processes are organised at the cellular level.',
+ 'Independent cellular organisation':'viruses lack an independent cellular organisation and depend on host cells for replication and many life processes.',
+ 'Tissues':'similar specialised cells group together to form tissues that perform coordinated functions.',
+ 'Perform essential life processes':'cells carry out coordinated activities required for life, making them the basic functional units of organisms.',
+ 'Maintenance of life':'coordinated cellular activities sustain metabolism, growth, regulation and other essential life processes.',
+ 'Internal coordination':'living systems show organised and coordinated cellular activities rather than simple external accumulation.',
+ 'Hereditary information':'genetic material stores and transmits hereditary information that guides cellular structure and function.',
+ 'Cellular activities':'genetic material contains instructions that regulate and direct many cellular activities through gene expression.',
+ 'Within one cell':'a unicellular organism performs all essential life processes within its single cell.',
+ 'Division of labour':'multicellular organisms have specialised cells, tissues and organs that share different functions.',
+ 'Sense and respond to surroundings':'consciousness in living organisms involves sensing environmental changes and producing appropriate responses.',
+ 'Self-consciousness':'human beings show awareness of themselves in addition to awareness of their surroundings.',
+ 'Physical, chemical and biological stimuli':'living organisms can detect and respond to many kinds of environmental stimuli.',
+ 'Physiological change':'a response to a stimulus often involves coordinated physiological or biochemical changes in the organism.',
+ 'Awareness of oneself':'self-consciousness refers to awareness of one’s own existence and internal state.',
+ 'Human beings':'self-consciousness is especially well developed in human beings.',
+ 'Organised cellular activities':'living systems are characterised by organised cellular structure and coordinated life processes.',
+ 'NCERT terminology':'NEET biology questions are fundamentally based on NCERT concepts and terminology.'
+ };
+ return detailed[a]||a+' is correct because it matches the NCERT concept tested in this question.';
+}
+return a+' is correct because it best matches the concept being tested.';
 }
 
   function render(){
