@@ -7,10 +7,10 @@ const data=[
 ['🧬','Cellular Organisation & Consciousness','',35,'botany-chapter-learn.html'],
 ['📚','Taxonomy, Systematics & Classification','',40,'botany-chapter-learn.html'],
 ['🏷️','Nomenclature: Binomial System & Rules','',40,'botany-chapter-learn.html'],
-['📖','Taxonomic Categories & Hierarchy','',50,'botany-chapter-learn.html'],
+['📖','Taxonomic Categories & Hierarchy','',50,'botany-chapter-learn.html','botany-chapter-test.html?chapter=Taxonomic%20Categories%20%26%20Hierarchy'],
 
 
-['🗂️','Taxonomical Aids','',40,'botany-chapter-learn.html'],
+['🗂️','Taxonomical Aids','',40,'botany-chapter-learn.html','botany-chapter-test.html?chapter=Taxonomical%20Aids'],
 ['🦠','Biological Classification','',40,'botany-biological-classification.html'],
 ['👑','Five Kingdom Classification','',40,'botany-chapter-learn.html'],
 ['🦠','Kingdom Monera','',45,'botany-chapter-learn.html'],
@@ -264,7 +264,7 @@ function build(){
    const active=true;
    const el=document.createElement('div');
    el.className='node '+side+' '+(active?'current':done?'done':'locked');
-   const generic=n[4]==='botany-chapter-learn.html';const slug=n[1].toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');const learnPage=generic?'botany-chapter-learn.html?chapter='+encodeURIComponent(n[1]):n[4];const testPage=generic?'botany-chapter-test.html?chapter='+encodeURIComponent(n[1]):n[4].replace('.html','-test.html');const action='';
+   const generic=n[4]==='botany-chapter-learn.html';const slug=n[1].toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');const learnPage=generic?'botany-chapter-learn.html?chapter='+encodeURIComponent(n[1]):n[4];const testPage=n[5]|| (generic?'botany-chapter-test.html?chapter='+encodeURIComponent(n[1]):n[4].replace('.html','-test.html'));const action='';
    el.innerHTML='<div class="node-card" role="link" tabindex="0"><div class="node-top"><h3>'+n[0]+' '+n[1]+'</h3><span class="status">'+statusFor(n,i)+'</span></div>'+(n[2]?'<p>'+n[2]+'</p>':'')+'<span class="xp">⭐ +'+n[3]+' XP</span>'+action+'</div><div class="node-dot">'+n[0]+'</div>';
    const card=el.querySelector('.node-card');card.addEventListener('click',()=>location.href=testPage);card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();location.href=testPage}});
    p.appendChild(el);
