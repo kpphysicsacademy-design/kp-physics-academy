@@ -81,6 +81,65 @@ topics:{
 ['Which convention is correct for printed scientific names?','Italicise both words','Bold only the genus','Capitalise both words','Use quotation marks',0],
 ['The best purpose of binomial nomenclature is','Provide one universally accepted scientific name for a species','Provide many local names','Replace taxonomy','Describe metabolism',0]]
 }},
+'Taxonomical Aids':{
+icon:'🗂️',
+topics:{
+'herbarium-museum':[
+['A herbarium is primarily a collection of','Dried, pressed and mounted plant specimens','Living animals','Only photographs','Fresh aquatic plants only',0],
+['Herbarium sheets usually carry a label containing','Scientific name, locality and collection details','Only common name','Only colour','Only collector age',0],
+['Plant specimens in a herbarium are commonly arranged according to','A recognised classification system','Alphabetical leaf size','Flower colour only','Economic value only',0],
+['A museum used in taxonomy commonly preserves','Plant and animal specimens for study','Only living organisms','Only books','Only microscopes',0],
+['Preserved specimens in museums may be kept in','Jars or containers with suitable preservatives','Only dry soil','Sunlight','Distilled water only',0],
+['A herbarium is especially useful for','Identification and comparison of plant specimens','Producing hybrid seeds only','Measuring blood pressure','Observing live behaviour',0],
+['The standard herbarium specimen is generally','Pressed and dried','Always frozen','Always kept alive','Always microscopic',0],
+['The abbreviation of the collector and collection information on a sheet helps in','Scientific documentation','Changing taxonomy','Producing pollen','Determining weather only',0],
+['Herbaria provide a permanent reference for','Plant identification and taxonomic research','Only crop irrigation','Animal training','Meteorological records only',0],
+['A museum specimen differs from a herbarium specimen mainly because a museum may preserve','Whole organisms and varied biological materials','Only leaves','Only scientific names','Only keys',0]],
+'botanical-garden-zoo':[
+['A botanical garden maintains','Living collections of plants','Only dried plants','Only animal skeletons','Only microbes',0],
+['Botanical gardens are valuable because they allow','Study of living plants and their diversity','Only study of fossils','Replacement of classification','Elimination of nomenclature',0],
+['A zoological park primarily maintains','Living wild animals for study and conservation','Pressed plant sheets','Only fossils','Only dried seeds',0],
+['Botanical gardens often provide','Correctly labelled living plant collections','Unlabelled random plants only','Only preserved animals','Only herbarium paper',0],
+['A major advantage of a botanical garden over a herbarium is observation of','Living growth and morphology','Scientific names','Paper labels','Dried mounting',0],
+['A zoological park can help taxonomy by providing','Opportunities to observe living animals','Only plant classification','Only preserved leaves','Only nomenclature codes',0],
+['The best taxonomic aid for studying living plant habit is','Botanical garden','Herbarium alone','Museum jar only','Taxonomic key alone',0],
+['The best aid for observing living animal behaviour is','Zoological park','Herbarium','Flora','Monograph only',0],
+['Both botanical gardens and zoological parks maintain','Living organisms under managed conditions','Only dried specimens','Only books','Only fossils',0],
+['Taxonomic aids are complementary because each provides','Different kinds of evidence for identification','Exactly identical information always','No scientific information','Only common names',0]],
+'taxonomic-keys':[
+['A taxonomic key is mainly used for','Identification of organisms','Reproduction','Photosynthesis','Preservation only',0],
+['The statements in a taxonomic key are generally arranged as','Contrasting characters','Random facts','Numerical equations only','Common names only',0],
+['A pair of contrasting statements in a key is called','Couplet','Taxon','Type','Flora',0],
+['Each statement of a couplet is called a','Lead','Label','Voucher','Monograph',0],
+['A key works mainly by','Sequential elimination using contrasting characters','Random selection','DNA replication','Increasing specimen size',0],
+['Keys are useful for identification because they use','Diagnostic characters','Only habitat names','Only economic value','Only colour photographs',0],
+['A properly constructed key should use characters that are','Clear and mutually contrasting','Always identical','Unrelated to organisms','Only seasonal',0],
+['An indented key presents','Successive choices in an indented format','Only pictures','Only scientific names','Only family descriptions',0],
+['A bracketed key presents','Contrasting choices with numbered references','Only brackets around names','Only drawings','Only specimens',0],
+['The correct sequence while using a key is','Choose one contrasting lead at each step','Select all leads simultaneously','Ignore characters','Start with kingdom name only',0]],
+'flora-manual-monograph':[
+['A flora provides an account of','Plants of a particular area','All animals of Earth only','Only one specimen','Only fossils',0],
+['A manual is generally designed to aid','Identification of organisms in a region','Only reproduction','Only preservation','Only mutation',0],
+['A monograph is a detailed account of','One taxon or a restricted taxonomic group','All kingdoms equally','Only one leaf','Only habitats',0],
+['A flora commonly includes','Descriptions and identification information for regional plants','Only animal behaviour','Only molecular machines','Only weather records',0],
+['A monograph is most useful when studying','A particular taxonomic group in depth','All unrelated organisms superficially','Only common names','Only climate',0],
+['Which aid is most region-specific?','Flora','Monograph necessarily','Taxonomic category','Museum jar',0],
+['A manual may contain keys primarily to facilitate','Identification','Reproduction','Metabolism','Preservation',0],
+['A monograph usually provides','Comprehensive treatment of a selected group','A brief random list only','Only photographs','Only common names',0],
+['Flora and manual are examples of','Taxonomic literature','Preserved specimens','Living collections','Taxonomic ranks',0],
+['The best aid for exhaustive study of a single genus is','Monograph','Zoological park','Herbarium label only','Common name list',0]],
+'neet-application':[
+['For identifying an unknown plant using dried reference material, the most suitable combination is','Herbarium and taxonomic key','Zoo and aquarium','Only botanical garden','Only common names',0],
+['For studying plants naturally growing in a particular region, the most useful publication is','Flora','Museum catalogue only','Zoological register','Food chain',0],
+['If two alternatives in a key are compared, the next step depends on','The diagnostic character matching the specimen','Random choice','Economic importance','Age of collector',0],
+['A researcher needing living representatives of diverse plant groups should visit a','Botanical garden','Herbarium only','Museum only','Taxonomic key only',0],
+['A detailed scientific treatment of a single family is best obtained from a','Monograph','Flora only','Zoo record','Herbarium sheet label only',0],
+['A taxonomic aid based on paired contrasting choices is a','Key','Museum','Flora','Monograph',0],
+['Which combination is correctly matched?','Herbarium—dried plant specimens','Zoo—pressed plants','Flora—animal skeletons','Key—living collection',0],
+['Which combination is correctly matched?','Botanical garden—living plants','Museum—only living plants','Herbarium—living animals','Monograph—preservative fluid',0],
+['Taxonomic aids collectively support','Identification, description and classification','Only metabolism','Only growth','Only reproduction',0],
+['The strongest approach to identification is to','Compare diagnostic characters with reliable taxonomic references','Rely only on local names','Guess from colour alone','Ignore variation',0]]
+}},
 'Taxonomy, Systematics & Classification':{
 icon:'📚',
 topics:{
@@ -174,11 +233,12 @@ const defaultTopics={
 };
 let topics=defaultTopics;
 if(chapterConfigs[chapter])topics=chapterConfigs[chapter].topics;
+const aidsChapter=chapter==='Taxonomical Aids';
 const taxonomyChapter=chapter==='Taxonomy, Systematics & Classification';
 const nomenclatureChapter=chapter==='Nomenclature: Binomial System & Rules';
 const hierarchyChapter=chapter==='Taxonomic Categories & Hierarchy' && !!chapterConfigs[chapter];
-const labels=taxonomyChapter?['Taxonomy Basics','Systematics','Biological Classification','Taxonomic Hierarchy','Species Concept','Taxonomical Aids','Nomenclature','NCERT & NEET Key Points']:nomenclatureChapter?['Nomenclature Basics','Binomial System','Writing Rules','Latinisation','Author Citation','International Codes','Principle of Priority','Type Concept','Common vs Scientific Names','NCERT & NEET Key Points']:hierarchyChapter?['Species & Genus','Family & Order','Class, Phylum & Kingdom','Hierarchy & Inclusiveness','Taxon vs Category','Intermediate Ranks','Binomial-Hierarchy Link', 'NCERT Examples','Assertion–Reason']:chapterConfigs[chapter]?['Cellular Organisation','Cell: Basic Unit of Life','Genetic Material','Unicellular & Multicellular Organisation','Consciousness','Response to Stimuli','Self-Consciousness','NCERT & NEET Key Points']:['Living vs Non-living','Growth','Reproduction','Metabolism','Consciousness & Response','NCERT Concepts & NEET Traps'];
-const keys=Object.keys(topics),emojis=taxonomyChapter?['📚','🧭','🗂️','🔢','🧬','🌿','✍️','🎯']:nomenclatureChapter?['✍️','🔤','📐','🌐','👤','📜','⏳','🏷️','🗣️','🎯']:hierarchyChapter?['🧬','👨‍👩‍👧','🏛️','📊','🏷️','🔗','🔤', '📖','⚖️']:chapterConfigs[chapter]?['🧫','🔬','🧬','🌐','👁️','⚡','🧠','🎯']:['🌱','📈','🧬','⚙️','👁️','⚠️'];
+const labels=aidsChapter?['Herbarium & Museum','Botanical Garden & Zoo','Taxonomic Keys','Flora, Manual & Monograph','NEET Application']:taxonomyChapter?['Taxonomy Basics','Systematics','Biological Classification','Taxonomic Hierarchy','Species Concept','Taxonomical Aids','Nomenclature','NCERT & NEET Key Points']:nomenclatureChapter?['Nomenclature Basics','Binomial System','Writing Rules','Latinisation','Author Citation','International Codes','Principle of Priority','Type Concept','Common vs Scientific Names','NCERT & NEET Key Points']:hierarchyChapter?['Species & Genus','Family & Order','Class, Phylum & Kingdom','Hierarchy & Inclusiveness','Taxon vs Category','Intermediate Ranks','Binomial-Hierarchy Link', 'NCERT Examples','Assertion–Reason']:chapterConfigs[chapter]?['Cellular Organisation','Cell: Basic Unit of Life','Genetic Material','Unicellular & Multicellular Organisation','Consciousness','Response to Stimuli','Self-Consciousness','NCERT & NEET Key Points']:['Living vs Non-living','Growth','Reproduction','Metabolism','Consciousness & Response','NCERT Concepts & NEET Traps'];
+const keys=Object.keys(topics),emojis=aidsChapter?['🌿','🏛️','🔑','📚','🎯']:taxonomyChapter?['📚','🧭','🗂️','🔢','🧬','🌿','✍️','🎯']:nomenclatureChapter?['✍️','🔤','📐','🌐','👤','📜','⏳','🏷️','🗣️','🎯']:hierarchyChapter?['🧬','👨‍👩‍👧','🏛️','📊','🏷️','🔗','🔤', '📖','⚖️']:chapterConfigs[chapter]?['🧫','🔬','🧬','🌐','👁️','⚡','🧠','🎯']:['🌱','📈','🧬','⚙️','👁️','⚠️'];
 const app=document.getElementById('app');const params=new URLSearchParams(location.search);const key=params.get('topic');const state={chapter,topic:key,question:0,score:0,wrong:[],answers:[]};function navigate(topic){location.href=location.pathname+'?chapter='+encodeURIComponent(chapter)+(topic?'&topic='+topic:'')}
 function list(){app.innerHTML='<section class="hero"><div style="font-size:50px">🔬</div><h1>'+chapter+'</h1><p>Duolingo-style concept practice with instant feedback, progress tracking, explanations and error review.</p><div class="mode">🎯 CONCEPT-WISE PRACTICE</div></section><div class="label">CHOOSE A TEST</div>'+keys.map((k,i)=>'<a class="topic" href="?chapter='+encodeURIComponent(chapter)+'&topic='+k+'"><span class="num">'+(i+1)+'</span><span class="emoji">'+emojis[i]+'</span><span class="copy"><b>'+labels[i]+'</b><small>'+topics[k].length+' practice questions</small></span><span class="start">START →</span></a>').join('')}
 function test(){
