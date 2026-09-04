@@ -17,6 +17,70 @@ topics:{
 'self-consciousness':[['Self-consciousness means','Awareness of oneself','Only awareness of light','Absence of response','Only reproduction',0],['Self-consciousness is especially associated with','Human beings','Rocks','Viruses','Crystals',0]],
 'ncert-neet':[['An important feature of living systems is','Organised cellular activities','Rusting','Crystal growth','External accumulation',0],['For NEET preparation, definitions should follow','NCERT terminology','Random wording','Only coaching notes','Unrelated examples',0]]
 }},
+'Nomenclature: Binomial System & Rules':{
+icon:'✍️',
+topics:{
+'nomenclature-basics':[
+['Nomenclature means','Assigning scientific names to organisms','Studying only habitats','Measuring body size','Studying metabolism',0],
+['Scientific nomenclature provides','A universal system of naming organisms','Different local names','Only common names','Only family names',0],
+['The main advantage of scientific names is','Universal recognition','Regional variation','Longer descriptions','Replacement of classification',0],
+['Common names are less reliable because they','May vary from region to region','Are always in Latin','Are universally identical','Follow strict codes',0],
+['A scientific name helps avoid','Confusion caused by multiple common names','All classification','Identification','Observation',0]],
+'binomial-system':[
+['Binomial nomenclature gives each organism','A two-word scientific name','A one-word scientific name','A three-word family name','Only a local name',0],
+['The first word of a binomial represents the','Genus','Specific epithet','Family','Order',0],
+['The second word of a binomial is the','Specific epithet','Kingdom','Family','Class',0],
+['Binomial nomenclature was formalised by','Carolus Linnaeus','Charles Darwin','Aristotle','John Ray',0],
+['The two words together identify','A species','Only a genus','Only a family','Only a kingdom',0]],
+'writing-rules':[
+['In printed scientific names, the two words are generally','Italicised','Written in quotation marks','Always capitalised','Underlined separately with colour',0],
+['When handwritten, scientific names are usually','Underlined separately','Written only in capitals','Not underlined','Written in brackets',0],
+['The genus name begins with','A capital letter','A lowercase letter only','A number','A symbol',0],
+['The specific epithet begins with','A lowercase letter','A capital letter','A Roman numeral','A symbol',0],
+['Which is correctly written in print?','Mangifera indica','mangifera Indica','MANGIFERA INDICA','Mangifera Indica',0]],
+'latinisation':[
+['Scientific names are generally Latin or','Latinised','Only English','Only Sanskrit','Only regional',0],
+['Latin is useful in nomenclature because it is','Universally standardised in science','A changing local dialect','Used only for plants','A common name system',0],
+['A latinised scientific name follows','International naming conventions','Personal preference only','Local pronunciation only','Alphabetical order only',0],
+['Scientific names are intended to be','Internationally understandable','Different in every country','Used only by taxonomists locally','Based only on colour',0],
+['The language form of scientific names supports','Universality and consistency','Regional ambiguity','Random spelling','Common-name variation',0]],
+'author-citation':[
+['An author name may follow a scientific name to indicate','The person who validly described the name','The habitat of the organism','Its common name','Its chromosome number',0],
+['In Mangifera indica L., L. refers to','Linnaeus','Locality','Latin','Leaf',0],
+['Author citation is generally written after','The scientific name','The kingdom name only','The common name','The family name only',0],
+['Author citation helps indicate','The authority associated with the name','The colour of the organism','Its habitat only','Its age',0],
+['The abbreviated author name is not considered','The genus','A scientific authority citation','A naming reference','Part of taxonomic documentation',0]],
+'international-codes':[
+['Scientific naming is regulated by','International codes of nomenclature','Local school rules','Common-name lists only','Personal choice',0],
+['Botanical nomenclature is governed by a code for','Algae, fungi and plants','Animals only','Viruses only','Rocks',0],
+['Zoological nomenclature is governed by a code for','Animals','Plants only','Fungi only','Minerals',0],
+['Codes of nomenclature promote','Stability and uniformity in names','Regional confusion','Random renaming','Use of common names only',0],
+['A valid scientific name should follow','Relevant nomenclature rules','Only local traditions','Personal spelling','Common-name preference',0]],
+'priority':[
+['The principle of priority generally gives preference to','The earliest validly published name','The newest common name','The longest name','The local name',0],
+['Priority in nomenclature helps maintain','Stability and consistency','Multiple names for one organism','Random changes','Regional spelling',0],
+['A later name may be rejected when','An earlier valid name has priority under the code','It is written in Latin','It has two words','It names a species',0],
+['Priority is applied according to','Rules of the relevant nomenclature code','Personal opinion','Alphabetical order','Body size',0],
+['The principle of priority mainly concerns','Correct use of competing scientific names','Growth rate','Reproduction','Metabolism',0]],
+'type-concept':[
+['A type specimen serves as','A reference for applying a scientific name','A living specimen only','A common name','A taxonomic rank',0],
+['Type material is important for','Stability and reference in nomenclature','Measuring metabolism','Studying weather','Naming habitats',0],
+['A type specimen is associated with','The application of a name','Every individual of a species necessarily','Only common names','Only local populations',0],
+['Preserved reference specimens are commonly kept in','Herbaria or museums','Only aquaria','Only gardens','Only classrooms',0],
+['The type concept helps taxonomists','Apply names consistently','Avoid classification','Eliminate species','Use only common names',0]],
+'common-vs-scientific':[
+['The name mango is a','Common name','Binomial name','Specific epithet','Taxonomic rank',0],
+['Mangifera indica is a','Scientific binomial name','Common name','Family name','Order name',0],
+['Common names can cause confusion because','One organism may have different names in different regions','They are always Latin','They contain two words','They follow international codes',0],
+['Scientific names are preferred in biology because','They are standardised and universal','They are always shorter','They replace classification','They are regional',0],
+['A correct scientific name communicates','Precise identity in a standard system','Only local popularity','Economic value only','Habitat only',0]],
+'ncert-neet-nomenclature':[
+['The correct capitalisation in a binomial is','Genus capitalised, specific epithet lowercase','Both words capitalised','Both words lowercase','Only specific epithet capitalised',0],
+['If handwritten, Homo sapiens should be','Underlined separately word by word','Written without any convention','Both words capitalised','Placed in quotation marks only',0],
+['Which component comes first in a binomial?','Genus','Specific epithet','Family','Author name',0],
+['Which convention is correct for printed scientific names?','Italicise both words','Bold only the genus','Capitalise both words','Use quotation marks',0],
+['The best purpose of binomial nomenclature is','Provide one universally accepted scientific name for a species','Provide many local names','Replace taxonomy','Describe metabolism',0]]
+}},
 'Taxonomy, Systematics & Classification':{
 icon:'📚',
 topics:{
@@ -112,8 +176,9 @@ const defaultTopics={
 let topics=defaultTopics;
 if(chapterConfigs[chapter])topics=chapterConfigs[chapter].topics;
 const taxonomyChapter=chapter==='Taxonomy, Systematics & Classification';
-const labels=taxonomyChapter?['Taxonomy Basics','Systematics','Biological Classification','Taxonomic Hierarchy','Species Concept','Taxonomical Aids','Nomenclature','NCERT & NEET Key Points']:chapterConfigs[chapter]?['Cellular Organisation','Cell: Basic Unit of Life','Genetic Material','Unicellular & Multicellular Organisation','Consciousness','Response to Stimuli','Self-Consciousness','NCERT & NEET Key Points']:['Living vs Non-living','Growth','Reproduction','Metabolism','Consciousness & Response','NCERT Concepts & NEET Traps'];
-const keys=Object.keys(topics),emojis=taxonomyChapter?['📚','🧭','🗂️','🔢','🧬','🌿','✍️','🎯']:chapterConfigs[chapter]?['🧫','🔬','🧬','🌐','👁️','⚡','🧠','🎯']:['🌱','📈','🧬','⚙️','👁️','⚠️'];
+const nomenclatureChapter=chapter==='Nomenclature: Binomial System & Rules';
+const labels=taxonomyChapter?['Taxonomy Basics','Systematics','Biological Classification','Taxonomic Hierarchy','Species Concept','Taxonomical Aids','Nomenclature','NCERT & NEET Key Points']:nomenclatureChapter?['Nomenclature Basics','Binomial System','Writing Rules','Latinisation','Author Citation','International Codes','Principle of Priority','Type Concept','Common vs Scientific Names','NCERT & NEET Key Points']:chapterConfigs[chapter]?['Cellular Organisation','Cell: Basic Unit of Life','Genetic Material','Unicellular & Multicellular Organisation','Consciousness','Response to Stimuli','Self-Consciousness','NCERT & NEET Key Points']:['Living vs Non-living','Growth','Reproduction','Metabolism','Consciousness & Response','NCERT Concepts & NEET Traps'];
+const keys=Object.keys(topics),emojis=taxonomyChapter?['📚','🧭','🗂️','🔢','🧬','🌿','✍️','🎯']:nomenclatureChapter?['✍️','🔤','📐','🌐','👤','📜','⏳','🏷️','🗣️','🎯']:chapterConfigs[chapter]?['🧫','🔬','🧬','🌐','👁️','⚡','🧠','🎯']:['🌱','📈','🧬','⚙️','👁️','⚠️'];
 const app=document.getElementById('app');const params=new URLSearchParams(location.search);const key=params.get('topic');const state={chapter,topic:key,question:0,score:0,wrong:[],answers:[]};function navigate(topic){location.href=location.pathname+'?chapter='+encodeURIComponent(chapter)+(topic?'&topic='+topic:'')}
 function list(){app.innerHTML='<section class="hero"><div style="font-size:50px">🔬</div><h1>'+chapter+'</h1><p>Duolingo-style concept practice with instant feedback, progress tracking, explanations and error review.</p><div class="mode">🎯 CONCEPT-WISE PRACTICE</div></section><div class="label">CHOOSE A TEST</div>'+keys.map((k,i)=>'<a class="topic" href="?chapter='+encodeURIComponent(chapter)+'&topic='+k+'"><span class="num">'+(i+1)+'</span><span class="emoji">'+emojis[i]+'</span><span class="copy"><b>'+labels[i]+'</b><small>'+topics[k].length+' practice questions</small></span><span class="start">START →</span></a>').join('')}
 function test(){
