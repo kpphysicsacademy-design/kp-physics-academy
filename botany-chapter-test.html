@@ -563,6 +563,16 @@ function test(){
  };
  return detailed[a]||'this answer follows the relevant definition and classification principle for the specific topic asked.';
 }
+if(chapter==='Bacteria: Shapes, Structure & Reproduction'){
+ const detailed={
+  'Coccus':'cocci are spherical bacteria. They may occur singly or in characteristic arrangements such as pairs, chains or clusters.',
+  'Bacilli':'bacilli are rod-shaped bacteria. The singular form is bacillus, while bacilli refers to more than one rod-shaped bacterial cell.',
+  'Vibrios':'vibrios are comma-shaped bacteria, distinguished by their curved rod-like form.',
+  'Nucleoid':'a typical bacterium has no membrane-bound nucleus. Its main circular DNA is concentrated in an irregular nucleoid region.',
+  'Binary fission':'binary fission is the usual asexual method of bacterial multiplication. The DNA replicates and the cell divides to form two daughter cells.'
+ };
+ return detailed[a]||'the biological structure or process described in the question supports this answer.';
+}
 if(chapter==='Kingdom Monera'){
  const detailed={
  'Prokaryotic organisms':'Kingdom Monera consists of prokaryotic organisms whose cells lack a membrane-bound nucleus and membrane-bound organelles.',
