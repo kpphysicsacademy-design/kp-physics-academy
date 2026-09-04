@@ -1032,7 +1032,30 @@ function test(){
    'Sporozoans':'Plasmodium is placed among sporozoans in the traditional NCERT classification.',
    'Heterotrophic animal-like protists':'Protozoans are animal-like protists that generally obtain nutrition heterotrophically.'
   };
-  return detailed[a]||('The correct option is supported by the specific biological concept tested in this Protista question.');
+  const meaningful={
+   'Some living organisms are sterile':'Sterility occurs in certain living organisms, so the ability to reproduce cannot be used as a universal defining characteristic of life.',
+   'Aquatic':'Most protists require water or moist conditions because their activities and locomotion commonly depend on an aqueous environment.',
+   'Autotrophic, heterotrophic or mixotrophic nutrition':'Different protists obtain food in different ways; some photosynthesise, some ingest or absorb food, and some can switch between modes.',
+   'Cilia, flagella or pseudopodia in different groups':'Different protist groups use specialised structures such as cilia, flagella and pseudopodia for locomotion.',
+   'Freshwater and marine environments':'Chrysophytes occur widely in both freshwater and marine habitats.',
+   'Soft and porous':'Diatomaceous earth consists of porous siliceous diatom remains and is useful for filtration and related industrial purposes.',
+   'Bioluminescence in some species':'Some dinoflagellates can emit light, producing visible glowing effects in water.',
+   'Toxic blooms in marine water':'Certain dinoflagellates multiply rapidly and release toxins that can cause harmful marine blooms.',
+   'Stagnant freshwater':'Euglenoids commonly occur in stagnant freshwater bodies.',
+   'Flexible':'The protein-rich pellicle allows euglenoids to remain flexible rather than having a rigid cell wall.',
+   'Euglena':'Euglena is a classic NCERT example of an euglenoid.',
+   'Light is unavailable':'Without light, many euglenoids cannot rely on photosynthesis and can obtain nutrition heterotrophically.',
+   'Plasmodium':'Under suitable conditions, slime mould cells aggregate to form a multinucleate plasmodial mass.',
+   'True walls and high resistance':'Slime mould spores have protective walls that help them survive unfavourable conditions.',
+   'Air currents':'Light slime mould spores are dispersed efficiently through air currents.',
+   'Organic matter':'Slime moulds obtain nutrition from decaying organic material and associated microorganisms.',
+   'Paramecium':'Paramecium is a ciliated protozoan that moves using numerous coordinated cilia.',
+   'Numerous cilia':'The coordinated beating of many cilia enables active movement in ciliated protozoans.',
+   'Mixotrophic nutrition':'Euglena can photosynthesise in light and use heterotrophic nutrition when light is unavailable.',
+   'Aggregation under suitable conditions':'Slime mould cells can aggregate under suitable conditions to form a plasmodial feeding stage.',
+   'Heterotrophic animal-like protists':'Protozoans are animal-like protists that generally obtain food heterotrophically.'
+  };
+  return detailed[a]||meaningful[a]||('The correct option is supported by the specific biological concept tested in this Protista question.');
  }
  if(chapter==='What is Living? Growth, Reproduction & Metabolism'){
   const detailed={
