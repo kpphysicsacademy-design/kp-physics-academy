@@ -352,7 +352,7 @@ function test(){
   let i=0, score=0, wrong=[], answered=new Set();
   app.innerHTML='<section class="hero"><div class="mode">🌱 BOTANY</div><div style="font-size:48px">'+emojis[keys.indexOf(state.topic)]+'</div><h1>'+labels[keys.indexOf(state.topic)]+'</h1><div class="progress"><span id="bar"></span></div><span class="question-count" id="status"></span></section><section class="quiz" id="quiz"></section><section class="result hidden" id="result"><h1>🏆 Test Complete!</h1><p id="score"></p><div id="review"></div><button class="next" id="restart">TRY AGAIN</button></section>';
 
-  function explanation(q){ return '📘 '+q[q[5]+1]+' is correct. This matches the NCERT concept being tested.'; }
+  function explanation(q){ return '📘 '+q[q[5]+1]+' is correct. '; }
 
   function render(){
     const q=qs[i];
