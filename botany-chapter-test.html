@@ -16,7 +16,60 @@ topics:{
 'response-stimuli':[['Living organisms respond to','Physical, chemical and biological stimuli','Only their size','Only age','Only colour',0],['A response may involve','Physiological change','Only external deposition','Crystal formation','No coordination',0]],
 'self-consciousness':[['Self-consciousness means','Awareness of oneself','Only awareness of light','Absence of response','Only reproduction',0],['Self-consciousness is especially associated with','Human beings','Rocks','Viruses','Crystals',0]],
 'ncert-neet':[['An important feature of living systems is','Organised cellular activities','Rusting','Crystal growth','External accumulation',0],['For NEET preparation, definitions should follow','NCERT terminology','Random wording','Only coaching notes','Unrelated examples',0]]
+}},
+'Taxonomy, Systematics & Classification':{
+icon:'📚',
+topics:{
+'taxonomy-basics':[
+['Taxonomy is the science dealing with','Identification, nomenclature and classification','Only naming organisms','Only evolution','Only ecology',0],
+['The process of assigning an organism to a known taxon is called','Identification','Classification','Nomenclature','Systematics',0],
+['Taxonomic studies include','Characterisation, identification, classification and nomenclature','Only dissection','Only fossil study','Only physiology',0],
+['A taxon is','A unit of classification at any rank','Only a species','Only a genus','A laboratory instrument',0],
+['The basic unit of classification is generally','Species','Genus','Family','Order',0]],
+'systematics':[
+['Systematics deals with','Diversity of organisms and their relationships','Only naming organisms','Only cell division','Only ecology',0],
+['The term systematics is derived from','Systema Naturae','Species Plantarum','Origin of Species','Historia Naturalis',0],
+['Modern systematics considers','Evolutionary relationships along with diversity','Only external appearance','Only habitat','Only economic value',0],
+['Systematics is broader than taxonomy because it also considers','Evolutionary relationships','Only nomenclature','Only specimen storage','Only local names',0],
+['A major aim of systematics is to understand','Relationships among organisms','Only body size','Only colour','Only geographic area',0]],
+'classification':[
+['Biological classification means','Grouping organisms into categories based on similarities and relationships','Giving every organism a common name','Studying only plants','Arranging organisms alphabetically',0],
+['Classification makes biological study easier by','Organising the enormous diversity of organisms','Eliminating species differences','Avoiding identification','Stopping evolution',0],
+['Organisms placed in the same group generally share','Relevant similarities and relationships','Exactly identical characters','The same habitat only','The same size',0],
+['A natural classification attempts to reflect','Overall similarities and relationships','Alphabetical order','Economic importance only','Body weight only',0],
+['Classification is useful because it provides','A systematic framework for studying biodiversity','A replacement for nomenclature','Only local names','No information about relationships',0]],
+'taxonomic-hierarchy':[
+['The correct descending taxonomic hierarchy is','Kingdom → Phylum/Division → Class → Order → Family → Genus → Species','Species → Genus → Family → Order → Class → Phylum → Kingdom','Kingdom → Class → Phylum → Order → Species → Family → Genus','Genus → Species → Family → Order → Class → Kingdom → Phylum',0],
+['Which is the lowest and most basic category in the hierarchy?','Species','Genus','Family','Order',0],
+['A group of closely related species forms a','Genus','Family','Order','Class',0],
+['A group of related genera forms a','Family','Species','Class','Phylum',0],
+['Taxonomic categories arranged in sequence form','Taxonomic hierarchy','Nomenclature','Identification key','Herbarium',0]],
+'species-concept':[
+['A species is generally defined as a group of individuals that can','Interbreed and produce fertile offspring under natural conditions','Always look identical','Live in the same place only','Belong to one genus only',0],
+['The word species was first used in biological classification prominently by','John Ray','Aristotle','Linnaeus','Darwin',0],
+['Species is considered the basic unit because it represents','A natural group with closely related individuals','Only a naming convention','A group of families','A collection of kingdoms',0],
+['Individuals of the same species generally share','Fundamental similarities and reproductive compatibility','Different genera','No common characters','No genetic relationship',0],
+['Two organisms belonging to different species are generally unable to produce','Fertile offspring under natural conditions','Any offspring at all','Cells','Proteins',0]],
+'taxonomical-aids':[
+['A herbarium is a collection of','Dried, pressed and preserved plant specimens','Living animals','Only seeds','Microbial cultures only',0],
+['A botanical garden maintains','Living collections of plants','Only dried specimens','Only animal specimens','Only fossils',0],
+['Museums commonly preserve','Specimens of plants and animals for study','Only living organisms','Only DNA sequences','Only ecological data',0],
+['A key is used in taxonomy mainly for','Identification of organisms using contrasting characters','Measuring growth','Naming genes','Studying metabolism',0],
+['Taxonomic keys are generally based on','Couplets of contrasting characters','Random observations','Body weight only','Geographical location only',0]],
+'nomenclature':[
+['Scientific names are governed by','International codes of nomenclature','Local traditions only','Common names','Personal preference',0],
+['Binomial nomenclature gives each organism','A two-word scientific name','A three-word common name','Only a family name','Only a genus name',0],
+['In a scientific name, the first word represents','Genus','Species epithet only','Family','Order',0],
+['The second word in a binomial represents','Specific epithet','Kingdom','Family','Class',0],
+['Scientific names are usually written in print in','Italics','Bold capitals only','Quotation marks','Square brackets',0]],
+'ncert-neet-taxonomy':[
+['The two major components of systematics are closely linked to','Taxonomy and evolutionary relationships','Only physiology and anatomy','Only ecology and geography','Only metabolism and growth',0],
+['Which sequence correctly increases in inclusiveness from species upward?','Species → Genus → Family → Order','Species → Family → Genus → Order','Genus → Species → Order → Family','Order → Family → Genus → Species',0],
+['Taxonomy helps in recognising organisms through','Identification and classification','Only respiration','Only reproduction','Only movement',0],
+['The most appropriate taxonomic aid for dried plant specimens is','Herbarium','Aquarium','Zoo','Greenhouse only',0],
+['A taxon can represent','Any rank in the taxonomic hierarchy','Only a species','Only a kingdom','Only a genus',0]]
 }}};
+
 
 const defaultTopics={
 'living-nonliving':[
@@ -58,8 +111,9 @@ const defaultTopics={
 };
 let topics=defaultTopics;
 if(chapterConfigs[chapter])topics=chapterConfigs[chapter].topics;
-const labels=chapterConfigs[chapter]?['Cellular Organisation','Cell: Basic Unit of Life','Genetic Material','Unicellular & Multicellular Organisation','Consciousness','Response to Stimuli','Self-Consciousness','NCERT & NEET Key Points']:['Living vs Non-living','Growth','Reproduction','Metabolism','Consciousness & Response','NCERT Concepts & NEET Traps'];
-const keys=Object.keys(topics),emojis=chapterConfigs[chapter]?['🧫','🔬','🧬','🌐','👁️','⚡','🧠','🎯']:['🌱','📈','🧬','⚙️','👁️','⚠️'];
+const taxonomyChapter=chapter==='Taxonomy, Systematics & Classification';
+const labels=taxonomyChapter?['Taxonomy Basics','Systematics','Biological Classification','Taxonomic Hierarchy','Species Concept','Taxonomical Aids','Nomenclature','NCERT & NEET Key Points']:chapterConfigs[chapter]?['Cellular Organisation','Cell: Basic Unit of Life','Genetic Material','Unicellular & Multicellular Organisation','Consciousness','Response to Stimuli','Self-Consciousness','NCERT & NEET Key Points']:['Living vs Non-living','Growth','Reproduction','Metabolism','Consciousness & Response','NCERT Concepts & NEET Traps'];
+const keys=Object.keys(topics),emojis=taxonomyChapter?['📚','🧭','🗂️','🔢','🧬','🌿','✍️','🎯']:chapterConfigs[chapter]?['🧫','🔬','🧬','🌐','👁️','⚡','🧠','🎯']:['🌱','📈','🧬','⚙️','👁️','⚠️'];
 const app=document.getElementById('app');const params=new URLSearchParams(location.search);const key=params.get('topic');const state={chapter,topic:key,question:0,score:0,wrong:[],answers:[]};function navigate(topic){location.href=location.pathname+'?chapter='+encodeURIComponent(chapter)+(topic?'&topic='+topic:'')}
 function list(){app.innerHTML='<section class="hero"><div style="font-size:50px">🔬</div><h1>'+chapter+'</h1><p>Duolingo-style concept practice with instant feedback, progress tracking, explanations and error review.</p><div class="mode">🎯 CONCEPT-WISE PRACTICE</div></section><div class="label">CHOOSE A TEST</div>'+keys.map((k,i)=>'<a class="topic" href="?chapter='+encodeURIComponent(chapter)+'&topic='+k+'"><span class="num">'+(i+1)+'</span><span class="emoji">'+emojis[i]+'</span><span class="copy"><b>'+labels[i]+'</b><small>'+topics[k].length+' practice questions</small></span><span class="start">START →</span></a>').join('')}
 function test(){
