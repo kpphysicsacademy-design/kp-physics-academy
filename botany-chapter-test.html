@@ -1337,7 +1337,7 @@ if(chapter==='Cyanobacteria & Archaebacteria'){
  };
  return detailed[a]||('The correct answer is '+a+'. It follows from the specific characteristic, habitat, adaptation or process asked about in this Archaebacteria question.');
 }
-return 'The correct answer is '+a+'. It directly answers the biological fact, process, structure or classification relationship tested by this question.';
+return detailedExplanation(q,a);
 }
 
   function render(){
