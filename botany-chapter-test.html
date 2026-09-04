@@ -508,7 +508,32 @@ function test(){
   };
   return detailed[a]||a+' is correct because it matches the NCERT concept tested in this question.';
  }
- if(chapter==='Nomenclature: Binomial System & Rules'){
+ if(chapter==='Kingdom Monera'){
+ const detailed={
+ 'Prokaryotic organisms':'Kingdom Monera consists of prokaryotic organisms whose cells lack a membrane-bound nucleus and membrane-bound organelles.',
+ 'Membrane-bound nucleus':'typical prokaryotic cells do not have a true nucleus; their genetic material lies in a nucleoid region.',
+ 'Membrane-bound organelles':'prokaryotes contain ribosomes but lack membrane-bound organelles such as mitochondria and Golgi bodies.',
+ 'Nucleoid region':'bacterial DNA is concentrated in the nucleoid, which is not enclosed by a nuclear membrane.',
+ 'Present but not membrane-bound':'prokaryotic ribosomes are present for protein synthesis but are not membrane-bound.',
+ 'Cocci':'cocci are spherical or nearly spherical bacteria.',
+ 'Bacilli':'bacilli are rod-shaped bacteria.',
+ 'Vibrios':'vibrios have a characteristic comma-shaped form.',
+ 'Spirilla':'spirilla are spiral-shaped bacteria.',
+ 'Peptidoglycan':'most eubacterial cell walls contain peptidoglycan, a characteristic bacterial wall component.',
+ 'Archaebacteria':'methanogens are archaebacteria adapted to specialised environments and many produce methane.',
+ 'Cattle':'methanogens commonly occur in the rumen of cattle and other ruminants.',
+ 'Blue-green algae':'cyanobacteria are traditionally called blue-green algae because of their photosynthetic pigments, although they are prokaryotes.',
+ 'Nostoc':'Nostoc is a cyanobacterium and may occur as colonies with specialised cells involved in nitrogen fixation.',
+ 'Atmospheric nitrogen':'some cyanobacteria can fix atmospheric nitrogen into biologically useful forms.',
+ 'Autotrophic':'photosynthetic bacteria can manufacture organic food using energy from light.',
+ 'Oxidation of inorganic substances':'chemosynthetic bacteria obtain energy by oxidising inorganic substances such as ammonia, nitrites or sulphur compounds.',
+ 'Binary fission':'in binary fission, one bacterial cell replicates its genetic material and divides into two daughter cells.',
+ 'Genetic recombination':'conjugation involves transfer of genetic material between bacterial cells and contributes to genetic recombination.',
+ 'this follows the relevant NCERT concept being tested.':''
+ };
+ return detailed[a]||(a+' is correct because it matches the NCERT concept being tested for Kingdom Monera.');
+}
+if(chapter==='Nomenclature: Binomial System & Rules'){
  const detailed={
  'Assigning scientific names to organisms':'nomenclature is the scientific process of assigning standardised names so organisms can be identified consistently worldwide.',
  'A universal system of naming organisms':'scientific nomenclature provides internationally accepted names that avoid regional ambiguity.',
