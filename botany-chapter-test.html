@@ -1083,7 +1083,7 @@ function test(){
    'Plasmodium belongs to':'In the traditional NCERT classification, Plasmodium is grouped with sporozoans, which are parasitic protozoans.',
    'Ciliated protozoans are aquatic and actively moving because of':'Numerous cilia beat rhythmically to propel ciliated protozoans through their aquatic environment.'
   };
-  return questionSpecific[q[0]]||detailed[a]||meaningful[a]||'This answer follows from the defining characteristic of the specific Protista group tested in the question.';
+  return questionSpecific[q[0]]||detailed[a]||meaningful[a]||'';
  }
  if(chapter==='What is Living? Growth, Reproduction & Metabolism'){
   const detailed={
@@ -1316,7 +1316,7 @@ if(chapter==='Cyanobacteria & Archaebacteria'){
  };
  return detailed[a]||'the correct option follows the characteristic feature or ecological adaptation of archaebacteria described in the question.';
 }
-return 'the biological concept described in the question supports this option.';
+return '';
 }
 
   function render(){
