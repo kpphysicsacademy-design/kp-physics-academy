@@ -160,7 +160,12 @@ topics:{
 ['Which bacterial shape is spherical?','Coccus','Bacillus','Vibrio','Spirillum',0],
 ['Rod-shaped bacteria are called','Bacilli','Cocci','Vibrios','Spirilla',0],
 ['Comma-shaped bacteria are called','Vibrios','Cocci','Bacilli','Streptococci',0],
+['Which bacterial shape is spiral?','Spirillum','Coccus','Bacillus','Vibrio',0],
 ['The genetic material of a typical bacterium is mainly located in the','Nucleoid','Nucleus','Mitochondrion','Chloroplast',0],
+['Most eubacterial cell walls contain','Peptidoglycan','Cellulose','Chitin','Lignin',0],
+['A bacterial capsule mainly helps in','Protection from adverse conditions','Protein synthesis','Photosynthesis in all bacteria','Formation of a nucleus',0],
+['Ribosomes in bacteria are','70S','80S','90S','Absent',0],
+['Bacterial flagella primarily help in','Locomotion','Protein synthesis','DNA storage','Cell-wall formation',0],
 ['The most common method of reproduction in bacteria is','Binary fission','Pollination','Seed formation','Budding in all bacteria',0]
 ]
 }
@@ -566,13 +571,18 @@ function test(){
 }
 if(chapter==='Bacteria: Shapes, Structure & Reproduction'){
  const detailed={
-  'Coccus':'cocci are spherical bacteria. They may occur singly or in characteristic arrangements such as pairs, chains or clusters.',
-  'Bacilli':'bacilli are rod-shaped bacteria. The singular form is bacillus, while bacilli refers to more than one rod-shaped bacterial cell.',
-  'Vibrios':'vibrios are comma-shaped bacteria, distinguished by their curved rod-like form.',
-  'Nucleoid':'a typical bacterium has no membrane-bound nucleus. Its main circular DNA is concentrated in an irregular nucleoid region.',
-  'Binary fission':'binary fission is the usual asexual method of bacterial multiplication. The DNA replicates and the cell divides to form two daughter cells.'
+ 'Coccus':'cocci are spherical bacteria and may occur singly or in arrangements such as pairs, chains or clusters.',
+ 'Bacilli':'bacilli are rod-shaped bacteria; bacillus is the singular form.',
+ 'Vibrios':'vibrios are comma-shaped bacteria with a curved rod-like appearance.',
+ 'Spirillum':'spirilla are spiral-shaped bacteria with a helical form.',
+ 'Nucleoid':'bacteria lack a membrane-bound nucleus, so their main DNA is concentrated in the nucleoid region.',
+ 'Peptidoglycan':'the cell wall of most eubacteria contains peptidoglycan, which provides shape and protection.',
+ 'Protection from adverse conditions':'the capsule is an outer protective layer that can help bacteria resist drying and other adverse conditions.',
+ '70S':'bacterial cytoplasmic ribosomes are 70S, composed of 50S and 30S subunits.',
+ 'Locomotion':'flagella are long appendages that help many bacteria move through their environment.',
+ 'Binary fission':'during binary fission, bacterial DNA replicates and the cell divides to form two daughter cells.'
  };
- return detailed[a]||'the biological structure or process described in the question supports this answer.';
+ return detailed[a]||'the bacterial structure or process described in the question supports this answer.';
 }
 if(chapter==='Kingdom Monera'){
  const detailed={
