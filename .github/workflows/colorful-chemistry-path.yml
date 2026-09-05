@@ -1,0 +1,40 @@
+name: Make Chemistry Path Colorful
+on:
+  push:
+    paths:
+      - 'chemistry-skillup-path.html'
+      - '.github/workflows/colorful-chemistry-path.yml'
+  workflow_dispatch:
+
+jobs:
+  color:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply Duolingo-inspired colorful styling
+        shell: python
+        run: |
+          from pathlib import Path
+          p=Path('chemistry-skillup-path.html')
+          s=p.read_text(encoding='utf-8')
+          if 'skillup-version\" content=\"20260905.4' not in s:
+              print('No target version; nothing to do.')
+              raise SystemExit(0)
+          s=s.replace('skillup-version\" content=\"20260905.4','skillup-version\" content=\"20260905.5',1)
+          old=':root{--navy:#071a31;--blue:#7652d9;--green:#58cc02;--orange:#ff9600;--ink:#172033;--muted:#667085;--bg:#f7f9fc;--line:#dfe7ef;--gold:#f0c84b;--locked:#b7c1cc}'
+          new=':root{--navy:#312e81;--blue:#7c3aed;--green:#58cc02;--orange:#ff9600;--pink:#ff4b8b;--cyan:#19c8ff;--yellow:#ffc800;--red:#ff5a5f;--purple:#8b5cf6;--ink:#172033;--muted:#667085;--bg:#f7f9fc;--line:#dfe7ef;--gold:#f0c84b;--locked:#b7c1cc}'
+          s=s.replace(old,new,1)
+          extra='''<style id="duolingo-colorful-chemistry">\n.section:nth-of-type(1) .section-head{background:linear-gradient(110deg,#5b21b6,#8b5cf6)}\n.section:nth-of-type(2) .section-head{background:linear-gradient(110deg,#0369a1,#06b6d4)}\n.section:nth-of-type(3) .section-head{background:linear-gradient(110deg,#be185d,#ec4899)}\n.section:nth-of-type(4) .section-head{background:linear-gradient(110deg,#b45309,#f59e0b)}\n.section:nth-of-type(1) .unit-break{border-color:#8b5cf6;border-left-color:#7c3aed;background:#f5f3ff}\n.section:nth-of-type(2) .unit-break{border-color:#06b6d4;border-left-color:#0891b2;background:#ecfeff}\n.section:nth-of-type(3) .unit-break{border-color:#ec4899;border-left-color:#db2777;background:#fdf2f8}\n.section:nth-of-type(4) .unit-break{border-color:#f59e0b;border-left-color:#d97706;background:#fffbeb}\n.unit-break{border-width:2px 2px 2px 8px;box-shadow:0 4px 0 #17203312;position:relative}\n.unit-break:after{content:"";position:absolute;right:12px;top:50%;width:12px;height:12px;border-radius:50%;background:var(--yellow);transform:translateY(-50%);box-shadow:18px 0 0 var(--pink),36px 0 0 var(--cyan)}\n.concept-label{background:#fff3b0;color:#7c2d12;border:1px solid #facc15}\n.node-card{border-width:2px;box-shadow:0 5px 0 #17203312}\n.node:nth-child(4n+1) .node-card{border-color:#8b5cf6}\n.node:nth-child(4n+2) .node-card{border-color:#06b6d4}\n.node:nth-child(4n+3) .node-card{border-color:#ec4899}\n.node:nth-child(4n) .node-card{border-color:#f59e0b}\n.node:nth-child(4n+1) .node-dot{background:#8b5cf6;box-shadow:0 5px 0 #6d28d9}\n.node:nth-child(4n+2) .node-dot{background:#06b6d4;box-shadow:0 5px 0 #0891b2}\n.node:nth-child(4n+3) .node-dot{background:#ec4899;box-shadow:0 5px 0 #be185d}\n.node:nth-child(4n) .node-dot{background:#f59e0b;box-shadow:0 5px 0 #b45309}\n.node-card:before{background:#fff3b0}\n.section-head .count{box-shadow:0 3px 0 #17203318}\n'''
+          s=s.replace('</style></head>',''+extra+'</style></head>',1)
+          s=s.replace('<div class="node-top"><h3>UNIT '+u[0]+' • '+u[1]+' — '+(si+1)+'/'+subs.length+'</h3></div><p class="node-desc">'+s+'</p>','<div class="node-top"><span class="concept-label">CONCEPT '+(si+1)+' / '+subs.length+'</span><h3>'+s+'</h3></div>',1) if False else s
+          p.write_text(s,encoding='utf-8')
+      - name: Commit changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add chemistry-skillup-path.html
+          git diff --cached --quiet || git commit -m 'Make Chemistry path colorful Duolingo-inspired'
+          git push
