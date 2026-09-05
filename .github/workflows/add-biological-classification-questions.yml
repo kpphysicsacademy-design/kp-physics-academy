@@ -1,0 +1,37 @@
+name: Add Biological Classification Questions
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add question set
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64
+          p=Path('botany-biological-classification-test.html')
+          s=p.read_text(encoding='utf-8')
+          if 'Which kingdom contains organisms that are prokaryotic?' in s:
+              print('Question set already present; no content change needed.')
+              raise SystemExit(0)
+          marker="],\n'monera':"
+          if marker not in s:
+              raise SystemExit('Insertion marker not found')
+          b64='WyJXaGljaCBraW5nZG9tIGNvbnRhaW5zIG9yZ2FuaXNtcyB0aGF0IGFyZSBwcm9rYXJ5b3RpYz8iLCJNb25lcmEiLCJQcm90aXN0YSIsIkZ1bmdpIiwiUGxhbnRhZSIsMF0sWyJXaGljaCBraW5nZG9tIGlzIHByaW1hcmlseSBjb21wb3NlZCBvZiB1bmljZWxsdWxhciBldWthcnlvdGVzPyIsIlByb3Rpc3RhIiwiTW9uZXJhIiwiUGxhbnRhZSIsIkFuaW1hbGlhIiwwXSxbIkZ1bmdpIG9idGFpbiBudXRyaXRpb24gbWFpbmx5IGJ5OiIsIkFic29ycHRpb24iLCJQaG90b3N5bnRoZXNpcyIsIkluZ2VzdGlvbiIsIkNoZW1vc3ludGhlc2lzIiwwXSxbIlRoZSBjZWxsIHdhbGwgb2YgZnVuZ2kgaXMgbWFpbmx5IGNvbXBvc2VkIG9mOiIsIkNoaXRpbiIsIkNlbGx1bG9zZSIsIlBlcHRpZG9nbHljYW4iLCJTaWxpY2EiLDBdLFsiV2hpY2ggb3JnYW5pc20gaXMgYSBtZW1iZXIgb2YgS2luZ2RvbSBQcm90aXN0YT8iLCJBbW9lYmEiLCJNdXNocm9vbSIsIk1hbmdvIiwiRS4gY29saSIsMF0sWyJXaGljaCBvcmdhbmlzbSBiZWxvbmdzIHRvIEtpbmdkb20gRnVuZ2k/IiwiQWdhcmljdXMiLCJOb3N0b2MiLCJDaGxhbXlkb21vbmFzIiwiQW1vZWJhIiwwXSxbIldoaWNoIGdyb3VwIGNvbnRhaW5zIG9yZ2FuaXNtcyB3aXRoIGFic29ycHRpdmUgaGV0ZXJvdHJvcGhpYyBudXRyaXRpb24/IiwiRnVuZ2kiLCJBbmltYWxpYSBvbmx5IiwiUGxhbnRhZSBvbmx5IiwiTW9uZXJhIG9ubHkiLDBdLFsiV2hpY2gga2luZ2RvbSBpbmNsdWRlcyBtdWx0aWNlbGx1bGFyIG9yZ2FuaXNtcyB3aXRoIGluZ2VzdGl2ZSBoZXRlcm90cm9waGljIG51dHJpdGlvbj8iLCJBbmltYWxpYSIsIkZ1bmdpIiwiUHJvdGlzdGEgb25seSIsIk1vbmVyYSIsMF0sWyJMaWNoZW5zIHJlcHJlc2VudCBhIHN5bWJpb3RpYyBhc3NvY2lhdGlvbiBiZXR3ZWVuOiIsIkFsZ2EgYW5kIGZ1bmd1cyIsIkJhY3Rlcml1bSBhbmQgdmlydXMiLCJQbGFudCBhbmQgYW5pbWFsIiwiRnVuZ3VzIGFuZCB2aXJ1cyIsMF0sWyJUaGUgcGhvdG9zeW50aGV0aWMgcGFydG5lciBpbiBhIGxpY2hlbiBtYWlubHkgcHJvdmlkZXM6IiwiQ2FyYm9oeWRyYXRlcyIsIkNoaXRpbiIsIlBlcHRpZG9nbHljYW4iLCJVcmVhIiwwXSxbIldoaWNoIGZlYXR1cmUgZGlzdGluZ3Vpc2hlcyBldWJhY3RlcmlhIGZyb20gYXJjaGFlYmFjdGVyaWEgaW4gTkNFUlQgY2xhc3NpZmljYXRpb24/IiwiQ2VsbCB3YWxsIGNvbXBvc2l0aW9uIiwiUHJlc2VuY2Ugb2YgRE5BIiwiUHJlc2VuY2Ugb2Ygcmlib3NvbWVzIiwiVW5pY2VsbHVsYXIgYWJpdCIsMF0sWyJNZXRoYW5vZ2VucyBhcmUgaW1wb3J0YW50IGJlY2F1c2UgdGhleSBwcm9kdWNlOiIsIk1ldGhhbmUiLCJPeHlnZW4iLCJOaXRyb2dlbiIsIkh5ZHJvZ2VuIHBlcm94aWRlIiwwXSxbIkhhbG9waGlsZXMgYXJlIGFjYXB0ZWQgdG8gZW52aXJvbm1lbnRzIHdpdGg6IiwiVmVyeSBoaWdoIHNhbHQgY29uY2VudHJhdGlvbiIsIlZlcnkgbG93IGxpZ2h0IG9ubHkiLCJGcmVzaHdhdGVyIG9ubHkiLCJIaWdoIHN1Z2FyIG9ubHkiLDBdLFsiV2hpY2ggY3lhbm9iYWN0ZXJpdW0gaXMgY29tbW9ubHkgYXNzb2NpYXRlZCB3aXRoIG5pdHJvZ2VuIGZpeGF0aW9uPyIsIk5vc3RvYyIsIkFnYXJpY3VzIiwiQW1vZWJhIiwiUGFyYW1lY2l1bSIsMF0sWyJNeWNvcGxhc21hIGRpZmZlcnMgZnJvbSBtb3N0IGJhY3RlcmlhIGJlY2F1c2UgaXQ6IiwiTGFja3MgYSBjZWxsIHdhbGwiLCJMYWNrcyBETkEiLCJMYWNrcyByaWJvc29tZXMiLCJJcyBtdWx0aWNlbGx1bGFyIiwwXSxbIldoaWNoIGtpbmdkb20gY29udGFpbnMgb3JnYW5pc21zIHRoYXQgbWF5IGJlIHVuaWNlbGx1bGFyIG9yIG11bHRpY2VsbHVsYXIgYW5kIGhhdmUgYWJzb3JwdGl2ZSBudXRyaXRpb24/IiwiRnVuZ2kiLCJBbmltYWxpYSIsIlBsYW50YWUiLCJPbmx5IE1vbmVyYSIsMF0sWyJXaGljaCBwcm90aXN0IGlzIGNvbW1vbmx5IGtub3duIGZvciBhIGZsZXhpYmxlIHBlbGxpY2xlIGluc3RlYWQgb2YgYSByaWdpZCBjZWxsIHdhbGw/IiwiRXVnbGVuYSIsIkFnYXJpY3VzIiwiTXVjb3IiLCJOb3N0b2MiLDBdLFsiV2hpY2ggb3JnYW5pc20gaXMgYW4gZXhhbXBsZSBvZiBhIHNsaW1lIG1vdWxkPyIsIlBoeXNhcnVtIiwiUGludXMiLCJSaGl6b3B1cyIsIk5vc3RvYyIsMF0sWyJXaGljaCBzdGF0ZW1lbnQgYWJvdXQgdmlydXNlcyBpcyBjb3JyZWN0PyIsIlRoZXkgYXJlIGFjZWxsdWxhciBhbmQgcmVwbGljYXRlIGluc2lkZSBob3N0IGNlbGxzIiwiVGhleSBhcmUgcHJva2FyeW90aWMgY2VsbHMiLCJUaGV5IGNhcnJ5IG91dCBpbmRlcGVuZGVudCBtZXRhYm9saXNtIiwiVGhleSBhcmUgbXVsdGljZWxsdWxhciIsMF0sWyJXaGljaCBjcml0ZXJpb24gd2FzIGltcG9ydGFudCBpbiBXaGl0dGFrZXIncyBmaXZlLWtpbmdkb20gY2xhc3NpZmljYXRpb24/IiwiTW9kZSBvZiBudXRyaXRpb24iLCJPbmx5IGJvZHkgY29sb3VyIiwiT25seSBoYWJpdGF0IiwiT25seSBzaXplIiwwXSx'
+          additions=base64.b64decode(b64).decode()
+          s=s.replace(marker, ',\n'+additions+'],\n\'monera\':', 1)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit question set
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add botany-biological-classification-test.html
+          git diff --cached --quiet || git commit -m "Add next Biological Classification questions"
+          git push
