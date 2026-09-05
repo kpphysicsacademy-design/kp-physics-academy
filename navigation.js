@@ -23,6 +23,27 @@
   nav.innerHTML=items.map(([k,label])=>'<a href="'+route(k)+'" class="'+(active===k?"active":"")+'" aria-label="'+label+'" title="'+label+'"><span class="skillup-nav-icon" aria-hidden="true">'+icons[k]+'</span></a>').join("");
   document.body.appendChild(nav);
  };
+ function addBotanyPracticeButtons(){
+  if((location.pathname.split('/').pop()||'').toLowerCase()!=='botany-full-path.html')return;
+  if(!document.querySelector('.node-card'))return;
+  if(!document.getElementById('botany-duolingo-style')){
+   const s=document.createElement('style');s.id='botany-duolingo-style';s.textContent=`
+    .botany-practice-btn{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;margin-top:9px;padding:8px 10px;border-radius:10px;background:#20a447;color:#fff;text-decoration:none;font-size:9px;font-weight:950;box-shadow:0 3px 0 #16853b;transition:.15s ease}
+    .botany-practice-btn:hover{transform:translateY(-2px);box-shadow:0 5px 0 #16853b}
+    .botany-practice-btn:active{transform:translateY(1px);box-shadow:0 2px 0 #16853b}
+    .botany-practice-label{letter-spacing:.2px}
+    @media(max-width:720px){.botany-practice-btn{font-size:8px;padding:7px 8px}}
+   `;document.head.appendChild(s);
+  }
+  document.querySelectorAll('.node-card').forEach(card=>{
+   if(card.querySelector('.botany-practice-btn'))return;
+   const h=card.querySelector('h3');if(!h)return;
+   const title=h.textContent.replace(/^\S+\s+/,'').trim();if(!title)return;
+   const a=document.createElement('a');a.className='botany-practice-btn';a.href='question-bank.html?subject=botany&topic='+encodeURIComponent(title);a.innerHTML='<span>🎯</span><span class="botany-practice-label">PRACTICE QUESTIONS</span>';
+   a.addEventListener('click',e=>e.stopPropagation());
+   card.appendChild(a);
+  });
+ }
  function install(){
   if(!document.getElementById("skillup-nav-style")){
    const s=document.createElement("style");s.id="skillup-nav-style";s.textContent=`
@@ -36,6 +57,7 @@
   }
   document.querySelectorAll("nav.bottom,nav.bottom-nav,nav.nav,nav.skillup-bottom-nav,.bottom-nav,.skillup-nav").forEach(n=>{if(!n.classList.contains("skillup-bottom-nav"))n.remove();});
   window.renderSkillUpNavigation(detectActive());
+  addBotanyPracticeButtons();
  }
  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",install);else install();
 })();
