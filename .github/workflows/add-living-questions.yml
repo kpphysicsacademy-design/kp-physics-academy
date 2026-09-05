@@ -1,0 +1,53 @@
+name: Add Living Concept Questions
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  add-questions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Append 20 NEET questions
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('question-bank.html')
+          s=p.read_text(encoding='utf-8')
+          extra=r'''['Which property of living organisms involves the ability to detect environmental changes?',['Sensitivity','Crystallisation','Sedimentation','Corrosion'],0,'Sensitivity is the ability of an organism to detect and respond to changes in its internal or external environment.'],
+['Which process converts nutrients into forms of energy that cells can use?',['Cellular respiration','Pollination','Transpiration','Germination'],0,'Cellular respiration breaks down energy-rich molecules and transfers released energy into usable cellular energy, mainly ATP.'],
+['Which statement about anabolism is correct?',['It builds complex molecules from simpler molecules','It always destroys cellular components','It is identical to excretion','It occurs only outside cells'],0,'Anabolism comprises biosynthetic reactions that construct complex molecules from simpler precursors and generally require energy.'],
+['Which statement about catabolism is correct?',['It breaks down complex molecules and can release energy','It produces only tissues','It is another name for reproduction','It occurs only in plants'],0,'Catabolic pathways degrade complex molecules into simpler products and commonly release energy that can be conserved as ATP.'],
+['Why can a crystal increasing in size not be considered biological growth?',['Its increase occurs by external deposition rather than cellular activity','It performs metabolism','It reproduces by cell division','It responds physiologically to stimuli'],0,'A crystal can enlarge by deposition of material from its surroundings, whereas biological growth involves internally controlled cellular processes.'],
+['Which life process directly maintains the chemical organisation of a cell?',['Metabolism','Locomotion','Pollination','Dispersal'],0,'Metabolism maintains cellular organisation by continuously transforming molecules and supplying energy and materials required for cellular function.'],
+['Which statement about reproduction and species continuity is correct?',['Reproduction produces offspring and maintains continuity across generations','Reproduction is required for every individual to survive','Reproduction is only a form of metabolism','Reproduction occurs only in multicellular organisms'],0,'Reproduction produces new individuals and is therefore essential for continuity of a species across generations.'],
+['Which is a characteristic of sexual reproduction?',['Fusion of male and female gametes','Formation of offspring from one parent without gametes','Production of genetically identical offspring in every case','Absence of reproductive cells'],0,'Sexual reproduction involves fusion of gametes, combining genetic material and generally increasing variation among offspring.'],
+['Which statement about asexual reproduction is correct?',['It generally involves a single parent','It always requires fusion of gametes','It always requires two parents','It cannot occur in unicellular organisms'],0,'Asexual reproduction generally involves one parent and does not require fusion of male and female gametes.'],
+['Which biological process is directly associated with synthesis of proteins?',['Anabolism','Catabolism only','Excretion','Locomotion'],0,'Protein synthesis is a biosynthetic process in which amino acids are assembled into polypeptides, making it anabolic.'],
+['Which statement best explains why growth is a characteristic of living organisms?',['Living cells synthesize and add cellular material through regulated processes','Every non-living object grows biologically','Growth always means locomotion','Only external size determines life'],0,'Biological growth results from regulated cellular synthesis and cell proliferation, rather than simple external accumulation.'],
+['Which response helps an animal maintain a stable body temperature?',['Sweating when body temperature rises','Formation of a crystal','Rusting of iron','Seed dispersal'],0,'Sweating increases heat loss and contributes to thermoregulation when body temperature rises.'],
+['Which statement about plant responses is correct?',['Plants respond to stimuli such as light, gravity and touch','Plants never respond to environmental signals','Only animals possess responses','Plant responses are always locomotory movements'],0,'Plants perceive environmental signals and respond through processes such as phototropism, gravitropism and touch responses.'],
+['Which level of organisation is fundamental to all living organisms?',['Cell','Tissue only','Organ only','Organ system only'],0,'The cell is the basic structural and functional unit of life; organisms may be unicellular or multicellular.'],
+['Which process can occur continuously in a living cell even when the organism is not growing in size?',['Metabolism','Only reproduction','Only locomotion','Only pollination'],0,'Metabolism continues to provide energy and maintain cellular components even when there is no net increase in body size.'],
+['Which statement about metabolism and energy is correct?',['Metabolic pathways transform matter and transfer energy needed for cellular work','Metabolism creates energy from nothing','Metabolism occurs only during reproduction','Metabolism is the same as locomotion'],0,'Metabolic reactions transform molecules and enable energy transfer for cellular work, maintenance, synthesis and other life processes.'],
+['Which example best illustrates an organism responding to an internal stimulus?',['Release of insulin when blood glucose rises','A stone falling under gravity','A crystal growing by deposition','Iron rusting in moist air'],0,'Rising blood glucose is an internal stimulus that can trigger insulin secretion, helping regulate the internal environment.'],
+['Which feature is NOT universal among living organisms?',['Ability to move from place to place','Metabolism','Cellular organisation','Response to stimuli'],0,'Locomotion from place to place is not universal; many plants remain rooted while carrying out metabolism and responding to stimuli.'],
+['Which statement best distinguishes reproduction from growth?',['Reproduction produces new individuals, whereas growth increases living material of an organism','Growth always produces offspring','Reproduction only increases cell size','They are exactly the same process'],0,'Growth increases the amount of living material in an organism, while reproduction generates new individuals.'],
+['Which combination most completely describes major characteristics of living systems?',['Cellular organisation, metabolism, growth, response and reproduction','Only movement and increase in size','Only respiration and feeding','Only reproduction and locomotion'],0,'Living systems show cellular organisation and coordinated processes including metabolism, growth, responsiveness and reproduction.']'''
+          marker=';let i=0,score=0,answered=false'
+          if marker not in s:
+              raise SystemExit('quiz marker not found')
+          s=s.replace(marker, ','+extra+marker, 1)
+          s=s.replace('20 focused questions','40 focused questions',1)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit and remove one-time workflow
+        run: |
+          rm -f .github/workflows/add-living-questions.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add question-bank.html .github/workflows/add-living-questions.yml
+          git diff --cached --quiet || git commit -m 'Add 20 more Living concept MCQs'
+          git push
