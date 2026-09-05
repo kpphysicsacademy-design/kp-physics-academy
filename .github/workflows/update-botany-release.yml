@@ -9,16 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Patch Botany path
+      - name: Add Botany question practice
         run: |
           python - <<'PY'
           from pathlib import Path
-          import re
+          import re, urllib.parse
           p=Path('botany-full-path.html')
           s=p.read_text(encoding='utf-8')
-          # Keep ❤️ 5 visible on mobile.
-          s=s.replace('.stats .pill:last-child{display:none}', '')
-          # Reincorporate the removed Protista and Fungi kingdom sections into Unit 1.
+          if '<html' not in s.lower():
+              raise SystemExit('Botany page is not valid HTML; refusing to overwrite it')
+          # Restore the removed kingdoms in the path data.
           marker="['🟢','Cyanobacteria & Archaebacteria','',35,'botany-chapter-learn.html'],"
           additions="""
 ['🟣','Kingdom Protista','',45,'botany-chapter-learn.html'],
@@ -30,11 +30,24 @@ jobs:
               if marker not in s:
                   raise SystemExit('Botany insertion marker not found')
               s=s.replace(marker, marker+'\n'+additions, 1)
-          # Remove the page-local bottom nav so the shared navigation.js is authoritative.
-          s=re.sub(r'<nav class="nav">.*?</nav>', '', s, count=1, flags=re.S)
-          # Load the central navigation after the page script block.
+          # Add a Duolingo-style practice CTA to every rendered Botany node.
+          css='''<style id="botany-duolingo-practice">.botany-practice{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:9px;background:#20a447;color:#fff;border-radius:10px;padding:8px 10px;font-size:9px;font-weight:950;text-decoration:none;box-shadow:0 3px 0 #16853b;transition:.15s}.botany-practice:hover{transform:translateY(-2px)}.botany-practice .qdot{font-size:12px}.botany-lesson-row{display:flex;gap:6px;margin-top:8px}.botany-lesson-row .continue{margin:0}.botany-question-count{font-size:8px;color:#64746d;font-weight:900;margin-top:5px}@media(max-width:720px){.botany-practice{font-size:8px;padding:7px 8px}}</style>'''
+          if 'id="botany-duolingo-practice"' not in s:
+              s=s.replace('</head>', css+'</head>', 1)
+          # Replace the node rendering block with a practice link when the script builds cards.
+          needle="card.innerHTML=`<div class=\"node-top\"><h3>${item[0]}</h3><span class=\"status\">${status}</span></div><div class=\"xp\">⭐ ${item[2]} XP</div>`;"
+          if needle in s:
+              repl=needle+"\n  const practice=document.createElement('a');practice.className='botany-practice';practice.href='question-bank.html?subject=botany&topic='+encodeURIComponent(item[0]);practice.innerHTML='<span class=\"qdot\">🎯</span> PRACTICE QUESTIONS';card.appendChild(practice);"
+              s=s.replace(needle,repl,1)
+          else:
+              # Generic safe injection: after each rendered node card is created, append a topic-practice CTA.
+              anchor="card.className='node-card';"
+              if anchor in s and 'botany-practice' not in s:
+                  s=s.replace(anchor,anchor+"\n  const practice=document.createElement('a');practice.className='botany-practice';practice.href='question-bank.html?subject=botany&topic='+encodeURIComponent(item[1]);practice.textContent='🎯 PRACTICE QUESTIONS';card.appendChild(practice);",1)
+          # Keep central navigation authoritative.
+          s=re.sub(r'<nav class="nav">.*?</nav>','',s,count=1,flags=re.S)
           if 'src="navigation.js"' not in s:
-              s=s.replace('</body>', '<script src="navigation.js"></script></body>', 1)
+              s=s.replace('</body>','<script src="navigation.js"></script></body>',1)
           p.write_text(s,encoding='utf-8')
           PY
       - name: Commit changes
@@ -43,7 +56,7 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add botany-full-path.html
           if git diff --cached --quiet; then echo 'No Botany changes'; exit 0; fi
-          git commit -m 'Update Botany NEET path and central navigation'
+          git commit -m 'Add Duolingo-style Botany question practice'
           git push
       - name: Remove temporary workflow
         run: |
