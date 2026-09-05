@@ -1,6 +1,6 @@
 /* SkillUp Central Navigation System */
 (function(){
- const icons={home:'🏠',practice:'🎯',compete:'🏆',profile:'👤'};
+ const icons={home:'🏠',practice:'🎯',profile:'👤'};
  function route(name){
   const fallback={home:"skillup-home.html",learn:"learn.html",practice:"practice.html",compete:"compete.html",profile:"profile.html"};
   let target=(window.SkillUpRoutes&&window.SkillUpRoutes[name])||fallback[name]||"#";
@@ -11,7 +11,7 @@
   return target;
  }
  function detectActive(){const p=(location.pathname.split("/").pop()||"index.html").toLowerCase();if(p==="index.html"||p==="skillup-home.html")return"home";if(p==="learn.html"||/-learn\.html$/i.test(p)||/-path\.html$/i.test(p)||/full-path\.html$/i.test(p)||/neet-path\.html$/i.test(p)||/jee-path\.html$/i.test(p))return"learn";if(p==="practice.html")return"practice";if(["compete.html","league.html","challenge.html","challenge-concepts.html"].includes(p))return"compete";if(p==="profile.html")return"profile";return"";}
- window.renderSkillUpNavigation=function(active){document.querySelectorAll(".skillup-bottom-nav").forEach(n=>n.remove());const nav=document.createElement("nav");nav.className="skillup-bottom-nav";nav.setAttribute("aria-label","SkillUp main navigation");const items=[["home","Home"],["learn","Learn"],["practice","Practice"],["compete","League"],["profile","Profile"]];nav.innerHTML=items.map(([k,label])=>'<a href="'+route(k)+'" class="'+(active===k?"active":"")+'">'+(k==="learn"?'':'<span class="skillup-nav-icon" aria-hidden="true">'+icons[k]+'</span>')+'<span>'+label+'</span></a>').join("");document.body.appendChild(nav);};
+ window.renderSkillUpNavigation=function(active){document.querySelectorAll(".skillup-bottom-nav").forEach(n=>n.remove());const nav=document.createElement("nav");nav.className="skillup-bottom-nav";nav.setAttribute("aria-label","SkillUp main navigation");const items=[["home","Home"],["learn","Learn"],["practice","Practice"],["compete","League"],["profile","Profile"]];nav.innerHTML=items.map(([k,label])=>'<a href="'+route(k)+'" class="'+(active===k?"active":"")+'">'+(k==="learn"||k==="compete"?'':'<span class="skillup-nav-icon" aria-hidden="true">'+icons[k]+'</span>')+'<span>'+label+'</span></a>').join("");document.body.appendChild(nav);};
  function install(){
   if(!document.getElementById("skillup-nav-style")){
    const s=document.createElement("style");s.id="skillup-nav-style";s.textContent=`
