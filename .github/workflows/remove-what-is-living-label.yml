@@ -1,0 +1,32 @@
+name: Remove What Is Living Label
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove incorrect topic label
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('question-bank.html')
+          s=p.read_text(encoding='utf-8')
+          replacements={
+            'SkillUp | What is Living? Practice':'SkillUp | Five Kingdom Classification Practice',
+            'What is Living? Growth, Reproduction &amp; Metabolism':'Five Kingdom Classification',
+            'What is Living? Growth, Reproduction & Metabolism':'Five Kingdom Classification'
+          }
+          for old,new in replacements.items():
+              s=s.replace(old,new)
+          p.write_text(s,encoding='utf-8')
+          PY
+          rm -f .github/workflows/remove-what-is-living-label.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add question-bank.html .github/workflows/remove-what-is-living-label.yml
+          git commit -m 'Remove incorrect What is Living label from practice page' || exit 0
+          git push
