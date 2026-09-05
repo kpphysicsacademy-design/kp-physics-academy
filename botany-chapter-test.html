@@ -1068,6 +1068,10 @@ topics:{
 ['Which is correctly matched?','Prion—infectious protein','Viroid—protein coat and RNA','Virus—always both DNA and RNA','Bacteriophage—protein-only agent',0]]
 }}
 };
+const redirectedPlantKingdom = chapter==='Plant Kingdom Classification Criteria';
+if(redirectedPlantKingdom && !new URLSearchParams(location.search).get('topic')){
+  location.replace('botany-plant-kingdom-test.html');
+}
 const chapterConfig=chapterConfigs[chapter]||null;
 let topics=chapterConfig?chapterConfig.topics:null;
 const livingChapter=chapter==='What is Living? Growth, Reproduction & Metabolism';
